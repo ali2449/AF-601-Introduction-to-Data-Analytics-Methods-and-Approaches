@@ -1,176 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ali Noori - Linguistic Developer</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <style>
-    body { background-color: #f7fafc; }
-    .section-title { color: #003366; border-bottom: 2px solid #003366; }
-    .subsection-title { color: #000000; }
-    a { color: #1a0dab; }
-    a:hover { text-decoration: underline; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar Solutions - Welcome to the Future</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Tailwind's gray-50 */
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #4f46e5, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
 </head>
-<body class="font-sans leading-normal tracking-normal">
-  <div class="container mx-auto px-4 py-8 max-w-4xl">
-    <!-- Header -->
-    <header class="text-center mb-12">
-      <h1 class="text-4xl font-bold text-gray-800">Ali Noori, M.S.</h1>
-      <h2 class="text-2xl text-gray-600 mt-2">Linguistic Developer | NLP & Computational Linguistics Specialist</h2>
-      <p class="mt-4 text-gray-600">
-        1000 W Market St., Greensboro, NC 27401<br>
-        <i class="fas fa-phone"></i> (336) 268-5386 | 
-        <i class="fas fa-envelope"></i> <a href="mailto:iaum.noori@gmail.com">iaum.noori@gmail.com</a> | 
-        <i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/ali--noori" target="_blank">linkedin.com/in/ali--noori</a>
-      </p>
+<body class="text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold text-gray-800">
+                Stellar<span class="text-indigo-600">.</span>
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#features" class="text-gray-600 hover:text-indigo-600 transition duration-300">Features</a>
+                <a href="#about" class="text-gray-600 hover:text-indigo-600 transition duration-300">About</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-indigo-600 transition duration-300">Testimonials</a>
+                <a href="#contact" class="bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 cta-button">Contact Us</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#features" class="block py-2 text-gray-600 hover:text-indigo-600">Features</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-indigo-600">About</a>
+            <a href="#testimonials" class="block py-2 text-gray-600 hover:text-indigo-600">Testimonials</a>
+            <a href="#contact" class="block mt-2 bg-indigo-600 text-white text-center py-2 px-4 rounded-lg hover:bg-indigo-700">Contact Us</a>
+        </div>
     </header>
 
-    <!-- Professional Summary -->
-    <section class="mb-8">
-      <h2 class="section-title text-2xl font-bold mb-4">Professional Summary</h2>
-      <p class="text-gray-700">
-        Results-driven Linguistic Developer with 5+ years of hands-on experience in natural language processing (NLP), computational linguistics, and AI modeling, complemented by 10+ years in software engineering. Expertise in developing text analytics software and models using supervised, unsupervised, semi-supervised, deep learning (including Bi-GRU and RNNs), symbolic AI, and LLMs. Proficient in Python, SAS, and corpus linguistics for multi-language data analysis. Published researcher in clinical NLP and ontology annotation. Passionate about innovating NLP solutions to transform data into intelligence, with strong diagnostic skills and aptitude across languages.
-      </p>
-    </section>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+                    Build Your <span class="gradient-text">Digital Future</span>
+                </h1>
+                <p class="mt-6 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    We are a forward-thinking creative agency focused on crafting unique digital experiences that drive growth and build lasting brands.
+                </p>
+                <div class="mt-8 flex justify-center space-x-4">
+                    <a href="#contact" class="bg-indigo-600 text-white py-3 px-8 rounded-lg text-lg font-semibold hover:bg-indigo-700 cta-button">Get Started</a>
+                    <a href="#features" class="bg-gray-200 text-gray-800 py-3 px-8 rounded-lg text-lg font-semibold hover:bg-gray-300 transition duration-300">Learn More</a>
+                </div>
+            </div>
+        </section>
 
-    <!-- Professional Experience -->
-    <section class="mb-8">
-      <h2 class="section-title text-2xl font-bold mb-4">Professional Experience</h2>
-      <div class="mb-6">
-        <div class="flex justify-between">
-          <h3 class="text-lg font-bold">University Lecturer & Researcher, Informatics and Analytics</h3>
-          <span class="text-gray-600">Aug 2023 – Present</span>
+        <!-- Features Section -->
+        <section id="features" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">Why Choose Us?</h2>
+                    <p class="mt-4 text-gray-600">Everything you need to launch and grow your business.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                        <div class="bg-indigo-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3">Innovative Design</h3>
+                        <p class="text-gray-600">We create stunning, user-centric designs that are not only beautiful but also highly functional and intuitive.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                        <div class="bg-pink-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3">Robust Development</h3>
+                        <p class="text-gray-600">Our code is clean, scalable, and built on modern technologies to ensure your project is future-proof.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                        <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-3">Data-Driven Strategy</h3>
+                        <p class="text-gray-600">We leverage analytics and insights to inform our strategy, ensuring measurable results and a high ROI.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <img src="https://placehold.co/600x400/e0e7ff/4f46e5?text=Our+Team" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/e0e7ff/4f46e5?text=Image+Not+Found';"
+                             alt="A diverse team collaborating in a modern office" 
+                             class="rounded-xl shadow-2xl w-full">
+                    </div>
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Who We Are</h2>
+                        <p class="text-gray-600 mb-4">
+                            Stellar Solutions was founded on a simple principle: to build amazing things for amazing people. We are a passionate team of designers, developers, and strategists who believe in the power of collaboration and creativity.
+                        </p>
+                        <p class="text-gray-600">
+                            Our mission is to help businesses of all sizes navigate the digital landscape and achieve their goals. We're more than just a service provider; we're your partner in innovation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">Loved by Our Clients</h2>
+                    <p class="mt-4 text-gray-600">Don't just take our word for it.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <p class="text-gray-600 mb-6">"Working with Stellar Solutions was a game-changer for our business. Their attention to detail and creative vision are unparalleled."</p>
+                        <div class="flex items-center">
+                            <img class="w-12 h-12 rounded-full mr-4" src="https://placehold.co/100x100/e0e7ff/4f46e5?text=JS" alt="Avatar of Jane Smith">
+                            <div>
+                                <p class="font-semibold">Jane Smith</p>
+                                <p class="text-sm text-gray-500">CEO, Innovate Inc.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <p class="text-gray-600 mb-6">"The team delivered a fantastic product on time and on budget. Their communication throughout the process was excellent."</p>
+                        <div class="flex items-center">
+                            <img class="w-12 h-12 rounded-full mr-4" src="https://placehold.co/100x100/fce7f3/ec4899?text=MD" alt="Avatar of Mark Davis">
+                            <div>
+                                <p class="font-semibold">Mark Davis</p>
+                                <p class="text-sm text-gray-500">Founder, TechForward</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <p class="text-gray-600 mb-6">"I'm thrilled with the new website. It perfectly captures our brand and has already led to a significant increase in user engagement."</p>
+                        <div class="flex items-center">
+                            <img class="w-12 h-12 rounded-full mr-4" src="https://placehold.co/100x100/d1fae5/10b981?text=LW" alt="Avatar of Lisa White">
+                            <div>
+                                <p class="font-semibold">Lisa White</p>
+                                <p class="text-sm text-gray-500">Marketing Director, NextGen</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold">Let's Build Something Together</h2>
+                    <p class="mt-4 text-gray-600">Have a project in mind? We'd love to hear about it.</p>
+                </div>
+                <div class="max-w-2xl mx-auto">
+                    <form class="bg-gray-50 p-8 rounded-xl shadow-md">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 font-semibold mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Your Name">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="your.email@example.com">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-semibold mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="w-full bg-indigo-600 text-white py-3 px-8 rounded-lg text-lg font-semibold hover:bg-indigo-700 cta-button">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-lg font-semibold">Stellar Solutions</p>
+            <p class="mt-2 text-gray-400">Crafting the future of the web, one pixel at a time.</p>
+            <div class="mt-6 flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12.011c0 4.432 2.865 8.18 6.839 9.504.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12.011C22 6.477 17.523 2 12 2z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+            <p class="mt-6 text-sm text-gray-500">&copy; 2024 Stellar Solutions. All rights reserved.</p>
         </div>
-        <p class="text-gray-600 italic">University of North Carolina at Greensboro, Greensboro, NC</p>
-        <ul class="list-disc pl-6 text-gray-700">
-          <li>Instructed in NLP, ML, data analytics; developed curriculum on text analytics and AI modeling</li>
-          <li>Led NSF-funded research: Prototyped LLMs and Bi-GRU for ontology annotation and clinical text processing across languages</li>
-          <li>Performed corpus linguistics: Collected/cleaned multi-domain datasets, validated models with high accuracy</li>
-        </ul>
-      </div>
-      <div class="mb-6">
-        <div class="flex justify-between">
-          <h3 class="text-lg font-bold">University Lecturer</h3>
-          <span class="text-gray-600">Jan 2021 – Jul 2023</span>
-        </div>
-        <p class="text-gray-600 italic">Azad University (IAU), Iran</p>
-        <ul class="list-disc pl-6 text-gray-700">
-          <li>Taught ML, Advanced Python (NLP focus), Linux; mentored projects on text analytics and recommendation systems</li>
-          <li>Designed practical NLP curriculum, incorporating real-world language data analysis</li>
-        </ul>
-      </div>
-      <div class="mb-6">
-        <div class="flex justify-between">
-          <h3 class="text-lg font-bold">Freelance NLP & Data Engineer</h3>
-          <span class="text-gray-600">Jan 2015 – Jul 2022</span>
-        </div>
-        <p class="text-gray-600 italic">Freelance, Mashhad, Iran</p>
-        <ul class="list-disc pl-6 text-gray-700">
-          <li>Developed NLP/AI solutions for text analytics in 15+ projects; built multi-language pipelines using Python/SAS</li>
-          <li>Implemented supervised/unsupervised models for entity recognition, recommendations; deployed on AWS/Docker, improving efficiency by 60%+</li>
-          <li>Applied deep learning/symbolic AI for domain-specific language processing</li>
-        </ul>
-      </div>
-    </section>
+    </footer>
 
-    <!-- Technical Skills -->
-    <section class="mb-8">
-      <h2 class="section-title text-2xl font-bold mb-4">Technical Skills</h2>
-      <div class="mb-4">
-        <h3 class="subsection-title text-lg font-bold">NLP & AI Modeling</h3>
-        <ul class="list-disc pl-6 text-gray-700">
-          <li>LLMs, ontology annotation, named entity recognition, supervised/unsupervised/semi-supervised modeling, deep learning (Bi-GRU, RNNs), symbolic AI</li>
-          <li>Statistical machine learning, predictive analytics, corpus linguistics (collection, cleaning, analysis, searching)</li>
-          <li>Prototype development, model validation, large-scale training across languages/domains</li>
-        </ul>
-      </div>
-      <div class="mb-4">
-        <h3 class="subsection-title text-lg font-bold">Programming & Tools</h3>
-        <ul class="list-disc pl-6 text-gray-700">
-          <li>Python (advanced NLP/ML with pandas, scikit-learn, Data Science Toolbox), SAS (certified Educator & Programmer), R (intermediate), Bash</li>
-          <li>ETL pipelines, data preprocessing, Power BI for analytics/visualization</li>
-          <li>Azure Fundamentals, AWS EC2, Docker, Apache Airflow, Git, UNIX commands</li>
-        </ul>
-      </div>
-      <div class="mb-4">
-        <h3 class="subsection-title text-lg font-bold">Software & Databases</h3>
-        <ul class="list-disc pl-6 text-gray-700">
-          <li>API design, full-stack development, microservices</li>
-          <li>SQL databases (Microsoft Fabric, PostgreSQL), data management</li>
-          <li>Agile methodologies, secure development, compliance</li>
-        </ul>
-      </div>
-    </section>
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-    <!-- Education -->
-    <section class="mb-8">
-      <h2 class="section-title text-2xl font-bold mb-4">Education</h2>
-      <div class="mb-4">
-        <p><strong>M.S. in Informatics and Analytics</strong> <span class="float-right">Aug 2023 – Dec 2024</span></p>
-        <p class="text-gray-600 italic">University of North Carolina at Greensboro <span class="float-right">GPA: 4.0</span></p>
-        <p class="text-gray-700">Focus: NLP, machine learning, data science, computational linguistics</p>
-        <p class="text-gray-700">Research: Ontology-powered NER, semantic metrics, clinical NLP</p>
-      </div>
-      <div class="mb-4">
-        <p><strong>M.S. in Computer Software Engineering</strong> <span class="float-right">2012 – 2017</span></p>
-        <p class="text-gray-600 italic">Azad University, Iran</p>
-        <p class="text-gray-700">Emphasis: Algorithms, ML, statistical computing</p>
-      </div>
-      <div class="mb-4">
-        <p><strong>B.S. in Computer Software Engineering</strong> <span class="float-right">2009 – 2011</span></p>
-        <p class="text-gray-600 italic">Azad University, Iran</p>
-      </div>
-    </section>
-
-    <!-- Key Projects & Achievements -->
-    <section class="mb-8">
-      <h2 class="section-title text-2xl font-bold mb-4">Key Projects & Achievements</h2>
-      <div class="mb-4">
-        <p><strong>Automated Clinical Text Annotation</strong> <span class="float-right">2024 – 2025</span></p>
-        <p class="text-gray-700">Prototyped Bi-GRU models for SNOMED CT annotation; achieved precise results in clinical NLP (Accepted to ICBRA 2025)</p>
-      </div>
-      <div class="mb-4">
-        <p><strong>LLM Ontology Annotation Evaluation</strong> <span class="float-right">2023 – 2024</span></p>
-        <p class="text-gray-700">Built LLM prototypes for semantic metrics; validated across languages/domains (Published in Information, 2025)</p>
-      </div>
-      <div class="mb-4">
-        <p><strong>NLP Recommendation Systems</strong> <span class="float-right">2015 – 2022</span></p>
-        <p class="text-gray-700">Engineered pipelines for text analysis/entity extraction; trained models on diverse corpora for cross-domain use</p>
-      </div>
-    </section>
-
-    <!-- Certifications -->
-    <section class="mb-8">
-      <h2 class="section-title text-2xl font-bold mb-4">Certifications</h2>
-      <ul class="list-disc pl-6 text-gray-700">
-        <li><a href="https://www.credly.com/badges/c58a5571-1cc3-41da-af7a-b1ea2b2112d2/linked_in_profile" target="_blank">SAS Educator</a> – SAS (Jun 2025)</li>
-        <li><a href="https://www.coursera.org/account/accomplishments/verify/1RLS2S7G4KTH" target="_blank">The Simplest Guide™ to Base SAS & Advanced SAS</a> – Packt (Apr 2025)</li>
-        <li><a href="https://www.coursera.org/account/accomplishments/verify/9ZB4NZQ1W6DR" target="_blank">Doing More with SAS Programming</a> – SAS (Mar 2025)</li>
-        <li><a href="https://www.coursera.org/account/accomplishments/verify/Y7LF4AVA5U22" target="_blank">Getting Started with SAS Programming</a> – SAS (Mar 2025)</li>
-        <li><a href="https://www.linkedin.com/learning/certificates/4b4785968682641223ef866420cdca3d4ef139485bd4d2403feaa78a70979fe9" target="_blank">Advanced AI: NLP Techniques for Clinical Datasets</a> – LinkedIn (Aug 2024)</li>
-        <li><a href="https://www.linkedin.com/learning/certificates/2b9c94f000b8d2b2f9a11c5bc867169972b628e272e9ea5f3c147e7c4147370d" target="_blank">Introduction to Large Language Models</a> – LinkedIn (Aug 2024)</li>
-        <li><a href="https://www.linkedin.com/learning/certificates/c7a923b3a1e2dc90709e7fb9281f7b6262ce8e7e09d8a530b1defcd46d4d9be5" target="_blank">Recurrent Neural Networks</a> – LinkedIn (Aug 2024)</li>
-        <li><a href="https://www.coursera.org/account/accomplishments/verify/SU7CZUHY8XMB" target="_blank">Supervised Machine Learning: Regression and Classification</a> – Coursera (Jun 2024)</li>
-        <li><a href="https://www.coursera.org/account/accomplishments/verify/8K6DXDTCJVTJ" target="_blank">Advanced Learning Algorithms</a> – Coursera (Jun 2024)</li>
-        <li><a href="https://www.linkedin.com/learning/certificates/71280063f99c024a321df00d011144b10af56741dea7e28a2b4eff8da8bfe756" target="_blank">Python: Working by Predictive Analytics</a> – LinkedIn (Jan 2025)</li>
-        <li><a href="https://learn.microsoft.com/api/credentials/share/en-us/AliNooriHeHimHis-3225/63326C3C5385DEBB?sharingId" target="_blank">Microsoft Certified: Azure Fundamentals</a> – Microsoft (Jul 2025)</li>
-        <li><a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/8628b57d617b2b11ecff9837cefbd887c77fbd09" target="_blank">Preprocessing for Machine Learning in Python</a> – DataCamp</li>
-        <li><a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/0d5b22696e64e43c0f01f0da3185977b15228446" target="_blank">Understanding Machine Learning</a> – DataCamp</li>
-      </ul>
-    </section>
-
-    <!-- Publications -->
-    <section class="mb-8">
-      <h2 class="section-title text-2xl font-bold mb-4">Publications</h2>
-      <ul class="list-disc pl-6 text-gray-700">
-        <li><strong>Noori, A.</strong> et al. "Automated SNOMED CT Concept Annotation in Clinical Text Using Bi-GRU Neural Networks." Accepted to ICBRA 2025.</li>
-        <li><strong>Noori, A.</strong> et al. <a href="https://www.mdpi.com/2078-2489/16/3/225" target="_blank">"LLMs in Action: Robust Metrics for Evaluating Automated Ontology Annotation Systems."</a> <em>Information</em>, 2025.</li>
-        <li><strong>Noori, A.</strong> et al. <a href="http://paper.ijcsns.org/07_book/202303/20230320.pdf" target="_blank">"Identification via Retinal Vessels Combining LBP and HOG."</a> <em>IJCSNS</em>, 2023.</li>
-      </ul>
-    </section>
-  </div>
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
