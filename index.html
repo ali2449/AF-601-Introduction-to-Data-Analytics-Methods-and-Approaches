@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IAF 601 - Introduction to Data Analytics: Methods & Approaches Module 1: Python Fundamentals & Business Context For MSIA Students at UNCG Fall 2025</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+        h1, h2, h3 { color: #333; }
+        code { font-family: monospace; background-color: #f0f0f0; padding: 2px 4px; border-radius: 4px; }
+        pre { white-space: pre-wrap; word-wrap: break-word; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>IAF 601 - Introduction to Data Analytics: Methods & Approaches<br>Module 1: Python Fundamentals & Business Context<br>For MSIA Students at UNCG<br>Fall 2025</h1>
+    <p>Module Curriculum Tailored for Diverse Backgrounds<br>With Simple, Detailed Explanations and Step-by-Step Guidance</p>
+    <p>July 2025</p>
+
+    <h2>Table of Contents</h2>
+    <p>(Automatically generated table of contents would appear here in a full LaTeX compile, but for this HTML version, navigate via headings below.)</p>
+
+    <h2>MSIA Program Overview</h2>
+    <p>The Informatics and Analytics (MSIA) program at UNCG is a 30-credit master's degree. It develops leaders and problem-solvers in data science. It has six core courses. These build a strong foundation in data science principles. Students choose one of six concentrations. These are Advanced Data Analytics, Bioinformatics, Computational Analytics, Cultural Analytics, Geospatial Analytics, or Health Analytics. The program is offered in-person and online. It teaches skills in managing, manipulating, and analyzing data. This includes structured and unstructured data. The goal is to generate useful insights. Principles include programming for analytics, data visualization, statistical modeling, database design, and high performance computing. Students come from diverse backgrounds. These include business, science, humanities, healthcare, geography, and more. Some have basic programming and statistics experience. Others may need instructor permission for prerequisites.</p>
+
+    <h2>Python Setup Guide</h2>
+    <p>To start with Python, install Anaconda. Anaconda bundles Python and useful libraries. It makes setup easy.<br>
+    1. Go to <a href="https://www.anaconda.com">https://www.anaconda.com</a>. Download the installer for your system (Windows, Mac, or Linux).<br>
+    2. Run the installer. Follow the prompts.<br>
+    3. Open Anaconda Navigator. Launch JupyterLab to write and run code.<br>
+    4. Create a new notebook. Name it something like <code>IAF601_Notebook.ipynb</code>.<br>
+    Anaconda includes libraries like NumPy and Pandas. These are for data work. If you have issues, check the Anaconda documentation. Repeat: Anaconda simplifies, Jupyter for interactive code.</p>
+
+    <h1>Module 1: Python Fundamentals & Business Context</h1>
+
+    <div style="background-color: #f5fff5; padding: 10px; border: 1px solid green; margin: 10px 0;">
+        <strong>Recap from Previous Modules:</strong><br>
+        This is the first module. We assume basic computer skills. You know how to use a keyboard and mouse. You can open programs on your computer. No prior programming is needed. We will start from the basics. If you have programmed before, this will be a review. Repeat: No assumptions about coding experience.
+    </div>
+
+    <h2>Chapter 1: Comprehensive Tutorial</h2>
+
+    <h3>Business Context</h3>
+    <div style="background-color: #e6f2ff; padding: 10px; border: 1px solid #3498db; margin: 10px 0;">
+        <strong>Business Context:</strong><br>
+        Python is a key tool in data analytics. Businesses use it to process data. For example, in sales, you calculate profits. In health, you track patient records. Why is this important? It helps make decisions. Data drives business success. In informatics, Python handles gene sequences or map points. Repeat: Python turns data into insights.
+    </div>
+
+    <h3>Section 1: Variables and Assignment</h3>
+    <p>Variables store data. What is a variable? It is a named box for values. Why use them? They make code reusable. How do they work? Use <code>name = value</code>. For example, in business, store sales.</p>
+
+    <div style="background-color: #f8f8f8; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>Detailed Explanation:</strong><br>
+        What: Variable holds data like a label on a jar. Why: Easy to change values later. How: Assign with =. Common mistake: Forgetting =. Fix: Always use =. Real-world: In gene analysis, variable for sequence count. Analogy: Like naming a file. Repeat: Variables store and name data.
+    </div>
+
+    <div style="background-color: #f2f2f2; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>In [1]:</strong><br>
+        <pre style="font-family: monospace; font-size: small; border: 1px solid black; padding: 10px; background-color: #f8f8f8;">
+# Assign sales to a variable
+sales = 1000  # This is sales in dollars
+        </pre>
+    </div>
+
+    <div style="background-color: #e6ffe6; padding: 10px; border: 1px solid green; margin: 10px 0;">
+        <strong>Out [1]:</strong><br>
+        No output, but sales now holds 1000.
+    </div>
+
+    <p>In health analytics, variable for patient age. In cultural analytics, for text word count.</p>
+
+    <div style="background-color: #f2e6ff; padding: 10px; border: 1px solid purple; margin: 10px 0;">
+        <strong>Business Insight:</strong><br>
+        In geospatial analytics, variable for latitude. Helps map points.
+    </div>
+
+    <h3>Section 2: Data Types</h3>
+    <p>Data types define value kind. What are they? Int for numbers, float for decimals, str for text, bool for true/false. Why important? Operations depend on type. How: Python detects type.</p>
+
+    <div style="background-color: #f8f8f8; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>Detailed Explanation:</strong><br>
+        What: Type tells what data is. Why: Prevents errors like adding text to number. How: Use type() to check. Mistake: Mixing types. Fix: Convert. Real-world: In biology, int for gene count. Analogy: Like food categories in fridge. Repeat: Types ensure correct operations.
+    </div>
+
+    <div style="background-color: #f2f2f2; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>In [1]:</strong><br>
+        <pre style="font-family: monospace; font-size: small; border: 1px solid black; padding: 10px; background-color: #f8f8f8;">
+# Examples of data types
+age = 30  # int
+height = 5.9  # float
+name = "Alice"  # str
+is_student = True  # bool
+print(type(age))  # Check type
+        </pre>
+    </div>
+
+    <div style="background-color: #e6ffe6; padding: 10px; border: 1px solid green; margin: 10px 0;">
+        <strong>Out [1]:</strong><br>
+        &lt;class 'int'&gt;
+    </div>
+
+    <p>In computational analytics, float for calculations. In bioinformatics, str for DNA sequences.</p>
+
+    <h3>Section 3: Basic Operations</h3>
+    <p>Operations manipulate data. What: Add, subtract, etc. Why: Compute results. How: Use +, -, *, /.</p>
+
+    <div style="background-color: #f8f8f8; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>Detailed Explanation:</strong><br>
+        What: Math on variables. Why: Analyze data like profits. How: sales * 0.1 for tax. Mistake: Dividing ints gives float. Fix: Use // for integer division. Real-world: In patient analysis, add costs. Analogy: Calculator buttons. Repeat: Operations transform data.
+    </div>
+
+    <div style="background-color: #f2f2f2; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>In [1]:</strong><br>
+        <pre style="font-family: monospace; font-size: small; border: 1px solid black; padding: 10px; background-color: #f8f8f8;">
+# Arithmetic operations
+profit = sales - 800  # Subtract costs
+tax = profit * 0.05  # Multiply for tax
+print(profit, tax)
+        </pre>
+    </div>
+
+    <div style="background-color: #e6ffe6; padding: 10px; border: 1px solid green; margin: 10px 0;">
+        <strong>Out [1]:</strong><br>
+        200 10.0
+    </div>
+
+    <p>String operations: Concatenate with +. In cultural analytics, join words.</p>
+
+    <p>In geography, add coordinates.</p>
+
+    <h3>Section 4: Print and Formatting</h3>
+    <p>Print shows output. What: Display values. Why: See results. How: Use print().</p>
+
+    <div style="background-color: #f8f8f8; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>Detailed Explanation:</strong><br>
+        What: Output to screen. Why: Debug and report. How: print("Hello", name). Mistake: Forgetting quotes for strings. Fix: Add ". Real-world: Print report in business. Analogy: Speaking out loud. Repeat: Print shares information.
+    </div>
+
+    <p>Formatting: Use f-strings. <code>f"Name: {name}"</code>.</p>
+
+    <div style="background-color: #f2f2f2; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>In [1]:</strong><br>
+        <pre style="font-family: monospace; font-size: small; border: 1px solid black; padding: 10px; background-color: #f8f8f8;">
+# Formatting output
+print(f"Patient age: {age}, Height: {height:.2f}")
+        </pre>
+    </div>
+
+    <div style="background-color: #e6ffe6; padding: 10px; border: 1px solid green; margin: 10px 0;">
+        <strong>Out [1]:</strong><br>
+        Patient age: 30, Height: 5.90
+    </div>
+
+    <p>In health, format patient summaries. In biology, format gene stats.</p>
+
+    <h3>Section 5: Type Conversion and Input</h3>
+    <p>Convert types: int(), float(), str(). What: Change type. Why: For operations. How: new = int(old).</p>
+
+    <div style="background-color: #f8f8f8; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>Detailed Explanation:</strong><br>
+        What: Switch data type. Why: To add string number. How: age = int("30"). Mistake: Converting non-number string. Fix: Check input. Real-world: Convert text data in files. Analogy: Translating languages. Repeat: Conversion makes data compatible.
+    </div>
+
+    <p>Input: Get from user. <code>value = input("Enter:")</code></p>
+
+    <div style="background-color: #f2f2f2; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>In [1]:</strong><br>
+        <pre style="font-family: monospace; font-size: small; border: 1px solid black; padding: 10px; background-color: #f8f8f8;">
+# Input and conversion
+user_input = input("Enter sales: ")
+sales = float(user_input)
+print(sales + 100)
+        </pre>
+    </div>
+
+    <p>In informatics projects, input for queries.</p>
+
+    <div style="background-color: #fff2e6; padding: 10px; border: 1px solid orange; margin: 10px 0;">
+        <strong>Key Points:</strong><br>
+        - Variables store data.<br>
+        - Data types: int, float, str, bool.<br>
+        - Operations: +, -, *, /.<br>
+        - Print for output.<br>
+        - Convert types as needed.<br>
+        Repeat: Basics build foundation.
+    </div>
+
+    <h2>Chapter 2: Practice Exercises</h2>
+
+    <h3>Foundation Exercise: Create Variables</h3>
+    <p>Description: Create variables for a patient's name and age. Print them.</p>
+
+    <div style="background-color: #e6ffff; padding: 10px; border: 1px solid cyan; margin: 10px 0;">
+        <strong>Professional Tip:</strong><br>
+        Use simple names like <code>patient_name</code>.
+    </div>
+
+    <p>Hint: Use <code>patient_name = "Bob"</code> and <code>print()</code>.</p>
+
+    <h3>Building Exercise: Data Types Check</h3>
+    <p>Description: Assign values of different types. Use type() to check. From gene analysis project, assign sequence length (int) and mutation rate (float).</p>
+
+    <div style="background-color: #e6ffff; padding: 10px; border: 1px solid cyan; margin: 10px 0;">
+        <strong>Professional Tip:</strong><br>
+        Remember to import nothing yet.
+    </div>
+
+    <p>Hint: <code>seq_len = 100; print(type(seq_len))</code>.</p>
+
+    <h3>Intermediate Exercise: Basic Calculations</h3>
+    <p>Description: Calculate area of a map point rectangle. Use length * width. From geospatial project.</p>
+
+    <div style="background-color: #e6ffff; padding: 10px; border: 1px solid cyan; margin: 10px 0;">
+        <strong>Professional Tip:</strong><br>
+        Use floats for precision.
+    </div>
+
+    <p>Hint: <code>area = length * width</code>.</p>
+
+    <h3>Advanced Exercise: String Operations</h3>
+    <p>Description: Concatenate cultural text trends. Join words with spaces.</p>
+
+    <div style="background-color: #e6ffff; padding: 10px; border: 1px solid cyan; margin: 10px 0;">
+        <strong>Professional Tip:</strong><br>
+        Use + or f-strings.
+    </div>
+
+    <p>Hint: <code>trend = word1 + " " + word2</code>.</p>
+
+    <h3>Mastery Exercise: Input and Conversion</h3>
+    <p>Description: Input sales and cost. Compute profit. Convert to float. From business informatics.</p>
+
+    <div style="background-color: #e6ffff; padding: 10px; border: 1px solid cyan; margin: 10px 0;">
+        <strong>Professional Tip:</strong><br>
+        Handle user input carefully.
+    </div>
+
+    <p>Hint: <code>sales = float(input("Sales:"))</code>.</p>
+
+    <h2>Chapter 3: Business Applications</h2>
+
+    <h3>Application 1: Scenario - Health Record Basics</h3>
+    <p>Scenario: Store patient data. Create variables for name, age, condition.</p>
+
+    <p>Steps: 1. Assign variables. 2. Print formatted summary.</p>
+
+    <div style="background-color: #f2f2f2; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>In [1]:</strong><br>
+        <pre style="font-family: monospace; font-size: small; border: 1px solid black; padding: 10px; background-color: #f8f8f8;">
+patient_name = "Alice"
+patient_age = 45
+condition = "Healthy"
+print(f"Patient: {patient_name}, Age: {patient_age}, Condition: {condition}")
+        </pre>
+    </div>
+
+    <div style="background-color: #e6ffe6; padding: 10px; border: 1px solid green; margin: 10px 0;">
+        <strong>Out [1]:</strong><br>
+        Patient: Alice, Age: 45, Condition: Healthy
+    </div>
+
+    <p>Why: Organizes data. Real-world: Health analytics.</p>
+
+    <h3>Application 2: Challenge - Biology Gene Count</h3>
+    <p>Challenge: Calculate total genes. Use operations on counts.</p>
+
+    <p>Steps: 1. <code>genes_a = 10</code>, <code>genes_b = 15</code>. 2. <code>total = genes_a + genes_b</code>. 3. Print.</p>
+
+    <p>Output: 25</p>
+
+    <p>Interdisciplinary: Bioinformatics project.</p>
+
+    <h3>Application 3: Strategic - Geography Distance</h3>
+    <p>Strategic: Compute simple distance. Use float operations.</p>
+
+    <p>Steps: 1. <code>point1 = 5.0</code>, <code>point2 = 10.0</code>. 2. <code>dist = abs(point1 - point2)</code>. 3. Format print.</p>
+
+    <p>Output: Distance: 5.00</p>
+
+    <p>For geospatial analytics.</p>
+
+    <h2>Chapter 4: Capstone Challenge Project</h2>
+
+    <p>Integrate variables, types, operations, formatting. Time: 60 min. Deliverable: Jupyter notebook with code and outputs.</p>
+
+    <p>Project: Build a simple sales calculator. Input sales, costs. Compute profit, tax (10%). Print report.</p>
+
+    <p>Rubric: Variables (20%), Operations (30%), Input/Conversion (20%), Formatting (20%), Comments (10%).</p>
+
+    <div style="background-color: #e6ffff; padding: 10px; border: 1px solid cyan; margin: 10px 0;">
+        <strong>Professional Tip:</strong><br>
+        Start with inputs. Use floats.
+    </div>
+
+    <p>Hints: Use <code>profit = sales - costs</code>, f-strings.</p>
+
+    <h2>Chapter 5: Solutions to Exercises and Applications</h2>
+
+    <h3>Solution to Foundation Exercise</h3>
+    <div style="background-color: #f2f2f2; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>In [1]:</strong><br>
+        <pre style="font-family: monospace; font-size: small; border: 1px solid black; padding: 10px; background-color: #f8f8f8;">
+patient_name = "Bob"
+patient_age = 25
+print(patient_name, patient_age)
+        </pre>
+    </div>
+
+    <div style="background-color: #e6ffe6; padding: 10px; border: 1px solid green; margin: 10px 0;">
+        <strong>Out [1]:</strong><br>
+        Bob 25
+    </div>
+
+    <p>Explanation: Assigns and prints. What: Basic storage.</p>
+
+    <h3>Solution to Building Exercise</h3>
+    <div style="background-color: #f2f2f2; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>In [1]:</strong><br>
+        <pre style="font-family: monospace; font-size: small; border: 1px solid black; padding: 10px; background-color: #f8f8f8;">
+seq_len = 100
+mutation_rate = 0.05
+print(type(seq_len), type(mutation_rate))
+        </pre>
+    </div>
+
+    <div style="background-color: #e6ffe6; padding: 10px; border: 1px solid green; margin: 10px 0;">
+        <strong>Out [1]:</strong><br>
+        &lt;class 'int'&gt; &lt;class 'float'&gt;
+    </div>
+
+    <p>Explanation: Checks types. Why: Ensures correct use.</p>
+
+    <h3>Solution to Intermediate Exercise</h3>
+    <div style="background-color: #f2f2f2; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>In [1]:</strong><br>
+        <pre style="font-family: monospace; font-size: small; border: 1px solid black; padding: 10px; background-color: #f8f8f8;">
+length = 10.0
+width = 5.0
+area = length * width
+print(area)
+        </pre>
+    </div>
+
+    <div style="background-color: #e6ffe6; padding: 10px; border: 1px solid green; margin: 10px 0;">
+        <strong>Out [1]:</strong><br>
+        50.0
+    </div>
+
+    <p>Explanation: Multiplies. Real-world: Map areas.</p>
+
+    <h3>Solution to Advanced Exercise</h3>
+    <div style="background-color: #f2f2f2; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>In [1]:</strong><br>
+        <pre style="font-family: monospace; font-size: small; border: 1px solid black; padding: 10px; background-color: #f8f8f8;">
+word1 = "culture"
+word2 = "trend"
+trend = word1 + " " + word2
+print(trend)
+        </pre>
+    </div>
+
+    <div style="background-color: #e6ffe6; padding: 10px; border: 1px solid green; margin: 10px 0;">
+        <strong>Out [1]:</strong><br>
+        culture trend
+    </div>
+
+    <p>Explanation: Concatenates strings.</p>
+
+    <h3>Solution to Mastery Exercise</h3>
+    <div style="background-color: #f2f2f2; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>In [1]:</strong><br>
+        <pre style="font-family: monospace; font-size: small; border: 1px solid black; padding: 10px; background-color: #f8f8f8;">
+sales = float(input("Enter sales: "))
+costs = float(input("Enter costs: "))
+profit = sales - costs
+print(profit)
+        </pre>
+    </div>
+
+    <p>Explanation: Inputs, computes. Assume inputs 1000, 800. Output: 200.0</p>
+
+    <h3>Solutions to Applications</h3>
+    <p>Application 1: As shown.</p>
+
+    <p>Application 2:</p>
+    <div style="background-color: #f2f2f2; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>In [1]:</strong><br>
+        <pre style="font-family: monospace; font-size: small; border: 1px solid black; padding: 10px; background-color: #f8f8f8;">
+genes_a = 10
+genes_b = 15
+total = genes_a + genes_b
+print(total)
+        </pre>
+    </div>
+
+    <div style="background-color: #e6ffe6; padding: 10px; border: 1px solid green; margin: 10px 0;">
+        <strong>Out [1]:</strong><br>
+        25
+    </div>
+
+    <p>Application 3:</p>
+    <div style="background-color: #f2f2f2; padding: 10px; border: 1px solid gray; margin: 10px 0;">
+        <strong>In [1]:</strong><br>
+        <pre style="font-family: monospace; font-size: small; border: 1px solid black; padding: 10px; background-color: #f8f8f8;">
+point1 = 5.0
+point2 = 10.0
+dist = abs(point1 - point2)
+print(f"Distance: {dist:.2f}")
+        </pre>
+    </div>
+
+    <div style="background-color: #e6ffe6; padding: 10px; border: 1px solid green; margin: 10px 0;">
+        <strong>Out [1]:</strong><br>
+        Distance: 5.00
+    </div>
+
+    <div style="background-color: #fffff5; padding: 10px; border: 1px solid yellow; margin: 10px 0;">
+        <strong>Glossary of Terms:</strong><br>
+        - Variable: Named storage for data.<br>
+        - Int: Integer data type.<br>
+        - Float: Decimal number type.<br>
+        - Str: String for text.<br>
+        - Bool: True or False.<br>
+        - Assignment: Using = to set value.<br>
+        - Operation: Math like + -.<br>
+        - Print: Display output.<br>
+        - F-string: Formatted string.<br>
+        - Type conversion: Changing data type.<br>
+        - Input: Get user data.<br>
+        - Concatenate: Join strings.<br>
+        - Arithmetic: Math operations.<br>
+        - Comment: <code>#</code> for notes.<br>
+        - Jupyter: Interactive notebook.<br>
+        - Anaconda: Python bundle.<br>
+        - Analytics: Data insights.<br>
+        - Informatics: Data in fields.<br>
+        - Profit: Sales minus costs.<br>
+        - Gene: Biology unit.
+    </div>
+
+    <div style="background-color: #ffe6f2; padding: 10px; border: 1px solid pink; margin: 10px 0;">
+        <strong>Frequently Asked Questions:</strong><br>
+        Q1: What is Python? A: Programming language for data.<br>
+        Q2: Why variables? A: Store and reuse data.<br>
+        Q3: Common type error? A: Adding str and int. Fix: Convert.<br>
+        Q4: How to format? A: Use f"" with {}.<br>
+        Q5: Input type? A: Always str, convert if needed.
+    </div>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'967e87797ea03b08',t:'MTc1Mzk3OTkzOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
