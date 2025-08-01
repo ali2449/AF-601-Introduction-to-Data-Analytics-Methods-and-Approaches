@@ -646,43 +646,313 @@ profit <span class="token-operator">=</span> <span class="token-function">get_pr
 </details>
 
 
-                <!-- Module 4 -->
-                <details class="bg-white rounded-lg shadow-md">
-                    <summary class="p-6 flex items-center">
-                        <h3 class="text-2xl font-bold text-indigo-700">Module 4: Lists & Tuples</h3>
-                    </summary>
-                    <div class="px-6 pb-6 border-t border-slate-200">
-                        <p class="mt-4 text-slate-600">Use lists and tuples for storing and organizing multiple items efficiently.</p>
-                        <div class="python-cell">
-                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                            <div class="python-cell-input"><div class="python-cell-prompt">In [5]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># List operations</span>
-patients <span class="token-operator">=</span> [<span class="token-string">"Alice"</span>, <span class="token-string">"Bob"</span>]
-patients<span class="token-operator">.</span><span class="token-function">append</span>(<span class="token-string">"Charlie"</span>)  <span class="token-comment"># Add item</span>
-patients<span class="token-operator">.</span><span class="token-function">pop</span>(<span class="token-number">0</span>)  <span class="token-comment"># Remove first</span>
-<span class="token-function">print</span>(patients)</code></pre></div></div>
-                            <div class="python-cell-output">['Bob', 'Charlie']</div>
-                        </div>
-                    </div>
-                </details>
+                <!-- Module 4 --><!-- Module 4 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 4: Lists & Tuples for Data Organization</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">From previous modules, you have learned that functions organize code, parameters and return values enhance flexibility, error handling ensures robustness, and comments improve clarity. These concepts support working with collections of data using lists and tuples.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
 
-                <!-- Module 5 -->
-                <details class="bg-white rounded-lg shadow-md">
-                    <summary class="p-6 flex items-center">
-                        <h3 class="text-2xl font-bold text-indigo-700">Module 5: Dictionaries & Sets</h3>
-                    </summary>
-                    <div class="px-6 pb-6 border-t border-slate-200">
-                        <p class="mt-4 text-slate-600">Handle data relationships and uniqueness with dictionaries and sets for efficient lookups.</p>
-                        <div class="python-cell">
-                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                            <div class="python-cell-input"><div class="python-cell-prompt">In [6]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Dictionary operations</span>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Lists and tuples are structures for storing multiple items. Businesses utilize lists for collections like sales figures and tuples for immutable data like patient vitals. Their importance lies in efficient data organization and time savings in analysis. In informatics, lists can hold gene sequences.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: Creating Lists</h4>
+            <p class="text-slate-700">Lists are ordered, mutable (changeable) collections of items, defined using square brackets <code>[]</code>. They are one of the most versatile data types in Python.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Create a list of sales</span>
+sales <span class="token-operator">=</span> [<span class="token-number">100</span>, <span class="token-number">200</span>, <span class="token-number">300</span>]
+<span class="token-function">print</span>(sales)</code></pre></div>
+                </div>
+                <div class="python-cell-output">[100, 200, 300]</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: List Operations</h4>
+            <p class="text-slate-700">You can modify lists by adding items with <code>.append()</code> or removing them with <code>.pop()</code>. These operations allow you to dynamically update your collections of data.</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># List operations</span>
+patients <span class="token-operator">=</span> [<span class="token-string">"Alice"</span>, <span class="token-string">"Bob"</span>]
+patients<span class="token-operator">.</span><span class="token-function">append</span>(<span class="token-string">"Charlie"</span>)  <span class="token-comment"># Add an item to the end</span>
+patients<span class="token-operator">.</span><span class="token-function">pop</span>(<span class="token-number">0</span>)             <span class="token-comment"># Remove the item at index 0</span>
+<span class="token-function">print</span>(patients)</code></pre></div>
+                </div>
+                <div class="python-cell-output">['Bob', 'Charlie']</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Accessing and Modifying List Elements</h4>
+             <p class="text-slate-700">Elements in a list are accessed by their index, which starts at 0. You can also change the value of an element by assigning a new value to a specific index.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Accessing and modifying list elements</span>
+genes <span class="token-operator">=</span> [<span class="token-string">"A"</span>, <span class="token-string">"B"</span>, <span class="token-string">"C"</span>]
+<span class="token-function">print</span>(genes[<span class="token-number">0</span>])   <span class="token-comment"># Access the first element</span>
+genes[<span class="token-number">1</span>] <span class="token-operator">=</span> <span class="token-string">"D"</span>      <span class="token-comment"># Change the second element</span>
+<span class="token-function">print</span>(genes)</code></pre></div>
+                </div>
+                <div class="python-cell-output">A
+['A', 'D', 'C']</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: Introduction to Tuples</h4>
+            <p class="text-slate-700">Tuples are ordered, immutable (unchangeable) collections defined with parentheses <code>()</code>. They are useful for data that should not be modified after creation, such as coordinates or fixed patient IDs.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Create a tuple for latitude and longitude</span>
+coords <span class="token-operator">=</span> (<span class="token-number">35.9</span>, <span class="token-operator">-</span><span class="token-number">79.0</span>)
+<span class="token-function">print</span>(coords)</code></pre></div>
+                </div>
+                <div class="python-cell-output">(35.9, -79.0)</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 5: Immutability and Use Cases</h4>
+            <p class="text-slate-700">Immutability ensures that a tuple's data cannot be altered, which prevents accidental modifications and maintains data integrity. Attempting to change a tuple will raise a <code>TypeError</code>.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Immutability example</span>
+<span class="token-keyword">try</span>:
+    coords[<span class="token-number">0</span>] <span class="token-operator">=</span> <span class="token-number">36.0</span>  <span class="token-comment"># This will raise an error</span>
+<span class="token-keyword">except</span> TypeError:
+    <span class="token-function">print</span>(<span class="token-string">"Cannot change tuple"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Cannot change tuple</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Create a list of three patient names and print it.</li>
+                <li><b>Building Exercise:</b> Append an item to a sales list and then remove the last item.</li>
+                <li><b>Intermediate Exercise:</b> Access the second gene in a list and modify its value.</li>
+                <li><b>Advanced Exercise:</b> Create a tuple of coordinates and attempt to modify it to see the error.</li>
+                <li><b>Mastery Exercise:</b> Use a list for modifiable words and a tuple for fixed words to understand when to use each.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health List Management</h4>
+            <p>Create a list of patient ages, append a new age, and access the first one to demonstrate dynamic data management in health analytics.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">ages <span class="token-operator">=</span> [<span class="token-number">30</span>, <span class="token-number">45</span>]
+ages<span class="token-operator">.</span><span class="token-function">append</span>(<span class="token-number">50</span>)
+<span class="token-function">print</span>(ages[<span class="token-number">0</span>])</code></pre></div>
+                </div>
+                <div class="python-cell-output">30</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Write a function that accepts a list of sales, appends a new sales value to it, and then returns a tuple containing the minimum and maximum sales from the updated list. This integrates list operations with the creation of an immutable tuple result. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Intermediate Exercise Solution</h4>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [7]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">genes <span class="token-operator">=</span> [<span class="token-string">"A"</span>, <span class="token-string">"B"</span>, <span class="token-string">"C"</span>]
+genes[<span class="token-number">1</span>] <span class="token-operator">=</span> <span class="token-string">"D"</span>
+<span class="token-function">print</span>(genes)</code></pre></div>
+                </div>
+                <div class="python-cell-output">['A', 'D', 'C']</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>List:</b> A mutable (changeable), ordered sequence of elements.</li>
+                        <li><b>Tuple:</b> An immutable (unchangeable), ordered sequence of elements.</li>
+                        <li><b>Index:</b> The position of an element in a list or tuple, starting from 0.</li>
+                        <li><b>Append:</b> A method to add an item to the end of a list.</li>
+                        <li><b>Pop:</b> A method to remove an item from a list at a specified index.</li>
+                        <li><b>Mutable:</b> Capable of being changed after creation.</li>
+                        <li><b>Immutable:</b> Incapable of being changed after creation.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: What is the main difference between lists and tuples?</b> A: Lists are mutable (can be changed), while tuples are immutable (cannot be changed).</li>
+                        <li><b>Q: Why would you use a tuple instead of a list?</b> A: Use a tuple when you want to ensure that the data cannot be accidentally modified, which is good for protecting data integrity.</li>
+                        <li><b>Q: How do you access elements in a list or tuple?</b> A: You access elements using their index in square brackets, like <code>my_list[0]</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
+                <!-- Module 5 --><!-- Module 5 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 5: Dictionaries & Sets for Data Relationships</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">From previous modules, you have learned that lists and tuples store sequences of data. These collections lay the foundation for managing more complex data relationships and ensuring the uniqueness of elements using dictionaries and sets.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Dictionaries and sets facilitate handling data relationships and uniqueness. Businesses employ dictionaries for key-value mappings, such as products to prices, and sets for unique items like customer IDs. In healthcare, dictionaries can map patients to details. Their value lies in efficient lookups and ensuring uniqueness, saving time in data queries.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: Creating Dictionaries</h4>
+            <p class="text-slate-700">Dictionaries are unordered, mutable collections of key-value pairs, defined with curly braces <code>{}</code>. They allow for fast data retrieval based on a unique key.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Create a dictionary of a patient</span>
+patient <span class="token-operator">=</span> {<span class="token-string">'name'</span>: <span class="token-string">'Alice'</span>, <span class="token-string">'age'</span>: <span class="token-number">30</span>}
+<span class="token-function">print</span>(patient)</code></pre></div>
+                </div>
+                <div class="python-cell-output">{'name': 'Alice', 'age': 30}</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: Dictionary Operations</h4>
+            <p class="text-slate-700">You can add, remove, and update key-value pairs in a dictionary. Use square bracket notation to add or update an entry, and the <code>del</code> keyword to remove one.</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Dictionary operations</span>
 sales <span class="token-operator">=</span> {<span class="token-string">'item1'</span>: <span class="token-number">100</span>, <span class="token-string">'item2'</span>: <span class="token-number">200</span>}
-sales[<span class="token-string">'item3'</span>] <span class="token-operator">=</span> <span class="token-number">300</span>  <span class="token-comment"># Add</span>
-<span class="token-keyword">del</span> sales[<span class="token-string">'item1'</span>]  <span class="token-comment"># Remove</span>
-<span class="token-function">print</span>(sales)</code></pre></div></div>
-                            <div class="python-cell-output">{'item2': 200, 'item3': 300}</div>
-                        </div>
-                    </div>
-                </details>
+sales[<span class="token-string">'item3'</span>] <span class="token-operator">=</span> <span class="token-number">300</span>  <span class="token-comment"># Add a new item</span>
+<span class="token-keyword">del</span> sales[<span class="token-string">'item1'</span>]     <span class="token-comment"># Remove an item</span>
+<span class="token-function">print</span>(sales)</code></pre></div>
+                </div>
+                <div class="python-cell-output">{'item2': 200, 'item3': 300}</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Accessing and Modifying Dictionary Values</h4>
+             <p class="text-slate-700">Access and modify values using their corresponding keys. This provides a meaningful way to retrieve and update data, which is more efficient than index-based access for relational data.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Accessing and modifying dictionary values</span>
+genes <span class="token-operator">=</span> {<span class="token-string">'A'</span>: <span class="token-string">'trait1'</span>, <span class="token-string">'B'</span>: <span class="token-string">'trait2'</span>}
+genes[<span class="token-string">'B'</span>] <span class="token-operator">=</span> <span class="token-string">'trait3'</span>  <span class="token-comment"># Modify a value</span>
+<span class="token-function">print</span>(genes[<span class="token-string">'A'</span>])      <span class="token-comment"># Access a value</span></code></pre></div>
+                </div>
+                <div class="python-cell-output">trait1</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: Creating Sets</h4>
+            <p class="text-slate-700">Sets are unordered, mutable collections of unique items. They are defined using curly braces <code>{}</code> without key-value pairs and automatically eliminate any duplicate entries.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Create a set of unique genes</span>
+unique_genes <span class="token-operator">=</span> {<span class="token-string">'A'</span>, <span class="token-string">'B'</span>, <span class="token-string">'A'</span>}  <span class="token-comment"># Duplicates are automatically removed</span>
+<span class="token-function">print</span>(unique_genes)</code></pre></div>
+                </div>
+                <div class="python-cell-output">{'A', 'B'}</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 5: Set Operations</h4>
+            <p class="text-slate-700">Set operations include mathematical tasks like union (<code>|</code>) to combine sets and intersection (<code>&</code>) to find common elements. These are useful for comparing collections of items.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Set operations</span>
+set1 <span class="token-operator">=</span> {<span class="token-string">'A'</span>, <span class="token-string">'B'</span>}
+set2 <span class="token-operator">=</span> {<span class="token-string">'B'</span>, <span class="token-string">'C'</span>}
+union <span class="token-operator">=</span> set1 <span class="token-operator">|</span> set2  <span class="token-comment"># Union of set1 and set2</span>
+<span class="token-function">print</span>(union)</code></pre></div>
+                </div>
+                <div class="python-cell-output">{'A', 'C', 'B'}</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Create a dictionary mapping patient names to their ages and print it.</li>
+                <li><b>Building Exercise:</b> Add a new key-value pair to a sales dictionary and then delete an existing one.</li>
+                <li><b>Intermediate Exercise:</b> Access a gene's trait from a dictionary and modify its value.</li>
+                <li><b>Advanced Exercise:</b> Create a set of unique words, demonstrating that adding a duplicate has no effect.</li>
+                <li><b>Mastery Exercise:</b> Compute the union and intersection of two sets of unique IDs.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health Dictionary</h4>
+            <p>Create a dictionary of patients mapped to their health conditions, add a new entry, and access an existing one.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">health <span class="token-operator">=</span> {<span class="token-string">'Alice'</span>: <span class="token-string">'Healthy'</span>}
+health[<span class="token-string">'Bob'</span>] <span class="token-operator">=</span> <span class="token-string">'Sick'</span>
+<span class="token-function">print</span>(health[<span class="token-string">'Alice'</span>])</code></pre></div>
+                </div>
+                <div class="python-cell-output">Healthy</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Write a function that accepts a dictionary of sales data (product: amount), converts the product keys to a set to get unique items, and returns a tuple containing the set of unique products and the total sales value. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Mastery Exercise Solution</h4>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [7]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">set1 <span class="token-operator">=</span> {<span class="token-string">'A'</span>, <span class="token-string">'B'</span>}
+set2 <span class="token-operator">=</span> {<span class="token-string">'B'</span>, <span class="token-string">'C'</span>}
+<span class="token-function">print</span>(set1 <span class="token-operator">|</span> set2, set1 <span class="token-operator">&</span> set2)</code></pre></div>
+                </div>
+                <div class="python-cell-output">{'B', 'C', 'A'} {'B'}</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Dictionary:</b> A mutable collection of unique key-value pairs.</li>
+                        <li><b>Set:</b> A mutable collection of unique, unordered elements.</li>
+                        <li><b>Key:</b> The unique identifier for a value in a dictionary.</li>
+                        <li><b>Value:</b> The data associated with a key.</li>
+                        <li><b>Union:</b> An operation that combines two sets into one, including all unique elements from both.</li>
+                        <li><b>Intersection:</b> An operation that finds the common elements between two sets.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: What is the main difference between a dictionary and a list?</b> A: Dictionaries use keys for access, while lists use numerical indexes. Dictionaries are better for relational data.</li>
+                        <li><b>Q: How do sets handle duplicate items?</b> A: They are automatically and silently removed, ensuring every element in a set is unique.</li>
+                        <li><b>Q: What happens if you try to access a key that doesn't exist in a dictionary?</b> A: It will raise a <code>KeyError</code>. You can use the <code>.get()</code> method to avoid this by providing a default value.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
 
                 <!-- Module 6 -->
                 <details class="bg-white rounded-lg shadow-md">
