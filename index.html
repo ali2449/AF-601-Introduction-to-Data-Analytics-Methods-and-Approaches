@@ -1,124 +1,284 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IAF 601 - Introduction to Data Analytics</title>
-    <!-- Bootstrap CSS for responsive design -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Google Fonts for Academic Theme: Merriweather (serif headings), Open Sans (sans-serif body) -->
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Custom CSS for Academic Theme, Day/Night Modes -->
-    <link rel="stylesheet" href="./css/styles.css">
-    <!-- MathJax for LaTeX Rendering -->
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="./js/mathjax.js"></script>
+    <title>CS 101: Python for Informatics</title>
+    
+    <!-- Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter for text, Source Code Pro for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Use Inter as the default font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* A light gray background */
+        }
+        /* Use Source Code Pro for code blocks */
+        code, pre {
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        /* Custom styles for the Python-like cells */
+        .python-cell {
+            background-color: #f1f5f9; /* A slightly darker gray for the cell */
+            border-left: 3px solid #4f46e5; /* A colored left border */
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .python-cell-input {
+            display: flex;
+            align-items: flex-start;
+        }
+        .python-cell-prompt {
+            font-family: 'Source Code Pro', monospace;
+            color: #3b82f6; /* Blue prompt color */
+            font-weight: 700;
+            margin-right: 1rem;
+            user-select: none;
+        }
+        .python-cell-code {
+            flex-grow: 1;
+        }
+        .python-cell .copy-button {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background-color: #e2e8f0;
+            color: #475569;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+        .python-cell:hover .copy-button {
+            opacity: 1;
+        }
+        .copy-button:active {
+            background-color: #cbd5e1;
+        }
+        /* Basic syntax highlighting */
+        .token-comment { color: #64748b; font-style: italic; }
+        .token-keyword { color: #6d28d9; font-weight: 500; }
+        .token-string { color: #c2410c; }
+        .token-function { color: #1d4ed8; }
+        .token-number { color: #166534; }
+    </style>
 </head>
-<body class="light-mode"> <!-- Default to light mode (day) -->
-    <!-- Header -->
-    <header class="bg-primary text-white text-center py-4">
-        <h1 class="display-4 font-merriweather">IAF 601 - Introduction to Data Analytics: Methods & Approaches</h1>
-        <p class="lead">For MSIA Students at UNCG, Fall 2025</p>
-        <!-- Theme Toggle Button -->
-        <button id="theme-toggle" class="btn btn-outline-light">Switch to Night Mode</button>
+<body class="text-slate-800">
+
+    <!-- Header and Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-slate-900">
+                CS 101: Python for Informatics
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="text-slate-600 hover:text-indigo-600 transition">About</a>
+                <a href="#schedule" class="text-slate-600 hover:text-indigo-600 transition">Schedule</a>
+                <a href="#examples" class="text-slate-600 hover:text-indigo-600 transition">Examples</a>
+                <a href="#contact" class="text-slate-600 hover:text-indigo-600 transition">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <!-- Mobile menu button can be added here if needed -->
+            </div>
+        </nav>
     </header>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link active" href="./index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="modulesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Modules</a>
-                        <ul class="dropdown-menu" aria-labelledby="modulesDropdown">
-                            <li><a class="dropdown-item" href="./module1.html">Module 1</a></li>
-                            <li><a class="dropdown-item" href="./module2.html">Module 2</a></li>
-                            <li><a class="dropdown-item" href="./module3.html">Module 3</a></li>
-                            <li><a class="dropdown-item" href="./module4.html">Module 4</a></li>
-                            <li><a class="dropdown-item" href="./module5.html">Module 5</a></li>
-                            <li><a class="dropdown-item" href="./module6.html">Module 6</a></li>
-                            <li><a class="dropdown-item" href="./module7.html">Module 7</a></li>
-                            <li><a class="dropdown-item" href="./module8.html">Module 8</a></li>
-                            <li><a class="dropdown-item" href="./module9.html">Module 9</a></li>
-                            <li><a class="dropdown-item" href="./module10.html">Module 10</a></li>
-                            <li><a class="dropdown-item" href="./module11.html">Module 11</a></li>
-                            <li><a class="dropdown-item" href="./module12.html">Module 12</a></li>
-                            <li><a class="dropdown-item" href="./module13.html">Module 13</a></li>
-                            <li><a class="dropdown-item" href="./module14.html">Module 14</a></li>
-                            <li><a class="dropdown-item" href="./module15.html">Module 15</a></li>
-                            <li><a class="dropdown-item" href="./module16.html">Module 16</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <!-- Main Content -->
-    <main class="container my-5">
-        <!-- Course Overview -->
-        <section class="card shadow-sm mb-4">
-            <div class="card-body">
-                <h2 class="card-title font-merriweather">Course Overview</h2>
-                <p class="card-text">
-                    The Master of Science in Informatics and Analytics (MSIA) program at the University of North Carolina at Greensboro (UNCG) is a 30-credit graduate degree designed to cultivate leaders and problem-solvers in the field of data science. The curriculum comprises six core courses that establish a solid foundation in data science principles. Students select one of six concentrations: Advanced Data Analytics, Bioinformatics, Computational Analytics, Cultural Analytics, Geospatial Analytics, or Health Analytics. Offered both in-person and online, the program equips students with essential skills in managing, manipulating, and analyzing structured and unstructured data to derive actionable insights. Key principles covered include programming for analytics, data visualization, statistical modeling, database design, and high-performance computing. The program attracts students from diverse backgrounds, including business, science, humanities, healthcare, geography, and more. While some students may possess prior experience in programming and statistics, others may require instructor approval to satisfy prerequisites.
-                </p>
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Hero Section -->
+        <section class="text-center py-16">
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-900">Welcome to Python for Informatics</h1>
+            <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">An introduction to programming and data analysis using the Python language. No prior programming experience required!</p>
+            <p class="mt-2 text-md text-slate-500">Fall 2024</p>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 scroll-mt-20">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-center text-slate-900">About The Course</h2>
+                <div class="mt-8 bg-white p-8 rounded-lg shadow-md">
+                    <p class="text-slate-700 leading-relaxed">
+                        This course is designed to be a gentle yet comprehensive introduction to the world of programming using Python. We will start from the absolute basics, assuming you've never written a line of code before. You will learn about variables, control structures, data structures, and functions. 
+                    </p>
+                    <p class="mt-4 text-slate-700 leading-relaxed">
+                        By the end of this course, you will be able to write small to medium-sized Python programs to process data, automate tasks, and scrape information from the web. The skills learned here will serve as a powerful foundation for future studies in data science, web development, or any field that benefits from computational thinking.
+                    </p>
+                    <h3 class="text-xl font-bold mt-6 mb-2 text-slate-800">Learning Objectives:</h3>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>Understand fundamental programming concepts.</li>
+                        <li>Write, test, and debug Python programs.</li>
+                        <li>Work with common data structures like lists and dictionaries.</li>
+                        <li>Read and write data from files.</li>
+                        <li>Interact with web APIs to fetch data.</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <!-- Python Setup Guide -->
-        <section class="card shadow-sm mb-4">
-            <div class="card-body">
-                <h2 class="card-title font-merriweather">Python Setup Guide</h2>
-                <p class="card-text">To begin working with Python, install Anaconda, which bundles Python along with essential libraries and simplifies the setup process.</p>
-                <ol>
-                    <li>Visit <a href="https://www.anaconda.com">https://www.anaconda.com</a> and download the installer compatible with your operating system (Windows, macOS, or Linux).</li>
-                    <li>Execute the installer and follow the on-screen instructions.</li>
-                    <li>Launch Anaconda Navigator and open JupyterLab for coding and execution.</li>
-                    <li>Create a new notebook, such as <code>IAF601_Notebook.ipynb</code>.</li>
-                </ol>
-                <p class="card-text">Anaconda includes key libraries like NumPy and Pandas for data manipulation. For troubleshooting, consult the Anaconda documentation.</p>
+        <!-- Schedule Section -->
+        <section id="schedule" class="py-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center text-slate-900">Course Schedule</h2>
+            <div class="mt-8 max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="divide-y divide-slate-200">
+                    <!-- Week 1 -->
+                    <div class="p-6 hover:bg-slate-50 transition">
+                        <div class="flex justify-between items-center">
+                            <p class="font-bold text-indigo-600">Week 1</p>
+                            <p class="text-sm text-slate-500">Aug 26 - Aug 30</p>
+                        </div>
+                        <h3 class="text-xl font-semibold mt-2 text-slate-800">Introduction: Why Program?</h3>
+                        <p class="mt-1 text-slate-600">Course overview, introduction to programming concepts, and writing our first Python script.</p>
+                    </div>
+                    <!-- Week 2 -->
+                    <div class="p-6 hover:bg-slate-50 transition">
+                        <div class="flex justify-between items-center">
+                            <p class="font-bold text-indigo-600">Week 2</p>
+                            <p class="text-sm text-slate-500">Sep 2 - Sep 6</p>
+                        </div>
+                        <h3 class="text-xl font-semibold mt-2 text-slate-800">Variables, Expressions, and Statements</h3>
+                        <p class="mt-1 text-slate-600">Working with data types, storing values in variables, and performing calculations.</p>
+                    </div>
+                    <!-- Week 3 -->
+                    <div class="p-6 hover:bg-slate-50 transition">
+                        <div class="flex justify-between items-center">
+                            <p class="font-bold text-indigo-600">Week 3</p>
+                            <p class="text-sm text-slate-500">Sep 9 - Sep 13</p>
+                        </div>
+                        <h3 class="text-xl font-semibold mt-2 text-slate-800">Conditional Execution</h3>
+                        <p class="mt-1 text-slate-600">Controlling the flow of your program with `if`, `else`, and `elif` statements.</p>
+                    </div>
+                    <!-- Add more weeks as needed -->
+                     <div class="p-6 text-center text-slate-500">
+                        ... and more to come.
+                    </div>
+                </div>
             </div>
         </section>
+
+        <!-- Code Examples Section -->
+        <section id="examples" class="py-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center text-slate-900">Code Examples</h2>
+            <p class="mt-4 text-lg text-slate-600 text-center max-w-3xl mx-auto">Here are some examples of the Python code you'll be writing.</p>
+
+            <!-- Example 1: Hello World -->
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code">
+                        <pre><code class="language-python"><span class="token-comment"># This is a comment. It's ignored by the computer.</span>
+<span class="token-function">print</span>(<span class="token-string">"Hello, World!"</span>)</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 2: Variables and F-strings -->
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code">
+                        <pre><code class="language-python">name = <span class="token-string">"Alice"</span>
+age = <span class="token-number">30</span>
+<span class="token-function">print</span>(<span class="token-string">f"My name is </span>{name}<span class="token-string"> and I am </span>{age}<span class="token-string"> years old."</span>)</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Example 3: A simple function -->
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code">
+                        <pre><code class="language-python"><span class="token-keyword">def</span> <span class="token-function">greet</span>(person_name):
+    <span class="token-string">"""A function to greet a person."""</span>
+    <span class="token-keyword">return</span> <span class="token-string">f"Hello, </span>{person_name}<span class="token-string">!"</span>
+
+message = <span class="token-function">greet</span>(<span class="token-string">"Bob"</span>)
+<span class="token-function">print</span>(message)</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 scroll-mt-20">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-slate-900">Instructor & Office Hours</h2>
+                <div class="mt-8 bg-white p-8 rounded-lg shadow-md inline-block">
+                    <p class="text-xl font-semibold">Dr. Ada Lovelace</p>
+                    <p class="mt-2 text-slate-600">Email: <a href="mailto:ada.l@university.edu" class="text-indigo-600 hover:underline">ada.l@university.edu</a></p>
+                    <p class="mt-1 text-slate-600">Office: Science Building, Room 404</p>
+                    <p class="mt-4 font-semibold text-slate-800">Office Hours:</p>
+                    <p class="text-slate-600">Mondays & Wednesdays, 2:00 PM - 3:30 PM</p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
-    <footer class="bg-secondary text-center py-3">
-        <p>Author: Ali Noori | A_noori@uncg.edu | Lecturer, Informatics & Analytics, UNCG</p>
-        <p>&copy; 2025</p>
+    <footer class="bg-slate-800 text-white mt-16">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p>&copy; 2024 Your Name/University. All rights reserved.</p>
+            <p class="text-sm text-slate-400 mt-1">Built with Tailwind CSS for CS 101.</p>
+        </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-    <!-- JavaScript for Day/Night Mode Toggle -->
     <script>
-        const toggleButton = document.getElementById('theme-toggle');
-        const body = document.body;
-        const currentMode = localStorage.getItem('theme') || 'light-mode';
+        // JavaScript for the copy button
+        function copyCode(button) {
+            const cell = button.closest('.python-cell');
+            const code = cell.querySelector('code').innerText;
+            
+            // Using the Clipboard API
+            navigator.clipboard.writeText(code).then(() => {
+                // Provide feedback to the user
+                const originalText = button.innerText;
+                button.innerText = 'Copied!';
+                setTimeout(() => {
+                    button.innerText = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                // Fallback for older browsers
+                try {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = code;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
 
-        body.classList.add(currentMode);
-        if (currentMode === 'dark-mode') {
-            toggleButton.textContent = 'Switch to Day Mode';
+                    const originalText = button.innerText;
+                    button.innerText = 'Copied!';
+                    setTimeout(() => {
+                        button.innerText = originalText;
+                    }, 2000);
+
+                } catch (e) {
+                     console.error('Fallback copy failed', e);
+                }
+            });
         }
-
-        toggleButton.addEventListener('click', () => {
-            if (body.classList.contains('light-mode')) {
-                body.classList.replace('light-mode', 'dark-mode');
-                toggleButton.textContent = 'Switch to Day Mode';
-                localStorage.setItem('theme', 'dark-mode');
-            } else {
-                body.classList.replace('dark-mode', 'light-mode');
-                toggleButton.textContent = 'Switch to Night Mode';
-                localStorage.setItem('theme', 'light-mode');
-            }
-        });
     </script>
+
 </body>
 </html>
