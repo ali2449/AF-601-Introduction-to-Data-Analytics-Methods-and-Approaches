@@ -1,0 +1,165 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: navy;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav {
+    background-color: #e0e0e0;
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav li {
+    margin: 5px 10px;
+}
+
+nav a {
+    color: navy;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+footer {
+    background-color: navy;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+h1, h2, h3 {
+    color: navy;
+}
+
+.businesscontext {
+    background-color: rgba(0, 0, 255, 0.1);
+    border: 1px solid blue;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.jupyinput {
+    background-color: rgba(128, 128, 128, 0.1);
+    border: 1px solid gray;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.jupyoutput {
+    background-color: rgba(0, 128, 0, 0.1);
+    border: 1px solid green;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.sampleio {
+    background-color: rgba(255, 255, 0, 0.1);
+    border: 1px solid yellow;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.tipbox {
+    background-color: rgba(0, 255, 255, 0.1);
+    border: 1px solid cyan;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.mistakebox {
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid red;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.keypoints {
+    background-color: rgba(255, 165, 0, 0.1);
+    border: 1px solid orange;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.businessinsight {
+    background-color: rgba(128, 0, 128, 0.1);
+    border: 1px solid purple;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.explainbox {
+    background-color: rgba(128, 128, 128, 0.05);
+    border: 1px solid gray;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.recapbox {
+    background-color: rgba(0, 128, 0, 0.05);
+    border: 1px solid green;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.glossarybox {
+    background-color: rgba(255, 255, 0, 0.05);
+    border: 1px solid yellow;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.faqbox {
+    background-color: rgba(255, 192, 203, 0.1);
+    border: 1px solid pink;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+pre code {
+    display: block;
+    padding: 10px;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    overflow-x: auto;
+}
+
+code {
+    background: #f4f4f4;
+    padding: 2px 4px;
+}
+
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+    }
+}

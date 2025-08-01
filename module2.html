@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2: Control Flow & Decision Making</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="./js/mathjax.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Module 2: Control Flow & Decision Making</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./module1.html">Module 1</a></li>
+            <li><a href="./module2.html">Module 2</a></li>
+            <li><a href="./module3.html">Module 3</a></li>
+            <li><a href="./module4.html">Module 4</a></li>
+            <li><a href="./module5.html">Module 5</a></li>
+            <li><a href="./module6.html">Module 6</a></li>
+            <li><a href="./module7.html">Module 7</a></li>
+            <li><a href="./module8.html">Module 8</a></li>
+            <li><a href="./module9.html">Module 9</a></li>
+            <li><a href="./module10.html">Module 10</a></li>
+            <li><a href="./module11.html">Module 11</a></li>
+            <li><a href="./module12.html">Module 12</a></li>
+            <li><a href="./module13.html">Module 13</a></li>
+            <li><a href="./module14.html">Module 14</a></li>
+            <li><a href="./module15.html">Module 15</a></li>
+            <li><a href="./module16.html">Module 16</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Recap Box -->
+        <div class="recapbox">
+            From Module 1, you have learned that variables store data, with types including int, float, str, and bool. You can perform basic operations and use print for output. You also understand type conversion and user input. These concepts provide the foundation for implementing decision-making and repetition in code.
+        </div>
+
+        <!-- Chapter 1: Comprehensive Tutorial -->
+        <section>
+            <h2>Chapter 1: Comprehensive Tutorial</h2>
+
+            <!-- Business Context -->
+            <h3>Business Context</h3>
+            <div class="businesscontext">
+                Control flow structures enable code to make decisions and repeat tasks. In business, they are used to evaluate conditions, such as awarding bonuses for high sales. In healthcare, loops can process multiple patient records. Their importance lies in automating complex logic and saving time. In informatics, control flow facilitates processing of numerous gene sequences.
+            </div>
+
+            <!-- Section 1: Advanced User Input -->
+            <h3>Section 1: Advanced User Input</h3>
+            <p>The input function captures data from users, allowing for interactive programs.</p>
+
+            <div class="explainbox">
+                Input reads a string from the keyboard, enhancing program flexibility by accommodating user-provided data. For example, <code>name = input("Enter name: ")</code>. A common mistake is failing to convert the input type; use <code>int()</code> or <code>float()</code> as needed. In sales applications, input can capture revenue figures. An analogy is posing a question to gather information. In summary, input enables dynamic program behavior.
+            </div>
+
+            <div class="jupyinput">
+                <pre><code># Advanced input with validation
+user_age = input("Enter age: ")
+age = int(user_age)  # Convert to int</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                (Assuming input 25) No output, age holds 25.
+            </div>
+
+            <p>In cultural analytics, input can accept text for analysis.</p>
+
+            <div class="businessinsight">
+                In geospatial applications, input can capture coordinates for mapping.
+            </div>
+
+            <!-- Section 2: Conditional Statements - If/Else -->
+            <h3>Section 2: Conditional Statements - If/Else</h3>
+            <p>The if statement evaluates conditions to execute code blocks selectively.</p>
+
+            <div class="explainbox">
+                Conditional statements test for true conditions to branch code execution. They enable decision-making logic. Use <code>if age > 18: print("Adult")</code>, with <code>else</code> for alternative paths. A common error is incorrect indentation; use consistent 4-space indents. In patient analysis, an if statement can alert for high fever. An analogy is taking an umbrella if it is raining. In summary, if/else structures facilitate conditional execution.
+            </div>
+
+            <div class="jupyinput">
+                <pre><code># If/else example
+sales = 1000
+if sales > 800:
+    print("Good sales")
+else:
+    print("Low sales")</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                Good sales
+            </div>
+
+            <p>In bioinformatics, conditions can flag gene mutations.</p>
+
+            <!-- Section 3: Loops - For Loops -->
+            <h3>Section 3: Loops - For Loops</h3>
+            <p>For loops iterate over sequences, executing code for each item.</p>
+
+            <div class="explainbox">
+                For loops repeat actions for each element in a collection, suitable for processing known numbers of items. Use <code>for i in range(5): print(i)</code>. A common mistake is off-by-one errors; verify range boundaries. In geospatial applications, loops can process map points. An analogy is inspecting each item in a basket. In summary, for loops are ideal for iteration over sequences.
+            </div>
+
+            <div class="jupyinput">
+                <pre><code># For loop example
+patients = [1, 2, 3]
+for patient in patients:
+    print(f"Process patient {patient}")</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                Process patient 1<br>
+                Process patient 2<br>
+                Process patient 3
+            </div>
+
+            <p>In computational analytics, loops perform repeated calculations.</p>
+
+            <!-- Section 4: Loops - While Loops -->
+            <h3>Section 4: Loops - While Loops</h3>
+            <p>While loops execute as long as a condition remains true.</p>
+
+            <div class="explainbox">
+                While loops continue execution based on a condition, suitable for unknown iteration counts. Use <code>count = 0; while count < 5: print(count); count += 1</code>. A common error is creating infinite loops; ensure the condition eventually becomes false. In data processing, while loops can handle incoming data streams. An analogy is eating while hungry. In summary, while loops are useful for condition-based repetition.
+            </div>
+
+            <div class="jupyinput">
+                <pre><code># While loop example
+balance = 100
+while balance > 0:
+    balance -= 20
+    print(balance)</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                80<br>
+                60<br>
+                40<br>
+                20<br>
+                0
+            </div>
+
+            <p>In healthcare, while loops can manage patient queues.</p>
+
+            <!-- Section 5: Nesting and Control Statements -->
+            <h3>Section 5: Nesting and Control Statements</h3>
+            <p>Nesting combines loops and conditionals, with break and continue controlling flow.</p>
+
+            <div class="explainbox">
+                Nesting places control structures within others for complex logic. Break terminates loops, while continue skips iterations. Use <code>for i in range(10): if i == 5: break</code>. A common error is improper indentation; ensure correct nesting levels. In gene sequencing, nesting can detect errors and terminate processing. An analogy is nested containers. In summary, nesting enables sophisticated control flow.
+            </div>
+
+            <div class="jupyinput">
+                <pre><code># Nested example
+for i in range(3):
+    if i == 1:
+        continue
+    print(i)</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                0<br>
+                2
+            </div>
+
+            <p>In geography, nesting can process grid-based maps.</p>
+
+            <div class="keypoints">
+                - Input captures user data.<br>
+                - If/else structures enable decisions.<br>
+                - For loops iterate over sequences.<br>
+                - While loops repeat based on conditions.<br>
+                - Nesting supports complex logic.<br>
+                Control flow directs program execution effectively.
+            </div>
+        </section>
+
+        <!-- Chapter 2: Practice Exercises -->
+        <section>
+            <h2>Chapter 2: Practice Exercises</h2>
+
+            <!-- Foundation Exercise -->
+            <h3>Foundation Exercise: Simple Input and Output</h3>
+            <p>Description: Obtain user name and age, then print a welcome message if age exceeds 18.</p>
+
+            <div class="tipbox">
+                Convert age to an integer after input.
+            </div>
+
+            <p>Hint: <code>age = int(input("Age: "))</code>.</p>
+
+            <!-- Building Exercise -->
+            <h3>Building Exercise: If/Else Conditions</h3>
+            <p>Description: Accept sales input; print "Bonus" if over 1000, otherwise "No bonus". From a business project.</p>
+
+            <div class="tipbox">
+                Use float for sales values.
+            </div>
+
+            <p>Hint: <code>if sales > 1000:</code>.</p>
+
+            <!-- Intermediate Exercise -->
+            <h3>Intermediate Exercise: For Loop Iteration</h3>
+            <p>Description: Iterate through five gene counts and print each. From bioinformatics.</p>
+
+            <div class="tipbox">
+                Utilize <code>range(5)</code> for iteration.
+            </div>
+
+            <p>Hint: <code>for i in range(5): print(i)</code>.</p>
+
+            <!-- Advanced Exercise -->
+            <h3>Advanced Exercise: While Loop Countdown</h3>
+            <p>Description: Use a while loop to print and decrement a counter from 10 to 1. From patient queue management.</p>
+
+            <div class="tipbox">
+                Ensure the condition changes to avoid infinite loops.
+            </div>
+
+            <p>Hint: <code>count = 10; while count > 0: count -= 1</code>.</p>
+
+            <!-- Mastery Exercise -->
+            <h3>Mastery Exercise: Nested Loops and If</h3>
+            <p>Description: Use nested for and if statements to print even numbers in a range. From a computational project.</p>
+
+            <div class="tipbox">
+                Check with <code>i % 2 == 0</code>.
+            </div>
+
+            <p>Hint: <code>for i in range(10): if i % 2 == 0: print(i)</code>.</p>
+        </section>
+
+        <!-- Chapter 3: Business Applications -->
+        <section>
+            <h2>Chapter 3: Business Applications</h2>
+
+            <!-- Application 1 -->
+            <h3>Application 1: Scenario - Health Check</h3>
+            <p>Scenario: Input patient temperature; print "Fever detected" if above 98.6.</p>
+            <p>Steps: 1. <code>temp = float(input("Temp: "))</code>. 2. <code>if temp > 98.6: print("Fever detected")</code>.</p>
+
+            <div class="jupyinput">
+                <pre><code>temp = float(input("Enter temperature: "))
+if temp > 98.6:
+    print("Fever detected")
+else:
+    print("Normal")</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                (Assuming 99.0) Fever detected
+            </div>
+
+            <p>Why: Enables rapid health assessments. Real-world: Health analytics.</p>
+
+            <!-- Application 2 -->
+            <h3>Application 2: Challenge - Sales Loop</h3>
+            <p>Challenge: Loop three times to input sales values and compute their sum.</p>
+            <p>Steps: 1. <code>total = 0</code>. 2. <code>for i in range(3): total += float(input("Sales: "))</code>. 3. Print total.</p>
+            <p>Output: (Assuming 100, 200, 300) 600.0</p>
+            <p>Interdisciplinary: Business informatics.</p>
+
+            <!-- Application 3 -->
+            <h3>Application 3: Strategic - Map Point Processing</h3>
+            <p>Strategic: Process points in a loop until none remain.</p>
+            <p>Steps: 1. <code>points = 5</code>. 2. <code>while points > 0: print("Process"); points -=1</code>.</p>
+            <p>Output: Process (5 times)</p>
+            <p>For geospatial analytics.</p>
+        </section>
+
+        <!-- Chapter 4: Capstone Challenge Project -->
+        <section>
+            <h2>Chapter 4: Capstone Challenge Project</h2>
+            <p>Integrate input, conditions, and loops. Time: 60 minutes. Deliverable: Jupyter notebook with code and outputs.</p>
+            <p>Project: Develop a simple quiz that prompts for answers, checks them using if statements, and loops through questions, displaying the score at the end.</p>
+            <p>Rubric: Input (20%), Conditions (30%), Loops (30%), Formatting (10%), Comments (10%).</p>
+
+            <div class="tipbox">
+                Use a for loop to iterate over questions.
+            </div>
+
+            <p>Hints: Initialize <code>score = 0</code>, increment with <code>if answer == correct: score +=1</code>.</p>
+        </section>
+
+        <!-- Chapter 5: Solutions to Exercises and Applications -->
+        <section>
+            <h2>Chapter 5: Solutions to Exercises and Applications</h2>
+
+            <!-- Solution to Foundation Exercise -->
+            <h3>Solution to Foundation Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>name = input("Name: ")
+age = int(input("Age: "))
+if age > 18:
+    print("Welcome")</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                (Assuming Bob, 25) Welcome
+            </div>
+
+            <p>Explanation: Captures input and applies a condition for basic decision-making.</p>
+
+            <!-- Solution to Building Exercise -->
+            <h3>Solution to Building Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>sales = float(input("Sales: "))
+if sales > 1000:
+    print("Bonus")
+else:
+    print("No bonus")</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                (Assuming 1200) Bonus
+            </div>
+
+            <p>Explanation: Implements business logic through conditional checking on input.</p>
+
+            <!-- Solution to Intermediate Exercise -->
+            <h3>Solution to Intermediate Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>for i in range(5):
+    print(f"Gene count {i}")</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                Gene count 0<br>
+                Gene count 1<br>
+                Gene count 2<br>
+                Gene count 3<br>
+                Gene count 4
+            </div>
+
+            <p>Explanation: Iterates to simulate gene processing.</p>
+
+            <!-- Solution to Advanced Exercise -->
+            <h3>Solution to Advanced Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>count = 10
+while count > 0:
+    print(count)
+    count -= 1</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                10<br>
+                9<br>
+                8<br>
+                7<br>
+                6<br>
+                5<br>
+                4<br>
+                3<br>
+                2<br>
+                1
+            </div>
+
+            <p>Explanation: Demonstrates countdown using a while loop.</p>
+
+            <!-- Solution to Mastery Exercise -->
+            <h3>Solution to Mastery Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>for i in range(10):
+    if i % 2 == 0:
+        print(i)</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                0<br>
+                2<br>
+                4<br>
+                6<br>
+                8
+            </div>
+
+            <p>Explanation: Employs nesting to filter even numbers.</p>
+
+            <!-- Solutions to Applications -->
+            <h3>Solutions to Applications</h3>
+            <p>Application 1: As shown.</p>
+
+            <div class="jupyinput">
+                <pre><code>total = 0
+for i in range(3):
+    total += float(input("Sales: "))
+print(total)</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                600.0
+            </div>
+
+            <div class="jupyinput">
+                <pre><code>points = 5
+while points > 0:
+    print("Process point")
+    points -= 1</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                Process point<br>
+                Process point<br>
+                Process point<br>
+                Process point<br>
+                Process point
+            </div>
+
+            <!-- Glossary Box -->
+            <div class="glossarybox">
+                - Input: Function to capture user data.<br>
+                - If: Statement to check a condition.<br>
+                - Else: Alternative execution path.<br>
+                - For loop: Iteration over a sequence.<br>
+                - While loop: Repetition while a condition is true.<br>
+                - Break: Terminates a loop prematurely.<br>
+                - Continue: Skips the current iteration.<br>
+                - Nesting: Placing control structures within others.<br>
+                - Condition: Boolean expression for testing.<br>
+                - Iteration: Single cycle of a loop.<br>
+                - Infinite loop: Loop that never terminates.<br>
+                - Indentation: Spacing to define code blocks.<br>
+                - Range: Function to generate number sequences.<br>
+                - Modulo: % operator for remainder.<br>
+                - Increment: += operator to add a value.<br>
+                - Decrement: -= operator to subtract a value.<br>
+                - Score: Variable to track points.<br>
+                - Quiz: Set of questions.<br>
+                - Temperature: Measure used in health assessments.<br>
+                - Sales sum: Total revenue calculation.
+            </div>
+
+            <!-- FAQ Box -->
+            <div class="faqbox">
+                Q1: What is control flow? A: Mechanisms to direct code execution.<br>
+                Q2: What is the difference between for and while loops? A: For is used for known iteration counts, while for condition-based repetition.<br>
+                Q3: How to fix an infinite loop? A: Ensure the loop condition changes appropriately.<br>
+                Q4: Why use nesting? A: To implement complex logical structures.<br>
+                Q5: Is input always a string? A: Yes; convert to other types as required.
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Author: Ali Noori | A_noori@uncg.edu | Lecturer, Informatics & Analytics, UNCG</p>
+        <p>&copy; 2025</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: Python Fundamentals & Business Context</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="./js/mathjax.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Module 1: Python Fundamentals & Business Context</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./module1.html">Module 1</a></li>
+            <li><a href="./module2.html">Module 2</a></li>
+            <li><a href="./module3.html">Module 3</a></li>
+            <li><a href="./module4.html">Module 4</a></li>
+            <li><a href="./module5.html">Module 5</a></li>
+            <li><a href="./module6.html">Module 6</a></li>
+            <li><a href="./module7.html">Module 7</a></li>
+            <li><a href="./module8.html">Module 8</a></li>
+            <li><a href="./module9.html">Module 9</a></li>
+            <li><a href="./module10.html">Module 10</a></li>
+            <li><a href="./module11.html">Module 11</a></li>
+            <li><a href="./module12.html">Module 12</a></li>
+            <li><a href="./module13.html">Module 13</a></li>
+            <li><a href="./module14.html">Module 14</a></li>
+            <li><a href="./module15.html">Module 15</a></li>
+            <li><a href="./module16.html">Module 16</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Recap Box -->
+        <div class="recapbox">
+            This initial module assumes familiarity with basic computer operations, such as using a keyboard and mouse, and launching applications. No prior programming experience is required; the content starts from fundamental concepts. For those with programming background, this serves as a review.
+        </div>
+
+        <!-- Chapter 1: Comprehensive Tutorial -->
+        <section>
+            <h2>Chapter 1: Comprehensive Tutorial</h2>
+
+            <!-- Business Context -->
+            <h3>Business Context</h3>
+            <div class="businesscontext">
+                Python serves as a fundamental tool in data analytics, enabling businesses to process and analyze data effectively. For instance, in sales operations, it facilitates profit calculations, while in healthcare, it supports patient record management. Its importance lies in empowering informed decision-making through data-driven insights. In informatics, Python is utilized for handling gene sequences or geospatial coordinates, transforming raw data into valuable knowledge.
+            </div>
+
+            <!-- Section 1: Variables and Assignment -->
+            <h3>Section 1: Variables and Assignment</h3>
+            <p>Variables are used to store data in Python. A variable is a named location in memory that holds a value, enhancing code reusability by allowing values to be referenced by name. Assignment is performed using the = operator, as in <code>name = value</code>. For example, in a business setting, a variable might store sales figures.</p>
+
+            <div class="explainbox">
+                A variable functions as a labeled container for data, facilitating easy updates to values without modifying the underlying code. Assignment is achieved using the = operator. A common error is omitting the assignment operator; ensure it is always included. In practical applications, such as gene analysis, variables can represent sequence counts. An analogy is naming a file for convenient reference. In summary, variables provide an efficient means to store and reference data.
+            </div>
+
+            <div class="jupyinput">
+                <pre><code># Assign sales to a variable
+sales = 1000  # This is sales in dollars</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                No output, but sales now holds 1000.
+            </div>
+
+            <p>In health analytics, variables can store patient ages. In cultural analytics, they can hold word counts from text.</p>
+
+            <div class="businessinsight">
+                In geospatial analytics, variables can represent latitude values, aiding in mapping locations.
+            </div>
+
+            <!-- Section 2: Data Types -->
+            <h3>Section 2: Data Types</h3>
+            <p>Data types specify the nature of stored values. Common types include integers (int) for whole numbers, floats for decimal values, strings (str) for text, and booleans (bool) for true/false conditions. Understanding data types is crucial because operations are type-dependent, and Python automatically infers types.</p>
+
+            <div class="explainbox">
+                Data types indicate the category of information stored, preventing errors such as adding text to numbers. Use the type() function to verify a value's type. A common mistake is mixing incompatible types; resolve this by converting types as needed. In biological applications, integers might represent gene counts. An analogy is categorizing items in a refrigerator. In summary, data types ensure appropriate operations on values.
+            </div>
+
+            <div class="jupyinput">
+                <pre><code># Examples of data types
+age = 30  # int
+height = 5.9  # float
+name = "Alice"  # str
+is_student = True  # bool
+print(type(age))  # Check type</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                &lt;class 'int'&gt;
+            </div>
+
+            <p>In computational analytics, floats are used for precise calculations. In bioinformatics, strings represent DNA sequences.</p>
+
+            <!-- Section 3: Basic Operations -->
+            <h3>Section 3: Basic Operations</h3>
+            <p>Basic operations allow data manipulation through arithmetic such as addition (+), subtraction (-), multiplication (*), and division (/).</p>
+
+            <div class="explainbox">
+                These operations perform mathematical computations on variables. They are essential for data analysis, such as calculating profits. For example, tax can be computed as sales * 0.1. A common mistake is expecting integer division from /; use // for floor division. In patient analysis, operations can sum costs. An analogy is using calculator functions. In summary, operations enable data transformation.
+            </div>
+
+            <div class="jupyinput">
+                <pre><code># Arithmetic operations
+profit = sales - 800  # Subtract costs
+tax = profit * 0.05  # Multiply for tax
+print(profit, tax)</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                200 10.0
+            </div>
+
+            <p>For strings, concatenation is performed using +. In cultural analytics, this can join words. In geography, operations can combine coordinates.</p>
+
+            <!-- Section 4: Print and Formatting -->
+            <h3>Section 4: Print and Formatting</h3>
+            <p>The print function displays output to the console, essential for viewing results and debugging.</p>
+
+            <div class="explainbox">
+                Printing outputs values to the screen for verification and reporting. Use print("Hello", name) to display multiple items. A common mistake is omitting quotes around strings; ensure strings are enclosed in quotes. In business applications, printing generates reports. An analogy is verbalizing thoughts. In summary, the print function facilitates information sharing.
+            </div>
+
+            <p>For formatting, f-strings provide an efficient method: <code>f"Name: {name}"</code>.</p>
+
+            <div class="jupyinput">
+                <pre><code># Formatting output
+print(f"Patient age: {age}, Height: {height:.2f}")</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                Patient age: 30, Height: 5.90
+            </div>
+
+            <p>In healthcare, formatted output can summarize patient information. In biology, it can present gene statistics.</p>
+
+            <!-- Section 5: Type Conversion and Input -->
+            <h3>Section 5: Type Conversion and Input</h3>
+            <p>Type conversion changes data from one type to another using functions like int(), float(), and str(), enabling compatible operations.</p>
+
+            <div class="explainbox">
+                Type conversion adjusts data types for compatibility in operations. For example, age = int("30"). A common error is attempting to convert non-numeric strings; validate input beforehand. In file processing, conversion is often required for text data. An analogy is translating between languages. In summary, conversion ensures data interoperability.
+            </div>
+
+            <p>Input retrieves user data via the input function: <code>value = input("Enter:")</code>.</p>
+
+            <div class="jupyinput">
+                <pre><code># Input and conversion
+user_input = input("Enter sales: ")
+sales = float(user_input)
+print(sales + 100)</code></pre>
+            </div>
+
+            <p>In informatics projects, input can facilitate user queries.</p>
+
+            <div class="keypoints">
+                - Variables provide named storage for data.<br>
+                - Data types include int, float, str, and bool.<br>
+                - Basic operations encompass +, -, *, and /.<br>
+                - The print function displays output.<br>
+                - Type conversion is essential for compatibility.<br>
+                These fundamentals form the basis for more advanced concepts.
+            </div>
+        </section>
+
+        <!-- Chapter 2: Practice Exercises -->
+        <section>
+            <h2>Chapter 2: Practice Exercises</h2>
+
+            <!-- Foundation Exercise -->
+            <h3>Foundation Exercise: Create Variables</h3>
+            <p>Description: Define variables for a patient's name and age, then print them.</p>
+
+            <div class="tipbox">
+                Use descriptive names such as <code>patient_name</code>.
+            </div>
+
+            <p>Hint: <code>patient_name = "Bob"</code> and <code>print()</code>.</p>
+
+            <!-- Other exercises similarly -->
+            <h3>Building Exercise: Data Types Check</h3>
+            <p>Description: Assign values of different types and use type() to verify them. In a gene analysis project, assign sequence length (int) and mutation rate (float).</p>
+
+            <div class="tipbox">
+                No imports are required at this stage.
+            </div>
+
+            <p>Hint: <code>seq_len = 100; print(type(seq_len))</code>.</p>
+
+            <h3>Intermediate Exercise: Basic Calculations</h3>
+            <p>Description: Calculate the area of a rectangle using length * width in a geospatial project.</p>
+
+            <div class="tipbox">
+                Employ floats for accuracy.
+            </div>
+
+            <p>Hint: <code>area = length * width</code>.</p>
+
+            <h3>Advanced Exercise: String Operations</h3>
+            <p>Description: Concatenate strings representing cultural trends by joining words with spaces.</p>
+
+            <div class="tipbox">
+                Utilize + or f-strings for concatenation.
+            </div>
+
+            <p>Hint: <code>trend = word1 + " " + word2</code>.</p>
+
+            <h3>Mastery Exercise: Input and Conversion</h3>
+            <p>Description: Accept sales and cost inputs, compute profit, ensuring conversion to float. From business informatics.</p>
+
+            <div class="tipbox">
+                Carefully manage user input to avoid errors.
+            </div>
+
+            <p>Hint: <code>sales = float(input("Sales:"))</code>.</p>
+        </section>
+
+        <!-- Chapter 3: Business Applications -->
+        <section>
+            <h2>Chapter 3: Business Applications</h2>
+
+            <!-- Application 1 -->
+            <h3>Application 1: Scenario - Health Record Basics</h3>
+            <p>Scenario: Store patient information using variables for name, age, and condition.</p>
+            <p>Steps: 1. Assign variables. 2. Print a formatted summary.</p>
+
+            <div class="jupyinput">
+                <pre><code>patient_name = "Alice"
+patient_age = 45
+condition = "Healthy"
+print(f"Patient: {patient_name}, Age: {patient_age}, Condition: {condition}")</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                Patient: Alice, Age: 45, Condition: Healthy
+            </div>
+
+            <p>Why: Organizes patient data effectively. Real-world: Health analytics.</p>
+
+            <!-- Application 2 -->
+            <h3>Application 2: Challenge - Biology Gene Count</h3>
+            <p>Challenge: Calculate the total number of genes using arithmetic operations on counts.</p>
+            <p>Steps: 1. <code>genes_a = 10</code>, <code>genes_b = 15</code>. 2. <code>total = genes_a + genes_b</code>. 3. Print the result.</p>
+            <p>Output: 25</p>
+            <p>Interdisciplinary: Bioinformatics.</p>
+
+            <!-- Application 3 -->
+            <h3>Application 3: Strategic - Geography Distance</h3>
+            <p>Strategic: Compute a simple distance using float operations.</p>
+            <p>Steps: 1. <code>point1 = 5.0</code>, <code>point2 = 10.0</code>. 2. <code>dist = abs(point1 - point2)</code>. 3. Print the formatted distance.</p>
+            <p>Output: Distance: 5.00</p>
+            <p>For geospatial analytics.</p>
+        </section>
+
+        <!-- Chapter 4: Capstone Challenge Project -->
+        <section>
+            <h2>Chapter 4: Capstone Challenge Project</h2>
+            <p>Integrate variables, data types, operations, and formatting. Time: 60 minutes. Deliverable: Jupyter notebook with code and outputs.</p>
+            <p>Project: Develop a simple sales calculator that accepts sales and costs as input, computes profit and tax (10%), and prints a formatted report.</p>
+            <p>Rubric: Variables (20%), Operations (30%), Input/Conversion (20%), Formatting (20%), Comments (10%).</p>
+
+            <div class="tipbox">
+                Begin with input statements and use floats for calculations.
+            </div>
+
+            <p>Hints: <code>profit = sales - costs</code>, employ f-strings for output.</p>
+        </section>
+
+        <!-- Chapter 5: Solutions to Exercises and Applications -->
+        <section>
+            <h2>Chapter 5: Solutions to Exercises and Applications</h2>
+
+            <!-- Solution to Foundation Exercise -->
+            <h3>Solution to Foundation Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>patient_name = "Bob"
+patient_age = 25
+print(patient_name, patient_age)</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                Bob 25
+            </div>
+
+            <p>Explanation: Assigns values to variables and prints them. This demonstrates basic data storage.</p>
+
+            <!-- Similarly for other solutions -->
+
+            <h3>Solution to Building Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>seq_len = 100
+mutation_rate = 0.05
+print(type(seq_len), type(mutation_rate))</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                &lt;class 'int'&gt; &lt;class 'float'&gt;
+            </div>
+
+            <p>Explanation: Verifies data types, ensuring appropriate usage in computations.</p>
+
+            <h3>Solution to Intermediate Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>length = 10.0
+width = 5.0
+area = length * width
+print(area)</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                50.0
+            </div>
+
+            <p>Explanation: Computes the area using multiplication. Applicable in mapping scenarios.</p>
+
+            <h3>Solution to Advanced Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>word1 = "culture"
+word2 = "trend"
+trend = word1 + " " + word2
+print(trend)</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                culture trend
+            </div>
+
+            <p>Explanation: Concatenates strings to form a combined term.</p>
+
+            <h3>Solution to Mastery Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>sales = float(input("Enter sales: "))
+costs = float(input("Enter costs: "))
+profit = sales - costs
+print(profit)</code></pre>
+            </div>
+
+            <p>Explanation: Processes user input and computes profit. Assuming inputs 1000 and 800, output is 200.0.</p>
+
+            <!-- Solutions to Applications -->
+            <h3>Solutions to Applications</h3>
+            <p>Application 1: As shown.</p>
+
+            <div class="jupyinput">
+                <pre><code>genes_a = 10
+genes_b = 15
+total = genes_a + genes_b
+print(total)</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                25
+            </div>
+
+            <div class="jupyinput">
+                <pre><code>point1 = 5.0
+point2 = 10.0
+dist = abs(point1 - point2)
+print(f"Distance: {dist:.2f}")</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                Distance: 5.00
+            </div>
+
+            <!-- Glossary Box -->
+            <div class="glossarybox">
+                - Variable: Named storage location for data.<br>
+                - Int: Integer data type for whole numbers.<br>
+                - Float: Data type for decimal numbers.<br>
+                - Str: String data type for text.<br>
+                - Bool: Boolean data type for true/false values.<br>
+                - Assignment: Operation using = to set a value.<br>
+                - Operation: Mathematical computation such as addition or subtraction.<br>
+                - Print: Function to display output.<br>
+                - F-string: Formatted string literal.<br>
+                - Type conversion: Process of changing data types.<br>
+                - Input: Function to obtain user data.<br>
+                - Concatenate: Operation to join strings.<br>
+                - Arithmetic: Mathematical operations.<br>
+                - Comment: Non-executable note prefixed by #.<br>
+                - Jupyter: Interactive computing environment.<br>
+                - Anaconda: Distribution bundling Python and libraries.<br>
+                - Analytics: Process of deriving insights from data.<br>
+                - Informatics: Application of data in specific fields.<br>
+                - Profit: Revenue minus costs.<br>
+                - Gene: Basic unit of heredity in biology.
+            </div>
+
+            <!-- FAQ Box -->
+            <div class="faqbox">
+                Q1: What is Python? A: A programming language widely used for data analysis.<br>
+                Q2: Why use variables? A: To store and reuse data efficiently.<br>
+                Q3: What is a common type error? A: Attempting to add a string and an integer. Solution: Convert the types.<br>
+                Q4: How to format output? A: Use f-strings with curly braces for variables.<br>
+                Q5: What type is input? A: Always a string; convert as necessary for other types.
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Author: Ali Noori | A_noori@uncg.edu | Lecturer, Informatics & Analytics, UNCG</p>
+        <p>&copy; 2025</p>
+    </footer>
+</body>
+</html>

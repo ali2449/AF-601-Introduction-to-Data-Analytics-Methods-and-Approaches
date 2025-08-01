@@ -1,0 +1,239 @@
+/* styles.css - Professional stylesheet for IAF 601 Course Website */
+
+/* Import Google Fonts for sans-serif (Roboto) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* Reset and Normalize */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: #003087; /* Navy blue accent */
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: #003087;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Header */
+header {
+    background-color: #003087;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    color: #fff;
+}
+
+/* Navigation */
+nav {
+    background-color: #e6e6e6;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0.5rem;
+}
+
+nav a {
+    background-color: #003087;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    display: block;
+}
+
+nav a:hover {
+    background-color: #0040b3;
+    text-decoration: none;
+}
+
+/* Main Content */
+main {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+/* Custom Environments (from LaTeX) */
+.businesscontext, .jupyinput, .jupyoutput, .sampleio, .tipbox, .mistakebox, .keypoints, .businessinsight, .explainbox, .recapbox, .glossarybox, .faqbox {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    border-left: 5px solid #003087;
+}
+
+.businesscontext {
+    background-color: #e6f2ff; /* Light blue */
+}
+
+.jupyinput {
+    background-color: #f2f2f2; /* Light gray */
+}
+
+.jupyoutput {
+    background-color: #e6ffe6; /* Light green */
+}
+
+.tipbox {
+    background-color: #e6ffff; /* Light cyan */
+}
+
+.mistakebox {
+    background-color: #ffe6e6; /* Light red */
+}
+
+.keypoints {
+    background-color: #fff2e6; /* Light orange */
+}
+
+.businessinsight {
+    background-color: #f2e6ff; /* Light purple */
+}
+
+.explainbox {
+    background-color: #f2f2f2; /* Light gray */
+}
+
+.recapbox {
+    background-color: #e6ffe6; /* Light green */
+}
+
+.glossarybox {
+    background-color: #ffffe6; /* Light yellow */
+}
+
+.faqbox {
+    background-color: #ffe6f2; /* Light pink */
+}
+
+/* Code Blocks */
+pre code {
+    display: block;
+    padding: 1rem;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+/* Lists */
+ul, ol {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+th {
+    background-color: #003087;
+    color: #fff;
+}
+
+/* MathJax Equations */
+.math {
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #003087;
+    color: #fff;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    main {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav a {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Accessibility Enhancements */
+a:focus, button:focus {
+    outline: 2px solid #003087;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3: Functions & Code Organization</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="./js/mathjax.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Module 3: Functions & Code Organization</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./module1.html">Module 1</a></li>
+            <li><a href="./module2.html">Module 2</a></li>
+            <li><a href="./module3.html">Module 3</a></li>
+            <li><a href="./module4.html">Module 4</a></li>
+            <li><a href="./module5.html">Module 5</a></li>
+            <li><a href="./module6.html">Module 6</a></li>
+            <li><a href="./module7.html">Module 7</a></li>
+            <li><a href="./module8.html">Module 8</a></li>
+            <li><a href="./module9.html">Module 9</a></li>
+            <li><a href="./module10.html">Module 10</a></li>
+            <li><a href="./module11.html">Module 11</a></li>
+            <li><a href="./module12.html">Module 12</a></li>
+            <li><a href="./module13.html">Module 13</a></li>
+            <li><a href="./module14.html">Module 14</a></li>
+            <li><a href="./module15.html">Module 15</a></li>
+            <li><a href="./module16.html">Module 16</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Recap Box -->
+        <div class="recapbox">
+            From previous modules, you have mastered variables and data types, basic operations and formatting, control flow with if/else and loops, and user input. These concepts enable the organization of code into reusable functions.
+        </div>
+
+        <!-- Chapter 1: Comprehensive Tutorial -->
+        <section>
+            <h2>Chapter 1: Comprehensive Tutorial</h2>
+
+            <!-- Business Context -->
+            <h3>Business Context</h3>
+            <div class="businesscontext">
+                Functions organize code into reusable blocks, promoting modularity. Businesses employ functions for recurring tasks, such as repeated profit calculations. In healthcare, functions can assess patient status. Their significance lies in reducing errors and development time. In informatics, functions efficiently process gene data.
+            </div>
+
+            <!-- Section 1: Defining Functions -->
+            <h3>Section 1: Defining Functions</h3>
+            <p>Functions are named blocks of code that perform specific tasks.</p>
+
+            <div class="explainbox">
+                A function groups related code under a name, avoiding redundancy. Define using <code>def name():</code> followed by the code block. Invoke with <code>name()</code>. A common error is omitting parentheses when calling; always include them. In sales, a function can calculate taxes. An analogy is a recipe outlining steps. In summary, functions encapsulate logic for reusability.
+            </div>
+
+            <div class="jupyinput">
+                <pre><code># Define a simple function
+def calculate_profit():
+    sales = 1000
+    costs = 800
+    print(sales - costs)
+calculate_profit()</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                200
+            </div>
+
+            <p>In cultural analytics, functions can count words in text.</p>
+
+            <div class="businessinsight">
+                In geospatial applications, functions can compute distances between points.
+            </div>
+
+            <!-- Section 2: Parameters and Arguments -->
+            <h3>Section 2: Parameters and Arguments</h3>
+            <p>Parameters allow functions to accept inputs, increasing flexibility.</p>
+
+            <div class="explainbox">
+                Parameters are variables in the function definition that receive arguments when called. They customize function behavior. Define as <code>def add(a, b): return a + b</code>, and call with <code>add(1, 2)</code>. A common mistake is incorrect argument order; align with parameter positions. In patient analysis, parameters can include age. An analogy is ingredients in a recipe. In summary, parameters enhance function versatility.
+            </div>
+
+            <div class="jupyinput">
+                <pre><code># Function with parameters
+def check_age(age):
+    if age > 18:
+        print("Adult")
+check_age(25)</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                Adult
+            </div>
+
+            <p>In bioinformatics, parameters can represent gene counts.</p>
+
+            <!-- Section 3: Return Values -->
+            <h3>Section 3: Return Values</h3>
+            <p>The return statement provides output from a function.</p>
+
+            <div class="explainbox">
+                Return sends a value back to the caller, allowing results to be used elsewhere. Use <code>return value</code> in the function. A common error is omitting return; include it for output. In sales, a function can return total revenue. An analogy is an oven producing a baked cake. In summary, return enables result utilization.
+            </div>
+
+            <div class="jupyinput">
+                <pre><code># Function with return
+def get_profit(sales, costs):
+    return sales - costs
+profit = get_profit(1000, 800)
+print(profit)</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                200
+            </div>
+
+            <p>In computational analytics, return values from calculations.</p>
+
+            <!-- Section 4: Error Handling -->
+            <h3>Section 4: Error Handling</h3>
+            <p>Error handling manages exceptions to prevent program crashes.</p>
+
+            <div class="explainbox">
+                Try/except blocks handle runtime errors, ensuring robustness. Use <code>try: code except ValueError: handle</code>. A common mistake is broad except clauses; specify particular exceptions. In patient data processing, handle invalid inputs. An analogy is a safety net. In summary, error handling enhances reliability.
+            </div>
+
+            <div class="jupyinput">
+                <pre><code># Error handling example
+try:
+    age = int(input("Age: "))
+except ValueError:
+    print("Invalid age")</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                (Assuming "abc") Invalid age
+            </div>
+
+            <p>In healthcare, handle invalid record entries.</p>
+
+            <!-- Section 5: Comments and Docstrings -->
+            <h3>Section 5: Comments and Docstrings</h3>
+            <p>Comments and docstrings document code for readability.</p>
+
+            <div class="explainbox">
+                Comments are ignored by Python and explain code intent, using # for single lines. Docstrings, enclosed in """, provide multi-line documentation. A common mistake is lacking documentation; add it consistently. In gene functions, documentation aids understanding. An analogy is notes in a recipe. In summary, documentation clarifies code purpose.
+            </div>
+
+            <div class="jupyinput">
+                <pre><code># Function with comments and docstring
+def add_numbers(a, b):
+    """Adds two numbers and returns the sum."""
+    # Add a and b
+    return a + b
+print(add_numbers(3, 4))</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                7
+            </div>
+
+            <p>In geography, comment functions for map processing.</p>
+
+            <div class="keypoints">
+                - Functions define reusable code blocks.<br>
+                - Parameters accept inputs.<br>
+                - Return statements provide outputs.<br>
+                - Error handling uses try/except.<br>
+                - Comments and docstrings enhance clarity.<br>
+                These elements promote organized and maintainable code.
+            </div>
+        </section>
+
+        <!-- Chapter 2: Practice Exercises -->
+        <section>
+            <h2>Chapter 2: Practice Exercises</h2>
+
+            <!-- Foundation Exercise -->
+            <h3>Foundation Exercise: Define Simple Function</h3>
+            <p>Description: Define a function to print "Hello" and call it.</p>
+
+            <div class="tipbox">
+                Use <code>def hello():</code>.
+            </div>
+
+            <p>Hint: <code>def hello(): print("Hello")</code>.</p>
+
+            <!-- Building Exercise -->
+            <h3>Building Exercise: Function with Parameters</h3>
+            <p>Description: Create a function that takes a name and prints a greeting. From a cultural project.</p>
+
+            <div class="tipbox">
+                Incorporate the parameter in the print statement.
+            </div>
+
+            <p>Hint: <code>def greet(name): print(f"Hi {name}")</code>.</p>
+
+            <!-- Intermediate Exercise -->
+            <h3>Intermediate Exercise: Return Value</h3>
+            <p>Description: Define a function that returns the sum of two numbers. From gene counts.</p>
+
+            <div class="tipbox">
+                Use the return statement.
+            </div>
+
+            <p>Hint: <code>def sum_genes(a, b): return a + b</code>.</p>
+
+            <!-- Advanced Exercise -->
+            <h3>Advanced Exercise: Error Handling</h3>
+            <p>Description: Write a function that converts input to int, handling errors.</p>
+
+            <div class="tipbox">
+                Employ try/except blocks.
+            </div>
+
+            <p>Hint: <code>try: int(value) except: print("Error")</code>.</p>
+
+            <!-- Mastery Exercise -->
+            <h3>Mastery Exercise: Comments and Docstring</h3>
+            <p>Description: Add comments and a docstring to a function. From business calculation.</p>
+
+            <div class="tipbox">
+                Use # for comments and """ for docstrings.
+            </div>
+
+            <p>Hint: <code>"""Doc""" # comment</code>.</p>
+        </section>
+
+        <!-- Chapter 3: Business Applications -->
+        <section>
+            <h2>Chapter 3: Business Applications</h2>
+
+            <!-- Application 1 -->
+            <h3>Application 1: Scenario - Health Function</h3>
+            <p>Scenario: Develop a function to check for fever based on temperature.</p>
+            <p>Steps: 1. <code>def check_fever(temp): if temp > 98.6: return "Fever"</code>. 2. Print the result.</p>
+
+            <div class="jupyinput">
+                <pre><code>def check_fever(temp):
+    if temp > 98.6:
+        return "Fever"
+    return "Normal"
+print(check_fever(99.0))</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                Fever
+            </div>
+
+            <p>Why: Provides a reusable health assessment tool. Real-world: Health analytics.</p>
+
+            <!-- Application 2 -->
+            <h3>Application 2: Challenge - Sales Calculation</h3>
+            <p>Challenge: Create a function to compute profit using parameters.</p>
+            <p>Steps: 1. <code>def profit(sales, costs): return sales - costs</code>. 2. Call and print the result.</p>
+            <p>Output: 200</p>
+            <p>Interdisciplinary: Business informatics.</p>
+
+            <!-- Application 3 -->
+            <h3>Application 3: Strategic - Gene Error Handling</h3>
+            <p>Strategic: Develop a function to compute gene rate, handling division by zero.</p>
+            <p>Steps: 1. <code>try: rate = total / count except ZeroDivisionError: return "Error"</code>.</p>
+            <p>Output: "Error" if count is 0</p>
+            <p>For bioinformatics.</p>
+        </section>
+
+        <!-- Chapter 4: Capstone Challenge Project -->
+        <section>
+            <h2>Chapter 4: Capstone Challenge Project</h2>
+            <p>Integrate functions, parameters, return statements, error handling, and comments. Time: 60 minutes. Deliverable: Jupyter notebook with code and outputs.</p>
+            <p>Project: Construct a function for a simple calculator that accepts an operation and numbers, handles errors, and includes a docstring.</p>
+            <p>Rubric: Function definition (20%), Parameters/Return (30%), Error handling (20%), Comments (20%), Invocation (10%).</p>
+
+            <div class="tipbox">
+                Use if statements to handle different operations.
+            </div>
+
+            <p>Hints: <code>def calc(op, a, b):</code>, incorporate try/except.</p>
+        </section>
+
+        <!-- Chapter 5: Solutions to Exercises and Applications -->
+        <section>
+            <h2>Chapter 5: Solutions to Exercises and Applications</h2>
+
+            <!-- Solution to Foundation Exercise -->
+            <h3>Solution to Foundation Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>def hello():
+    print("Hello")
+hello()</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                Hello
+            </div>
+
+            <p>Explanation: Defines and invokes a basic function.</p>
+
+            <!-- Solution to Building Exercise -->
+            <h3>Solution to Building Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>def greet(name):
+    print(f"Hi {name}")
+greet("Alice")</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                Hi Alice
+            </div>
+
+            <p>Explanation: Utilizes a parameter for personalized output.</p>
+
+            <!-- Solution to Intermediate Exercise -->
+            <h3>Solution to Intermediate Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>def sum_genes(a, b):
+    return a + b
+print(sum_genes(10, 15))</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                25
+            </div>
+
+            <p>Explanation: Returns the sum for gene total calculations.</p>
+
+            <!-- Solution to Advanced Exercise -->
+            <h3>Solution to Advanced Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>def convert_to_int(value):
+    try:
+        return int(value)
+    except ValueError:
+        print("Invalid")
+convert_to_int("abc")</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                Invalid
+            </div>
+
+            <p>Explanation: Handles conversion errors gracefully.</p>
+
+            <!-- Solution to Mastery Exercise -->
+            <h3>Solution to Mastery Exercise</h3>
+            <div class="jupyinput">
+                <pre><code>def calculate_tax(amount):
+    """Calculates 5% tax."""
+    # Compute tax
+    return amount * 0.05
+print(calculate_tax(100))</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                5.0
+            </div>
+
+            <p>Explanation: Incorporates documentation for clarity.</p>
+
+            <!-- Solutions to Applications -->
+            <h3>Solutions to Applications</h3>
+            <p>Application 1: As shown.</p>
+
+            <div class="jupyinput">
+                <pre><code>def profit(sales, costs):
+    return sales - costs
+print(profit(1000, 800))</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                200
+            </div>
+
+            <div class="jupyinput">
+                <pre><code>def gene_rate(total, count):
+    try:
+        return total / count
+    except ZeroDivisionError:
+        return "Error"
+print(gene_rate(10, 0))</code></pre>
+            </div>
+
+            <div class="jupyoutput">
+                Error
+            </div>
+
+            <!-- Glossary Box -->
+            <div class="glossarybox">
+                - Function: Reusable block of code.<br>
+                - Def: Keyword for defining functions.<br>
+                - Parameter: Variable for input in function definition.<br>
+                - Argument: Value passed to a parameter when calling a function.<br>
+                - Return: Statement to output a value from a function.<br>
+                - Try: Block to attempt code that may raise errors.<br>
+                - Except: Block to handle specific exceptions.<br>
+                - Comment: Non-executable text prefixed by #.<br>
+                - Docstring: Multi-line string for function documentation.<br>
+                - Scope: Visibility of variables within code.<br>
+                - Default parameter: Parameter with an optional default value.<br>
+                - Keyword argument: Argument specified by name.<br>
+                - Exception: Error occurring at runtime.<br>
+                - Raise: Statement to throw an exception.<br>
+                - Finally: Block that executes regardless of exceptions.<br>
+                - Modular: Code organized into independent parts.<br>
+                - Reusable: Code that can be used multiple times.<br>
+                - Encapsulate: To wrap logic within a function.<br>
+                - Call: To invoke a function.<br>
+                - Signature: Function name and parameters.
+            </div>
+
+            <!-- FAQ Box -->
+            <div class="faqbox">
+                Q1: What is a function? A: A named block of code that performs a task.<br>
+                Q2: Why use parameters? A: To provide flexible inputs to functions.<br>
+                Q3: What is the difference between return and print? A: Return provides a value for further use, while print displays it.<br>
+                Q4: How to handle errors? A: Use try/except blocks.<br>
+                Q5: Why add comments? A: To explain code logic and improve readability.
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Author: Ali Noori | A_noori@uncg.edu | Lecturer, Informatics & Analytics, UNCG</p>
+        <p>&copy; 2025</p>
+    </footer>
+</body>
+</html>
