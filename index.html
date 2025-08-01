@@ -149,27 +149,88 @@
                 </div>
             </div>
         </section>
-
-        <!-- Python Setup Guide -->
+   <!-- Python Setup Guide -->
         <section id="setup" class="py-16 scroll-mt-20">
             <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold text-center text-slate-900">Python Setup Guide</h2>
-                <div class="mt-8 bg-white p-8 rounded-lg shadow-md">
-                    <p class="text-slate-700 leading-relaxed mb-4">
-                        To begin working with Python, install Anaconda, which bundles Python along with essential libraries and simplifies the setup process.
-                    </p>
-                    <ol class="list-decimal list-inside space-y-3 text-slate-700">
-                        <li>Visit <a href="https://www.anaconda.com" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">https://www.anaconda.com</a> and download the installer compatible with your operating system (Windows, macOS, or Linux).</li>
-                        <li>Execute the installer and follow the on-screen instructions.</li>
-                        <li>Launch Anaconda Navigator and open JupyterLab for coding and execution.</li>
-                        <li>Create a new notebook, such as <code>IAF601_Notebook.ipynb</code>.</li>
-                    </ol>
-                    <p class="mt-4 text-slate-700 leading-relaxed">
-                        Anaconda includes key libraries like NumPy and Pandas for data manipulation. For troubleshooting, consult the Anaconda documentation.
-                    </p>
+                <h2 class="text-3xl font-bold text-center text-slate-900">Python Environment Setup Guide</h2>
+                <p class="mt-4 text-center text-slate-600">Follow these steps to set up your computer for the course. The recommended path for this course is to install Anaconda, as it includes everything you need in one package.</p>
+                
+                <div class="mt-8 bg-white p-8 rounded-lg shadow-md space-y-12">
+
+                    <!-- Anaconda -->
+                    <div>
+                        <div class="flex items-center gap-4">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Anaconda_Logo.png/220px-Anaconda_Logo.png" alt="Anaconda Logo" class="h-16 w-16 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e2e8f0/475569?text=Logo';">
+                            <h3 class="text-2xl font-bold text-indigo-700">Option 1 (Recommended): Install Anaconda</h3>
+                        </div>
+                        <p class="mt-4 text-slate-700 leading-relaxed">Anaconda is the easiest way to get started. It's a distribution of Python that includes over 250 popular data science packages, including Jupyter Notebook, NumPy, and Pandas, all in one installation.</p>
+                        <ol class="list-decimal list-inside space-y-3 mt-4 text-slate-700">
+                            <li>Visit the <a href="https://www.anaconda.com/download" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">Anaconda Download Page</a>.</li>
+                            <li>Download the installer for your operating system (Windows, macOS, or Linux).</li>
+                            <li>Run the installer and follow the on-screen instructions. It's safe to accept the default settings.</li>
+                            <li>Once installed, you can launch <strong>Anaconda Navigator</strong>, which is a graphical interface to manage your tools. From there, you can easily launch JupyterLab or a Jupyter Notebook.</li>
+                        </ol>
+                    </div>
+
+                    <hr class="border-slate-200">
+
+                    <!-- Manual Installation -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800">Option 2: Manual Installation</h3>
+                        <p class="mt-2 text-slate-600">If you prefer more control over your environment, you can install Python and your tools separately.</p>
+                        
+                        <div class="mt-6 flex items-start gap-4">
+                             <img src="https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png" alt="Python Logo" class="h-16 w-16 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e2e8f0/475569?text=Logo';">
+                            <div>
+                                <h4 class="text-xl font-semibold">Step 1: Install Python</h4>
+                                <p class="mt-2 text-slate-700">First, install the core Python language.</p>
+                                <ol class="list-decimal list-inside space-y-2 mt-2">
+                                    <li>Go to the official <a href="https://www.python.org/downloads/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">Python website</a>.</li>
+                                    <li>Download the latest stable version for your operating system.</li>
+                                    <li>Run the installer. <strong>Important:</strong> On Windows, make sure to check the box that says "Add Python to PATH".</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 flex items-start gap-4">
+                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2048px-Visual_Studio_Code_1.35_icon.svg.png" alt="VS Code Logo" class="h-16 w-16 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/100x100/e2e8f0/475569?text=Logo';">
+                            <div>
+                                <h4 class="text-xl font-semibold">Step 2: Install a Code Editor (VS Code)</h4>
+                                <p class="mt-2 text-slate-700">You need a program to write and edit your code. Visual Studio Code is a popular, free, and powerful choice.</p>
+                                <ol class="list-decimal list-inside space-y-2 mt-2">
+                                    <li>Download VS Code from its <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">official website</a>.</li>
+                                    <li>Install it on your system.</li>
+                                    <li>Open VS Code and install the official Python extension from Microsoft. You can find it in the Extensions view (the icon with four squares on the left sidebar).</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="border-slate-200">
+                    
+                    <!-- Jupyter Notebooks -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800">Why We Use Jupyter Notebooks</h3>
+                        <div class="mt-4 flex flex-col md:flex-row items-center gap-6">
+                            <div class="flex-1">
+                                <p class="text-slate-700 leading-relaxed">For this course, we will primarily use <strong>Jupyter Notebooks</strong>. If you installed Anaconda, you already have them. A Jupyter Notebook is an interactive web-based tool that allows you to write and run code, add explanatory text, include equations, and display visualizations all in one document.</p>
+                                <p class="mt-4 text-slate-700 leading-relaxed">This makes it perfect for data analysis because you can:</p>
+                                <ul class="list-disc list-inside mt-2 space-y-2">
+                                    <li><strong>Work interactively:</strong> Run small chunks of code (in "cells") one at a time and see the output immediately.</li>
+                                    <li><strong>Combine code and narrative:</strong> Explain your thought process and document your findings right alongside the code that produced them.</li>
+                                    <li><strong>Visualize data inline:</strong> Plots and charts appear directly below the code that generates them, making it easy to explore data visually.</li>
+                                </ul>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <img src="https://placehold.co/600x400/f1f5f9/475569?text=Jupyter+Notebook+Interface" alt="Jupyter Notebook Interface Example" class="rounded-lg shadow-md w-full max-w-xs" onerror="this.onerror=null;this.src='https://placehold.co/300x200/e2e8f0/475569?text=Interface';">
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
+
 
         <!-- Modules Section -->
         <section id="modules" class="py-16 scroll-mt-20">
