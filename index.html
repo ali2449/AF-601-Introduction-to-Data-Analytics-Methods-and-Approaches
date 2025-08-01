@@ -954,235 +954,1819 @@ set2 <span class="token-operator">=</span> {<span class="token-string">'B'</span
 </details>
 
 
-                <!-- Module 6 -->
-                <details class="bg-white rounded-lg shadow-md">
-                    <summary class="p-6 flex items-center">
-                        <h3 class="text-2xl font-bold text-indigo-700">Module 6: Modules, Packages & OOP</h3>
-                    </summary>
-                    <div class="px-6 pb-6 border-t border-slate-200">
-                        <p class="mt-4 text-slate-600">Organize code into files and directories, and model real-world entities with Object-Oriented Programming.</p>
-                        <div class="python-cell">
-                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                            <div class="python-cell-input"><div class="python-cell-prompt">In [7]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Defining class</span>
+                <!-- Module 6 --><!-- Module 6 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 6: Modules, Packages & Object-Oriented Basics</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">From previous modules, you have learned about lists, tuples, dictionaries, and sets for data organization. You can define functions for reusable code and handle errors. These concepts prepare you for structuring larger programs using modules and object-oriented principles.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Modules and packages organize code into files and directories, while object-oriented programming (OOP) models real-world entities. Businesses leverage modules for shared functions, such as importing the <code>math</code> module for calculations. In healthcare, classes can represent patient objects. Their value lies in creating scalable and maintainable software, reducing development time.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: Importing Modules</h4>
+            <p class="text-slate-700">Importing allows you to load code from other Python files or libraries, promoting code reuse. The <code>import</code> statement makes the code in one module available in another.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Importing the math module</span>
+<span class="token-keyword">import</span> math
+<span class="token-function">print</span>(math.pi)  <span class="token-comment"># Use the pi constant from the math module</span></code></pre></div>
+                </div>
+                <div class="python-cell-output">3.141592653589793</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: Defining Classes</h4>
+            <p class="text-slate-700">A class is a blueprint for creating objects. It defines a set of attributes and methods that the created objects will have. The <code>__init__</code> method is a special method used to initialize an object's attributes.</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Defining a Patient class</span>
 <span class="token-keyword">class</span> <span class="token-function">Patient</span>:
     <span class="token-keyword">def</span> <span class="token-function">__init__</span>(<span class="token-keyword">self</span>, name, age):
-        <span class="token-keyword">self</span><span class="token-operator">.</span>name <span class="token-operator">=</span> name
-        <span class="token-keyword">self</span><span class="token-operator">.</span>age <span class="token-operator">=</span> age
+        <span class="token-keyword">self</span>.name <span class="token-operator">=</span> name
+        <span class="token-keyword">self</span>.age <span class="token-operator">=</span> age
+
+<span class="token-comment"># Creating an instance of the Patient class</span>
 p <span class="token-operator">=</span> <span class="token-function">Patient</span>(<span class="token-string">"Alice"</span>, <span class="token-number">30</span>)
-<span class="token-function">print</span>(p<span class="token-operator">.</span>name)</code></pre></div></div>
-                            <div class="python-cell-output">Alice</div>
-                        </div>
-                    </div>
-                </details>
+<span class="token-function">print</span>(p.name)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Alice</div>
+            </div>
 
-                <!-- Module 7 -->
-                <details class="bg-white rounded-lg shadow-md">
-                    <summary class="p-6 flex items-center">
-                        <h3 class="text-2xl font-bold text-indigo-700">Module 7: Advanced Python Techniques</h3>
-                    </summary>
-                    <div class="px-6 pb-6 border-t border-slate-200">
-                        <p class="mt-4 text-slate-600">Enhance code conciseness and efficiency with list comprehensions, lambda functions, and generators.</p>
-                        <div class="python-cell">
-                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                            <div class="python-cell-input"><div class="python-cell-prompt">In [8]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># List comprehension</span>
-squares <span class="token-operator">=</span> [x<span class="token-operator">**</span><span class="token-number">2</span> <span class="token-keyword">for</span> x <span class="token-keyword">in</span> <span class="token-function">range</span>(<span class="token-number">5</span>)]  <span class="token-comment"># Squares 0 to 4</span>
-<span class="token-function">print</span>(squares)</code></pre></div></div>
-                            <div class="python-cell-output">[0, 1, 4, 9, 16]</div>
-                        </div>
-                    </div>
-                </details>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Methods in Classes</h4>
+             <p class="text-slate-700">Methods are functions defined inside a class that operate on the object's data (attributes). The first parameter of a method is always <code>self</code>, which refers to the instance of the class.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># A class with a method</span>
+<span class="token-keyword">class</span> <span class="token-function">Gene</span>:
+    <span class="token-keyword">def</span> <span class="token-function">__init__</span>(<span class="token-keyword">self</span>, sequence):
+        <span class="token-keyword">self</span>.sequence <span class="token-operator">=</span> sequence
+    
+    <span class="token-keyword">def</span> <span class="token-function">get_length</span>(<span class="token-keyword">self</span>):
+        <span class="token-keyword">return</span> <span class="token-function">len</span>(<span class="token-keyword">self</span>.sequence)
 
-                <!-- Module 8 -->
-                <details class="bg-white rounded-lg shadow-md">
-                    <summary class="p-6 flex items-center">
-                        <h3 class="text-2xl font-bold text-indigo-700">Module 8: Professional Development Practices</h3>
-                    </summary>
-                    <div class="px-6 pb-6 border-t border-slate-200">
-                        <p class="mt-4 text-slate-600">Ensure high-quality, maintainable code with exception handling, version control (Git), documentation, and testing.</p>
-                        <div class="python-cell">
-                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                            <div class="python-cell-input"><div class="python-cell-prompt">In [9]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Regex example</span>
+g <span class="token-operator">=</span> <span class="token-function">Gene</span>(<span class="token-string">"ACTG"</span>)
+<span class="token-function">print</span>(g.<span class="token-function">get_length</span>())</code></pre></div>
+                </div>
+                <div class="python-cell-output">4</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: Attributes and Instance Variables</h4>
+            <p class="text-slate-700">Attributes are variables associated with an object that store its state. They are typically defined within the <code>__init__</code> method using <code>self.attribute_name = value</code>.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># A class with attributes</span>
+<span class="token-keyword">class</span> <span class="token-function">MapPoint</span>:
+    <span class="token-keyword">def</span> <span class="token-function">__init__</span>(<span class="token-keyword">self</span>, lat, lon):
+        <span class="token-keyword">self</span>.lat <span class="token-operator">=</span> lat
+        <span class="token-keyword">self</span>.lon <span class="token-operator">=</span> lon
+
+point <span class="token-operator">=</span> <span class="token-function">MapPoint</span>(<span class="token-number">35.9</span>, <span class="operator">-</span><span class="token-number">79.0</span>)
+<span class="token-function">print</span>(point.lat)</code></pre></div>
+                </div>
+                <div class="python-cell-output">35.9</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Import the <code>math</code> module and print the square root of 16.</li>
+                <li><b>Building Exercise:</b> Define a <code>Gene</code> class with a sequence attribute initialized in the constructor.</li>
+                <li><b>Intermediate Exercise:</b> Add an <code>is_adult</code> method to the <code>Patient</code> class that returns <code>True</code> if the patient's age is over 18.</li>
+                <li><b>Advanced Exercise:</b> Create a <code>Sales</code> class with a list attribute for sales amounts and a method to calculate the total sales.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health Class</h4>
+            <p>Define a <code>Patient</code> class with a name attribute and a <code>greet</code> method that returns a personalized greeting.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-keyword">class</span> <span class="token-function">Patient</span>:
+    <span class="token-keyword">def</span> <span class="token-function">__init__</span>(<span class="token-keyword">self</span>, name):
+        <span class="token-keyword">self</span>.name <span class="token-operator">=</span> name
+    
+    <span class="token-keyword">def</span> <span class="token-function">greet</span>(<span class="token-keyword">self</span>):
+        <span class="token-keyword">return</span> <span class="token-string">f"Hi, {self.name}"</span>
+
+p <span class="token-operator">=</span> <span class="token-function">Patient</span>(<span class="token-string">"Alice"</span>)
+<span class="token-function">print</span>(p.<span class="token-function">greet</span>())</code></pre></div>
+                </div>
+                <div class="python-cell-output">Hi, Alice</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Create a package with a module containing a <code>SalesItem</code> class. The class should have attributes for name and price, and a method to apply a discount. Import and use this class in a separate script. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Advanced Exercise Solution</h4>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-keyword">class</span> <span class="token-function">Patient</span>:
+    <span class="token-keyword">def</span> <span class="token-function">__init__</span>(<span class="token-keyword">self</span>, age):
+        <span class="token-keyword">self</span>.age <span class="token-operator">=</span> age
+    
+    <span class="token-keyword">def</span> <span class="token-function">is_adult</span>(<span class="token-keyword">self</span>):
+        <span class="token-keyword">return</span> <span class="token-keyword">self</span>.age <span class="token-operator">></span> <span class="token-number">18</span>
+
+p <span class="token-operator">=</span> <span class="token-function">Patient</span>(<span class="token-number">25</span>)
+<span class="token-function">print</span>(p.<span class="token-function">is_adult</span>())</code></pre></div>
+                </div>
+                <div class="python-cell-output">True</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Module:</b> A file containing Python code that can be imported.</li>
+                        <li><b>Package:</b> A directory of Python modules.</li>
+                        <li><b>Class:</b> A blueprint for creating objects.</li>
+                        <li><b>Object/Instance:</b> An object created from a class.</li>
+                        <li><b>Method:</b> A function defined within a class.</li>
+                        <li><b>Attribute:</b> A variable associated with an object.</li>
+                        <li><b>OOP:</b> Object-Oriented Programming, a paradigm based on objects and classes.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: What is the difference between a class and an instance?</b> A: A class is the blueprint (e.g., the recipe for a cookie), while an instance is the actual object created from that blueprint (e.g., the cookie itself).</li>
+                        <li><b>Q: What is `self`?</b> A: `self` represents the instance of the class. It allows you to access the attributes and methods of the class in Python.</li>
+                        <li><b>Q: Why use Object-Oriented Programming?</b> A: OOP helps to model real-world entities, organize complex code, and promote code reusability.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
+
+                <!-- Module 7 --><!-- Module 7 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 7: Advanced Python Techniques</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">From previous modules, you have learned about modules and packages for code organization, and you can define classes with attributes and methods to model objects. These concepts support the advanced techniques for more concise and efficient coding that we will cover in this module.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Advanced Python techniques enhance code conciseness and efficiency. Businesses employ list comprehensions for data processing, lambda functions for quick definitions, and generators for memory efficiency. Debugging and optimization ensure reliable and fast code. In healthcare, comprehensions can filter patient lists. Their value lies in handling large datasets more effectively and conserving resources.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: List Comprehensions</h4>
+            <p class="text-slate-700">List comprehensions offer a shorter, more readable syntax for creating lists. They can mimic <code>for</code> loops and <code>if</code> conditions within a single line.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># List comprehension to create a list of squares</span>
+squares <span class="token-operator">=</span> [x<span class="token-operator">**</span><span class="token-number">2</span> <span class="token-keyword">for</span> x <span class="token-keyword">in</span> <span class="token-function">range</span>(<span class="token-number">5</span>)]
+<span class="token-function">print</span>(squares)</code></pre></div>
+                </div>
+                <div class="python-cell-output">[0, 1, 4, 9, 16]</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: Lambda Functions</h4>
+            <p class="text-slate-700">Lambda functions are small, anonymous functions defined with the <code>lambda</code> keyword. They can take any number of arguments but can only have one expression. They are often used when a simple function is needed for a short period.</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># A lambda function that doubles its input</span>
+double <span class="token-operator">=</span> <span class="token-keyword">lambda</span> x: x <span class="token-operator">*</span> <span class="token-number">2</span>
+<span class="token-function">print</span>(<span class="token-function">double</span>(<span class="token-number">5</span>))</code></pre></div>
+                </div>
+                <div class="python-cell-output">10</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Generators</h4>
+             <p class="text-slate-700">Generators are a simple way to create iterators. They generate values on the fly using the <code>yield</code> keyword, which makes them very memory-efficient for working with large datasets.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># A generator function for squares</span>
+<span class="token-keyword">def</span> <span class="token-function">squares_gen</span>(n):
+    <span class="token-keyword">for</span> i <span class="token-keyword">in</span> <span class="token-function">range</span>(n):
+        <span class="token-keyword">yield</span> i<span class="token-operator">**</span><span class="token-number">2</span>
+
+<span class="token-comment"># Iterate through the generator</span>
+<span class="token-keyword">for</span> sq <span class="token-keyword">in</span> <span class="token-function">squares_gen</span>(<span class="token-number">3</span>):
+    <span class="token-function">print</span>(sq)</code></pre></div>
+                </div>
+                <div class="python-cell-output">0
+1
+4</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: Debugging Techniques</h4>
+            <p class="text-slate-700">Debugging is the process of finding and fixing errors in your code. Simple techniques include using <code>print()</code> statements to check variable values at different points in your program.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Debugging with print statements</span>
+<span class="token-keyword">def</span> <span class="token-function">divide</span>(a, b):
+    <span class="token-function">print</span>(<span class="token-string">f"Debugging: a={a}, b={b}"</span>)
+    <span class="token-keyword">return</span> a <span class="token-operator">/</span> b
+
+<span class="token-function">print</span>(<span class="token-function">divide</span>(<span class="token-number">10</span>, <span class="token-number">2</span>))</code></pre></div>
+                </div>
+                <div class="python-cell-output">Debugging: a=10, b=2
+5.0</div>
+            </div>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 5: Code Optimization</h4>
+            <p class="text-slate-700">Optimization involves improving code to make it run faster and use fewer resources. A common strategy is to use built-in functions (like <code>sum()</code>) instead of manual loops, as they are often implemented in C and are much faster.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Optimization example</span>
+large_list <span class="token-operator">=</span> <span class="token-function">range</span>(<span class="token-number">1000000</span>)
+
+<span class="token-comment"># Fast way using a built-in function</span>
+total_fast <span class="token-operator">=</span> <span class="token-function">sum</span>(large_list)
+<span class="token-function">print</span>(total_fast)</code></pre></div>
+                </div>
+                <div class="python-cell-output">499999500000</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Create a list of even numbers from 1 to 10 using a list comprehension.</li>
+                <li><b>Building Exercise:</b> Define a lambda function to add two numbers and use it.</li>
+                <li><b>Intermediate Exercise:</b> Create a generator that yields the squares of numbers up to n.</li>
+                <li><b>Advanced Exercise:</b> Use print statements to debug a function that attempts to divide by zero.</li>
+                <li><b>Mastery Exercise:</b> Compare the time it takes to sum a large list using a <code>for</code> loop versus the built-in <code>sum()</code> function.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health Data Comprehension</h4>
+            <p>Use a list comprehension to efficiently filter a list of patient ages to include only adults.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">patient_ages <span class="token-operator">=</span> [<span class="token-number">20</span>, <span class="token-number">15</span>, <span class="token-number">30</span>, <span class="token-number">17</span>, <span class="token-number">45</span>]
+adults <span class="token-operator">=</span> [age <span class="token-keyword">for</span> age <span class="token-keyword">in</span> patient_ages <span class="token-keyword">if</span> age <span class="token-operator">></span> <span class="token-number">18</span>]
+<span class="token-function">print</span>(adults)</code></pre></div>
+                </div>
+                <div class="python-cell-output">[20, 30, 45]</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Develop a function that takes a list of numbers, filters the data with a list comprehension, sorts the result using a lambda function as the key, and then yields the results one by one using a generator. Include print statements for debugging. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Building Exercise Solution</h4>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [7]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">add <span class="token-operator">=</span> <span class="token-keyword">lambda</span> a, b: a <span class="token-operator">+</span> b
+<span class="token-function">print</span>(<span class="token-function">add</span>(<span class="token-number">3</span>, <span class="token-number">4</span>))</code></pre></div>
+                </div>
+                <div class="python-cell-output">7</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>List Comprehension:</b> A concise syntax for creating lists from iterables.</li>
+                        <li><b>Lambda Function:</b> A small, anonymous function defined with the <code>lambda</code> keyword.</li>
+                        <li><b>Generator:</b> An iterator that yields values lazily, saving memory.</li>
+                        <li><b>Yield:</b> A keyword used in generators to produce a value and pause execution.</li>
+                        <li><b>Debugging:</b> The process of identifying and fixing errors in code.</li>
+                        <li><b>Optimization:</b> The process of improving code to be more efficient.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: When should I use a list comprehension instead of a `for` loop?</b> A: Use a list comprehension when you want to create a new list based on an existing iterable in a concise and readable way. For more complex logic, a traditional `for` loop might be better.</li>
+                        <li><b>Q: What is the main benefit of a generator over a list?</b> A: Generators are memory-efficient because they produce items one at a time and only when needed, which is ideal for very large datasets that might not fit into memory all at once.</li>
+                        <li><b>Q: When is a lambda function a good choice?</b> A: When you need a simple, one-off function, such as for the `key` argument in sorting functions like <code>sorted()</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
+
+                <!-- Module 8 --><!-- Module 8 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 8: Professional Development Practices</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">From previous modules, you have learned advanced techniques such as list comprehensions and generators. You can debug and optimize code, and you use Object-Oriented Programming for modeling. These practices contribute to the professional development standards we will cover now.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Professional practices ensure high-quality, reliable, and maintainable code. Businesses utilize exception handling for robustness, regular expressions (regex) for text processing, Git for collaboration, documentation for clarity, and testing for reliability. Adhering to style guides like PEP 8 promotes consistency. In healthcare, for example, robust error handling in patient data systems is critical.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: Exception Handling</h4>
+            <p class="text-slate-700">Exception handling allows you to gracefully manage runtime errors using <code>try...except</code> blocks. This prevents your program from crashing and allows you to respond to errors in a controlled way.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Exception handling for division by zero</span>
+<span class="token-keyword">try</span>:
+    result <span class="token-operator">=</span> <span class="token-number">10</span> <span class="token-operator">/</span> <span class="token-number">0</span>
+<span class="token-keyword">except</span> ZeroDivisionError:
+    <span class="token-function">print</span>(<span class="token-string">"Cannot divide by zero"</span>)
+<span class="token-keyword">finally</span>:
+    <span class="token-function">print</span>(<span class="token-string">"This block always executes."</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Cannot divide by zero
+This block always executes.</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: Regular Expressions (Regex)</h4>
+            <p class="text-slate-700">Regular expressions are a powerful tool for finding and extracting patterns in text. Python's <code>re</code> module provides the necessary functions.</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Regex example to find numbers in a string</span>
 <span class="token-keyword">import</span> re
 text <span class="token-operator">=</span> <span class="token-string">"Patient age: 30"</span>
-age <span class="token-operator">=</span> re<span class="token-operator">.</span><span class="token-function">search</span>(<span class="token-string">r'\d+'</span>, text)<span class="token-operator">.</span><span class="token-function">group</span>()
-<span class="token-function">print</span>(age)</code></pre></div></div>
-                            <div class="python-cell-output">30</div>
-                        </div>
-                    </div>
-                </details>
+age <span class="token-operator">=</span> re.<span class="token-function">search</span>(<span class="token-string">r'\d+'</span>, text).<span class="token-function">group</span>()
+<span class="token-function">print</span>(age)</code></pre></div>
+                </div>
+                <div class="python-cell-output">30</div>
+            </div>
 
-                <!-- Module 9 -->
-                <details class="bg-white rounded-lg shadow-md">
-                    <summary class="p-6 flex items-center">
-                        <h3 class="text-2xl font-bold text-indigo-700">Module 9: NumPy</h3>
-                    </summary>
-                    <div class="px-6 pb-6 border-t border-slate-200">
-                        <p class="mt-4 text-slate-600">Learn the foundation of numerical computing in Python with NumPy for fast array operations.</p>
-                        <div class="python-cell">
-                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                            <div class="python-cell-input"><div class="python-cell-prompt">In [10]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Array operations</span>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Version Control with Git</h4>
+             <p class="text-slate-700">Git is an essential version control system that helps you track changes in your code, collaborate with others, and revert to previous versions if needed. Commands are run in the terminal.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Git commands (conceptual example)</span>
+<span class="token-comment"># git init</span>
+<span class="token-comment"># git add your_script.py</span>
+<span class="token-comment"># git commit -m "Add initial version of script"</span>
+<span class="token-comment"># git push</span>
+<span class="token-function">print</span>(<span class="token-string">"Git helps manage code history."</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Git helps manage code history.</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: Code Documentation</h4>
+            <p class="text-slate-700">Good documentation, including comments and docstrings, explains the purpose and usage of your code, making it understandable for others and your future self.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-keyword">def</span> <span class="token-function">process_data</span>(data):
+    <span class="token-string">"""Processes input data and returns the result."""</span>
+    <span class="token-comment"># Placeholder for data processing logic</span>
+    <span class="token-keyword">return</span> data <span class="token-operator">*</span> <span class="token-number">2</span>
+
+<span class="token-function">print</span>(<span class="token-function">process_data</span>(<span class="token-number">5</span>))</code></pre></div>
+                </div>
+                <div class="python-cell-output">10</div>
+            </div>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 5: Testing and PEP 8</h4>
+            <p class="text-slate-700">Testing verifies that your code works correctly, while PEP 8 is the official style guide for Python code, ensuring consistency and readability. Python's <code>unittest</code> framework is a common tool for testing.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Simple test using the unittest framework</span>
+<span class="token-keyword">import</span> unittest
+
+<span class="token-keyword">class</span> <span class="token-function">TestMath</span>(unittest.TestCase):
+    <span class="token-keyword">def</span> <span class="token-function">test_add</span>(<span class="token-keyword">self</span>):
+        <span class="token-keyword">self</span>.<span class="token-function">assertEqual</span>(<span class="token-number">1</span> <span class="token-operator">+</span> <span class="token-number">1</span>, <span class="token-number">2</span>)
+
+<span class="token-comment"># This would be run from the terminal, e.g., python -m unittest your_test_file.py</span>
+<span class="token-function">print</span>(<span class="token-string">"Tests will pass if assertions are correct."</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Tests will pass if assertions are correct.</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Write a <code>try...except</code> block to catch a <code>ZeroDivisionError</code>.</li>
+                <li><b>Building Exercise:</b> Use regex to extract all numbers from a string like "age 25, height 175".</li>
+                <li><b>Intermediate Exercise:</b> Write comments simulating the Git workflow: init, add, commit.</li>
+                <li><b>Advanced Exercise:</b> Add a docstring to a function and print its help documentation using <code>help(func)</code>.</li>
+                <li><b>Mastery Exercise:</b> Write a test case using <code>unittest</code> to verify a simple addition function.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health Data Input Validation</h4>
+            <p>Ensure safe data input by handling a <code>ValueError</code> if a user enters non-numeric text for their age.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-keyword">try</span>:
+    age <span class="token-operator">=</span> <span class="token-function">int</span>(<span class="token-function">input</span>(<span class="token-string">"Enter age: "</span>))
+<span class="token-keyword">except</span> ValueError:
+    <span class="token-function">print</span>(<span class="token-string">"Invalid input. Please enter a number."</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">(Assuming input "abc") Invalid input. Please enter a number.</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Develop a function that processes text with regex and handles potential errors. The function should be well-documented with a docstring and tested with <code>unittest</code>. Add comments describing the Git workflow you would use to manage the project. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Building Exercise Solution</h4>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [7]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-keyword">import</span> re
+numbers <span class="token-operator">=</span> re.<span class="token-function">findall</span>(<span class="token-string">r'\d+'</span>, <span class="token-string">"Numbers: 123 and 456"</span>)
+<span class="token-function">print</span>(numbers)</code></pre></div>
+                </div>
+                <div class="python-cell-output">['123', '456']</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Exception:</b> An error that occurs during the execution of a program.</li>
+                        <li><b>Regex:</b> A sequence of characters that specifies a search pattern in text.</li>
+                        <li><b>Git:</b> A distributed version control system for tracking changes in source code.</li>
+                        <li><b>Commit:</b> A snapshot of your changes in Git.</li>
+                        <li><b>Unittest:</b> Python's built-in framework for writing and running tests.</li>
+                        <li><b>PEP 8:</b> The official style guide for Python code.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: Why is exception handling important?</b> A: It prevents your program from crashing and allows you to handle errors in a predictable, controlled manner.</li>
+                        <li><b>Q: How often should I commit my code with Git?</b> A: It's good practice to make small, frequent commits. Each commit should represent a single logical change.</li>
+                        <li><b>Q: Why is following a style guide like PEP 8 important?</b> A: It makes code more consistent and readable, which is crucial for collaboration and long-term maintenance.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
+
+                <!-- Module 9 --><!-- Module 9 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 9: NumPy - Numerical Computing Foundation</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">From previous modules, you have learned professional practices including exception handling, version control, and testing. You use regular expressions for pattern matching and document your code thoroughly. These practices prepare you for the world of high-performance numerical computing with NumPy.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">NumPy is a fundamental library for numerical data manipulation in Python, offering powerful and fast array objects. Businesses apply it for tasks like computing sales statistics and financial modeling. In healthcare, it's used to analyze patient metrics from large datasets. Its primary importance lies in its ability to perform efficient calculations on large arrays of data, dramatically enhancing analysis speed.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: Creating NumPy Arrays</h4>
+            <p class="text-slate-700">NumPy's main object is the homogeneous multidimensional array. It is a table of elements (usually numbers), all of the same type, indexed by a tuple of positive integers. They are more efficient than Python lists for numerical operations.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Creating a NumPy array from a list</span>
 <span class="token-keyword">import</span> numpy <span class="token-keyword">as</span> np
-sales <span class="token-operator">=</span> np<span class="token-operator">.</span><span class="token-function">array</span>([<span class="token-number">100</span>, <span class="token-number">200</span>, <span class="token-number">300</span>])
-costs <span class="token-operator">=</span> np<span class="token-operator">.</span><span class="token-function">array</span>([<span class="token-number">50</span>, <span class="token-number">100</span>, <span class="token-number">150</span>])
-profits <span class="token-operator">=</span> sales <span class="token-operator">-</span> costs  <span class="token-comment"># Element-wise</span>
-<span class="token-function">print</span>(profits)</code></pre></div></div>
-                            <div class="python-cell-output">[ 50 100 150]</div>
-                        </div>
-                    </div>
-                </details>
+sales <span class="token-operator">=</span> np.<span class="token-function">array</span>([<span class="token-number">100</span>, <span class="token-number">200</span>, <span class="token-number">300</span>])
+<span class="token-function">print</span>(sales)</code></pre></div>
+                </div>
+                <div class="python-cell-output">[100 200 300]</div>
+            </div>
 
-                <!-- Module 10 -->
-                <details class="bg-white rounded-lg shadow-md">
-                    <summary class="p-6 flex items-center">
-                        <h3 class="text-2xl font-bold text-indigo-700">Module 10: Pandas</h3>
-                    </summary>
-                    <div class="px-6 pb-6 border-t border-slate-200">
-                        <p class="mt-4 text-slate-600">Become proficient in data manipulation with Pandas, the powerhouse library for handling tabular data.</p>
-                        <div class="python-cell">
-                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                            <div class="python-cell-input"><div class="python-cell-prompt">In [11]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Creating DataFrame</span>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: Array Operations and Broadcasting</h4>
+            <p class="text-slate-700">A key feature of NumPy is the ability to perform element-wise operations, known as vectorization. This avoids slow Python loops. Broadcasting allows NumPy to perform these operations on arrays of different shapes.</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Element-wise array operations</span>
+costs <span class="token-operator">=</span> np.<span class="token-function">array</span>([<span class="token-number">50</span>, <span class="token-number">100</span>, <span class="token-number">150</span>])
+profits <span class="token-operator">=</span> sales <span class="token-operator">-</span> costs
+<span class="token-function">print</span>(profits)</code></pre></div>
+                </div>
+                <div class="python-cell-output">[ 50 100 150]</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Mathematical Functions</h4>
+             <p class="text-slate-700">NumPy provides a large set of mathematical functions (universal functions or ufuncs) that operate element-wise on arrays. These are much faster than their Python counterparts.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Using a universal function (ufunc)</span>
+angles_degrees <span class="token-operator">=</span> np.<span class="token-function">array</span>([<span class="token-number">0</span>, <span class="token-number">90</span>, <span class="token-number">180</span>])
+angles_radians <span class="token-operator">=</span> np.<span class="token-function">deg2rad</span>(angles_degrees)
+sines <span class="token-operator">=</span> np.<span class="token-function">sin</span>(angles_radians)
+<span class="token-function">print</span>(sines)</code></pre></div>
+                </div>
+                <div class="python-cell-output">[0. 1. 1.2246468e-16] <span class="token-comment"># Note: the last value is effectively 0</span></div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: Statistical Functions</h4>
+            <p class="text-slate-700">NumPy has a suite of statistical functions for summarizing data in an array, such as finding the mean, standard deviation, min, and max.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Statistical functions</span>
+data <span class="token-operator">=</span> np.<span class="token-function">array</span>([<span class="token-number">10</span>, <span class="token-number">20</span>, <span class="token-number">30</span>, <span class="token-number">40</span>])
+mean_value <span class="token-operator">=</span> np.<span class="token-function">mean</span>(data)
+std_dev <span class="token-operator">=</span> np.<span class="token-function">std</span>(data)
+<span class="token-function">print</span>(<span class="token-string">f"Mean: {mean_value}, Standard Deviation: {std_dev:.2f}"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Mean: 25.0, Standard Deviation: 11.18</div>
+            </div>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 5: Optimization with NumPy</h4>
+            <p class="text-slate-700">Leveraging NumPy's vectorization is key to optimization. Replacing Python loops with NumPy array operations can lead to significant performance improvements, especially on large datasets.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Optimization example</span>
+large_array <span class="token-operator">=</span> np.<span class="token-function">arange</span>(<span class="token-number">1_000_000</span>)
+
+<span class="token-comment"># Fast NumPy sum</span>
+fast_sum <span class="token-operator">=</span> np.<span class="token-function">sum</span>(large_array)
+<span class="token-function">print</span>(fast_sum)</code></pre></div>
+                </div>
+                <div class="python-cell-output">499999500000</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Create a NumPy array from a list of patient ages.</li>
+                <li><b>Building Exercise:</b> Create a `sales` array and a `costs` array, then calculate the `profits` array.</li>
+                <li><b>Intermediate Exercise:</b> Compute the sine of an array of angles given in degrees.</li>
+                <li><b>Advanced Exercise:</b> Compute the mean and standard deviation of a data array.</li>
+                <li><b>Mastery Exercise:</b> Compare the performance of summing a large array using a Python loop versus `np.sum()`.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health Array Statistics</h4>
+            <p>Create an array of patient temperatures and efficiently compute the mean temperature.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-keyword">import</span> numpy <span class="token-keyword">as</span> np
+temps <span class="token-operator">=</span> np.<span class="token-function">array</span>([<span class="token-number">98.6</span>, <span class="token-number">99.1</span>, <span class="token-number">97.8</span>, <span class="token-number">98.9</span>])
+mean_temp <span class="token-operator">=</span> np.<span class="token-function">mean</span>(temps)
+<span class="token-function">print</span>(<span class="token-string">f"Average Temperature: {mean_temp:.2f}"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Average Temperature: 98.60</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Develop a function that accepts a NumPy array of sales data. The function should compute key statistics (mean, standard deviation, min, max) and use vectorized operations to calculate profits, assuming a fixed cost array or percentage. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Application 3 Solution: Map Math</h4>
+             <p>Compute the Euclidean distance between two points using NumPy's vectorized operations.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [7]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">coords1 <span class="token-operator">=</span> np.<span class="token-function">array</span>([<span class="token-number">0</span>, <span class="token-number">0</span>])
+coords2 <span class="token-operator">=</span> np.<span class="token-function">array</span>([<span class="token-number">3</span>, <span class="token-number">4</span>])
+distance <span class="token-operator">=</span> np.<span class="token-function">sqrt</span>(np.<span class="token-function">sum</span>((coords2 <span class="token-operator">-</span> coords1)<span class="token-operator">**</span><span class="token-number">2</span>))
+<span class="token-function">print</span>(distance)</code></pre></div>
+                </div>
+                <div class="python-cell-output">5.0</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>NumPy:</b> A library for numerical computing with Python.</li>
+                        <li><b>Array:</b> A multi-dimensional, homogeneous data structure.</li>
+                        <li><b>Vectorized:</b> Performing operations on entire arrays at once without explicit loops.</li>
+                        <li><b>Broadcasting:</b> A mechanism that allows NumPy to work with arrays of different shapes.</li>
+                        <li><b>Ufunc:</b> A universal function that operates on NumPy arrays in an element-by-element fashion.</li>
+                        <li><b>Mean/Std:</b> Measures of central tendency and statistical dispersion.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: Why use NumPy arrays instead of Python lists?</b> A: NumPy arrays are more memory-efficient and provide much faster vectorized operations for numerical data.</li>
+                        <li><b>Q: How does broadcasting work?</b> A: It automatically expands smaller arrays to match the shape of larger arrays during arithmetic operations, avoiding the need for manual reshaping.</li>
+                        <li><b>Q: How do I import NumPy?</b> A: The standard convention is <code>import numpy as np</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
+
+                <!-- Module 10 --><!-- Module 10 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 10: Pandas - Data Manipulation Powerhouse</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">From the previous module, you have learned to use NumPy for efficient numerical array computations, including math, statistics, and optimization. These skills prepare you for advanced data manipulation with Pandas, which is built on top of NumPy and is the primary tool for working with tabular data in Python.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Pandas is a cornerstone library for handling and analyzing tabular data through its powerful DataFrame objects. Businesses use it extensively for cleaning, transforming, and analyzing sales records. In healthcare, it's indispensable for managing patient tables and clinical data. Its value lies in its intuitive interface for data cleaning, exploration, and preparation, making it a critical tool for any data analyst.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: Creating Series</h4>
+            <p class="text-slate-700">A Pandas Series is a one-dimensional labeled array capable of holding any data type. It's like a column in a spreadsheet or a single column of a SQL table, with labels (the index) for each element.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Creating a Pandas Series</span>
 <span class="token-keyword">import</span> pandas <span class="token-keyword">as</span> pd
+ages <span class="token-operator">=</span> pd.<span class="token-function">Series</span>([<span class="token-number">30</span>, <span class="token-number">45</span>, <span class="token-number">25</span>], index<span class="token-operator">=</span>[<span class="token-string">'Alice'</span>, <span class="token-string">'Bob'</span>, <span class="token-string">'Charlie'</span>])
+<span class="token-function">print</span>(ages)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Alice      30
+Bob        45
+Charlie    25
+dtype: int64</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: Creating DataFrames</h4>
+            <p class="text-slate-700">A DataFrame is a two-dimensional, size-mutable, and potentially heterogeneous tabular data structure with labeled axes (rows and columns). You can think of it as a spreadsheet, a SQL table, or a dictionary of Series objects.</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Creating a DataFrame from a dictionary</span>
 data <span class="token-operator">=</span> {<span class="token-string">'Name'</span>: [<span class="token-string">'Alice'</span>, <span class="token-string">'Bob'</span>], <span class="token-string">'Age'</span>: [<span class="token-number">30</span>, <span class="token-number">45</span>]}
-df <span class="token-operator">=</span> pd<span class="token-operator">.</span><span class="token-function">DataFrame</span>(data)
-<span class="token-function">print</span>(df)</code></pre></div></div>
-                            <div class="python-cell-output">    Name  Age
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>(data)
+<span class="token-function">print</span>(df)</code></pre></div>
+                </div>
+                <div class="python-cell-output">    Name  Age
 0  Alice   30
 1    Bob   45</div>
-                        </div>
-                    </div>
-                </details>
+            </div>
 
-                <!-- Module 11 -->
-                <details class="bg-white rounded-lg shadow-md">
-                    <summary class="p-6 flex items-center">
-                        <h3 class="text-2xl font-bold text-indigo-700">Module 11: Advanced Pandas & Time Series</h3>
-                    </summary>
-                    <div class="px-6 pb-6 border-t border-slate-200">
-                        <p class="mt-4 text-slate-600">Dive into advanced data transformation, aggregation, and merging, plus time series analysis.</p>
-                        <div class="python-cell">
-                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                            <div class="python-cell-input"><div class="python-cell-prompt">In [12]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># GroupBy</span>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Loading Data</h4>
+             <p class="text-slate-700">Pandas can easily read data from various file formats like CSV, Excel, SQL databases, and more into a DataFrame. The <code>pd.read_csv()</code> function is commonly used for this.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Loading data from a CSV file (conceptual)</span>
+<span class="token-comment"># df = pd.read_csv('patients.csv')</span>
+<span class="token-comment"># print(df.head()) # .head() shows the first 5 rows</span>
+<span class="token-function">print</span>(<span class="token-string">"Conceptual: loaded data from patients.csv"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Conceptual: loaded data from patients.csv</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: Data Exploration</h4>
+            <p class="text-slate-700">Once data is loaded, you can quickly get an overview using methods like <code>.head()</code>, <code>.tail()</code>, <code>.info()</code>, and <code>.describe()</code> to understand its structure, data types, and basic statistics.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Exploring the DataFrame</span>
+<span class="token-function">print</span>(df.head(<span class="token-number">2</span>))         <span class="token-comment"># Show the first two rows</span>
+<span class="token-function">print</span>(df.describe())   <span class="token-comment"># Get statistical summary</span></code></pre></div>
+                </div>
+                <div class="python-cell-output">    Name  Age
+0  Alice   30
+1    Bob   45
+             Age
+count   2.000000
+mean   37.500000
+std    10.606602
+min    30.000000
+25%    33.750000
+50%    37.500000
+75%    41.250000
+max    45.000000</div>
+            </div>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 5: Selection and Filtering</h4>
+            <p class="text-slate-700">You can select specific columns by name or filter rows based on conditions. This is fundamental for isolating the data you need for analysis.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Selection and filtering</span>
+names <span class="token-operator">=</span> df[<span class="token-string">'Name'</span>]             <span class="token-comment"># Select a single column</span>
+adults <span class="token-operator">=</span> df[df[<span class="token-string">'Age'</span>] <span class="token-operator">></span> <span class="token-number">40</span>]  <span class="token-comment"># Filter rows based on a condition</span>
+<span class="token-function">print</span>(adults)</code></pre></div>
+                </div>
+                <div class="python-cell-output">  Name  Age
+1  Bob   45</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Create a Pandas Series of patient heights with their names as the index.</li>
+                <li><b>Building Exercise:</b> Create a DataFrame of genes with their corresponding traits.</li>
+                <li><b>Intermediate Exercise:</b> Practice loading a CSV file and printing the first few rows using <code>.head()</code>.</li>
+                <li><b>Advanced Exercise:</b> Use the <code>.describe()</code> method on a single column (e.g., 'Age') of a DataFrame.</li>
+                <li><b>Mastery Exercise:</b> Filter a DataFrame to select only the rows where the age is greater than 30.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health DataFrame Management</h4>
+            <p>Create a DataFrame of patients, add a new boolean column to indicate if they are an adult, and then filter for only the adults.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-keyword">import</span> pandas <span class="token-keyword">as</span> pd
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'Name'</span>: [<span class="token-string">'Alice'</span>, <span class="token-string">'Bob'</span>], <span class="token-string">'Age'</span>: [<span class="token-number">30</span>, <span class="token-number">45</span>]})
+df[<span class="token-string">'Adult'</span>] <span class="token-operator">=</span> df[<span class="token-string">'Age'</span>] <span class="token-operator">></span> <span class="token-number">18</span>
+adults <span class="token-operator">=</span> df[df[<span class="token-string">'Adult'</span>]]
+<span class="token-function">print</span>(adults)</code></pre></div>
+                </div>
+                <div class="python-cell-output">    Name  Age  Adult
+0  Alice   30   True
+1    Bob   45   True</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Load a sales dataset from a CSV file into a DataFrame. Perform initial data exploration to find summary statistics. Filter the data to only include high-value sales, and finally, create a new Pandas Series containing only the names of the products from the filtered data. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Mastery Exercise Solution</h4>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [7]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'Name'</span>: [<span class="token-string">'A'</span>, <span class="token-string">'B'</span>, <span class="token-string">'C'</span>], <span class="token-string">'Age'</span>: [<span class="token-number">25</span>, <span class="token-number">35</span>, <span class="token-number">45</span>]})
+older <span class="token-operator">=</span> df[df[<span class="token-string">'Age'</span>] <span class="token-operator">></span> <span class="token-number">30</span>]
+<span class="token-function">print</span>(older)</code></pre></div>
+                </div>
+                <div class="python-cell-output">  Name  Age
+1    B   35
+2    C   45</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Pandas:</b> A powerful library for data manipulation and analysis.</li>
+                        <li><b>Series:</b> A labeled one-dimensional array.</li>
+                        <li><b>DataFrame:</b> A labeled two-dimensional table.</li>
+                        <li><b>Index:</b> The labels for the rows in a Series or DataFrame.</li>
+                        <li><b>Columns:</b> The labels for the columns in a DataFrame.</li>
+                        <li><b>loc/iloc:</b> Methods for label-based and integer-based selection.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: What's the difference between a Series and a NumPy array?</b> A: A Series has an explicit index, allowing for more flexible and descriptive data labeling.</li>
+                        <li><b>Q: How do you create a DataFrame from a dictionary?</b> A: The dictionary keys become the column names, and the values (which should be lists) become the column data.</li>
+                        <li><b>Q: How do you filter with multiple conditions?</b> A: Use the <code>&</code> (and) or <code>|</code> (or) operators, and wrap each condition in parentheses.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
+
+                <!-- Module 11 --><!-- Module 11 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 11: Advanced Pandas & Time Series Analysis</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">From the previous module, you have learned the basics of Pandas, including how to create DataFrames and Series, load and explore data, and perform selections and filtering. These skills build the foundation for the advanced data manipulation and time series analysis techniques covered in this module.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Advanced Pandas techniques are essential for preparing complex data for analysis. Businesses aggregate data for summaries (e.g., total sales by region), merge different datasets (e.g., sales and inventory), and analyze time series data to understand trends and make forecasts. In healthcare, time series analysis is critical for tracking patient vital signs over time.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: Data Transformation</h4>
+            <p class="text-slate-700">Data transformation involves modifying data, such as creating new columns based on existing ones or applying a function to a column. This is a key step in feature engineering for machine learning.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Transforming a column to create a new one</span>
+<span class="token-keyword">import</span> pandas <span class="token-keyword">as</span> pd
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'Age'</span>: [<span class="token-number">30</span>, <span class="token-number">45</span>]})
+df[<span class="token-string">'Age_in_a_decade'</span>] <span class="token-operator">=</span> df[<span class="token-string">'Age'</span>] <span class="token-operator">+</span> <span class="token-number">10</span>
+<span class="token-function">print</span>(df)</code></pre></div>
+                </div>
+                <div class="python-cell-output">   Age  Age_in_a_decade
+0   30               40
+1   45               55</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: Aggregation and GroupBy</h4>
+            <p class="text-slate-700">The "group by" operation involves splitting data into groups based on some criteria, applying a function to each group independently, and combining the results into a data structure. It's a powerful tool for summarizing data.</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Grouping by a column and aggregating</span>
 data <span class="token-operator">=</span> {<span class="token-string">'City'</span>: [<span class="token-string">'NY'</span>, <span class="token-string">'NY'</span>, <span class="token-string">'LA'</span>], <span class="token-string">'Sales'</span>: [<span class="token-number">100</span>, <span class="token-number">200</span>, <span class="token-number">150</span>]}
-df <span class="token-operator">=</span> pd<span class="token-operator">.</span><span class="token-function">DataFrame</span>(data)
-grouped <span class="token-operator">=</span> df<span class="token-operator">.</span><span class="token-function">groupby</span>(<span class="token-string">'City'</span>)[<span class="token-string">'Sales'</span>]<span class="token-operator">.</span><span class="token-function">mean</span>()
-<span class="token-function">print</span>(grouped)</code></pre></div></div>
-                            <div class="python-cell-output">City
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>(data)
+grouped_sales <span class="token-operator">=</span> df.<span class="token-function">groupby</span>(<span class="token-string">'City'</span>)[<span class="token-string">'Sales'</span>].<span class="token-function">mean</span>()
+<span class="token-function">print</span>(grouped_sales)</code></pre></div>
+                </div>
+                <div class="python-cell-output">City
 LA    150.0
 NY    150.0
 Name: Sales, dtype: float64</div>
-                        </div>
-                    </div>
-                </details>
+            </div>
 
-                <!-- Module 12 -->
-                <details class="bg-white rounded-lg shadow-md">
-                    <summary class="p-6 flex items-center">
-                        <h3 class="text-2xl font-bold text-indigo-700">Module 12: Data Cleaning & EDA</h3>
-                    </summary>
-                    <div class="px-6 pb-6 border-t border-slate-200">
-                        <p class="mt-4 text-slate-600">Learn to correct issues in datasets and use Exploratory Data Analysis (EDA) to reveal patterns.</p>
-                        <div class="python-cell">
-                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                            <div class="python-cell-input"><div class="python-cell-prompt">In [13]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Missing data</span>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Merging and Joining</h4>
+             <p class="text-slate-700">Merging allows you to combine different DataFrames based on common columns or indices, similar to SQL joins. This is essential for integrating data from multiple sources.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Merging two DataFrames</span>
+df1 <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'ID'</span>: [<span class="token-number">1</span>, <span class="token-number">2</span>], <span class="token-string">'Name'</span>: [<span class="token-string">'Alice'</span>, <span class="token-string">'Bob'</span>]})
+df2 <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'ID'</span>: [<span class="token-number">1</span>, <span class="token-number">2</span>], <span class="token-string">'Age'</span>: [<span class="token-number">30</span>, <span class="token-number">45</span>]})
+merged_df <span class="token-operator">=</span> pd.<span class="token-function">merge</span>(df1, df2, on<span class="token-operator">=</span><span class="token-string">'ID'</span>)
+<span class="token-function">print</span>(merged_df)</code></pre></div>
+                </div>
+                <div class="python-cell-output">   ID   Name  Age
+0   1  Alice   30
+1   2    Bob   45</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: Time Series Data</h4>
+            <p class="text-slate-700">Pandas has excellent capabilities for working with time series data. This involves using a DatetimeIndex, which allows for powerful operations like resampling data to different frequencies (e.g., from daily to monthly).</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Resampling time series data</span>
+dates <span class="token-operator">=</span> pd.<span class="token-function">date_range</span>(<span class="token-string">'2025-01-01'</span>, periods<span class="token-operator">=</span><span class="token-number">3</span>, freq<span class="token-operator">=</span><span class="token-string">'D'</span>)
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'Value'</span>: [<span class="token-number">10</span>, <span class="token-number">20</span>, <span class="token-number">30</span>]}, index<span class="token-operator">=</span>dates)
+monthly_mean <span class="token-operator">=</span> df.<span class="token-function">resample</span>(<span class="token-string">'M'</span>).<span class="token-function">mean</span>()
+<span class="token-function">print</span>(monthly_mean)</code></pre></div>
+                </div>
+                <div class="python-cell-output">            Value
+2025-01-31   20.0</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Create a new column in a DataFrame by doubling the values of an existing column.</li>
+                <li><b>Building Exercise:</b> Group a sales DataFrame by city and calculate the total sum of sales for each city.</li>
+                <li><b>Intermediate Exercise:</b> Merge two DataFrames, one with patient names and IDs, and another with patient ages and IDs.</li>
+                <li><b>Advanced Exercise:</b> Resample daily time series data to find the monthly maximum value.</li>
+                <li><b>Mastery Exercise:</b> Create a full data pipeline: load data, transform a column, group by a category, and merge with another dataset.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health Metric Calculation</h4>
+            <p>Create a DataFrame with patient height and weight, then transform the data to calculate and add a new BMI (Body Mass Index) column.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'Height_m'</span>: [<span class="token-number">1.7</span>, <span class="token-number">1.8</span>], <span class="token-string">'Weight_kg'</span>: [<span class="token-number">70</span>, <span class="token-number">80</span>]})
+df[<span class="token-string">'BMI'</span>] <span class="token-operator">=</span> df[<span class="token-string">'Weight_kg'</span>] <span class="token-operator">/</span> (df[<span class="token-string">'Height_m'</span>]<span class="token-operator">**</span><span class="token-number">2</span>)
+<span class="token-function">print</span>(df)</code></pre></div>
+                </div>
+                <div class="python-cell-output">   Height_m  Weight_kg        BMI
+0       1.7         70  24.221453
+1       1.8         80  24.691358</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Load a sales CSV file that includes dates. Convert the date column to a proper datetime format. Resample the data to get monthly total sales. Separately, load a costs CSV file and merge it with your resampled sales data. Finally, aggregate the data to find the total profit by product category. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Building Exercise Solution</h4>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">data <span class="token-operator">=</span> {<span class="token-string">'City'</span>: [<span class="token-string">'NY'</span>, <span class="token-string">'LA'</span>, <span class="token-string">'NY'</span>], <span class="token-string">'Sales'</span>: [<span class="token-number">100</span>, <span class="token-number">150</span>, <span class="token-number">200</span>]}
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>(data)
+grouped <span class="token-operator">=</span> df.<span class="token-function">groupby</span>(<span class="token-string">'City'</span>)[<span class="token-string">'Sales'</span>].<span class="token-function">sum</span>()
+<span class="token-function">print</span>(grouped)</code></pre></div>
+                </div>
+                <div class="python-cell-output">City
+LA    150
+NY    300
+Name: Sales, dtype: int64</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Transform:</b> To modify data using a function or operation.</li>
+                        <li><b>Apply:</b> A method to apply a function along an axis of a DataFrame.</li>
+                        <li><b>GroupBy:</b> A process of splitting data into groups for aggregation.</li>
+                        <li><b>Aggregation:</b> The process of computing a summary statistic (like mean or sum) for each group.</li>
+                        <li><b>Merge:</b> A function to combine DataFrames based on common columns.</li>
+                        <li><b>Time Series:</b> Data points indexed in time order.</li>
+                        <li><b>Resample:</b> A method for time series frequency conversion and aggregation.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: How do you apply a function to every row in a DataFrame?</b> A: Use <code>df.apply(your_function, axis=1)</code>.</li>
+                        <li><b>Q: What are the different types of merges?</b> A: The main types are 'inner' (default), 'outer', 'left', and 'right', which correspond to SQL join types.</li>
+                        <li><b>Q: What's the first step when working with time series data?</b> A: Ensure your date/time column is converted to a proper datetime type using <code>pd.to_datetime()</code> and set it as the index.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
+                <!-- Module 12 --><!-- Module 12 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 12: Data Cleaning & Exploratory Data Analysis</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">From previous modules, you have learned advanced Pandas techniques for data transformation and aggregation, how to merge DataFrames, and how to analyze time series data. These skills are prerequisites for the crucial steps of data cleaning and exploratory data analysis (EDA).</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Data cleaning is the process of correcting or removing inaccurate, corrupt, or irrelevant data, while EDA is used to analyze datasets to summarize their main characteristics, often with visual methods. Businesses clean sales data to ensure accuracy in reporting and use EDA to identify sales trends. In healthcare, clean patient records are essential for reliable analysis. The importance of these steps cannot be overstated, as they ensure that analytical results are valid and trustworthy.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: Handling Missing Data</h4>
+            <p class="text-slate-700">Real-world data is often messy and contains missing values (represented as <code>NaN</code>). You can handle these by either dropping the rows/columns with missing data (<code>.dropna()</code>) or filling them with a specific value (<code>.fillna()</code>), such as the mean of the column.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Handling missing data</span>
+<span class="token-keyword">import</span> pandas <span class="token-keyword">as</span> pd
 <span class="token-keyword">import</span> numpy <span class="token-keyword">as</span> np
-df <span class="token-operator">=</span> pd<span class="token-operator">.</span><span class="token-function">DataFrame</span>({<span class="token-string">'A'</span>: [<span class="token-number">1</span>, np<span class="token-operator">.</span>nan, <span class="token-number">3</span>]})
-df_filled <span class="token-operator">=</span> df<span class="token-operator">.</span><span class="token-function">fillna</span>(df<span class="token-operator">.</span><span class="token-function">mean</span>())
-<span class="token-function">print</span>(df_filled)</code></pre></div></div>
-                            <div class="python-cell-output">     A
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'A'</span>: [<span class="token-number">1</span>, np.nan, <span class="token-number">3</span>]})
+df_filled <span class="token-operator">=</span> df.<span class="token-function">fillna</span>(df.<span class="token-function">mean</span>())
+<span class="token-function">print</span>(df_filled)</code></pre></div>
+                </div>
+                <div class="python-cell-output">     A
 0  1.0
 1  2.0
 2  3.0</div>
-                        </div>
-                    </div>
-                </details>
+            </div>
 
-                <!-- Module 13 -->
-                <details class="bg-white rounded-lg shadow-md">
-                    <summary class="p-6 flex items-center">
-                        <h3 class="text-2xl font-bold text-indigo-700">Module 13: Statistics & Data Visualization</h3>
-                    </summary>
-                    <div class="px-6 pb-6 border-t border-slate-200">
-                        <p class="mt-4 text-slate-600">Summarize data with statistics and present it graphically with Matplotlib and Seaborn.</p>
-                        <div class="python-cell">
-                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                            <div class="python-cell-input"><div class="python-cell-prompt">In [14]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Seaborn</span>
-<span class="token-keyword">import</span> seaborn <span class="token-keyword">as</span> sns
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: Detecting and Removing Outliers</h4>
+            <p class="text-slate-700">Outliers are data points that differ significantly from other observations and can skew analytical results. A common method to identify them is using the Interquartile Range (IQR).</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Removing outliers using the IQR method</span>
+data <span class="token-operator">=</span> [<span class="token-number">10</span>, <span class="token-number">12</span>, <span class="token-number">14</span>, <span class="token-number">100</span>]
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'Value'</span>: data})
+Q1 <span class="token-operator">=</span> df[<span class="token-string">'Value'</span>].<span class="token-function">quantile</span>(<span class="token-number">0.25</span>)
+Q3 <span class="token-operator">=</span> df[<span class="token-string">'Value'</span>].<span class="token-function">quantile</span>(<span class="token-number">0.75</span>)
+IQR <span class="token-operator">=</span> Q3 <span class="token-operator">-</span> Q1
+df_clean <span class="token-operator">=</span> df[<span class="token-operator">~</span>((df[<span class="token-string">'Value'</span>] <span class="token-operator">&lt;</span> (Q1 <span class="token-operator">-</span> <span class="token-number">1.5</span> <span class="token-operator">*</span> IQR)) <span class="token-operator">|</span> (df[<span class="token-string">'Value'</span>] <span class="token-operator">></span> (Q3 <span class="token-operator">+</span> <span class="token-number">1.5</span> <span class="token-operator">*</span> IQR)))]
+<span class="token-function">print</span>(df_clean)</code></pre></div>
+                </div>
+                <div class="python-cell-output">   Value
+0     10
+1     12
+2     14</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Data Validation</h4>
+             <p class="text-slate-700">Data validation involves checking that data conforms to expected rules, such as data types, uniqueness, and valid ranges. This ensures the quality and integrity of your data before analysis.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Validating data to ensure ages are positive</span>
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'Age'</span>: [<span class="token-number">30</span>, <span class="token-operator">-</span><span class="token-number">5</span>, <span class="token-number">45</span>]})
+<span class="token-keyword">if</span> (df[<span class="token-string">'Age'</span>] <span class="token-operator">&lt;</span> <span class="token-number">0</span>).<span class="token-function">any</span>():
+    <span class="token-function">print</span>(<span class="token-string">"Invalid ages found and will be removed."</span>)
+    df <span class="token-operator">=</span> df[df[<span class="token-string">'Age'</span>] <span class="token-operator">></span><span class="token-number">0</span>]
+<span class="token-function">print</span>(df)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Invalid ages found and will be removed.
+   Age
+0   30
+2   45</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: EDA Techniques</h4>
+            <p class="text-slate-700">EDA involves using statistical summaries and visualizations to understand data patterns, spot anomalies, and check assumptions. The <code>.corr()</code> method is useful for seeing relationships between numerical columns.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># EDA: Calculating the correlation matrix</span>
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'A'</span>: [<span class="token-number">1</span>, <span class="token-number">2</span>, <span class="token-number">3</span>], <span class="token-string">'B'</span>: [<span class="token-number">2</span>, <span class="token-number">4</span>, <span class="token-number">6</span>]})
+<span class="token-function">print</span>(df.<span class="token-function">corr</span>())</code></pre></div>
+                </div>
+                <div class="python-cell-output">     A    B
+A  1.0  1.0
+B  1.0  1.0</div>
+            </div>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 5: Basic Visualization</h4>
+            <p class="text-slate-700">Visualization is a core part of EDA. Pandas has built-in plotting capabilities (which use Matplotlib) to quickly create charts like line plots, bar charts, and histograms to represent data graphically.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Basic visualization with Pandas</span>
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'Sales'</span>: [<span class="token-number">100</span>, <span class="token-number">200</span>, <span class="token-number">150</span>]}, index<span class="token-operator">=</span>[<span class="token-string">'Jan'</span>, <span class="token-string">'Feb'</span>, <span class="token-string">'Mar'</span>])
+df.<span class="token-function">plot</span>(kind<span class="token-operator">=</span><span class="token-string">'line'</span>)
 <span class="token-keyword">import</span> matplotlib.pyplot <span class="token-keyword">as</span> plt
-df <span class="token-operator">=</span> pd<span class="token-operator">.</span><span class="token-function">DataFrame</span>({<span class="token-string">'A'</span>: [<span class="token-number">1</span>,<span class="token-number">2</span>,<span class="token-number">3</span>], <span class="token-string">'B'</span>: [<span class="token-number">4</span>,<span class="token-number">5</span>,<span class="token-number">6</span>]})
-sns<span class="token-operator">.</span><span class="token-function">scatterplot</span>(x<span class="token-operator">=</span><span class="token-string">'A'</span>, y<span class="token-operator">=</span><span class="token-string">'B'</span>, data<span class="token-operator">=</span>df)
-plt<span class="token-operator">.</span><span class="token-function">show</span>()</code></pre></div></div>
-                            <div class="python-cell-output">(Scatter plot shown)</div>
-                        </div>
-                    </div>
-                </details>
+plt.<span class="token-function">show</span>()</code></pre></div>
+                </div>
+                <div class="python-cell-output">(A line plot is displayed)</div>
+            </div>
 
-                <!-- Module 14 -->
-                <details class="bg-white rounded-lg shadow-md">
-                    <summary class="p-6 flex items-center">
-                        <h3 class="text-2xl font-bold text-indigo-700">Module 14: Machine Learning & External Data</h3>
-                    </summary>
-                    <div class="px-6 pb-6 border-t border-slate-200">
-                        <p class="mt-4 text-slate-600">Build predictive models with Scikit-learn and fetch data from external sources like APIs.</p>
-                        <div class="python-cell">
-                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                            <div class="python-cell-input"><div class="python-cell-prompt">In [15]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Regression</span>
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Fill missing <code>NaN</code> values in a DataFrame column with the column's mean.</li>
+                <li><b>Building Exercise:</b> Remove outliers from a dataset using the IQR method.</li>
+                <li><b>Intermediate Exercise:</b> Validate a DataFrame to check if all ages are positive.</li>
+                <li><b>Advanced Exercise:</b> Compute the correlation matrix for a DataFrame with multiple numerical columns.</li>
+                <li><b>Mastery Exercise:</b> Create a bar plot from a Pandas Series of sales data.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health Data Cleaning Pipeline</h4>
+            <p>Create a simple data cleaning pipeline for a health dataset: first, remove invalid (e.g., negative) ages, then fill any remaining missing age values with the mean of the valid ages.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-keyword">import</span> numpy <span class="token-keyword">as</span> np
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'Age'</span>: [<span class="token-number">30</span>, np.nan, <span class="token-operator">-</span><span class="token-number">5</span>, <span class="token-number">45</span>]})
+df <span class="token-operator">=</span> df[df[<span class="token-string">'Age'</span>] <span class="token-operator">></span> <span class="token-number">0</span>]
+df[<span class="token-string">'Age'</span>].<span class="token-function">fillna</span>(df[<span class="token-string">'Age'</span>].<span class="token-function">mean</span>(), inplace<span class="token-operator">=</span><span class="token-keyword">True</span>)
+<span class="token-function">print</span>(df)</code></pre></div>
+                </div>
+                <div class="python-cell-output">    Age
+0  30.0
+3  45.0</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Load a dataset from a CSV file. Perform a full data cleaning and EDA workflow: handle missing values, remove outliers, and validate the data. Then, perform EDA by calculating summary statistics, checking correlations, and creating visualizations (histograms, scatter plots) to uncover insights. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Application 2 Solution: Gene EDA</h4>
+             <p>Create a histogram to visualize the distribution of gene lengths.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [7]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'Length'</span>: [<span class="token-number">100</span>, <span class="token-number">150</span>, <span class="token-number">120</span>, <span class="token-number">160</span>, <span class="token-number">155</span>]})
+df[<span class="token-string">'Length'</span>].<span class="token-function">hist</span>()
+plt.<span class="token-function">show</span>()</code></pre></div>
+                </div>
+                <div class="python-cell-output">(A histogram is displayed)</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Missing Data:</b> Null or <code>NaN</code> values in a dataset.</li>
+                        <li><b>Outlier:</b> An extreme value that deviates from other observations.</li>
+                        <li><b>IQR:</b> Interquartile Range, a measure of statistical dispersion used for outlier detection.</li>
+                        <li><b>Validation:</b> The process of checking data against a set of rules.</li>
+                        <li><b>EDA:</b> Exploratory Data Analysis, the process of investigating datasets to discover patterns and insights.</li>
+                        <li><b>Correlation:</b> A measure of the statistical relationship between two variables.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: Should I always drop rows with missing data?</b> A: Not necessarily. If you have a lot of missing data, dropping rows could remove a significant portion of your dataset. Filling the values (imputation) is often a better strategy.</li>
+                        <li><b>Q: Are all outliers bad?</b> A: No. Some outliers are legitimate data points that can be very insightful (e.g., fraudulent transactions). It's important to investigate them before removing them.</li>
+                        <li><b>Q: What is the first step in EDA?</b> A: A good first step is always to get summary statistics using <code>df.describe()</code> and check for missing values with <code>df.info()</code> or <code>df.isnull().sum()</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
+
+                <!-- Module 13 --><!-- Module 13 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 13: Statistics & Data Visualization</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">From the previous module, you know how data cleaning corrects issues and exploratory data analysis (EDA) uncovers patterns. You are proficient in using Pandas for data manipulation. These skills are essential for the formal statistical analysis and advanced data visualization techniques we will cover now.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Statistics are used to summarize data, while visualization presents it graphically, transforming raw numbers into actionable insights. Businesses apply descriptive statistics for performance overviews and create visualizations to identify sales trends or market opportunities. In healthcare, visualizing patient data distributions can help in understanding disease prevalence. The primary importance of these tools is their ability to communicate complex data findings clearly and effectively.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: Descriptive Statistics</h4>
+            <p class="text-slate-700">Descriptive statistics provide simple summaries about the sample and the measures. Measures like mean, median, and standard deviation describe the central tendency and spread of the data.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Descriptive statistics with Pandas</span>
+<span class="token-keyword">import</span> pandas <span class="token-keyword">as</span> pd
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'Sales'</span>: [<span class="token-number">100</span>, <span class="token-number">150</span>, <span class="token-number">200</span>, <span class="token-number">160</span>, <span class="token-number">140</span>]})
+mean_sales <span class="token-operator">=</span> df[<span class="token-string">'Sales'</span>].<span class="token-function">mean</span>()
+median_sales <span class="token-operator">=</span> df[<span class="token-string">'Sales'</span>].<span class="token-function">median</span>()
+std_sales <span class="token-operator">=</span> df[<span class="token-string">'Sales'</span>].<span class="token-function">std</span>()
+<span class="token-function">print</span>(<span class="token-string">f"Mean: {mean_sales}, Median: {median_sales}, Std Dev: {std_sales:.2f}"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Mean: 150.0, Median: 150.0, Std Dev: 35.36</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: Probability Distributions</h4>
+            <p class="text-slate-700">Probability distributions are mathematical functions that describe the likelihood of different possible values for a variable. The normal distribution (bell curve) is a common example.</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Plotting a normal distribution</span>
+<span class="token-keyword">from</span> scipy.stats <span class="token-keyword">import</span> norm
+<span class="token-keyword">import</span> numpy <span class="token-keyword">as</span> np
+<span class="token-keyword">import</span> matplotlib.pyplot <span class="token-keyword">as</span> plt
+x <span class="token-operator">=</span> np.<span class="token-function">linspace</span>(<span class="token-operator">-</span><span class="token-number">3</span>, <span class="token-number">3</span>, <span class="token-number">100</span>)
+pdf <span class="token-operator">=</span> norm.<span class="token-function">pdf</span>(x)
+plt.<span class="token-function">plot</span>(x, pdf)
+plt.<span class="token-function">title</span>(<span class="token-string">'Standard Normal Distribution'</span>)
+plt.<span class="token-function">show</span>()</code></pre></div>
+                </div>
+                <div class="python-cell-output">(A plot of the normal distribution bell curve is displayed)</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Hypothesis Testing</h4>
+             <p class="text-slate-700">Hypothesis testing is a statistical method used to make decisions or draw conclusions about a population based on sample data. A common example is the t-test, which assesses whether the means of two groups are significantly different.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Hypothesis testing with a t-test</span>
+<span class="token-keyword">from</span> scipy.stats <span class="token-keyword">import</span> ttest_ind
+group1 <span class="token-operator">=</span> [<span class="token-number">1</span>, <span class="token-number">2</span>, <span class="token-number">3</span>, <span class="token-number">3</span>, <span class="token-number">4</span>]
+group2 <span class="token-operator">=</span> [<span class="token-number">4</span>, <span class="token-number">5</span>, <span class="token-number">6</span>, <span class="token-number">5</span>, <span class="token-number">7</span>]
+t_stat, p_value <span class="token-operator">=</span> <span class="token-function">ttest_ind</span>(group1, group2)
+<span class="token-function">print</span>(<span class="token-string">f"P-value: {p_value:.4f}"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">P-value: 0.0034</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: Matplotlib Basics</h4>
+            <p class="text-slate-700">Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python. It provides a great deal of control over every aspect of a figure.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Basic plot with Matplotlib</span>
+x <span class="token-operator">=</span> [<span class="token-number">1</span>, <span class="token-number">2</span>, <span class="token-number">3</span>, <span class="token-number">4</span>]
+y <span class="token-operator">=</span> [<span class="token-number">2</span>, <span class="token-number">4</span>, <span class="token-number">6</span>, <span class="token-number">8</span>]
+plt.<span class="token-function">plot</span>(x, y)
+plt.<span class="token-function">xlabel</span>(<span class="token-string">'X-axis'</span>)
+plt.<span class="token-function">ylabel</span>(<span class="token-string">'Y-axis'</span>)
+plt.<span class="token-function">title</span>(<span class="token-string">'Simple Line Plot'</span>)
+plt.<span class="token-function">show</span>()</code></pre></div>
+                </div>
+                <div class="python-cell-output">(A simple line plot is displayed)</div>
+            </div>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 5: Seaborn for Advanced Visualization</h4>
+            <p class="text-slate-700">Seaborn is a Python data visualization library based on Matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics, such as scatter plots, box plots, and heatmaps.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Advanced visualization with Seaborn</span>
+<span class="token-keyword">import</span> seaborn <span class="token-keyword">as</span> sns
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'A'</span>: [<span class="token-number">1</span>, <span class="token-number">2</span>, <span class="token-number">3</span>, <span class="token-number">4</span>], <span class="token-string">'B'</span>: [<span class="token-number">4</span>, <span class="token-number">5</span>, <span class="token-number">2</span>, <span class="token-number">8</span>]})
+sns.<span class="token-function">scatterplot</span>(x<span class="token-operator">=</span><span class="token-string">'A'</span>, y<span class="token-operator">=</span><span class="token-string">'B'</span>, data<span class="token-operator">=</span>df)
+plt.<span class="token-function">show</span>()</code></pre></div>
+                </div>
+                <div class="python-cell-output">(A scatter plot is displayed)</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Compute the mean, median, and mode of a sales column in a DataFrame.</li>
+                <li><b>Building Exercise:</b> Plot the probability density function (PDF) of a normal distribution.</li>
+                <li><b>Intermediate Exercise:</b> Perform a t-test to compare two groups of data.</li>
+                <li><b>Advanced Exercise:</b> Create a bar plot from a dictionary of data using Matplotlib.</li>
+                <li><b>Mastery Exercise:</b> Create a heatmap of a correlation matrix using Seaborn.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health Statistics Summary</h4>
+            <p>Compute the mean and standard deviation of patient ages from a health dataset to summarize the patient demographic.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'Age'</span>: [<span class="token-number">30</span>, <span class="token-number">45</span>, <span class="token-number">25</span>, <span class="token-number">35</span>, <span class="token-number">50</span>]})
+mean_age <span class="token-operator">=</span> df[<span class="token-string">'Age'</span>].<span class="token-function">mean</span>()
+std_age <span class="token-operator">=</span> df[<span class="token-string">'Age'</span>].<span class="token-function">std</span>()
+<span class="token-function">print</span>(<span class="token-string">f"Mean Age: {mean_age}, Std Dev of Age: {std_age:.2f}"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Mean Age: 37.0, Std Dev of Age: 9.62</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Load a dataset, compute descriptive statistics for key variables, test a hypothesis between two groups within the data, and create a comprehensive visualization dashboard using Matplotlib and Seaborn (e.g., a histogram, a box plot, and a correlation heatmap) to summarize your findings. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Mastery Exercise Solution: Seaborn Heatmap</h4>
+             <p>Create a heatmap to visualize the correlation matrix of a DataFrame.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [7]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-keyword">import</span> seaborn <span class="token-keyword">as</span> sns
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'A'</span>: [<span class="token-number">1</span>, <span class="token-number">2</span>, <span class="token-number">3</span>], <span class="token-string">'B'</span>: [<span class="token-number">2</span>, <span class="token-number">4</span>, <span class="token-number">5</span>], <span class="token-string">'C'</span>: [<span class="token-number">5</span>, <span class="token-number">3</span>, <span class="token-number">1</span>]})
+sns.<span class="token-function">heatmap</span>(df.<span class="token-function">corr</span>(), annot<span class="token-operator">=</span><span class="token-keyword">True</span>)
+plt.<span class="token-function">show</span>()</code></pre></div>
+                </div>
+                <div class="python-cell-output">(A heatmap with correlation values is displayed)</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Mean/Median:</b> Measures of the central tendency of a dataset.</li>
+                        <li><b>Standard Deviation:</b> A measure of the amount of variation or dispersion of a set of values.</li>
+                        <li><b>Distribution:</b> A function that shows the possible values for a variable and how often they occur.</li>
+                        <li><b>P-value:</b> The probability of observing data as extreme as, or more extreme than, what was observed, assuming the null hypothesis is true.</li>
+                        <li><b>Matplotlib/Seaborn:</b> Python libraries for creating data visualizations.</li>
+                        <li><b>Heatmap:</b> A graphical representation of data where values are depicted by color.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: When should I use the mean vs. the median?</b> A: Use the median when your data has significant outliers, as it is less sensitive to extreme values than the mean.</li>
+                        <li><b>Q: What does a low p-value (e.g., < 0.05) mean?</b> A: It indicates that there is strong evidence against the null hypothesis, so you reject the null hypothesis. It suggests your results are statistically significant.</li>
+                        <li><b>Q: What's the main difference between Matplotlib and Seaborn?</b> A: Matplotlib is a lower-level library that provides more control, while Seaborn is a higher-level library that simplifies the creation of common, attractive statistical plots.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
+
+                <!-- Module 14 --><!-- Module 14 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 14: Machine Learning & External Data Sources</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">From previous modules, you know how to use statistics to summarize data and visualization to find patterns. You can perform hypothesis testing and are proficient in cleaning and exploring data. These skills are the building blocks for creating predictive models with machine learning and enriching your analyses with external data.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Machine learning (ML) builds predictive models from data, while external data sources like APIs and web scraping expand the data available for analysis. Businesses apply ML for forecasting sales and use APIs for real-time stock information. In healthcare, ML can predict disease risk based on patient data. The value of these technologies lies in their ability to automate complex decisions and provide access to a vast universe of diverse, timely data.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: Machine Learning Basics</h4>
+            <p class="text-slate-700">Machine learning algorithms learn patterns from data. A core concept is splitting data into training and testing sets to evaluate how well a model generalizes to new, unseen data. We use the <strong>scikit-learn</strong> library for this.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Splitting data into training and testing sets</span>
+<span class="token-keyword">from</span> sklearn.model_selection <span class="token-keyword">import</span> train_test_split
+<span class="token-comment"># X represents features, y represents the target label</span>
+X <span class="token-operator">=</span> [[<span class="token-number">0</span>], [<span class="token-number">1</span>], [<span class="token-number">2</span>], [<span class="token-number">3</span>]]
+y <span class="token-operator">=</span> [<span class="token-number">0</span>, <span class="token-number">0</span>, <span class="token-number">1</span>, <span class="token-number">1</span>]
+X_train, X_test, y_train, y_test <span class="token-operator">=</span> <span class="token-function">train_test_split</span>(X, y, test_size<span class="token-operator">=</span><span class="token-number">0.5</span>, random_state<span class="token-operator">=</span><span class="token-number">42</span>)
+<span class="token-function">print</span>(<span class="token-string">f"Training Features: {X_train}"</span>)
+<span class="token-function">print</span>(<span class="token-string">f"Testing Features: {X_test}"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Training Features: [[3], [0]]
+Testing Features: [[2], [1]]</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: Scikit-learn Regression</h4>
+            <p class="text-slate-700">Regression is a type of supervised learning used to predict a continuous outcome (e.g., a price or temperature). Linear regression is a basic algorithm that finds the best-fitting line through the data.</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Linear Regression example</span>
 <span class="token-keyword">from</span> sklearn.linear_model <span class="token-keyword">import</span> LinearRegression
 X <span class="token-operator">=</span> [[<span class="token-number">1</span>], [<span class="token-number">2</span>], [<span class="token-number">3</span>]]
 y <span class="token-operator">=</span> [<span class="token-number">2</span>, <span class="token-number">4</span>, <span class="token-number">6</span>]
-model <span class="token-operator">=</span> <span class="token-function">LinearRegression</span>()<span class="token-operator">.</span><span class="token-function">fit</span>(X, y)
-<span class="token-function">print</span>(model<span class="token-operator">.</span><span class="token-function">predict</span>([<span class="token-number">4</span>]))</code></pre></div></div>
-                            <div class="python-cell-output">[8.]</div>
-                        </div>
-                    </div>
-                </details>
+model <span class="token-operator">=</span> <span class="token-function">LinearRegression</span>().<span class="token-function">fit</span>(X, y)
+prediction <span class="token-operator">=</span> model.<span class="token-function">predict</span>([[<span class="token-number">4</span>]])
+<span class="token-function">print</span>(<span class="token-string">f"Prediction for input 4: {prediction}"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Prediction for input 4: [8.]</div>
+            </div>
 
-                <!-- Module 15 -->
-                <details class="bg-white rounded-lg shadow-md">
-                    <summary class="p-6 flex items-center">
-                        <h3 class="text-2xl font-bold text-indigo-700">Module 15: Database Integration & Portfolio</h3>
-                    </summary>
-                    <div class="px-6 pb-6 border-t border-slate-200">
-                        <p class="mt-4 text-slate-600">Manage large-scale data with SQL/NoSQL databases and learn to develop a professional portfolio.</p>
-                        <div class="python-cell">
-                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                            <div class="python-cell-input"><div class="python-cell-prompt">In [16]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># SQL basics</span>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Scikit-learn Classification</h4>
+             <p class="text-slate-700">Classification is a type of supervised learning used to predict a categorical label (e.g., 'spam' or 'not spam'). A Decision Tree is an algorithm that learns a set of rules to make predictions.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Decision Tree Classification example</span>
+<span class="token-keyword">from</span> sklearn.tree <span class="token-keyword">import</span> DecisionTreeClassifier
+X <span class="token-operator">=</span> [[<span class="token-number">0</span>, <span class="token-number">0</span>], [<span class="token-number">1</span>, <span class="token-number">1</span>]]
+y <span class="token-operator">=</span> [<span class="token-number">0</span>, <span class="token-number">1</span>] <span class="token-comment"># Labels for each class</span>
+model <span class="token-operator">=</span> <span class="token-function">DecisionTreeClassifier</span>().<span class="token-function">fit</span>(X, y)
+prediction <span class="token-operator">=</span> model.<span class="token-function">predict</span>([[<span class="token-number">2</span>, <span class="token-number">2</span>]])
+<span class="token-function">print</span>(<span class="token-string">f"Predicted class for [2, 2]: {prediction}"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Predicted class for [2, 2]: [1]</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: APIs for External Data</h4>
+            <p class="text-slate-700">APIs (Application Programming Interfaces) provide a structured way to access data from external services. The <code>requests</code> library is commonly used to make HTTP requests to APIs.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Fetching data from a public API</span>
+<span class="token-keyword">import</span> requests
+response <span class="token-operator">=</span> requests.<span class="token-function">get</span>(<span class="token-string">'https://jsonplaceholder.typicode.com/todos/1'</span>)
+data <span class="token-operator">=</span> response.<span class="token-function">json</span>()
+<span class="token-function">print</span>(data)</code></pre></div>
+                </div>
+                <div class="python-cell-output">{'userId': 1, 'id': 1, 'title': 'delectus aut autem', 'completed': False}</div>
+            </div>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 5: Web Scraping Basics</h4>
+            <p class="text-slate-700">Web scraping is the process of extracting data from websites when an API is not available. The <strong>BeautifulSoup</strong> library is used to parse HTML and extract the content you need.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Basic web scraping with BeautifulSoup</span>
+<span class="token-keyword">from</span> bs4 <span class="token-keyword">import</span> BeautifulSoup
+html_doc <span class="token-operator">=</span> <span class="token-string">"&lt;html&gt;&lt;body&gt;&lt;p&gt;This is some data.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"</span>
+soup <span class="token-operator">=</span> <span class="token-function">BeautifulSoup</span>(html_doc, <span class="token-string">'html.parser'</span>)
+<span class="token-function">print</span>(soup.p.text)</code></pre></div>
+                </div>
+                <div class="python-cell-output">This is some data.</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Split a dataset into training and testing sets using a 70/30 split.</li>
+                <li><b>Building Exercise:</b> Fit a linear regression model to a small dataset and use it to make a prediction.</li>
+                <li><b>Intermediate Exercise:</b> Train a decision tree classifier and use it to predict the class of a new data point.</li>
+                <li><b>Advanced Exercise:</b> Make an API request to get data about a specific user from the JSONPlaceholder API.</li>
+                <li><b>Mastery Exercise:</b> Parse an HTML string containing a table and extract the text from each cell.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health Risk Classification</h4>
+            <p>Train a simple classification model to predict a patient's risk level (e.g., 0 for low risk, 1 for high risk) based on two hypothetical health metrics.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-keyword">from</span> sklearn.tree <span class="token-keyword">import</span> DecisionTreeClassifier
+<span class="token-comment"># Features: [Metric1, Metric2]</span>
+X_health <span class="token-operator">=</span> [[<span class="token-number">10</span>, <span class="token-number">20</span>], [<span class="token-number">12</span>, <span class="token-number">25</span>], [<span class="token-number">30</span>, <span class="token-number">40</span>], [<span class="token-number">35</span>, <span class="token-number">42</span>]]
+<span class="token-comment"># Target: 0 = low risk, 1 = high risk</span>
+y_risk <span class="token-operator">=</span> [<span class="token-number">0</span>, <span class="token-number">0</span>, <span class="token-number">1</span>, <span class="token-number">1</span>]
+risk_model <span class="token-operator">=</span> <span class="token-function">DecisionTreeClassifier</span>().<span class="token-function">fit</span>(X_health, y_risk)
+new_patient <span class="token-operator">=</span> [[<span class="token-number">32</span>, <span class="token-number">38</span>]]
+prediction <span class="token-operator">=</span> risk_model.<span class="token-function">predict</span>(new_patient)
+<span class="token-function">print</span>(<span class="token-string">f"Predicted Risk for new patient: {prediction[0]}"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Predicted Risk for new patient: 1</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Fetch data from an API or by scraping a web page. After cleaning the data, train either a regression or a classification model on it. Evaluate your model's performance on a test set. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Application 3 Solution: Map Scraping</h4>
+             <p>Scrape hypothetical coordinates from a simple HTML string.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [7]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-keyword">from</span> bs4 <span class="token-keyword">import</span> BeautifulSoup
+html <span class="token-operator">=</span> <span class="token-string">'&lt;div class="coords"&gt;35.9, -79.0&lt;/div&gt;'</span>
+soup <span class="token-operator">=</span> <span class="token-function">BeautifulSoup</span>(html, <span class="token-string">'html.parser'</span>)
+coords_text <span class="token-operator">=</span> soup.<span class="token-function">find</span>(<span class="token-string">'div'</span>, class_<span class="token-operator">=</span><span class="token-string">'coords'</span>).text
+<span class="token-function">print</span>(coords_text)</code></pre></div>
+                </div>
+                <div class="python-cell-output">35.9, -79.0</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Machine Learning:</b> Algorithms that learn patterns from data to make predictions.</li>
+                        <li><b>Supervised Learning:</b> ML where the model learns from labeled data (features and corresponding targets).</li>
+                        <li><b>Regression/Classification:</b> Types of supervised learning for predicting continuous and categorical outcomes, respectively.</li>
+                        <li><b>Scikit-learn:</b> The primary Python library for machine learning algorithms.</li>
+                        <li><b>API:</b> An interface that allows software applications to communicate with each other.</li>
+                        <li><b>Web Scraping:</b> The process of extracting data from websites.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: What is the difference between machine learning and statistics?</b> A: While they are closely related, ML often emphasizes predictive accuracy, whereas traditional statistics may focus more on inference and explaining relationships.</li>
+                        <li><b>Q: What is an API key?</b> A: An API key is like a password that grants you access to an API. Many APIs require a key to track usage and for security.</li>
+                        <li><b>Q: Is web scraping legal and ethical?</b> A: It depends. You should always check a website's `robots.txt` file and its terms of service. Scraping public data is generally acceptable, but scraping private or copyrighted data is not.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
+
+                <!-- Module 15 --><!-- Module 15 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 15: Database Integration & Portfolio Development</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">From the previous module, you know how to build machine learning models to make predictions and how to use APIs and web scraping to gather external data. These skills are now ready to be combined with persistent data storage solutions like databases and showcased in a professional portfolio.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Databases are critical for managing large-scale, persistent data storage, while a professional portfolio is essential for demonstrating your skills to potential employers. Businesses use SQL and NoSQL databases for everything from transaction records to user profiles. In healthcare, connecting analytics applications to patient databases is a common requirement. This module focuses on managing big data and showcasing your expertise.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: SQL Basics and Integration</h4>
+            <p class="text-slate-700">SQL (Structured Query Language) is the standard language for managing relational databases. Python's built-in <code>sqlite3</code> module allows you to work with a lightweight SQL database directly in your code.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Basic SQL operations with sqlite3</span>
 <span class="token-keyword">import</span> sqlite3
-conn <span class="token-operator">=</span> sqlite3<span class="token-operator">.</span><span class="token-function">connect</span>(<span class="token-string">':memory:'</span>)
-cur <span class="token-operator">=</span> conn<span class="token-operator">.</span><span class="token-function">cursor</span>()
-cur<span class="token-operator">.</span><span class="token-function">execute</span>(<span class="token-string">'CREATE TABLE patients (name TEXT, age INTEGER)'</span>)
-cur<span class="token-operator">.</span><span class="token-function">execute</span>(<span class="token-string">"INSERT INTO patients VALUES ('Alice', 30)"</span>)
-<span class="token-function">print</span>(cur<span class="token-operator">.</span><span class="token-function">execute</span>(<span class="token-string">'SELECT * FROM patients'</span>)<span class="token-operator">.</span><span class="token-function">fetchall</span>())</code></pre></div></div>
-                            <div class="python-cell-output">[('Alice', 30)]</div>
-                        </div>
-                    </div>
-                </details>
+conn <span class="token-operator">=</span> sqlite3.<span class="token-function">connect</span>(<span class="token-string">':memory:'</span>)  <span class="token-comment"># Create an in-memory database</span>
+cur <span class="token-operator">=</span> conn.<span class="token-function">cursor</span>()
+cur.<span class="token-function">execute</span>(<span class="token-string">'CREATE TABLE patients (name TEXT, age INTEGER)'</span>)
+cur.<span class="token-function">execute</span>(<span class="token-string">"INSERT INTO patients VALUES ('Alice', 30)"</span>)
+all_patients <span class="token-operator">=</span> cur.<span class="token-function">execute</span>(<span class="token-string">'SELECT * FROM patients'</span>).<span class="token-function">fetchall</span>()
+<span class="token-function">print</span>(all_patients)
+conn.<span class="token-function">close</span>()</code></pre></div>
+                </div>
+                <div class="python-cell-output">[('Alice', 30)]</div>
+            </div>
 
-                <!-- Module 16 -->
-                <details class="bg-white rounded-lg shadow-md">
-                    <summary class="p-6 flex items-center">
-                        <h3 class="text-2xl font-bold text-indigo-700">Module 16: Capstone & Future Directions</h3>
-                    </summary>
-                    <div class="px-6 pb-6 border-t border-slate-200">
-                        <p class="mt-4 text-slate-600">Integrate all your skills into a comprehensive capstone project and explore future directions for learning.</p>
-                        <div class="python-cell">
-                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                            <div class="python-cell-input"><div class="python-cell-prompt">In [17]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Integration example</span>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: NoSQL Basics and Integration</h4>
+            <p class="text-slate-700">NoSQL databases (like MongoDB) offer more flexibility for unstructured or semi-structured data. They store data in formats like JSON-like documents, making them scalable for big data applications.</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># NoSQL example with pymongo (conceptual)</span>
+<span class="token-comment"># import pymongo</span>
+<span class="token-comment"># client = pymongo.MongoClient("mongodb://localhost:27017/")</span>
+<span class="token-comment"># db = client["mydb"]</span>
+<span class="token-comment"># col = db["patients"]</span>
+<span class="token-comment"># col.insert_one({"name": "Alice", "age": 30})</span>
+<span class="token-comment"># print(col.find_one())</span>
+<span class="token-function">print</span>(<span class="token-string">"{'_id': ..., 'name': 'Alice', 'age': 30}"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">{'_id': ..., 'name': 'Alice', 'age': 30}</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Ethical Concerns in Data Analytics</h4>
+             <p class="text-slate-700">Ethics guide the responsible use of data. Key principles include protecting user privacy, avoiding bias in algorithms, and obtaining consent for data collection. Anonymizing data is a common technique to protect privacy.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Ethical consideration: Anonymizing data</span>
+<span class="token-keyword">import</span> pandas <span class="token-keyword">as</span> pd
+df <span class="token-operator">=</span> pd.<span class="token-function">DataFrame</span>({<span class="token-string">'Name'</span>: [<span class="token-string">'Alice'</span>, <span class="token-string">'Bob'</span>]})
+df[<span class="token-string">'Name'</span>] <span class="token-operator">=</span> <span class="token-string">'[REDACTED]'</span>
+<span class="token-function">print</span>(df)</code></pre></div>
+                </div>
+                <div class="python-cell-output">         Name
+0  [REDACTED]
+1  [REDACTED]</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: Portfolio Development and Career Prep</h4>
+            <p class="text-slate-700">A data analytics portfolio is a collection of your projects that showcases your skills. Hosting your projects on GitHub with clear documentation (like a README file) is a standard industry practice.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Portfolio development is about showcasing your work</span>
+<span class="token-comment"># Example: Save your Jupyter Notebook and push it to a GitHub repository</span>
+<span class="token-function">print</span>(<span class="token-string">"Upload your project notebooks to a GitHub repository."</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Upload your project notebooks to a GitHub repository.</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Use <code>sqlite3</code> to create a table, insert a row of data, and then select it.</li>
+                <li><b>Building Exercise:</b> Write the conceptual code to insert a document into a MongoDB collection.</li>
+                <li><b>Intermediate Exercise:</b> Write a Python script that connects to a local SQLite database file and executes a simple query.</li>
+                <li><b>Advanced Exercise:</b> Write a function that takes a DataFrame and anonymizes a 'Name' column by replacing each name with a hash of the original name.</li>
+                <li><b>Mastery Exercise:</b> Write comments simulating the full Git workflow to push a new project to a GitHub portfolio.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health SQL Query</h4>
+            <p>Connect to a patient database and write a SQL query to select all patients over the age of 30.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-keyword">import</span> sqlite3
+conn <span class="token-operator">=</span> sqlite3.<span class="token-function">connect</span>(<span class="token-string">':memory:'</span>)
+cur <span class="token-operator">=</span> conn.<span class="token-function">cursor</span>()
+cur.<span class="token-function">execute</span>(<span class="token-string">'CREATE TABLE patients (name TEXT, age INTEGER)'</span>)
+cur.<span class="token-function">execute</span>(<span class="token-string">"INSERT INTO patients VALUES ('Alice', 35), ('Bob', 25)"</span>)
+adults <span class="token-operator">=</span> cur.<span class="token-function">execute</span>(<span class="token-string">'SELECT * FROM patients WHERE age > 30'</span>).<span class="token-function">fetchall</span>()
+<span class="token-function">print</span>(adults)
+conn.<span class="token-function">close</span>()</code></pre></div>
+                </div>
+                <div class="python-cell-output">[('Alice', 35)]</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Create a project where you connect to a SQLite database, query the data, and load it into a Pandas DataFrame. Perform an analysis that includes anonymizing sensitive data for ethical reasons. Document your project in a Jupyter Notebook and write a summary in a README file, preparing it for a portfolio. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Mastery Exercise Solution</h4>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Simulating a Git push for a portfolio project</span>
+<span class="token-comment"># git add final_project.ipynb README.md</span>
+<span class="token-comment"># git commit -m "Add final capstone project with documentation"</span>
+<span class="token-comment"># git push origin main</span>
+<span class="token-function">print</span>(<span class="token-string">"Portfolio project pushed to GitHub."</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Portfolio project pushed to GitHub.</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>SQL:</b> Structured Query Language, for relational databases.</li>
+                        <li><b>NoSQL:</b> Non-relational databases, for flexible data models.</li>
+                        <li><b>Database:</b> An organized collection of structured information, or data.</li>
+                        <li><b>Ethics:</b> Moral principles that govern the use of data, including privacy and bias.</li>
+                        <li><b>Portfolio:</b> A curated collection of projects that demonstrates your skills.</li>
+                        <li><b>GitHub:</b> A platform for hosting and collaborating on code.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: When should I use SQL vs. NoSQL?</b> A: Use SQL for structured, tabular data with predefined schemas (like financial records). Use NoSQL for unstructured or rapidly changing data (like social media posts or sensor data).</li>
+                        <li><b>Q: Why is data ethics so important?</b> A: Unethical data practices can lead to biased outcomes, privacy violations, and loss of trust, with significant legal and social consequences.</li>
+                        <li><b>Q: What should I include in a data analytics portfolio?</b> A: Include 3-5 diverse projects that show your end-to-end process: data acquisition, cleaning, analysis, modeling, and visualization, all clearly documented.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
+
+                <!-- Module 16 --><!-- Module 16 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 16: Capstone Integration & Future Directions</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">Throughout this course, you have learned everything from Python fundamentals to machine learning, database integration, and professional practices. This final module is about integrating all these skills into a comprehensive capstone project and looking ahead to your future career and learning paths in the dynamic field of data analytics.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Capstone projects are crucial for demonstrating the practical application of your skills in a comprehensive, end-to-end solution. Businesses value these projects as proof of your ability to handle real-world challenges. Future learning and career development are vital for staying current in a rapidly evolving field. In healthcare, a capstone might involve integrating an ML model with a patient database to deliver real-time predictions.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: Capstone Project Planning</h4>
+            <p class="text-slate-700">Effective planning is the first step to a successful capstone project. This involves defining the problem, identifying data sources, outlining your methodology, and setting a realistic scope and timeline.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Conceptual project plan</span>
+<span class="token-comment"># 1. Define Problem: Predict patient readmission risk.</span>
+<span class="token-comment"># 2. Gather Data: Use hospital database (SQL query).</span>
+<span class="token-comment"># 3. Clean & EDA: Handle missing values, visualize distributions.</span>
+<span class="token-comment"># 4. Model & Evaluate: Train a classification model, check accuracy.</span>
+<span class="token-comment"># 5. Document & Deploy: Write README, create a simple Flask app.</span>
+<span class="token-function">print</span>(<span class="token-string">"Project plan is ready."</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Project plan is ready.</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: Integrating Tools and Techniques</h4>
+            <p class="text-slate-700">A key skill is creating an end-to-end pipeline that integrates various tools. This could involve querying a database with SQL, loading the data into Pandas for cleaning, and then training a scikit-learn model.</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Integrating SQL, Pandas, and Scikit-learn</span>
 <span class="token-keyword">import</span> pandas <span class="token-keyword">as</span> pd
 <span class="token-keyword">import</span> sqlite3
 <span class="token-keyword">from</span> sklearn.linear_model <span class="token-keyword">import</span> LinearRegression
-conn <span class="token-operator">=</span> sqlite3<span class="token-operator">.</span><span class="token-function">connect</span>(<span class="token-string">':memory:'</span>)
-df <span class="token-operator">=</span> pd<span class="token-operator">.</span><span class="token-function">DataFrame</span>({<span class="token-string">'X'</span>: [<span class="token-number">1</span>,<span class="token-number">2</span>,<span class="token-number">3</span>], <span class="token-string">'Y'</span>: [<span class="token-number">2</span>,<span class="token-number">4</span>,<span class="token-number">6</span>]})
-df<span class="token-operator">.</span><span class="token-function">to_sql</span>(<span class="token-string">'data'</span>, conn)
-query_df <span class="token-operator">=</span> pd<span class="token-operator">.</span><span class="token-function">read_sql</span>(<span class="token-string">'SELECT * FROM data'</span>, conn)
-model <span class="token-operator">=</span> <span class="token-function">LinearRegression</span>()<span class="token-operator">.</span><span class="token-function">fit</span>(query_df[[<span class="token-string">'X'</span>]], query_df[<span class="token-string">'Y'</span>]])
-<span class="token-function">print</span>(model<span class="token-operator">.</span><span class="token-function">predict</span>([[<span class="token-number">4</span>]]))</code></pre></div></div>
-                            <div class="python-cell-output">[8.]</div>
-                        </div>
-                    </div>
-                </details>
 
+conn <span class="token-operator">=</span> sqlite3.<span class="token-function">connect</span>(<span class="token-string">':memory:'</span>)
+pd.<span class="token-function">DataFrame</span>({<span class="token-string">'X'</span>: [<span class="token-number">1</span>,<span class="token-number">2</span>,<span class="token-number">3</span>], <span class="token-string">'Y'</span>: [<span class="token-number">2</span>,<span class="token-number">4</span>,<span class="token-number">6</span>]}).<span class="token-function">to_sql</span>(<span class="token-string">'data'</span>, conn, index<span class="token-operator">=</span><span class="token-keyword">False</span>)
+df <span class="token-operator">=</span> pd.<span class="token-function">read_sql</span>(<span class="token-string">'SELECT * FROM data'</span>, conn)
+model <span class="token-operator">=</span> <span class="token-function">LinearRegression</span>().<span class="token-function">fit</span>(df[[<span class="token-string">'X'</span>]], df[<span class="token-string">'Y'</span>]])
+<span class="token-function">print</span>(model.<span class="token-function">predict</span>([[<span class="token-number">4</span>]]))</code></pre></div>
+                </div>
+                <div class="python-cell-output">[8.]</div>
             </div>
-        </section>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Deployment Basics</h4>
+             <p class="text-slate-700">Deployment is the process of making your machine learning model operational. Simple web frameworks like <strong>Flask</strong> or <strong>Streamlit</strong> can be used to create an application that serves predictions from your trained model.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Conceptual deployment with Flask</span>
+<span class="token-comment"># from flask import Flask</span>
+<span class="token-comment"># app = Flask(__name__)</span>
+<span class="token-comment"># @app.route('/predict')</span>
+<span class="token-comment"># def predict():</span>
+<span class="token-comment">#     # Code to get input and return prediction</span>
+<span class="token-comment">#     return str(model.predict([[4]]))</span>
+<span class="token-function">print</span>(<span class="token-string">"Flask app would be deployed to serve predictions."</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Flask app would be deployed to serve predictions.</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: Future Learning Paths</h4>
+            <p class="text-slate-700">The field of data analytics is constantly evolving. Continuous learning is key. Future topics to explore include deep learning (e.g., with TensorFlow/PyTorch), big data technologies (e.g., Spark), and cloud computing (AWS, Azure, GCP).</p>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 5: Career Advancement in Data Analytics</h4>
+            <p class="text-slate-700">Advance your career by building a strong portfolio, networking with professionals on platforms like LinkedIn, obtaining relevant certifications, and contributing to open-source projects.</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Write a commented outline for a capstone project plan.</li>
+                <li><b>Building Exercise:</b> Write a script that integrates loading data from a DataFrame into a scikit-learn model.</li>
+                <li><b>Intermediate Exercise:</b> Write the basic "Hello, World" code for a Flask application.</li>
+                <li><b>Advanced Exercise:</b> Research a future learning topic (like deep learning) and write a short comment on what you would learn first.</li>
+                <li><b>Mastery Exercise:</b> Write a conceptual comment on how you would update your resume and LinkedIn profile after completing this course.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Integrated Health Prediction Pipeline</h4>
+            <p>This example shows a full, albeit simplified, pipeline: querying a database, loading into Pandas, and training a model to make a prediction.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># This is the same as the integration example in Section 2</span>
+<span class="token-function">print</span>(<span class="token-string">"Pipeline complete: DB -> Pandas -> ML Model -> Prediction"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Pipeline complete: DB -> Pandas -> ML Model -> Prediction</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Build a complete, end-to-end data analytics pipeline. You must: fetch data (from an API, a database, or via scraping), clean and explore it, perform statistical analysis and create visualizations, train and evaluate a machine learning model, and document the entire process in a portfolio-ready Jupyter Notebook with a clear README file. (Time: 120 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Foundation Exercise Solution</h4>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Capstone Plan Outline</span>
+<span class="token-comment"># 1. Problem: Predict housing prices in a specific area.</span>
+<span class="token-comment"># 2. Data Source: Scrape data from a real estate website.</span>
+<span class="token-comment"># 3. Cleaning: Handle missing prices, remove outliers.</span>
+<span class="token-comment"># 4. EDA/Viz: Plot price distributions, create correlation heatmap.</span>
+<span class="token-comment"># 5. Model: Train a Linear Regression model.</span>
+<span class="token-comment"># 6. Evaluation: Use R-squared score on a test set.</span>
+<span class="token-comment"># 7. Documentation: Create a detailed README on GitHub.</span>
+<span class="token-function">print</span>(<span class="token-string">"Capstone plan outlined."</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Capstone plan outlined.</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Capstone Project:</b> A final, integrating project that showcases all learned skills.</li>
+                        <li><b>Integration:</b> The process of combining different tools and techniques into a single workflow.</li>
+                        <li><b>Deployment:</b> The process of making a model or application available for use.</li>
+                        <li><b>Flask/Streamlit:</b> Web frameworks for deploying Python applications.</li>
+                        <li><b>Career Advancement:</b> The process of professional growth and development.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: Why is a capstone project so important?</b> A: It demonstrates to employers that you can not only use individual tools but can also combine them to solve a complex, real-world problem from start to finish.</li>
+                        <li><b>Q: What is the simplest way to deploy a model?</b> A: For beginners, creating a simple data app with Streamlit or a basic API with Flask are excellent starting points.</li>
+                        <li><b>Q: What is the most important next step after this course?</b> A: Start building your portfolio. Apply the skills you've learned to datasets that interest you and document your work thoroughly.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
 
         <!-- Contact Section -->
         <section id="contact" class="py-16 scroll-mt-20">
