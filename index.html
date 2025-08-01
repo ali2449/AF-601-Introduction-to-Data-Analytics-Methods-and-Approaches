@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS 101: Python for Informatics</title>
+    <title>IAF 601 - Introduction to Data Analytics: Methods & Approaches</title>
     
     <!-- Tailwind CSS from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -48,6 +48,17 @@
         }
         .python-cell-code {
             flex-grow: 1;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .python-cell-output {
+            background-color: #e2e8f0;
+            color: #1e293b;
+            padding: 0.75rem 1.5rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            white-space: pre-wrap;
+            word-break: break-all;
         }
         .python-cell .copy-button {
             position: absolute;
@@ -75,6 +86,26 @@
         .token-string { color: #c2410c; }
         .token-function { color: #1d4ed8; }
         .token-number { color: #166534; }
+        .token-operator { color: #94a3b8; }
+
+        /* Styles for collapsible modules */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details > summary::before {
+            content: '+';
+            font-size: 1.5em;
+            margin-right: 0.5rem;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        details[open] > summary::before {
+            transform: rotate(45deg);
+        }
     </style>
 </head>
 <body class="text-slate-800">
@@ -82,13 +113,13 @@
     <!-- Header and Navigation -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-xl font-bold text-slate-900">
-                CS 101: Python for Informatics
+            <div class="text-lg font-bold text-slate-900">
+                IAF 601: Intro to Data Analytics
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#about" class="text-slate-600 hover:text-indigo-600 transition">About</a>
-                <a href="#schedule" class="text-slate-600 hover:text-indigo-600 transition">Schedule</a>
-                <a href="#examples" class="text-slate-600 hover:text-indigo-600 transition">Examples</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#overview" class="text-slate-600 hover:text-indigo-600 transition">Overview</a>
+                <a href="#setup" class="text-slate-600 hover:text-indigo-600 transition">Setup</a>
+                <a href="#modules" class="text-slate-600 hover:text-indigo-600 transition">Modules</a>
                 <a href="#contact" class="text-slate-600 hover:text-indigo-600 transition">Contact</a>
             </div>
             <div class="md:hidden">
@@ -101,133 +132,796 @@
     <main class="container mx-auto px-6 py-12">
 
         <!-- Hero Section -->
-        <section class="text-center py-16">
-            <h1 class="text-4xl md:text-6xl font-bold text-slate-900">Welcome to Python for Informatics</h1>
-            <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">An introduction to programming and data analysis using the Python language. No prior programming experience required!</p>
-            <p class="mt-2 text-md text-slate-500">Fall 2024</p>
+        <section class="text-center py-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900">IAF 601 - Introduction to Data Analytics: Methods & Approaches</h1>
+            <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">For MSIA Students at UNCG</p>
+            <p class="mt-2 text-md text-slate-500">Fall 2025</p>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="py-16 scroll-mt-20">
+        <!-- MSIA Program Overview -->
+        <section id="overview" class="py-16 scroll-mt-20">
             <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold text-center text-slate-900">About The Course</h2>
+                <h2 class="text-3xl font-bold text-center text-slate-900">MSIA Program Overview</h2>
                 <div class="mt-8 bg-white p-8 rounded-lg shadow-md">
                     <p class="text-slate-700 leading-relaxed">
-                        This course is designed to be a gentle yet comprehensive introduction to the world of programming using Python. We will start from the absolute basics, assuming you've never written a line of code before. You will learn about variables, control structures, data structures, and functions. 
+                        The Master of Science in Informatics and Analytics (MSIA) program at the University of North Carolina at Greensboro (UNCG) is a 30-credit graduate degree designed to cultivate leaders and problem-solvers in the field of data science. The curriculum comprises six core courses that establish a solid foundation in data science principles. Students select one of six concentrations: Advanced Data Analytics, Bioinformatics, Computational Analytics, Cultural Analytics, Geospatial Analytics, or Health Analytics. Offered both in-person and online, the program equips students with essential skills in managing, manipulating, and analyzing structured and unstructured data to derive actionable insights. Key principles covered include programming for analytics, data visualization, statistical modeling, database design, and high-performance computing. The program attracts students from diverse backgrounds, including business, science, humanities, healthcare, geography, and more. While some students may possess prior experience in programming and statistics, others may require instructor approval to satisfy prerequisites.
                     </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Python Setup Guide -->
+        <section id="setup" class="py-16 scroll-mt-20">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-center text-slate-900">Python Setup Guide</h2>
+                <div class="mt-8 bg-white p-8 rounded-lg shadow-md">
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        To begin working with Python, install Anaconda, which bundles Python along with essential libraries and simplifies the setup process.
+                    </p>
+                    <ol class="list-decimal list-inside space-y-3 text-slate-700">
+                        <li>Visit <a href="https://www.anaconda.com" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">https://www.anaconda.com</a> and download the installer compatible with your operating system (Windows, macOS, or Linux).</li>
+                        <li>Execute the installer and follow the on-screen instructions.</li>
+                        <li>Launch Anaconda Navigator and open JupyterLab for coding and execution.</li>
+                        <li>Create a new notebook, such as <code>IAF601_Notebook.ipynb</code>.</li>
+                    </ol>
                     <p class="mt-4 text-slate-700 leading-relaxed">
-                        By the end of this course, you will be able to write small to medium-sized Python programs to process data, automate tasks, and scrape information from the web. The skills learned here will serve as a powerful foundation for future studies in data science, web development, or any field that benefits from computational thinking.
+                        Anaconda includes key libraries like NumPy and Pandas for data manipulation. For troubleshooting, consult the Anaconda documentation.
                     </p>
-                    <h3 class="text-xl font-bold mt-6 mb-2 text-slate-800">Learning Objectives:</h3>
-                    <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>Understand fundamental programming concepts.</li>
-                        <li>Write, test, and debug Python programs.</li>
-                        <li>Work with common data structures like lists and dictionaries.</li>
-                        <li>Read and write data from files.</li>
-                        <li>Interact with web APIs to fetch data.</li>
-                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Schedule Section -->
-        <section id="schedule" class="py-16 scroll-mt-20">
-            <h2 class="text-3xl font-bold text-center text-slate-900">Course Schedule</h2>
-            <div class="mt-8 max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-                <div class="divide-y divide-slate-200">
-                    <!-- Week 1 -->
-                    <div class="p-6 hover:bg-slate-50 transition">
-                        <div class="flex justify-between items-center">
-                            <p class="font-bold text-indigo-600">Week 1</p>
-                            <p class="text-sm text-slate-500">Aug 26 - Aug 30</p>
-                        </div>
-                        <h3 class="text-xl font-semibold mt-2 text-slate-800">Introduction: Why Program?</h3>
-                        <p class="mt-1 text-slate-600">Course overview, introduction to programming concepts, and writing our first Python script.</p>
-                    </div>
-                    <!-- Week 2 -->
-                    <div class="p-6 hover:bg-slate-50 transition">
-                        <div class="flex justify-between items-center">
-                            <p class="font-bold text-indigo-600">Week 2</p>
-                            <p class="text-sm text-slate-500">Sep 2 - Sep 6</p>
-                        </div>
-                        <h3 class="text-xl font-semibold mt-2 text-slate-800">Variables, Expressions, and Statements</h3>
-                        <p class="mt-1 text-slate-600">Working with data types, storing values in variables, and performing calculations.</p>
-                    </div>
-                    <!-- Week 3 -->
-                    <div class="p-6 hover:bg-slate-50 transition">
-                        <div class="flex justify-between items-center">
-                            <p class="font-bold text-indigo-600">Week 3</p>
-                            <p class="text-sm text-slate-500">Sep 9 - Sep 13</p>
-                        </div>
-                        <h3 class="text-xl font-semibold mt-2 text-slate-800">Conditional Execution</h3>
-                        <p class="mt-1 text-slate-600">Controlling the flow of your program with `if`, `else`, and `elif` statements.</p>
-                    </div>
-                    <!-- Add more weeks as needed -->
-                     <div class="p-6 text-center text-slate-500">
-                        ... and more to come.
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Modules Section -->
+        <section id="modules" class="py-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center text-slate-900">Course Modules</h2>
+            <div class="mt-8 max-w-4xl mx-auto space-y-4">
+                
+                <!-- Module 1 -->
+<!-- Module 1 -->
+<details class="bg-white rounded-lg shadow-md" open>
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 1: Python Fundamentals & Business Context</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">This initial module assumes familiarity with basic computer operations, such as using a keyboard and mouse, and launching applications. No prior programming experience is required; the content starts from fundamental concepts. For those with a programming background, this serves as a review.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
 
-        <!-- Code Examples Section -->
-        <section id="examples" class="py-16 scroll-mt-20">
-            <h2 class="text-3xl font-bold text-center text-slate-900">Code Examples</h2>
-            <p class="mt-4 text-lg text-slate-600 text-center max-w-3xl mx-auto">Here are some examples of the Python code you'll be writing.</p>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Python serves as a fundamental tool in data analytics, enabling businesses to process and analyze data effectively. For instance, in sales operations, it facilitates profit calculations, while in healthcare, it supports patient record management. Its importance lies in empowering informed decision-making through data-driven insights. In informatics, Python is utilized for handling gene sequences or geospatial coordinates, transforming raw data into valuable knowledge.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: Variables and Assignment</h4>
+            <p class="text-slate-700">Variables are used to store data in Python. A variable is a named location in memory that holds a value, enhancing code reusability by allowing values to be referenced by name. Assignment is performed using the <code>=</code> operator. For example, in a business setting, a variable might store sales figures.</p>
 
-            <!-- Example 1: Hello World -->
             <div class="python-cell">
                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
                 <div class="python-cell-input">
                     <div class="python-cell-prompt">In [1]:</div>
-                    <div class="python-cell-code">
-                        <pre><code class="language-python"><span class="token-comment"># This is a comment. It's ignored by the computer.</span>
-<span class="token-function">print</span>(<span class="token-string">"Hello, World!"</span>)</code></pre>
-                    </div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Assign sales to a variable</span>
+sales <span class="token-operator">=</span> <span class="token-number">1000</span>  <span class="token-comment"># This is sales in dollars</span></code></pre></div>
                 </div>
+                <div class="python-cell-output">No output, but sales now holds 1000.</div>
             </div>
 
-            <!-- Example 2: Variables and F-strings -->
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: Data Types</h4>
+            <p class="text-slate-700">Data types specify the nature of stored values. Common types include integers (<code>int</code>) for whole numbers, floats for decimal values, strings (<code>str</code>) for text, and booleans (<code>bool</code>) for true/false conditions. Understanding data types is crucial because operations are type-dependent, and Python automatically infers types.</p>
+
             <div class="python-cell">
-                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
                 <div class="python-cell-input">
                     <div class="python-cell-prompt">In [2]:</div>
-                    <div class="python-cell-code">
-                        <pre><code class="language-python">name = <span class="token-string">"Alice"</span>
-age = <span class="token-number">30</span>
-<span class="token-function">print</span>(<span class="token-string">f"My name is </span>{name}<span class="token-string"> and I am </span>{age}<span class="token-string"> years old."</span>)</code></pre>
-                    </div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Examples of data types</span>
+age <span class="token-operator">=</span> <span class="token-number">30</span>  <span class="token-comment"># int</span>
+height <span class="token-operator">=</span> <span class="token-number">5.9</span>  <span class="token-comment"># float</span>
+name <span class="token-operator">=</span> <span class="token-string">"Alice"</span>  <span class="token-comment"># str</span>
+is_student <span class="token-operator">=</span> <span class="token-keyword">True</span>  <span class="token-comment"># bool</span>
+<span class="token-function">print</span>(<span class="token-function">type</span>(age))  <span class="token-comment"># Check type</span></code></pre></div>
                 </div>
+                <div class="python-cell-output">&lt;class 'int'&gt;</div>
             </div>
-            
-            <!-- Example 3: A simple function -->
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Basic Operations</h4>
+             <p class="text-slate-700">Basic operations allow data manipulation through arithmetic such as addition (<code>+</code>), subtraction (<code>-</code>), multiplication (<code>*</code>), and division (<code>/</code>).</p>
             <div class="python-cell">
                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
                 <div class="python-cell-input">
                     <div class="python-cell-prompt">In [3]:</div>
-                    <div class="python-cell-code">
-                        <pre><code class="language-python"><span class="token-keyword">def</span> <span class="token-function">greet</span>(person_name):
-    <span class="token-string">"""A function to greet a person."""</span>
-    <span class="token-keyword">return</span> <span class="token-string">f"Hello, </span>{person_name}<span class="token-string">!"</span>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Arithmetic operations</span>
+sales <span class="token-operator">=</span> <span class="token-number">1000</span>
+profit <span class="token-operator">=</span> sales <span class="token-operator">-</span> <span class="token-number">800</span>  <span class="token-comment"># Subtract costs</span>
+tax <span class="token-operator">=</span> profit <span class="token-operator">*</span> <span class="token-number">0.05</span>  <span class="token-comment"># Multiply for tax</span>
+<span class="token-function">print</span>(profit, tax)</code></pre></div>
+                </div>
+                <div class="python-cell-output">200 10.0</div>
+            </div>
 
-message = <span class="token-function">greet</span>(<span class="token-string">"Bob"</span>)
-<span class="token-function">print</span>(message)</code></pre>
-                    </div>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: Print and Formatting</h4>
+            <p class="text-slate-700">The <code>print</code> function displays output to the console, essential for viewing results and debugging. For formatting, f-strings provide an efficient method: <code>f"Name: {name}"</code>.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Formatting output</span>
+age <span class="token-operator">=</span> <span class="token-number">30</span>
+height <span class="token-operator">=</span> <span class="token-number">5.9</span>
+<span class="token-function">print</span>(<span class="token-string">f"Patient age: {age}, Height: {height:.2f}"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Patient age: 30, Height: 5.90</div>
+            </div>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 5: Type Conversion and Input</h4>
+            <p class="text-slate-700">Type conversion changes data from one type to another using functions like <code>int()</code>, <code>float()</code>, and <code>str()</code>. Input from the user is retrieved using the <code>input()</code> function.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Input and conversion</span>
+user_input <span class="token-operator">=</span> <span class="token-function">input</span>(<span class="token-string">"Enter sales: "</span>)
+sales <span class="token-operator">=</span> <span class="token-function">float</span>(user_input)
+<span class="token-function">print</span>(sales <span class="token-operator">+</span> <span class="token-number">100</span>)</code></pre></div>
                 </div>
             </div>
 
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Define variables for a patient's name and age, then print them.</li>
+                <li><b>Building Exercise:</b> Assign values of different types and use <code>type()</code> to verify them.</li>
+                <li><b>Intermediate Exercise:</b> Calculate the area of a rectangle using <code>length * width</code>.</li>
+                <li><b>Advanced Exercise:</b> Concatenate strings representing cultural trends.</li>
+                <li><b>Mastery Exercise:</b> Accept sales and cost inputs, compute profit, ensuring conversion to float.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health Record Basics</h4>
+            <p>Store patient information using variables for name, age, and condition, then print a formatted summary.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">patient_name <span class="token-operator">=</span> <span class="token-string">"Alice"</span>
+patient_age <span class="token-operator">=</span> <span class="token-number">45</span>
+condition <span class="token-operator">=</span> <span class="token-string">"Healthy"</span>
+<span class="token-function">print</span>(<span class="token-string">f"Patient: {patient_name}, Age: {patient_age}, Condition: {condition}"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Patient: Alice, Age: 45, Condition: Healthy</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Develop a simple sales calculator that accepts sales and costs as input, computes profit and tax (10%), and prints a formatted report. This integrates variables, data types, operations, and formatting. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Foundation Exercise Solution</h4>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [7]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">patient_name <span class="token-operator">=</span> <span class="token-string">"Bob"</span>
+patient_age <span class="token-operator">=</span> <span class="token-number">25</span>
+<span class="token-function">print</span>(patient_name, patient_age)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Bob 25</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Variable:</b> Named storage location for data.</li>
+                        <li><b>Int:</b> Integer data type for whole numbers.</li>
+                        <li><b>Float:</b> Data type for decimal numbers.</li>
+                        <li><b>Str:</b> String data type for text.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: What is Python?</b> A: A programming language widely used for data analysis.</li>
+                        <li><b>Q: Why use variables?</b> A: To store and reuse data efficiently.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
+
+                <!-- Module 2 --><!-- Module 2 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 2: Control Flow & Decision Making</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">From Module 1, you have learned that variables store data, with types including int, float, str, and bool. You can perform basic operations and use print for output. You also understand type conversion and user input. These concepts provide the foundation for implementing decision-making and repetition in code.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Control flow structures enable code to make decisions and repeat tasks. In business, they are used to evaluate conditions, such as awarding bonuses for high sales. In healthcare, loops can process multiple patient records. Their importance lies in automating complex logic and saving time. In informatics, control flow facilitates processing of numerous gene sequences.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: Conditional Statements - If/Else</h4>
+            <p class="text-slate-700">The <code>if</code> statement evaluates conditions to execute code blocks selectively, enabling decision-making logic. Use <code>if/else</code> for alternative paths. Correct indentation (4 spaces) is crucial.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># If/else example</span>
+sales <span class="token-operator">=</span> <span class="token-number">1000</span>
+<span class="token-keyword">if</span> sales <span class="token-operator">></span> <span class="token-number">800</span>:
+    <span class="token-function">print</span>(<span class="token-string">"Good sales"</span>)
+<span class="token-keyword">else</span>:
+    <span class="token-function">print</span>(<span class="token-string">"Low sales"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Good sales</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: For Loops</h4>
+            <p class="text-slate-700"><code>for</code> loops iterate over sequences (like lists or ranges), executing code for each item. They are ideal for processing a known number of items.</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># For loop example</span>
+patients <span class="token-operator">=</span> [<span class="token-number">1</span>, <span class="token-number">2</span>, <span class="token-number">3</span>]
+<span class="token-keyword">for</span> patient <span class="token-keyword">in</span> patients:
+    <span class="token-function">print</span>(<span class="token-string">f"Process patient {patient}"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Process patient 1
+Process patient 2
+Process patient 3</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: While Loops</h4>
+             <p class="text-slate-700"><code>while</code> loops execute as long as a condition remains true. They are suitable when the number of iterations is unknown beforehand. Ensure the condition eventually becomes false to avoid infinite loops.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># While loop example</span>
+balance <span class="token-operator">=</span> <span class="token-number">100</span>
+<span class="token-keyword">while</span> balance <span class="token-operator">></span> <span class="token-number">0</span>:
+    balance <span class="token-operator">-=</span> <span class="token-number">20</span>
+    <span class="token-function">print</span>(balance)</code></pre></div>
+                </div>
+                <div class="python-cell-output">80
+60
+40
+20
+0</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: Nesting and Control Statements</h4>
+            <p class="text-slate-700">Nesting combines loops and conditionals for complex logic. <code>break</code> terminates a loop, while <code>continue</code> skips to the next iteration.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Nested example</span>
+<span class="token-keyword">for</span> i <span class="token-keyword">in</span> <span class="token-function">range</span>(<span class="token-number">3</span>):
+    <span class="token-keyword">if</span> i <span class="token-operator">==</span> <span class="token-number">1</span>:
+        <span class="token-keyword">continue</span>
+    <span class="token-function">print</span>(i)</code></pre></div>
+                </div>
+                <div class="python-cell-output">0
+2</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Obtain user name and age, then print a welcome message if age exceeds 18.</li>
+                <li><b>Building Exercise:</b> Accept sales input; print "Bonus" if over 1000, otherwise "No bonus".</li>
+                <li><b>Intermediate Exercise:</b> Iterate through five gene counts using <code>range(5)</code> and print each.</li>
+                <li><b>Advanced Exercise:</b> Use a while loop to print and decrement a counter from 10 to 1.</li>
+                <li><b>Mastery Exercise:</b> Use nested for and if statements to print even numbers in a range using the modulo operator (<code>%</code>).</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health Check</h4>
+            <p>Input patient temperature; print "Fever detected" if above 98.6.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">temp <span class="token-operator">=</span> <span class="token-function">float</span>(<span class="token-function">input</span>(<span class="token-string">"Enter temperature: "</span>))
+<span class="token-keyword">if</span> temp <span class="token-operator">></span> <span class="token-number">98.6</span>:
+    <span class="token-function">print</span>(<span class="token-string">"Fever detected"</span>)
+<span class="token-keyword">else</span>:
+    <span class="token-function">print</span>(<span class="token-string">"Normal"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">(Assuming 99.0) Fever detected</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Develop a simple quiz that prompts for answers, checks them using if statements, and loops through questions, displaying the score at the end. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Building Exercise Solution</h4>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python">sales <span class="token-operator">=</span> <span class="token-function">float</span>(<span class="token-function">input</span>(<span class="token-string">"Sales: "</span>))
+<span class="token-keyword">if</span> sales <span class="token-operator">></span> <span class="token-number">1000</span>:
+    <span class="token-function">print</span>(<span class="token-string">"Bonus"</span>)
+<span class="token-keyword">else</span>:
+    <span class="token-function">print</span>(<span class="token-string">"No bonus"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">(Assuming 1200) Bonus</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Control Flow:</b> Mechanisms to direct code execution.</li>
+                        <li><b>Condition:</b> A Boolean expression used for testing.</li>
+                        <li><b>For Loop:</b> Iteration over a known sequence.</li>
+                        <li><b>While Loop:</b> Repetition while a condition is true.</li>
+                        <li><b>Nesting:</b> Placing control structures within others.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: What is the difference between for and while loops?</b> A: For is used for known iteration counts, while is for condition-based repetition.</li>
+                        <li><b>Q: How do you fix an infinite loop?</b> A: Ensure the loop's condition eventually changes to become false.</li>
+                        <li><b>Q: Why is indentation important?</b> A: Python uses indentation to define code blocks for loops and conditionals.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
+
+                <!-- Module 3 --><!-- Module 3 -->
+<details class="bg-white rounded-lg shadow-md">
+    <summary class="p-6 flex items-center">
+        <h3 class="text-2xl font-bold text-indigo-700">Module 3: Functions & Code Organization</h3>
+    </summary>
+    <div class="px-6 pb-6 border-t border-slate-200">
+        <div class="prose max-w-none">
+            <p class="mt-4 text-slate-600">From previous modules, you have mastered variables, data types, control flow, and user input. These concepts enable the organization of code into reusable functions for more efficient and readable programs.</p>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 1: Comprehensive Tutorial</h3>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Business Context</h4>
+            <p class="text-slate-700">Functions organize code into reusable blocks, promoting modularity. Businesses employ functions for recurring tasks, such as repeated profit calculations. In healthcare, functions can assess patient status. Their significance lies in reducing errors and development time. In informatics, functions efficiently process gene data.</p>
+            
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 1: Defining and Calling Functions</h4>
+            <p class="text-slate-700">Functions are named blocks of code that perform specific tasks. You define a function using the <code>def</code> keyword and call it by its name followed by parentheses.</p>
+
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [1]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Define a simple function</span>
+<span class="token-keyword">def</span> <span class="token-function">calculate_profit</span>():
+    sales <span class="token-operator">=</span> <span class="token-number">1000</span>
+    costs <span class="token-operator">=</span> <span class="token-number">800</span>
+    <span class="token-function">print</span>(sales <span class="token-operator">-</span> costs)
+
+<span class="token-comment"># Call the function</span>
+<span class="token-function">calculate_profit</span>()</code></pre></div>
+                </div>
+                <div class="python-cell-output">200</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 2: Parameters and Arguments</h4>
+            <p class="text-slate-700">Parameters allow functions to accept inputs (arguments), making them more flexible and dynamic. You define parameters inside the parentheses in the function definition.</p>
+
+            <div class="python-cell">
+                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [2]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Function with parameters</span>
+<span class="token-keyword">def</span> <span class="token-function">check_age</span>(age):
+    <span class="token-keyword">if</span> age <span class="token-operator">></span> <span class="token-number">18</span>:
+        <span class="token-function">print</span>(<span class="token-string">"Adult"</span>)
+
+<span class="token-function">check_age</span>(<span class="token-number">25</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">Adult</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 3: Return Values</h4>
+             <p class="text-slate-700">The <code>return</code> statement sends a value back from the function to the caller. This allows the result of a function to be stored in a variable or used in other operations.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [3]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Function with a return value</span>
+<span class="token-keyword">def</span> <span class="token-function">get_profit</span>(sales, costs):
+    <span class="token-keyword">return</span> sales <span class="token-operator">-</span> costs
+
+profit <span class="token-operator">=</span> <span class="token-function">get_profit</span>(<span class="token-number">1000</span>, <span class="token-number">800</span>)
+<span class="token-function">print</span>(profit)</code></pre></div>
+                </div>
+                <div class="python-cell-output">200</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 4: Error Handling</h4>
+            <p class="text-slate-700">Error handling with <code>try...except</code> blocks manages exceptions gracefully, preventing your program from crashing due to unexpected issues, like invalid user input.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [4]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Error handling example</span>
+<span class="token-keyword">try</span>:
+    age <span class="token-operator">=</span> <span class="token-function">int</span>(<span class="token-function">input</span>(<span class="token-string">"Age: "</span>))
+<span class="token-keyword">except</span> ValueError:
+    <span class="token-function">print</span>(<span class="token-string">"Invalid age"</span>)</code></pre></div>
+                </div>
+                <div class="python-cell-output">(Assuming input "abc") Invalid age</div>
+            </div>
+
+            <h4 class="text-xl font-semibold mt-6 mb-2">Section 5: Comments and Docstrings</h4>
+            <p class="text-slate-700">Comments (<code>#</code>) and docstrings (<code>"""..."""</code>) are crucial for documenting your code, making it easier for you and others to understand and maintain.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [5]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Function with comments and docstring</span>
+<span class="token-keyword">def</span> <span class="token-function">add_numbers</span>(a, b):
+    <span class="token-string">"""Adds two numbers and returns the sum."""</span>
+    <span class="token-comment"># Add a and b</span>
+    <span class="token-keyword">return</span> a <span class="token-operator">+</span> b
+<span class="token-function">print</span>(<span class="token-function">add_numbers</span>(<span class="token-number">3</span>, <span class="token-number">4</span>))</code></pre></div>
+                </div>
+                <div class="python-cell-output">7</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 2: Practice Exercises</h3>
+            <ul class="list-disc list-inside space-y-4">
+                <li><b>Foundation Exercise:</b> Define a simple function to print "Hello" and then call it.</li>
+                <li><b>Building Exercise:</b> Create a function that takes a name as a parameter and prints a personalized greeting.</li>
+                <li><b>Intermediate Exercise:</b> Define a function that returns the sum of two numbers.</li>
+                <li><b>Advanced Exercise:</b> Write a function that converts user input to an integer, handling potential <code>ValueError</code> exceptions.</li>
+                <li><b>Mastery Exercise:</b> Add comments and a docstring to a function that calculates tax.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 3: Business Applications</h3>
+            <h4 class="text-xl font-semibold mt-6 mb-2">Application 1: Health Function</h4>
+            <p>Develop a function to check for a fever based on a temperature parameter.</p>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [6]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-keyword">def</span> <span class="token-function">check_fever</span>(temp):
+    <span class="token-keyword">if</span> temp <span class="token-operator">></span> <span class="token-number">98.6</span>:
+        <span class="token-keyword">return</span> <span class="token-string">"Fever"</span>
+    <span class="token-keyword">return</span> <span class="token-string">"Normal"</span>
+<span class="token-function">print</span>(<span class="token-function">check_fever</span>(<span class="token-number">99.0</span>))</code></pre></div>
+                </div>
+                <div class="python-cell-output">Fever</div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 4: Capstone Challenge Project</h3>
+            <p>Construct a function for a simple calculator that accepts an operation (e.g., 'add', 'subtract') and two numbers, handles errors (like invalid operations or division by zero), and includes a comprehensive docstring. (Time: 60 minutes).</p>
+
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Chapter 5: Solutions</h3>
+             <h4 class="text-xl font-semibold mt-6 mb-2">Intermediate Exercise Solution</h4>
+            <div class="python-cell">
+                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                <div class="python-cell-input">
+                    <div class="python-cell-prompt">In [7]:</div>
+                    <div class="python-cell-code"><pre><code class="language-python"><span class="token-keyword">def</span> <span class="token-function">sum_genes</span>(a, b):
+    <span class="token-keyword">return</span> a <span class="token-operator">+</span> b
+<span class="token-function">print</span>(<span class="token-function">sum_genes</span>(<span class="token-number">10</span>, <span class="token-number">15</span>))</code></pre></div>
+                </div>
+                <div class="python-cell-output">25</div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mt-8 mb-4 border-b pb-2">Glossary & FAQ</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">Glossary</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Function:</b> A reusable block of named code.</li>
+                        <li><b>Parameter:</b> A variable listed inside the parentheses in the function definition.</li>
+                        <li><b>Argument:</b> A value that is sent to the function when it is called.</li>
+                        <li><b>Return:</b> A statement that sends a value back from a function.</li>
+                        <li><b>Docstring:</b> A string literal that appears as the first statement in a module, function, class, or method definition, used for documentation.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mt-6 mb-2">FAQ</h4>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><b>Q: What is the difference between `return` and `print`?</b> A: `return` provides a value for the program to use, while `print` only displays a value to the console for human viewing.</li>
+                        <li><b>Q: Why use parameters?</b> A: To make functions more flexible by allowing them to operate on different input values.</li>
+                        <li><b>Q: How do you handle errors in functions?</b> A: Use `try...except` blocks to catch potential exceptions and handle them gracefully.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</details>
+
+
+                <!-- Module 4 -->
+                <details class="bg-white rounded-lg shadow-md">
+                    <summary class="p-6 flex items-center">
+                        <h3 class="text-2xl font-bold text-indigo-700">Module 4: Lists & Tuples</h3>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-slate-200">
+                        <p class="mt-4 text-slate-600">Use lists and tuples for storing and organizing multiple items efficiently.</p>
+                        <div class="python-cell">
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                            <div class="python-cell-input"><div class="python-cell-prompt">In [5]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># List operations</span>
+patients <span class="token-operator">=</span> [<span class="token-string">"Alice"</span>, <span class="token-string">"Bob"</span>]
+patients<span class="token-operator">.</span><span class="token-function">append</span>(<span class="token-string">"Charlie"</span>)  <span class="token-comment"># Add item</span>
+patients<span class="token-operator">.</span><span class="token-function">pop</span>(<span class="token-number">0</span>)  <span class="token-comment"># Remove first</span>
+<span class="token-function">print</span>(patients)</code></pre></div></div>
+                            <div class="python-cell-output">['Bob', 'Charlie']</div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Module 5 -->
+                <details class="bg-white rounded-lg shadow-md">
+                    <summary class="p-6 flex items-center">
+                        <h3 class="text-2xl font-bold text-indigo-700">Module 5: Dictionaries & Sets</h3>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-slate-200">
+                        <p class="mt-4 text-slate-600">Handle data relationships and uniqueness with dictionaries and sets for efficient lookups.</p>
+                        <div class="python-cell">
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                            <div class="python-cell-input"><div class="python-cell-prompt">In [6]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Dictionary operations</span>
+sales <span class="token-operator">=</span> {<span class="token-string">'item1'</span>: <span class="token-number">100</span>, <span class="token-string">'item2'</span>: <span class="token-number">200</span>}
+sales[<span class="token-string">'item3'</span>] <span class="token-operator">=</span> <span class="token-number">300</span>  <span class="token-comment"># Add</span>
+<span class="token-keyword">del</span> sales[<span class="token-string">'item1'</span>]  <span class="token-comment"># Remove</span>
+<span class="token-function">print</span>(sales)</code></pre></div></div>
+                            <div class="python-cell-output">{'item2': 200, 'item3': 300}</div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Module 6 -->
+                <details class="bg-white rounded-lg shadow-md">
+                    <summary class="p-6 flex items-center">
+                        <h3 class="text-2xl font-bold text-indigo-700">Module 6: Modules, Packages & OOP</h3>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-slate-200">
+                        <p class="mt-4 text-slate-600">Organize code into files and directories, and model real-world entities with Object-Oriented Programming.</p>
+                        <div class="python-cell">
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                            <div class="python-cell-input"><div class="python-cell-prompt">In [7]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Defining class</span>
+<span class="token-keyword">class</span> <span class="token-function">Patient</span>:
+    <span class="token-keyword">def</span> <span class="token-function">__init__</span>(<span class="token-keyword">self</span>, name, age):
+        <span class="token-keyword">self</span><span class="token-operator">.</span>name <span class="token-operator">=</span> name
+        <span class="token-keyword">self</span><span class="token-operator">.</span>age <span class="token-operator">=</span> age
+p <span class="token-operator">=</span> <span class="token-function">Patient</span>(<span class="token-string">"Alice"</span>, <span class="token-number">30</span>)
+<span class="token-function">print</span>(p<span class="token-operator">.</span>name)</code></pre></div></div>
+                            <div class="python-cell-output">Alice</div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Module 7 -->
+                <details class="bg-white rounded-lg shadow-md">
+                    <summary class="p-6 flex items-center">
+                        <h3 class="text-2xl font-bold text-indigo-700">Module 7: Advanced Python Techniques</h3>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-slate-200">
+                        <p class="mt-4 text-slate-600">Enhance code conciseness and efficiency with list comprehensions, lambda functions, and generators.</p>
+                        <div class="python-cell">
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                            <div class="python-cell-input"><div class="python-cell-prompt">In [8]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># List comprehension</span>
+squares <span class="token-operator">=</span> [x<span class="token-operator">**</span><span class="token-number">2</span> <span class="token-keyword">for</span> x <span class="token-keyword">in</span> <span class="token-function">range</span>(<span class="token-number">5</span>)]  <span class="token-comment"># Squares 0 to 4</span>
+<span class="token-function">print</span>(squares)</code></pre></div></div>
+                            <div class="python-cell-output">[0, 1, 4, 9, 16]</div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Module 8 -->
+                <details class="bg-white rounded-lg shadow-md">
+                    <summary class="p-6 flex items-center">
+                        <h3 class="text-2xl font-bold text-indigo-700">Module 8: Professional Development Practices</h3>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-slate-200">
+                        <p class="mt-4 text-slate-600">Ensure high-quality, maintainable code with exception handling, version control (Git), documentation, and testing.</p>
+                        <div class="python-cell">
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                            <div class="python-cell-input"><div class="python-cell-prompt">In [9]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Regex example</span>
+<span class="token-keyword">import</span> re
+text <span class="token-operator">=</span> <span class="token-string">"Patient age: 30"</span>
+age <span class="token-operator">=</span> re<span class="token-operator">.</span><span class="token-function">search</span>(<span class="token-string">r'\d+'</span>, text)<span class="token-operator">.</span><span class="token-function">group</span>()
+<span class="token-function">print</span>(age)</code></pre></div></div>
+                            <div class="python-cell-output">30</div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Module 9 -->
+                <details class="bg-white rounded-lg shadow-md">
+                    <summary class="p-6 flex items-center">
+                        <h3 class="text-2xl font-bold text-indigo-700">Module 9: NumPy</h3>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-slate-200">
+                        <p class="mt-4 text-slate-600">Learn the foundation of numerical computing in Python with NumPy for fast array operations.</p>
+                        <div class="python-cell">
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                            <div class="python-cell-input"><div class="python-cell-prompt">In [10]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Array operations</span>
+<span class="token-keyword">import</span> numpy <span class="token-keyword">as</span> np
+sales <span class="token-operator">=</span> np<span class="token-operator">.</span><span class="token-function">array</span>([<span class="token-number">100</span>, <span class="token-number">200</span>, <span class="token-number">300</span>])
+costs <span class="token-operator">=</span> np<span class="token-operator">.</span><span class="token-function">array</span>([<span class="token-number">50</span>, <span class="token-number">100</span>, <span class="token-number">150</span>])
+profits <span class="token-operator">=</span> sales <span class="token-operator">-</span> costs  <span class="token-comment"># Element-wise</span>
+<span class="token-function">print</span>(profits)</code></pre></div></div>
+                            <div class="python-cell-output">[ 50 100 150]</div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Module 10 -->
+                <details class="bg-white rounded-lg shadow-md">
+                    <summary class="p-6 flex items-center">
+                        <h3 class="text-2xl font-bold text-indigo-700">Module 10: Pandas</h3>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-slate-200">
+                        <p class="mt-4 text-slate-600">Become proficient in data manipulation with Pandas, the powerhouse library for handling tabular data.</p>
+                        <div class="python-cell">
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                            <div class="python-cell-input"><div class="python-cell-prompt">In [11]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Creating DataFrame</span>
+<span class="token-keyword">import</span> pandas <span class="token-keyword">as</span> pd
+data <span class="token-operator">=</span> {<span class="token-string">'Name'</span>: [<span class="token-string">'Alice'</span>, <span class="token-string">'Bob'</span>], <span class="token-string">'Age'</span>: [<span class="token-number">30</span>, <span class="token-number">45</span>]}
+df <span class="token-operator">=</span> pd<span class="token-operator">.</span><span class="token-function">DataFrame</span>(data)
+<span class="token-function">print</span>(df)</code></pre></div></div>
+                            <div class="python-cell-output">    Name  Age
+0  Alice   30
+1    Bob   45</div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Module 11 -->
+                <details class="bg-white rounded-lg shadow-md">
+                    <summary class="p-6 flex items-center">
+                        <h3 class="text-2xl font-bold text-indigo-700">Module 11: Advanced Pandas & Time Series</h3>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-slate-200">
+                        <p class="mt-4 text-slate-600">Dive into advanced data transformation, aggregation, and merging, plus time series analysis.</p>
+                        <div class="python-cell">
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                            <div class="python-cell-input"><div class="python-cell-prompt">In [12]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># GroupBy</span>
+data <span class="token-operator">=</span> {<span class="token-string">'City'</span>: [<span class="token-string">'NY'</span>, <span class="token-string">'NY'</span>, <span class="token-string">'LA'</span>], <span class="token-string">'Sales'</span>: [<span class="token-number">100</span>, <span class="token-number">200</span>, <span class="token-number">150</span>]}
+df <span class="token-operator">=</span> pd<span class="token-operator">.</span><span class="token-function">DataFrame</span>(data)
+grouped <span class="token-operator">=</span> df<span class="token-operator">.</span><span class="token-function">groupby</span>(<span class="token-string">'City'</span>)[<span class="token-string">'Sales'</span>]<span class="token-operator">.</span><span class="token-function">mean</span>()
+<span class="token-function">print</span>(grouped)</code></pre></div></div>
+                            <div class="python-cell-output">City
+LA    150.0
+NY    150.0
+Name: Sales, dtype: float64</div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Module 12 -->
+                <details class="bg-white rounded-lg shadow-md">
+                    <summary class="p-6 flex items-center">
+                        <h3 class="text-2xl font-bold text-indigo-700">Module 12: Data Cleaning & EDA</h3>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-slate-200">
+                        <p class="mt-4 text-slate-600">Learn to correct issues in datasets and use Exploratory Data Analysis (EDA) to reveal patterns.</p>
+                        <div class="python-cell">
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                            <div class="python-cell-input"><div class="python-cell-prompt">In [13]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Missing data</span>
+<span class="token-keyword">import</span> numpy <span class="token-keyword">as</span> np
+df <span class="token-operator">=</span> pd<span class="token-operator">.</span><span class="token-function">DataFrame</span>({<span class="token-string">'A'</span>: [<span class="token-number">1</span>, np<span class="token-operator">.</span>nan, <span class="token-number">3</span>]})
+df_filled <span class="token-operator">=</span> df<span class="token-operator">.</span><span class="token-function">fillna</span>(df<span class="token-operator">.</span><span class="token-function">mean</span>())
+<span class="token-function">print</span>(df_filled)</code></pre></div></div>
+                            <div class="python-cell-output">     A
+0  1.0
+1  2.0
+2  3.0</div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Module 13 -->
+                <details class="bg-white rounded-lg shadow-md">
+                    <summary class="p-6 flex items-center">
+                        <h3 class="text-2xl font-bold text-indigo-700">Module 13: Statistics & Data Visualization</h3>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-slate-200">
+                        <p class="mt-4 text-slate-600">Summarize data with statistics and present it graphically with Matplotlib and Seaborn.</p>
+                        <div class="python-cell">
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                            <div class="python-cell-input"><div class="python-cell-prompt">In [14]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Seaborn</span>
+<span class="token-keyword">import</span> seaborn <span class="token-keyword">as</span> sns
+<span class="token-keyword">import</span> matplotlib.pyplot <span class="token-keyword">as</span> plt
+df <span class="token-operator">=</span> pd<span class="token-operator">.</span><span class="token-function">DataFrame</span>({<span class="token-string">'A'</span>: [<span class="token-number">1</span>,<span class="token-number">2</span>,<span class="token-number">3</span>], <span class="token-string">'B'</span>: [<span class="token-number">4</span>,<span class="token-number">5</span>,<span class="token-number">6</span>]})
+sns<span class="token-operator">.</span><span class="token-function">scatterplot</span>(x<span class="token-operator">=</span><span class="token-string">'A'</span>, y<span class="token-operator">=</span><span class="token-string">'B'</span>, data<span class="token-operator">=</span>df)
+plt<span class="token-operator">.</span><span class="token-function">show</span>()</code></pre></div></div>
+                            <div class="python-cell-output">(Scatter plot shown)</div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Module 14 -->
+                <details class="bg-white rounded-lg shadow-md">
+                    <summary class="p-6 flex items-center">
+                        <h3 class="text-2xl font-bold text-indigo-700">Module 14: Machine Learning & External Data</h3>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-slate-200">
+                        <p class="mt-4 text-slate-600">Build predictive models with Scikit-learn and fetch data from external sources like APIs.</p>
+                        <div class="python-cell">
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                            <div class="python-cell-input"><div class="python-cell-prompt">In [15]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Regression</span>
+<span class="token-keyword">from</span> sklearn.linear_model <span class="token-keyword">import</span> LinearRegression
+X <span class="token-operator">=</span> [[<span class="token-number">1</span>], [<span class="token-number">2</span>], [<span class="token-number">3</span>]]
+y <span class="token-operator">=</span> [<span class="token-number">2</span>, <span class="token-number">4</span>, <span class="token-number">6</span>]
+model <span class="token-operator">=</span> <span class="token-function">LinearRegression</span>()<span class="token-operator">.</span><span class="token-function">fit</span>(X, y)
+<span class="token-function">print</span>(model<span class="token-operator">.</span><span class="token-function">predict</span>([<span class="token-number">4</span>]))</code></pre></div></div>
+                            <div class="python-cell-output">[8.]</div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Module 15 -->
+                <details class="bg-white rounded-lg shadow-md">
+                    <summary class="p-6 flex items-center">
+                        <h3 class="text-2xl font-bold text-indigo-700">Module 15: Database Integration & Portfolio</h3>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-slate-200">
+                        <p class="mt-4 text-slate-600">Manage large-scale data with SQL/NoSQL databases and learn to develop a professional portfolio.</p>
+                        <div class="python-cell">
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                            <div class="python-cell-input"><div class="python-cell-prompt">In [16]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># SQL basics</span>
+<span class="token-keyword">import</span> sqlite3
+conn <span class="token-operator">=</span> sqlite3<span class="token-operator">.</span><span class="token-function">connect</span>(<span class="token-string">':memory:'</span>)
+cur <span class="token-operator">=</span> conn<span class="token-operator">.</span><span class="token-function">cursor</span>()
+cur<span class="token-operator">.</span><span class="token-function">execute</span>(<span class="token-string">'CREATE TABLE patients (name TEXT, age INTEGER)'</span>)
+cur<span class="token-operator">.</span><span class="token-function">execute</span>(<span class="token-string">"INSERT INTO patients VALUES ('Alice', 30)"</span>)
+<span class="token-function">print</span>(cur<span class="token-operator">.</span><span class="token-function">execute</span>(<span class="token-string">'SELECT * FROM patients'</span>)<span class="token-operator">.</span><span class="token-function">fetchall</span>())</code></pre></div></div>
+                            <div class="python-cell-output">[('Alice', 30)]</div>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Module 16 -->
+                <details class="bg-white rounded-lg shadow-md">
+                    <summary class="p-6 flex items-center">
+                        <h3 class="text-2xl font-bold text-indigo-700">Module 16: Capstone & Future Directions</h3>
+                    </summary>
+                    <div class="px-6 pb-6 border-t border-slate-200">
+                        <p class="mt-4 text-slate-600">Integrate all your skills into a comprehensive capstone project and explore future directions for learning.</p>
+                        <div class="python-cell">
+                            <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                            <div class="python-cell-input"><div class="python-cell-prompt">In [17]:</div><div class="python-cell-code"><pre><code class="language-python"><span class="token-comment"># Integration example</span>
+<span class="token-keyword">import</span> pandas <span class="token-keyword">as</span> pd
+<span class="token-keyword">import</span> sqlite3
+<span class="token-keyword">from</span> sklearn.linear_model <span class="token-keyword">import</span> LinearRegression
+conn <span class="token-operator">=</span> sqlite3<span class="token-operator">.</span><span class="token-function">connect</span>(<span class="token-string">':memory:'</span>)
+df <span class="token-operator">=</span> pd<span class="token-operator">.</span><span class="token-function">DataFrame</span>({<span class="token-string">'X'</span>: [<span class="token-number">1</span>,<span class="token-number">2</span>,<span class="token-number">3</span>], <span class="token-string">'Y'</span>: [<span class="token-number">2</span>,<span class="token-number">4</span>,<span class="token-number">6</span>]})
+df<span class="token-operator">.</span><span class="token-function">to_sql</span>(<span class="token-string">'data'</span>, conn)
+query_df <span class="token-operator">=</span> pd<span class="token-operator">.</span><span class="token-function">read_sql</span>(<span class="token-string">'SELECT * FROM data'</span>, conn)
+model <span class="token-operator">=</span> <span class="token-function">LinearRegression</span>()<span class="token-operator">.</span><span class="token-function">fit</span>(query_df[[<span class="token-string">'X'</span>]], query_df[<span class="token-string">'Y'</span>]])
+<span class="token-function">print</span>(model<span class="token-operator">.</span><span class="token-function">predict</span>([[<span class="token-number">4</span>]]))</code></pre></div></div>
+                            <div class="python-cell-output">[8.]</div>
+                        </div>
+                    </div>
+                </details>
+
+            </div>
         </section>
 
         <!-- Contact Section -->
         <section id="contact" class="py-16 scroll-mt-20">
             <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-bold text-slate-900">Instructor & Office Hours</h2>
+                <h2 class="text-3xl font-bold text-slate-900">Instructor Information</h2>
                 <div class="mt-8 bg-white p-8 rounded-lg shadow-md inline-block">
-                    <p class="text-xl font-semibold">Dr. Ada Lovelace</p>
-                    <p class="mt-2 text-slate-600">Email: <a href="mailto:ada.l@university.edu" class="text-indigo-600 hover:underline">ada.l@university.edu</a></p>
-                    <p class="mt-1 text-slate-600">Office: Science Building, Room 404</p>
-                    <p class="mt-4 font-semibold text-slate-800">Office Hours:</p>
-                    <p class="text-slate-600">Mondays & Wednesdays, 2:00 PM - 3:30 PM</p>
+                    <p class="text-xl font-semibold">Ali Noori</p>
+                    <p class="mt-2 text-slate-600">Lecturer, Informatics & Analytics, UNCG</p>
+                    <p class="mt-1 text-slate-600">Email: <a href="mailto:A_noori@uncg.edu" class="text-indigo-600 hover:underline">A_noori@uncg.edu</a></p>
                 </div>
             </div>
         </section>
@@ -237,8 +931,8 @@ message = <span class="token-function">greet</span>(<span class="token-string">"
     <!-- Footer -->
     <footer class="bg-slate-800 text-white mt-16">
         <div class="container mx-auto px-6 py-4 text-center">
-            <p>&copy; 2024 Your Name/University. All rights reserved.</p>
-            <p class="text-sm text-slate-400 mt-1">Built with Tailwind CSS for CS 101.</p>
+            <p>&copy; 2025 Ali Noori/UNCG. All rights reserved.</p>
+            <p class="text-sm text-slate-400 mt-1">Built with Tailwind CSS for IAF 601.</p>
         </div>
     </footer>
 
@@ -246,11 +940,9 @@ message = <span class="token-function">greet</span>(<span class="token-string">"
         // JavaScript for the copy button
         function copyCode(button) {
             const cell = button.closest('.python-cell');
-            const code = cell.querySelector('code').innerText;
+            const code = cell.querySelector('.python-cell-code code').innerText;
             
-            // Using the Clipboard API
             navigator.clipboard.writeText(code).then(() => {
-                // Provide feedback to the user
                 const originalText = button.innerText;
                 button.innerText = 'Copied!';
                 setTimeout(() => {
@@ -258,7 +950,6 @@ message = <span class="token-function">greet</span>(<span class="token-string">"
                 }, 2000);
             }).catch(err => {
                 console.error('Failed to copy text: ', err);
-                // Fallback for older browsers
                 try {
                     const textArea = document.createElement('textarea');
                     textArea.value = code;
@@ -266,13 +957,11 @@ message = <span class="token-function">greet</span>(<span class="token-string">"
                     textArea.select();
                     document.execCommand('copy');
                     document.body.removeChild(textArea);
-
                     const originalText = button.innerText;
                     button.innerText = 'Copied!';
                     setTimeout(() => {
                         button.innerText = originalText;
                     }, 2000);
-
                 } catch (e) {
                      console.error('Fallback copy failed', e);
                 }
