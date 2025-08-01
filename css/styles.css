@@ -1,239 +1,147 @@
-/* styles.css - Professional stylesheet for IAF 601 Course Website */
+/* styles.css - Fantasy-themed stylesheet for IAF 601 Course Website with Bootstrap */
 
-/* Import Google Fonts for sans-serif (Roboto) */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+/* Import Google Fonts for Fantasy Aesthetic */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
-/* Reset and Normalize */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Body Styling */
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #f9f9f9;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    color: #e0e0e0;
+    background: linear-gradient(135deg, #2a1a3f 0%, #1b263b 100%); /* Mystical gradient */
+    min-height: 100vh;
 }
 
-/* Typography */
+/* Fantasy Font for Headings */
 h1, h2, h3, h4, h5, h6 {
-    color: #003087; /* Navy blue accent */
-    margin-bottom: 1rem;
+    font-family: 'Cinzel', serif;
+    color: #d4af37; /* Gold accent */
 }
 
-p {
-    margin-bottom: 1rem;
+/* Custom Colors */
+.text-mystic {
+    color: #6a5acd; /* Slate blue for links */
 }
 
-a {
-    color: #003087;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
+.text-gold {
+    color: #d4af37; /* Gold for emphasis */
 }
 
 /* Header */
 header {
-    background-color: #003087;
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-}
-
-header h1 {
-    color: #fff;
+    background: linear-gradient(to bottom, #1b263b, #2a1a3f);
+    border-bottom: 2px solid #d4af37;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Navigation */
-nav {
-    background-color: #e6e6e6;
-    padding: 1rem;
-    margin-bottom: 2rem;
-    border-radius: 8px;
+.bg-gradient-nav {
+    background: linear-gradient(to right, #483d8b, #2f4f4f); /* Dark slate to teal */
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-nav li {
-    margin: 0.5rem;
-}
-
-nav a {
-    background-color: #003087;
-    color: #fff;
+.navbar-nav .nav-link {
+    color: #fff !important;
     padding: 0.5rem 1rem;
-    border-radius: 4px;
-    display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-nav a:hover {
-    background-color: #0040b3;
-    text-decoration: none;
+.navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
+    background-color: #d4af37;
+    color: #1b263b !important;
+    transform: scale(1.05);
 }
 
 /* Main Content */
 main {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent for fantasy effect */
+    border-radius: 10px;
     padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
 }
 
-section {
-    margin-bottom: 2rem;
+.card {
+    background-color: #2a2a40;
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Custom Environments (from LaTeX) */
-.businesscontext, .jupyinput, .jupyoutput, .sampleio, .tipbox, .mistakebox, .keypoints, .businessinsight, .explainbox, .recapbox, .glossarybox, .faqbox {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 4px;
-    border-left: 5px solid #003087;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(212, 175, 55, 0.3);
 }
 
-.businesscontext {
-    background-color: #e6f2ff; /* Light blue */
+.card-title {
+    color: #d4af37;
 }
 
-.jupyinput {
-    background-color: #f2f2f2; /* Light gray */
+.card-text {
+    color: #e0e0e0;
 }
 
-.jupyoutput {
-    background-color: #e6ffe6; /* Light green */
+/* Fade-in Animation */
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
 }
 
-.tipbox {
-    background-color: #e6ffff; /* Light cyan */
-}
-
-.mistakebox {
-    background-color: #ffe6e6; /* Light red */
-}
-
-.keypoints {
-    background-color: #fff2e6; /* Light orange */
-}
-
-.businessinsight {
-    background-color: #f2e6ff; /* Light purple */
-}
-
-.explainbox {
-    background-color: #f2f2f2; /* Light gray */
-}
-
-.recapbox {
-    background-color: #e6ffe6; /* Light green */
-}
-
-.glossarybox {
-    background-color: #ffffe6; /* Light yellow */
-}
-
-.faqbox {
-    background-color: #ffe6f2; /* Light pink */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 /* Code Blocks */
 pre code {
-    display: block;
+    background-color: #1b263b;
+    border: 1px solid #d4af37;
+    border-radius: 5px;
     padding: 1rem;
-    background-color: #f4f4f4;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    overflow-x: auto;
-    font-family: monospace;
-    font-size: 0.9rem;
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
 }
 
 /* Lists */
-ul, ol {
-    margin-left: 2rem;
-    margin-bottom: 1rem;
-}
-
-/* Tables */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1rem;
-}
-
-th, td {
-    border: 1px solid #ddd;
-    padding: 0.5rem;
-    text-align: left;
-}
-
-th {
-    background-color: #003087;
-    color: #fff;
+ol, ul {
+    margin-left: 1.5rem;
+    color: #e0e0e0;
 }
 
 /* MathJax Equations */
 .math {
     font-size: 1.1rem;
-    margin: 1rem 0;
+    color: #e0e0e0;
     text-align: center;
+    margin: 1rem 0;
 }
 
 /* Footer */
 footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #003087;
-    color: #fff;
-    border-radius: 8px;
-    margin-top: 2rem;
+    background: linear-gradient(to top, #1b263b, #2a1a3f);
+    border-top: 2px solid #d4af37;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
+    .navbar-nav {
+        text-align: center;
     }
 
-    nav ul {
-        flex-direction: column;
-    }
-
-    main {
-        padding: 1rem;
+    .card {
+        margin-bottom: 1rem;
     }
 }
 
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.5rem;
+@media (max-width: 576px) {
+    h1.display-4 {
+        font-size: 2rem;
     }
 
-    nav a {
-        padding: 0.5rem;
+    .navbar-nav .nav-link {
         font-size: 0.9rem;
     }
 }
 
-/* Accessibility Enhancements */
+/* Accessibility */
 a:focus, button:focus {
-    outline: 2px solid #003087;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
+    outline: 2px solid #d4af37;
 }
