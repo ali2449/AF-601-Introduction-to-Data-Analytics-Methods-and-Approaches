@@ -87,16 +87,57 @@
                 Functions represent a cornerstone of effective programming, serving as organized, reusable blocks of code that perform a single, specific task. The fundamental purpose of a function is to encapsulate a piece of logic, allowing a developer to invoke it by a simple, descriptive name rather than rewriting the same code repeatedly. This adherence to the <b>"Don't Repeat Yourself" (DRY) principle</b> is a critical advantage, saving development time and reducing the potential for errors.
             </p>
             <p class="text-gray-300 mb-4">
-                Beyond mere repetition, functions are instrumental in enhancing code organization and readability. They allow a complex program to be broken down into smaller, logical, and manageable parts. This makes the codebase easier to understand, maintain, and debug. By giving complex tasks a simple name, such as `process_data()` or `save_report()`, a developer can focus on the high-level flow of the program without getting lost in the minute details of each step. This <b>modular approach</b> is a fundamental shift in programming methodology, enabling the construction of large-scale, scalable systems. In the real world, this modularity is evident across Python's diverse applications, from building robust web frameworks like Django to creating sophisticated data analysis pipelines with libraries like Pandas and NumPy.
+                Beyond mere repetition, functions are instrumental in enhancing code organization and readability. They allow a complex program to be broken down into smaller, logical, and manageable parts. This makes the codebase easier to understand, maintain, and debug. By giving complex tasks a simple name, such as <code>process_data()</code> or <code>save_report()</code>, a developer can focus on the high-level flow of the program without getting lost in the minute details of each step. This <b>modular approach</b> is a fundamental shift in programming methodology, enabling the construction of large-scale, scalable systems. In the real world, this modularity is evident across Python's diverse applications, from building robust web frameworks like Django to creating sophisticated data analysis pipelines with libraries like Pandas and NumPy.
             </p>
         </section>
+        
+        <hr class="border-t-2 border-gray-600 my-8">
+
+        <!-- Chapter 0 -->
+        <section class="section">
+            <h2 class="text-3xl font-bold mb-4">Chapter 0: Why Use Functions?</h2>
+            <p class="text-gray-300 mb-4">
+                In large-scale software development, the efficiency and maintainability of code are paramount. Functions are the primary tool for achieving these goals through three key principles:
+            </p>
+            <ul class="list-disc pl-5 space-y-2 text-gray-300">
+                <li><b>1. Reusability:</b> Functions enable the reuse of logic. Instead of writing the same code block multiple times, you define it once in a function. This makes your codebase smaller, more efficient, and easier to manage. If you need to fix a bug or update the logic, you only have to do it in one place.</li>
+                <li><b>2. Modularity:</b> Functions allow you to break down a complex problem into smaller, more manageable sub-problems. Each function can solve a single, well-defined task. This makes the overall program easier to read, understand, and debug, as you can focus on one logical piece at a time.</li>
+                <li><b>3. Abstraction:</b> Functions provide a layer of abstraction. Once a function is defined, you can call it by its name without needing to know the details of how it works internally. This simplifies the high-level design of a program, as you can use functions as building blocks to create more complex systems.</li>
+            </ul>
+
+            <h3 class="text-2xl font-bold mt-6 mb-2">Step-by-Step Example of Reusability</h3>
+            <p class="text-gray-300 mb-4">
+                Let's see reusability in action. We will create a simple function to calculate the area of a rectangle and reuse it to calculate the area of three different rectangles.
+            </p>
+            <div class="relative">
+                <button class="copy-button">Copy</button>
+                <pre><code class="language-python"># Step 1: Define the function `calculate_area`.
+# It takes two parameters: `length` and `width`.
+def calculate_area(length, width):
+    return length * width
+
+# Step 2: Use the function for the first rectangle.
+area1 = calculate_area(10, 5)
+print(f"The area of the first rectangle is: {area1}")
+
+# Step 3: Reuse the same function for the second rectangle.
+area2 = calculate_area(7, 9)
+print(f"The area of the second rectangle is: {area2}")
+
+# Step 4: Reuse it again for the third rectangle.
+area3 = calculate_area(15, 8)
+print(f"The area of the third rectangle is: {area3}")</code></pre>
+            </div>
+        </section>
+        
+        <hr class="border-t-2 border-gray-600 my-8">
 
         <!-- Chapter 1 -->
         <section class="section">
             <h2 class="text-3xl font-bold mb-4">Chapter 1: Your First Python Function</h2>
             <h3 class="text-2xl font-bold mt-6 mb-2">The Anatomy of a Function Definition</h3>
             <p class="text-gray-300 mb-4">
-                Creating a function in Python begins with the `def` keyword, a mnemonic for "define." This keyword signals the start of a function definition. It is followed by a descriptive function name, a required pair of parentheses, and a colon. The body of the function, which contains the code to be executed, must be indented. For example, a simple function designed to greet a user is structured as follows:
+                Creating a function in Python begins with the <code>def</code> keyword, a mnemonic for "define." This keyword signals the start of a function definition. It is followed by a descriptive function name, a required pair of parentheses, and a colon. The body of the function, which contains the code to be executed, must be indented. For example, a simple function designed to greet a user is structured as follows:
             </p>
             <div class="relative">
                 <button class="copy-button">Copy</button>
@@ -108,24 +149,26 @@
 
             <h3 class="text-2xl font-bold mt-6 mb-2">Calling a Function</h3>
             <p class="text-gray-300 mb-4">
-                A function is a named block of code that remains dormant until it is explicitly called. To execute the code within a function, one must call it by its name, followed by parentheses. If the function requires arguments, they are placed inside these parentheses. For instance, to execute the `greet` function from the previous example, one would use the following call:
+                A function is a named block of code that remains dormant until it is explicitly called. To execute the code within a function, one must call it by its name, followed by parentheses. If the function requires arguments, they are placed inside these parentheses. For instance, to execute the <code>greet</code> function from the previous example, one would use the following call:
             </p>
             <div class="relative">
                 <button class="copy-button">Copy</button>
                 <pre><code class="language-python">greet("Alice")</code></pre>
             </div>
 
-            <h3 class="text-2xl font-bold mt-6 mb-2">The `return` Statement: A Crucial Distinction</h3>
+            <h3 class="text-2xl font-bold mt-6 mb-2">The <code>return</code> Statement: A Crucial Distinction</h3>
             <p class="text-gray-300 mb-4">
-                A key concept for new programmers is the difference between `print()` and `return`. While both can show a result, they serve entirely different purposes.
+                A key concept for new programmers is the difference between <code>print()</code> and <code>return</code>. While both can show a result, they serve entirely different purposes.
             </p>
             <p class="text-gray-300 mb-4">
-                The `print()` function is a built-in tool that produces a <b>side effect</b>—it displays information to the console. It does not, however, pass data back to the part of the program that called it. A function that only prints is limited in its utility; its output cannot be used in a calculation, assigned to a variable, or passed as input to another function.
+                The <code>print()</code> function is a built-in tool that produces a <b>side effect</b>—it displays information to the console. It does not, however, pass data back to the part of the program that called it. A function that only prints is limited in its utility; its output cannot be used in a calculation, assigned to a variable, or passed as input to another function.
             </p>
             <p class="text-gray-300 mb-4">
-                In contrast, the `return` statement is a <b>data transfer mechanism</b>. When a function executes a `return` statement, it immediately terminates its execution and sends a value back to the caller. This value can be a number, a string, a list, or any other Python object. The value returned can then be stored in a variable or used in subsequent operations. A function's ability to produce and transfer data is what truly makes it a reusable, modular component of a larger system. By returning a value, a function becomes a <b>data producer</b>, enabling a chain of operations where one function's output becomes another's input, thereby facilitating the creation of complex data pipelines.
+                In contrast, the <code>return</code> statement is a <b>data transfer mechanism</b>. When a function executes a <code>return</code> statement, it immediately terminates its execution and sends a value back to the caller. This value can be a number, a string, a list, or any other Python object. The value returned can then be stored in a variable or used in subsequent operations. A function's ability to produce and transfer data is what truly makes it a reusable, modular component of a larger system. By returning a value, a function becomes a <b>data producer</b>, enabling a chain of operations where one function's output becomes another's input, thereby facilitating the creation of complex data pipelines.
             </p>
         </section>
+        
+        <hr class="border-t-2 border-gray-600 my-8">
 
         <!-- Chapter 2 -->
         <section class="section">
@@ -152,7 +195,7 @@ print(result) # Output: 8</code></pre>
 
             <h4 class="text-xl font-bold mt-4 mb-2">Keyword Arguments</h4>
             <p class="text-gray-300 mb-4">
-                Keyword arguments are passed to a function by explicitly specifying the parameter name followed by an equals sign and the value, for example, `name="Alice"`. This syntax makes the order of the arguments irrelevant, as Python matches the values to the correct parameters by name. This approach is particularly useful for functions with multiple parameters, as it makes the code significantly more readable and less susceptible to ordering-related bugs.
+                Keyword arguments are passed to a function by explicitly specifying the parameter name followed by an equals sign and the value, for example, <code>name="Alice"</code>. This syntax makes the order of the arguments irrelevant, as Python matches the values to the correct parameters by name. This approach is particularly useful for functions with multiple parameters, as it makes the code significantly more readable and less susceptible to ordering-related bugs.
             </p>
             <div class="relative">
                 <button class="copy-button">Copy</button>
@@ -174,15 +217,15 @@ greet() # Uses the default value, output: Hello, Guest!
 greet("Alice") # Overrides the default, output: Hello, Alice!</code></pre>
             </div>
             <p class="text-gray-300 mb-4">
-                A significant pitfall for beginners is using a mutable object, like a list or dictionary, as a default value. The default value is created only once, when the function is defined, and is then shared across all future calls. This can cause unwanted side effects where changes from one function call persist in future calls. The correct practice is to use `None` as the default and create the mutable object inside the function.
+                A significant pitfall for beginners is using a mutable object, like a list or dictionary, as a default value. The default value is created only once, when the function is defined, and is then shared across all future calls. This can cause unwanted side effects where changes from one function call persist in future calls. The correct practice is to use <code>None</code> as the default and create the mutable object inside the function.
             </p>
 
-            <h4 class="text-xl font-bold mt-4 mb-2">Variable-Length Arguments (`*args` and `**kwargs`)</h4>
+            <h4 class="text-xl font-bold mt-4 mb-2">Variable-Length Arguments (<code>*args</code> and <code>**kwargs</code>)</h4>
             <p class="text-gray-300 mb-4">
                 Python allows functions to accept a variable number of arguments. This is useful when you don't know how many inputs you will have.
             </p>
             <p class="text-gray-300 mb-4">
-                The `*args` syntax collects any number of positional arguments into a tuple. The name `args` is a convention, but any name with a single asterisk works.
+                The <code>*args</code> syntax collects any number of positional arguments into a tuple. The name <code>args</code> is a convention, but any name with a single asterisk works.
             </p>
             <div class="relative">
                 <button class="copy-button">Copy</button>
@@ -193,7 +236,7 @@ print(calculate_sum(1, 2, 3)) # Output: 6
 print(calculate_sum(1, 2, 3, 4, 5)) # Output: 15</code></pre>
             </div>
             <p class="text-gray-300 mb-4">
-                The `**kwargs` syntax collects any number of keyword arguments into a dictionary. The name `kwargs` is a convention, but any name with a double asterisk works.
+                The <code>**kwargs</code> syntax collects any number of keyword arguments into a dictionary. The name <code>kwargs</code> is a convention, but any name with a double asterisk works.
             </p>
             <div class="relative">
                 <button class="copy-button">Copy</button>
@@ -207,7 +250,7 @@ introduce(Name="Alice", Age=25, City="New York")
 # City: New York</code></pre>
             </div>
             <p class="text-gray-300 mb-4">
-                You can use all of these argument types together. When you do, they must appear in a specific order in your function: positional, then default, then `*args`, and finally `**kwargs`.
+                You can use all of these argument types together. When you do, they must appear in a specific order in your function: positional, then default, then <code>*args</code>, and finally <code>**kwargs</code>.
             </p>
             <h4 class="text-xl font-bold mt-4 mb-2">Argument Summary Table</h4>
             <table>
@@ -239,13 +282,13 @@ introduce(Name="Alice", Age=25, City="New York")
                         <td>When a function has common or non-essential inputs.</td>
                     </tr>
                     <tr>
-                        <td>`*args`</td>
+                        <td><code>*args</code></td>
                         <td><code>def my_func(*args)</code></td>
                         <td>Collects an arbitrary number of positional arguments into a tuple.</td>
                         <td>When you don't know how many inputs will be provided.</td>
                     </tr>
                     <tr>
-                        <td>`**kwargs`</td>
+                        <td><code>**kwargs</code></td>
                         <td><code>def my_func(**kwargs)</code></td>
                         <td>Collects an arbitrary number of keyword arguments into a dictionary.</td>
                         <td>When you need flexible, named inputs.</td>
@@ -253,17 +296,19 @@ introduce(Name="Alice", Age=25, City="New York")
                 </tbody>
             </table>
         </section>
+        
+        <hr class="border-t-2 border-gray-600 my-8">
 
         <!-- Chapter 3 -->
         <section class="section">
-            <h2 class="text-3xl font-bold mb-4">Chapter 3: Managing Data with `return`</h2>
+            <h2 class="text-3xl font-bold mb-4">Chapter 3: Managing Data with <code>return</code></h2>
             <h3 class="text-2xl font-bold mt-6 mb-2">Returning a Single Value</h3>
             <p class="text-gray-300 mb-4">
-                The `return` statement is the main way a function sends a result back. The value that follows the `return` keyword can be any Python object.
+                The <code>return</code> statement is the main way a function sends a result back. The value that follows the <code>return</code> keyword can be any Python object.
             </p>
-            <h4 class="text-xl font-bold mt-4 mb-2">The Special Case of `None`</h4>
-            <p class="text-3xl font-bold mb-4">
-                If a function doesn't have a `return` statement, or if `return` is used without a value, it automatically returns the special value `None`. This is not an error, but an intentional design choice. A function returning `None` means it performed a task, like showing text on the screen or saving to a file, but it didn't produce a value to be used in a later step. It is a clear signal that the function's job was to do something, not to create a result.
+            <h4 class="text-xl font-bold mt-4 mb-2">The Special Case of <code>None</code></h4>
+            <p class="text-gray-300 mb-4">
+                If a function doesn't have a <code>return</code> statement, or if <code>return</code> is used without a value, it automatically returns the special value <code>None</code>. This is not an error, but an intentional design choice. A function returning <code>None</code> means it performed a task, like showing text on the screen or saving to a file, but it didn't produce a value to be used in a later step. It is a clear signal that the function's job was to do something, not to create a result.
             </p>
             <h4 class="text-xl font-bold mt-4 mb-2">Returning Multiple Values</h4>
             <p class="text-gray-300 mb-4">
@@ -281,27 +326,29 @@ print(f"Name: {name}, Age: {age}, ID: {id}")
                 This packing and unpacking is a core part of Python. It shows that what looks like a complex return is actually a simple process.
             </p>
         </section>
+        
+        <hr class="border-t-2 border-gray-600 my-8">
 
         <!-- Chapter 4 -->
         <section class="section">
             <h2 class="text-3xl font-bold mb-4">Chapter 4: The World of Variable Scope</h2>
             <h3 class="text-2xl font-bold mt-6 mb-2">Introducing Scope</h3>
             <p class="text-gray-300 mb-4">
-                Variable <b>scope</b> is the area of your program where a variable can be seen and used. Understanding scope is vital for avoiding common errors like `NameError` and for writing clean, predictable code. Python follows a rule called <b>LEGB</b> to find a variable: Local, Enclosing, Global, and Built-in.
+                Variable <b>scope</b> is the area of your program where a variable can be seen and used. Understanding scope is vital for avoiding common errors like <code>NameError</code> and for writing clean, predictable code. Python follows a rule called <b>LEGB</b> to find a variable: Local, Enclosing, Global, and Built-in.
             </p>
             <ul class="list-disc pl-5 space-y-2 text-gray-300">
-                <li><strong>Local Scope:</strong> This is the innermost scope. Variables created inside a function are local to that function. They can only be used from within that function. They are created when the function is called and disappear when it finishes.</li>
-                <li><strong>Enclosing Scope:</strong> This scope is for nested functions. A variable in an outer function can be used by an inner function.</li>
-                <li><strong>Global Scope:</strong> This is the top-level scope of a script. Variables created outside of any function are global and can be used anywhere in the program.</li>
-                <li><strong>Built-in Scope:</strong> This is the widest scope. It holds all of Python's pre-defined names, like `print()` and `len()`. These names are always available.</li>
+                <li><b>Local Scope:</b> This is the innermost scope. Variables created inside a function are local to that function. They can only be used from within that function. They are created when the function is called and disappear when it finishes.</li>
+                <li><b>Enclosing Scope:</b> This scope is for nested functions. A variable in an outer function can be used by an inner function.</li>
+                <li><b>Global Scope:</b> This is the top-level scope of a script. Variables created outside of any function are global and can be used anywhere in the program.</li>
+                <li><b>Built-in Scope:</b> This is the widest scope. It holds all of Python's pre-defined names, like <code>print()</code> and <code>len()</code>. These names are always available.</li>
             </ul>
 
-            <h3 class="text-2xl font-bold mt-6 mb-2">The `global` Keyword</h3>
+            <h3 class="text-2xl font-bold mt-6 mb-2">The <code>global</code> Keyword</h3>
             <p class="text-gray-300 mb-4">
                 By default, if you set a variable inside a function, Python creates a new local variable, even if a global variable with the same name exists. This is called <b>"shadowing."</b> It's a safety feature that stops a function from accidentally changing a global variable. This prevents bugs that are hard to find.
             </p>
             <p class="text-gray-300 mb-4">
-                To intentionally change a global variable from inside a function, you must use the <b>`global` keyword</b>. When you declare `global variable_name` inside a function, you tell Python to change the variable in the global scope instead of making a new local one.
+                To intentionally change a global variable from inside a function, you must use the <b><code>global</code> keyword</b>. When you declare <code>global variable_name</code> inside a function, you tell Python to change the variable in the global scope instead of making a new local one.
             </p>
             <div class="relative">
                 <button class="copy-button">Copy</button>
@@ -326,7 +373,7 @@ print(f"Outside: x is now {x}")
 # Outside: x is now 5</code></pre>
             </div>
             <p class="text-gray-300 mb-4">
-                Using the `global` keyword is a choice you make on purpose. It overrides Python's default safety, so you should use it with care. Changing a shared variable from different parts of a program can create complex dependencies and make debugging much harder.
+                Using the <code>global</code> keyword is a choice you make on purpose. It overrides Python's default safety, so you should use it with care. Changing a shared variable from different parts of a program can create complex dependencies and make debugging much harder.
             </p>
             <h4 class="text-xl font-bold mt-4 mb-2">Variable Scope Comparison</h4>
             <table>
@@ -361,26 +408,28 @@ print(f"Outside: x is now {x}")
                     <tr>
                         <td>Modification Keyword</td>
                         <td>No special keyword required</td>
-                        <td>`global` keyword required to modify inside a function</td>
+                        <td><code>global</code> keyword required to modify inside a function</td>
                     </tr>
                 </tbody>
             </table>
         </section>
+        
+        <hr class="border-t-2 border-gray-600 my-8">
 
         <!-- Chapter 5 -->
         <section class="section">
             <h2 class="text-3xl font-bold mb-4">Chapter 5: Exploring Advanced Functional Concepts</h2>
             <h3 class="text-2xl font-bold mt-6 mb-2">Lambda Functions: The One-Liner for Simple Tasks</h3>
             <p class="text-gray-300 mb-4">
-                A <b>lambda function</b> is a small, anonymous function. You create it with the `lambda` keyword. It's "anonymous" because it has no name, though you can save it to a variable. The syntax is short: `lambda arguments: expression`. The function body is a single line of code, and its result is returned automatically, without needing a `return` statement.
+                A <b>lambda function</b> is a small, anonymous function. You create it with the <code>lambda</code> keyword. It's "anonymous" because it has no name, though you can save it to a variable. The syntax is short: <code>lambda arguments: expression</code>. The function body is a single line of code, and its result is returned automatically, without needing a <code>return</code> statement.
             </p>
             <p class="text-gray-300 mb-4">
                 Lambda functions are not a replacement for regular functions. They are a lightweight tool for when you need a simple function that won't be used again. They are often used as inputs for <b>higher-order functions</b>—functions that take other functions as arguments. Examples include:
             </p>
             <ul class="list-disc pl-5 space-y-2 text-gray-300">
-                <li>`map()`: Applies a function to every item in a list or other iterable. It creates a new iterable with the results.</li>
-                <li>`filter()`: Creates a new iterable from items that meet a certain condition.</li>
-                <li>`sorted()`: Sorts a list based on a custom rule.</li>
+                <li><code>map()</code>: Applies a function to every item in a list or other iterable. It creates a new iterable with the results.</li>
+                <li><code>filter()</code>: Creates a new iterable from items that meet a certain condition.</li>
+                <li><code>sorted()</code>: Sorts a list based on a custom rule.</li>
             </ul>
             <div class="relative">
                 <button class="copy-button">Copy</button>
@@ -399,7 +448,7 @@ print(evens) # Output: [2, 4, 6]</code></pre>
                 A <b>recursive function</b> is one that calls itself to solve a problem. This is often used for problems that can be broken down into smaller, similar sub-problems, like calculating a factorial.
             </p>
             <p class="text-gray-300 mb-4">
-                Every recursive function needs a <b>base case</b>. The base case is a condition that tells the function when to stop calling itself. This prevents an endless loop. Without a base case, the function will keep calling itself forever, which will lead to a `RecursionError`.
+                Every recursive function needs a <b>base case</b>. The base case is a condition that tells the function when to stop calling itself. This prevents an endless loop. Without a base case, the function will keep calling itself forever, which will lead to a <code>RecursionError</code>.
             </p>
             <div class="relative">
                 <button class="copy-button">Copy</button>
@@ -414,6 +463,8 @@ print(factorial(5)) # Output: 120
 # 5 * factorial(4) -> 5 * (4 * factorial(3)) ->...</code></pre>
             </div>
         </section>
+        
+        <hr class="border-t-2 border-gray-600 my-8">
 
         <!-- Chapter 6 -->
         <section class="section">
@@ -430,9 +481,11 @@ print(factorial(5)) # Output: 120
                 Functions are the core logic in web frameworks like Django and Flask. There, each web address can be linked to a specific function. In automation, you can create a function to handle a repeated task, like reading from a spreadsheet and sending an email. This way of building code creates strong, easy-to-manage systems that you can change and add to.
             </p>
             <p class="text-gray-300 mb-4">
-                A good example of this is a score-averaging system. By breaking the task into smaller functions like `promptAndProcess()` and `processScores()`, the program becomes a series of logical steps instead of one large block of code. This <b>separation of concerns</b> makes debugging easier and makes the program simpler to read and maintain.
+                A good example of this is a score-averaging system. By breaking the task into smaller functions like <code>promptAndProcess()</code> and <code>processScores()</code>, the program becomes a series of logical steps instead of one large block of code. This <b>separation of concerns</b> makes debugging easier and makes the program simpler to read and maintain.
             </p>
         </section>
+        
+        <hr class="border-t-2 border-gray-600 my-8">
 
         <!-- Chapter 7 -->
         <section class="section">
@@ -443,7 +496,7 @@ print(factorial(5)) # Output: 120
             </p>
             <h4 class="text-xl font-bold mt-4 mb-2">The Single Responsibility Principle:</h4>
             <p class="text-gray-300 mb-4">
-                A function should do "one thing and do it well." A function that tries to do too many things is a sign that you should split it up. Breaking it into smaller, focused functions, like `calculate_metrics()` and `write_report()`, makes the code easier to understand, test, and manage.
+                A function should do "one thing and do it well." A function that tries to do too many things is a sign that you should split it up. Breaking it into smaller, focused functions, like <code>calculate_metrics()</code> and <code>write_report()</code>, makes the code easier to understand, test, and manage.
             </p>
             <h4 class="text-xl font-bold mt-4 mb-2">Documentation and Clarity:</h4>
             <p class="text-gray-300 mb-4">
@@ -451,17 +504,17 @@ print(factorial(5)) # Output: 120
             </p>
             <h4 class="text-xl font-bold mt-4 mb-2">Type Hints:</h4>
             <p class="text-gray-300 mb-4">
-                Python is a dynamically typed language, but adding <b>type hints</b> (e.g., `def add(a: int, b: int) -> int:`) shows the expected data types. These hints don't change how the code runs, but they serve as great documentation and can help tools catch type-related errors before you even run the code.
+                Python is a dynamically typed language, but adding <b>type hints</b> (e.g., <code>def add(a: int, b: int) -> int:</code>) shows the expected data types. These hints don't change how the code runs, but they serve as great documentation and can help tools catch type-related errors before you even run the code.
             </p>
             <h3 class="text-2xl font-bold mt-6 mb-2">Common Pitfalls and How to Avoid Them</h3>
             <p class="text-gray-300 mb-4">
                 Even experienced developers can make mistakes. Knowing how to spot and prevent common errors is a key part of learning.
             </p>
             <ul class="list-disc pl-5 space-y-2 text-gray-300">
-                <li><strong>Forgetting Parentheses:</strong> Beginners often forget the parentheses when calling a function. Without the parentheses, Python sees the function as an object, not as a command to run the code. This will not cause an error but will lead to unexpected behavior, as the program will try to use the function object itself.</li>
-                <li><strong>Missing Colons and Indentation:</strong> Python uses colons to start a new code block and indentation to define its scope. Forgetting a colon at the end of a function definition or using inconsistent indentation will result in a `SyntaxError` or `IndentationError`.</li>
-                <li><strong>Mixing Positional and Keyword Arguments:</strong> When a function uses both positional and keyword arguments, positional arguments must always come first in the function call. If you don't follow this rule, you will get a `SyntaxError`.</li>
-                <li><strong>Scope Misunderstanding:</strong> If you try to change a global variable inside a function without using the `global` keyword, you will get an `UnboundLocalError`. This happens because Python assumes you want to create a new local variable, but you haven't given it a value yet. To avoid this, either use the `global` keyword or pass the variable as an argument and return the changed value.</li>
+                <li><b>Forgetting Parentheses:</b> Beginners often forget the parentheses when calling a function. Without the parentheses, Python sees the function as an object, not as a command to run the code. This will not cause an error but will lead to unexpected behavior, as the program will try to use the function object itself.</li>
+                <li><b>Missing Colons and Indentation:</b> Python uses colons to start a new code block and indentation to define its scope. Forgetting a colon at the end of a function definition or using inconsistent indentation will result in a <code>SyntaxError</code> or <code>IndentationError</code>.</li>
+                <li><b>Mixing Positional and Keyword Arguments:</b> When a function uses both positional and keyword arguments, positional arguments must always come first in the function call. If you don't follow this rule, you will get a <code>SyntaxError</code>.</li>
+                <li><b>Scope Misunderstanding:</b> If you try to change a global variable inside a function without using the <code>global</code> keyword, you will get an <code>UnboundLocalError</code>. This happens because Python assumes you want to create a new local variable, but you haven't given it a value yet. To avoid this, either use the <code>global</code> keyword or pass the variable as an argument and return the changed value.</li>
             </ul>
             <h4 class="text-xl font-bold mt-4 mb-2">Common Error Table</h4>
             <table>
@@ -475,44 +528,47 @@ print(factorial(5)) # Output: 120
                 </thead>
                 <tbody>
                     <tr>
-                        <td>`SyntaxError`</td>
+                        <td><code>SyntaxError</code></td>
                         <td>Missing a colon or parentheses.</td>
-                        <td>`def my_func()`</td>
-                        <td>`def my_func():`</td>
+                        <td><code>def my_func()</code></td>
+                        <td><code>def my_func():</code></td>
                     </tr>
                     <tr>
-                        <td>`TypeError`</td>
+                        <td><code>TypeError</code></td>
                         <td>Passing an incorrect data type or the wrong number of arguments.</td>
-                        <td>`print("Hello" + 5)`</td>
-                        <td>`print("Hello" + str(5))`</td>
+                        <td><code>print("Hello" + 5)</code></td>
+                        <td><code>print("Hello" + str(5))</code></td>
                     </tr>
                     <tr>
-                        <td>`NameError`</td>
+                        <td><code>NameError</code></td>
                         <td>Referencing a variable or function that has not been defined.</td>
-                        <td>`print(my_variable)`</td>
-                        <td>Define `my_variable` before using it.</td>
+                        <td><code>print(my_variable)</code></td>
+                        <td>Define <code>my_variable</code> before using it.</td>
                     </tr>
                     <tr>
-                        <td>`IndentationError`</td>
+                        <td><code>IndentationError</code></td>
                         <td>Inconsistent or incorrect use of whitespace.</td>
-                        <td>`def my_func(): print("Hello")` (un-indented)</td>
-                        <td>`def my_func():<br> &nbsp;&nbsp;&nbsp;&nbsp;print("Hello")`</td>
+                        <td><code>def my_func(): print("Hello")</code> (un-indented)</td>
+                        <td><pre><code>def my_func():
+    print("Hello")</code></pre></td>
                     </tr>
                     <tr>
-                        <td>`UnboundLocalError`</td>
-                        <td>Attempting to modify a global variable without using the `global` keyword.</td>
-                        <td>`x = 5`<br>`def my_func():`<br>&nbsp;&nbsp;&nbsp;&nbsp;`x += 1`</td>
-                        <td>`global x`<br>`x = 5`</td>
+                        <td><code>UnboundLocalError</code></td>
+                        <td>Attempting to modify a global variable without using the <code>global</code> keyword.</td>
+                        <td><code>x = 5<br>def my_func():<br>&nbsp;&nbsp;&nbsp;&nbsp;x += 1</code></td>
+                        <td><code>global x<br>x = 5</code></td>
                     </tr>
                 </tbody>
             </table>
         </section>
+        
+        <hr class="border-t-2 border-gray-600 my-8">
 
         <!-- Conclusion -->
         <section class="section">
             <h2 class="text-3xl font-bold mb-4">Conclusion</h2>
             <p class="text-gray-300 mb-4">
-                The journey from a beginner to an expert in Python functions is a progression from simple syntax to nuanced design principles. Functions are more than just a way to avoid writing the same code twice. They are a powerful tool for structuring and managing complex programs. By understanding the core mechanics—like the difference between `print` and `return`, the types of arguments, and the rules of variable scope—you can turn your simple code into a professional application. Mastering these ideas is key to moving on to more advanced topics. It is the path to becoming a truly skilled programmer.
+                The journey from a beginner to an expert in Python functions is a progression from simple syntax to nuanced design principles. Functions are more than just a way to avoid writing the same code twice. They are a powerful tool for structuring and managing complex programs. By understanding the core mechanics—like the difference between <code>print</code> and <code>return</code>, the types of arguments, and the rules of variable scope—you can turn your simple code into a professional application. Mastering these ideas is key to moving on to more advanced topics. It is the path to becoming a truly skilled programmer.
             </p>
         </section>
     </div>
