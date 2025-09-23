@@ -7,10 +7,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --section-bg: #161b22;
+            --code-bg: #010409;
+            --border-color: #21262d;
+            --header-color: #58a6ff;
+            --button-bg: #30363d;
+            --button-hover-bg: #444c56;
+            --run-button-bg: #10b981;
+            --run-button-hover-bg: #059669;
+            --toggle-bg: #444c56;
+            --toggle-text: #c9d1d9;
+        }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0d1117;
-            color: #c9d1d9;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
         }
         .container {
             max-width: 900px;
@@ -18,19 +33,37 @@
             padding: 2.5rem 1.5rem;
         }
         .section {
-            background-color: #161b22;
+            background-color: var(--section-bg);
             padding: 2.5rem;
             border-radius: 0.75rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             margin-bottom: 2.5rem;
+            transition: background-color 0.3s;
+        }
+        .code-example {
+            position: relative;
+        }
+        .code-editor {
+            width: 100%;
+            min-height: 10rem;
+            background-color: var(--code-bg);
+            color: var(--text-color);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            resize: vertical;
+            border: none;
+            outline: none;
+            transition: background-color 0.3s, color 0.3s;
         }
         pre {
-            background-color: #010409;
-            color: #c9d1d9;
+            background-color: var(--code-bg);
+            color: var(--text-color);
             padding: 1.5rem;
             border-radius: 0.5rem;
             overflow-x: auto;
             font-family: 'Courier New', Courier, monospace;
+            transition: background-color 0.3s, color 0.3s;
         }
         table {
             width: 100%;
@@ -38,222 +71,311 @@
             margin-top: 1.5rem;
         }
         th, td {
-            border: 1px solid #21262d;
+            border: 1px solid var(--border-color);
             padding: 1rem;
             text-align: left;
         }
         th {
-            background-color: #24292e;
+            background-color: var(--button-bg);
             font-weight: 600;
+            transition: background-color 0.3s;
         }
         p, li {
             text-align: justify;
-        }
-        .relative {
-            position: relative;
         }
         .copy-button {
             position: absolute;
             top: 0.75rem;
             right: 0.75rem;
-            background-color: #30363d;
-            color: #c9d1d9;
+            background-color: var(--button-bg);
+            color: var(--text-color);
             border: none;
             border-radius: 0.375rem;
             padding: 0.375rem 0.875rem;
             font-size: 0.875rem;
             cursor: pointer;
             transition: background-color 0.2s ease-in-out;
+            z-index: 10;
         }
         .copy-button:hover {
-            background-color: #444c56;
+            background-color: var(--button-hover-bg);
         }
         .copy-button:active {
             background-color: #586069;
         }
         h1, h2, h3, h4 {
-            color: #58a6ff;
+            color: var(--header-color);
+            transition: color 0.3s;
+        }
+        .run-button {
+            background-color: var(--run-button-bg);
+            color: var(--text-color);
+            transition: background-color 0.3s;
+        }
+        .run-button:hover {
+            background-color: var(--run-button-hover-bg);
+        }
+        .toggle-mode {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            background-color: var(--toggle-bg);
+            color: var(--toggle-text);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Light Mode Styles */
+        body.light-mode {
+            --bg-color: #ffffff;
+            --text-color: #24292e;
+            --section-bg: #f6f8fa;
+            --code-bg: #e1e4e8;
+            --border-color: #d1d5da;
+            --header-color: #0366d6;
+            --button-bg: #e9e9e9;
+            --button-hover-bg: #dcdcdc;
+            --run-button-bg: #1d7239;
+            --run-button-hover-bg: #185e2e;
+            --toggle-bg: #dcdcdc;
+            --toggle-text: #24292e;
+        }
+        .light-mode .copy-button {
+            background-color: var(--button-bg);
+            color: var(--text-color);
+        }
+        .light-mode .copy-button:hover {
+            background-color: var(--button-hover-bg);
+        }
+        .light-mode th {
+            background-color: var(--button-bg);
         }
     </style>
 </head>
 <body class="p-6">
+    <button id="mode-toggle" class="toggle-mode">Day Mode</button>
     <div class="container">
         <!-- Header -->
         <header class="text-center mb-10">
             <h1 class="text-4xl md:text-5xl font-bold mb-4">Module 4: Python Functions</h1>
-            <p class="text-lg text-gray-400">A comprehensive guide to understanding and mastering Python functions.</p>
+            <p class="text-lg">A comprehensive guide to understanding and mastering Python functions.</p>
         </header>
-
         <!-- Introduction -->
         <section class="section">
             <h2 class="text-3xl font-bold mb-4">Introduction: The Power of Functions</h2>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 Functions represent a cornerstone of effective programming, serving as organized, reusable blocks of code that perform a single, specific task. The fundamental purpose of a function is to encapsulate a piece of logic, allowing a developer to invoke it by a simple, descriptive name rather than rewriting the same code repeatedly. This adherence to the <b>"Don't Repeat Yourself" (DRY) principle</b> is a critical advantage, saving development time and reducing the potential for errors.
             </p>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 Beyond mere repetition, functions are instrumental in enhancing code organization and readability. They allow a complex program to be broken down into smaller, logical, and manageable parts. This makes the codebase easier to understand, maintain, and debug. By giving complex tasks a simple name, such as <code>process_data()</code> or <code>save_report()</code>, a developer can focus on the high-level flow of the program without getting lost in the minute details of each step. This <b>modular approach</b> is a fundamental shift in programming methodology, enabling the construction of large-scale, scalable systems. In the real world, this modularity is evident across Python's diverse applications, from building robust web frameworks like Django to creating sophisticated data analysis pipelines with libraries like Pandas and NumPy.
             </p>
         </section>
-        
         <hr class="border-t-2 border-gray-600 my-8">
-
         <!-- Chapter 0 -->
         <section class="section">
             <h2 class="text-3xl font-bold mb-4">Chapter 0: Why Use Functions?</h2>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 In large-scale software development, the efficiency and maintainability of code are paramount. Functions are the primary tool for achieving these goals through three key principles:
             </p>
-            <ul class="list-disc pl-5 space-y-2 text-gray-300">
+            <ul class="list-disc pl-5 space-y-2">
                 <li><b>1. Reusability:</b> Functions enable the reuse of logic. Instead of writing the same code block multiple times, you define it once in a function. This makes your codebase smaller, more efficient, and easier to manage. If you need to fix a bug or update the logic, you only have to do it in one place.</li>
                 <li><b>2. Modularity:</b> Functions allow you to break down a complex problem into smaller, more manageable sub-problems. Each function can solve a single, well-defined task. This makes the overall program easier to read, understand, and debug, as you can focus on one logical piece at a time.</li>
                 <li><b>3. Abstraction:</b> Functions provide a layer of abstraction. Once a function is defined, you can call it by its name without needing to know the details of how it works internally. This simplifies the high-level design of a program, as you can use functions as building blocks to create more complex systems.</li>
             </ul>
-
             <h3 class="text-2xl font-bold mt-6 mb-2">Step-by-Step Example of Reusability</h3>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 Let's see reusability in action. We will create a simple function to calculate the area of a rectangle and reuse it to calculate the area of three different rectangles.
             </p>
-            <div class="relative">
+            <div class="code-example relative">
                 <button class="copy-button">Copy</button>
-                <pre><code class="language-python"># Step 1: Define the function `calculate_area`.
-# It takes two parameters: `length` and `width`.
-def calculate_area(length, width):
+                <textarea class="code-editor" spellcheck="false">def calculate_area(length, width):
     return length * width
 
-# Step 2: Use the function for the first rectangle.
 area1 = calculate_area(10, 5)
-print(f"The area of the first rectangle is: {area1}")
+print("The area of the first rectangle is: {}".format(area1))
 
-# Step 3: Reuse the same function for the second rectangle.
 area2 = calculate_area(7, 9)
-print(f"The area of the second rectangle is: {area2}")
+print("The area of the second rectangle is: {}".format(area2))
 
-# Step 4: Reuse it again for the third rectangle.
 area3 = calculate_area(15, 8)
-print(f"The area of the third rectangle is: {area3}")</code></pre>
+print("The area of the third rectangle is: {}".format(area3))</textarea>
+                <button class="run-button flex items-center justify-center gap-2 px-4 py-2 mt-4 text-sm font-semibold rounded-full hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    Run Code
+                </button>
+                <pre class="output-area w-full min-h-[5rem] max-h-80 p-4 font-mono text-sm border-2 border-gray-700 rounded-lg overflow-auto whitespace-pre-wrap mt-4"></pre>
             </div>
         </section>
-        
         <hr class="border-t-2 border-gray-600 my-8">
-
         <!-- Chapter 1 -->
         <section class="section">
             <h2 class="text-3xl font-bold mb-4">Chapter 1: Your First Python Function</h2>
             <h3 class="text-2xl font-bold mt-6 mb-2">The Anatomy of a Function Definition</h3>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 Creating a function in Python begins with the <code>def</code> keyword, a mnemonic for "define." This keyword signals the start of a function definition. It is followed by a descriptive function name, a required pair of parentheses, and a colon. The body of the function, which contains the code to be executed, must be indented. For example, a simple function designed to greet a user is structured as follows:
             </p>
-            <div class="relative">
+            <div class="code-example relative">
                 <button class="copy-button">Copy</button>
-                <pre><code class="language-python">def greet(name):
+                <textarea class="code-editor" spellcheck="false">def greet(name):
     # The code to be executed is indented
-    message = f"Hello, {name}!"
-    return message</code></pre>
-            </div>
+    message = "Hello, {}!".format(name)
+    return message
 
+# Now call the function to see the output
+print(greet("Jane"))</textarea>
+                <button class="run-button flex items-center justify-center gap-2 px-4 py-2 mt-4 text-sm font-semibold rounded-full hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    Run Code
+                </button>
+                <pre class="output-area w-full min-h-[5rem] max-h-80 p-4 font-mono text-sm border-2 border-gray-700 rounded-lg overflow-auto whitespace-pre-wrap mt-4"></pre>
+            </div>
             <h3 class="text-2xl font-bold mt-6 mb-2">Calling a Function</h3>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 A function is a named block of code that remains dormant until it is explicitly called. To execute the code within a function, one must call it by its name, followed by parentheses. If the function requires arguments, they are placed inside these parentheses. For instance, to execute the <code>greet</code> function from the previous example, one would use the following call:
             </p>
-            <div class="relative">
+            <div class="code-example relative">
                 <button class="copy-button">Copy</button>
-                <pre><code class="language-python">greet("Alice")</code></pre>
+                <textarea class="code-editor" spellcheck="false">print(greet("Alice"))</textarea>
+                <button class="run-button flex items-center justify-center gap-2 px-4 py-2 mt-4 text-sm font-semibold rounded-full hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    Run Code
+                </button>
+                <pre class="output-area w-full min-h-[5rem] max-h-80 p-4 font-mono text-sm border-2 border-gray-700 rounded-lg overflow-auto whitespace-pre-wrap mt-4"></pre>
             </div>
-
             <h3 class="text-2xl font-bold mt-6 mb-2">The <code>return</code> Statement: A Crucial Distinction</h3>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 A key concept for new programmers is the difference between <code>print()</code> and <code>return</code>. While both can show a result, they serve entirely different purposes.
             </p>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 The <code>print()</code> function is a built-in tool that produces a <b>side effect</b>—it displays information to the console. It does not, however, pass data back to the part of the program that called it. A function that only prints is limited in its utility; its output cannot be used in a calculation, assigned to a variable, or passed as input to another function.
             </p>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 In contrast, the <code>return</code> statement is a <b>data transfer mechanism</b>. When a function executes a <code>return</code> statement, it immediately terminates its execution and sends a value back to the caller. This value can be a number, a string, a list, or any other Python object. The value returned can then be stored in a variable or used in subsequent operations. A function's ability to produce and transfer data is what truly makes it a reusable, modular component of a larger system. By returning a value, a function becomes a <b>data producer</b>, enabling a chain of operations where one function's output becomes another's input, thereby facilitating the creation of complex data pipelines.
             </p>
         </section>
-        
         <hr class="border-t-2 border-gray-600 my-8">
-
         <!-- Chapter 2 -->
         <section class="section">
             <h2 class="text-3xl font-bold mb-4">Chapter 2: Mastering Arguments and Parameters</h2>
             <h3 class="text-2xl font-bold mt-6 mb-2">Parameters vs. Arguments: The Definitive Guide</h3>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 A common point of confusion for beginners is the difference between <b>parameters</b> and <b>arguments</b>. This distinction is fundamental to understanding how data is passed into a function. Parameters are the placeholders defined in a function's signature. They act as names for the inputs the function expects to receive. Arguments, on the other hand, are the actual values passed to the function when it is called. The relationship is straightforward: when a function is called, the arguments are matched to the parameters to provide the data the function needs to perform its task.
             </p>
             <h3 class="text-2xl font-bold mt-6 mb-2">Types of Arguments</h3>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 Python provides a flexible system for handling arguments, allowing developers to balance simplicity, clarity, and adaptability.
             </p>
             <h4 class="text-xl font-bold mt-4 mb-2">Positional Arguments</h4>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 Positional arguments are the most common type. When a function is called, the arguments are matched to the parameters based on their position, or order. The first argument provided corresponds to the first parameter, the second to the second, and so on. While simple, this method can be prone to errors if the order of arguments is mixed up, which can lead to unexpected and incorrect results.
             </p>
-            <div class="relative">
+            <div class="code-example relative">
                 <button class="copy-button">Copy</button>
-                <pre><code class="language-python">def add_numbers(a, b):
+                <textarea class="code-editor" spellcheck="false">def add_numbers(a, b):
     return a + b
 result = add_numbers(3, 5) # 3 is for 'a', 5 is for 'b'
-print(result) # Output: 8</code></pre>
+print(result) # Output: 8</textarea>
+                <button class="run-button flex items-center justify-center gap-2 px-4 py-2 mt-4 text-sm font-semibold rounded-full hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    Run Code
+                </button>
+                <pre class="output-area w-full min-h-[5rem] max-h-80 p-4 font-mono text-sm border-2 border-gray-700 rounded-lg overflow-auto whitespace-pre-wrap mt-4"></pre>
             </div>
-
             <h4 class="text-xl font-bold mt-4 mb-2">Keyword Arguments</h4>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 Keyword arguments are passed to a function by explicitly specifying the parameter name followed by an equals sign and the value, for example, <code>name="Alice"</code>. This syntax makes the order of the arguments irrelevant, as Python matches the values to the correct parameters by name. This approach is particularly useful for functions with multiple parameters, as it makes the code significantly more readable and less susceptible to ordering-related bugs.
             </p>
-            <div class="relative">
+            <div class="code-example relative">
                 <button class="copy-button">Copy</button>
-                <pre><code class="language-python">def greet(name, message):
-    print(f"{message}, {name}!") # The order can be swapped without issue
+                <textarea class="code-editor" spellcheck="false">def greet(name, message):
+    print("{}, {}!".format(message, name)) # The order can be swapped without issue
 greet(message="Hello", name="Alice") # Output: Hello, Alice!
-greet(name="Alice", message="Hello") # Output: Hello, Alice!</code></pre>
+greet(name="Alice", message="Hello") # Output: Hello, Alice!</textarea>
+                <button class="run-button flex items-center justify-center gap-2 px-4 py-2 mt-4 text-sm font-semibold rounded-full hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    Run Code
+                </button>
+                <pre class="output-area w-full min-h-[5rem] max-h-80 p-4 font-mono text-sm border-2 border-gray-700 rounded-lg overflow-auto whitespace-pre-wrap mt-4"></pre>
             </div>
-
             <h4 class="text-xl font-bold mt-4 mb-2">Default Arguments</h4>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 A default argument is a parameter that is assigned a predefined value in the function definition. This makes the parameter optional during a function call. If a value is provided, it overrides the default; otherwise, the function uses the default value automatically.
             </p>
-            <div class="relative">
+            <div class="code-example relative">
                 <button class="copy-button">Copy</button>
-                <pre><code class="language-python">def greet(name="Guest"):
-    print(f"Hello, {name}!")
+                <textarea class="code-editor" spellcheck="false">def greet(name="Guest"):
+    print("Hello, {}!".format(name))
 greet() # Uses the default value, output: Hello, Guest!
-greet("Alice") # Overrides the default, output: Hello, Alice!</code></pre>
+greet("Alice") # Overrides the default, output: Hello, Alice!</textarea>
+                <button class="run-button flex items-center justify-center gap-2 px-4 py-2 mt-4 text-sm font-semibold rounded-full hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    Run Code
+                </button>
+                <pre class="output-area w-full min-h-[5rem] max-h-80 p-4 font-mono text-sm border-2 border-gray-700 rounded-lg overflow-auto whitespace-pre-wrap mt-4"></pre>
             </div>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 A significant pitfall for beginners is using a mutable object, like a list or dictionary, as a default value. The default value is created only once, when the function is defined, and is then shared across all future calls. This can cause unwanted side effects where changes from one function call persist in future calls. The correct practice is to use <code>None</code> as the default and create the mutable object inside the function.
             </p>
-
             <h4 class="text-xl font-bold mt-4 mb-2">Variable-Length Arguments (<code>*args</code> and <code>**kwargs</code>)</h4>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 Python allows functions to accept a variable number of arguments. This is useful when you don't know how many inputs you will have.
             </p>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 The <code>*args</code> syntax collects any number of positional arguments into a tuple. The name <code>args</code> is a convention, but any name with a single asterisk works.
             </p>
-            <div class="relative">
+            <div class="code-example relative">
                 <button class="copy-button">Copy</button>
-                <pre><code class="language-python">def calculate_sum(*numbers):
+                <textarea class="code-editor" spellcheck="false">def calculate_sum(*numbers):
     total = sum(numbers)
     return total
 print(calculate_sum(1, 2, 3)) # Output: 6
-print(calculate_sum(1, 2, 3, 4, 5)) # Output: 15</code></pre>
+print(calculate_sum(1, 2, 3, 4, 5)) # Output: 15</textarea>
+                <button class="run-button flex items-center justify-center gap-2 px-4 py-2 mt-4 text-sm font-semibold rounded-full hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    Run Code
+                </button>
+                <pre class="output-area w-full min-h-[5rem] max-h-80 p-4 font-mono text-sm border-2 border-gray-700 rounded-lg overflow-auto whitespace-pre-wrap mt-4"></pre>
             </div>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 The <code>**kwargs</code> syntax collects any number of keyword arguments into a dictionary. The name <code>kwargs</code> is a convention, but any name with a double asterisk works.
             </p>
-            <div class="relative">
+            <div class="code-example relative">
                 <button class="copy-button">Copy</button>
-                <pre><code class="language-python">def introduce(**details):
+                <textarea class="code-editor" spellcheck="false">def introduce(**details):
     for key, value in details.items():
-        print(f"{key}: {value}")
+        print("{}: {}".format(key, value))
 introduce(Name="Alice", Age=25, City="New York")
 # Output:
 # Name: Alice
 # Age: 25
-# City: New York</code></pre>
+# City: New York</textarea>
+                <button class="run-button flex items-center justify-center gap-2 px-4 py-2 mt-4 text-sm font-semibold rounded-full hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-4 focus:ring-500 focus:ring-opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    Run Code
+                </button>
+                <pre class="output-area w-full min-h-[5rem] max-h-80 p-4 font-mono text-sm border-2 border-gray-700 rounded-lg overflow-auto whitespace-pre-wrap mt-4"></pre>
             </div>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 You can use all of these argument types together. When you do, they must appear in a specific order in your function: positional, then default, then <code>*args</code>, and finally <code>**kwargs</code>.
             </p>
             <h4 class="text-xl font-bold mt-4 mb-2">Argument Summary Table</h4>
@@ -300,68 +422,71 @@ introduce(Name="Alice", Age=25, City="New York")
                 </tbody>
             </table>
         </section>
-        
         <hr class="border-t-2 border-gray-600 my-8">
-
         <!-- Chapter 3 -->
         <section class="section">
             <h2 class="text-3xl font-bold mb-4">Chapter 3: Managing Data with <code>return</code></h2>
             <h3 class="text-2xl font-bold mt-6 mb-2">Returning a Single Value</h3>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 The <code>return</code> statement is the main way a function sends a result back. The value that follows the <code>return</code> keyword can be any Python object.
             </p>
             <h4 class="text-xl font-bold mt-4 mb-2">The Special Case of <code>None</code></h4>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 If a function doesn't have a <code>return</code> statement, or if <code>return</code> is used without a value, it automatically returns the special value <code>None</code>. This is not an error, but an intentional design choice. A function returning <code>None</code> means it performed a task, like showing text on the screen or saving to a file, but it didn't produce a value to be used in a later step. It is a clear signal that the function's job was to do something, not to create a result.
             </p>
             <h4 class="text-xl font-bold mt-4 mb-2">Returning Multiple Values</h4>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 Python functions can return multiple values at once by separating them with commas. This works because of something called <b>"tuple packing"</b> and <b>"tuple unpacking."</b> Python always returns a single object. When a function returns comma-separated values, Python puts them into one tuple object. This tuple is then sent back. The caller can then unpack the tuple's contents into separate variables, making it look like multiple values were returned at the same time.
             </p>
-            <div class="relative">
+            <div class="code-example relative">
                 <button class="copy-button">Copy</button>
-                <pre><code class="language-python">def get_user_data():
+                <textarea class="code-editor" spellcheck="false">def get_user_data():
     return 'Anna', 23, 'anna123' # This is a tuple ('Anna', 23, 'anna123')
 name, age, id = get_user_data() # Unpacking the tuple
-print(f"Name: {name}, Age: {age}, ID: {id}")
-# Output: Name: Anna, Age: 23, ID: anna123</code></pre>
+print("Name: {}, Age: {}, ID: {}".format(name, age, id))
+# Output: Name: Anna, Age: 23, ID: anna123</textarea>
+                <button class="run-button flex items-center justify-center gap-2 px-4 py-2 mt-4 text-sm font-semibold rounded-full hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    Run Code
+                </button>
+                <pre class="output-area w-full min-h-[5rem] max-h-80 p-4 font-mono text-sm border-2 border-gray-700 rounded-lg overflow-auto whitespace-pre-wrap mt-4"></pre>
             </div>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 This packing and unpacking is a core part of Python. It shows that what looks like a complex return is actually a simple process.
             </p>
         </section>
-        
         <hr class="border-t-2 border-gray-600 my-8">
-
         <!-- Chapter 4 -->
         <section class="section">
             <h2 class="text-3xl font-bold mb-4">Chapter 4: The World of Variable Scope</h2>
             <h3 class="text-2xl font-bold mt-6 mb-2">Introducing Scope</h3>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 Variable <b>scope</b> is the area of your program where a variable can be seen and used. Understanding scope is vital for avoiding common errors like <code>NameError</code> and for writing clean, predictable code. Python follows a rule called <b>LEGB</b> to find a variable: Local, Enclosing, Global, and Built-in.
             </p>
-            <ul class="list-disc pl-5 space-y-2 text-gray-300">
+            <ul class="list-disc pl-5 space-y-2">
                 <li><b>Local Scope:</b> This is the innermost scope. Variables created inside a function are local to that function. They can only be used from within that function. They are created when the function is called and disappear when it finishes.</li>
                 <li><b>Enclosing Scope:</b> This scope is for nested functions. A variable in an outer function can be used by an inner function.</li>
                 <li><b>Global Scope:</b> This is the top-level scope of a script. Variables created outside of any function are global and can be used anywhere in the program.</li>
                 <li><b>Built-in Scope:</b> This is the widest scope. It holds all of Python's pre-defined names, like <code>print()</code> and <code>len()</code>. These names are always available.</li>
             </ul>
-
             <h3 class="text-2xl font-bold mt-6 mb-2">The <code>global</code> Keyword</h3>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 By default, if you set a variable inside a function, Python creates a new local variable, even if a global variable with the same name exists. This is called <b>"shadowing."</b> It's a safety feature that stops a function from accidentally changing a global variable. This prevents bugs that are hard to find.
             </p>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 To intentionally change a global variable from inside a function, you must use the <b><code>global</code> keyword</b>. When you declare <code>global variable_name</code> inside a function, you tell Python to change the variable in the global scope instead of making a new local one.
             </p>
-            <div class="relative">
+            <div class="code-example relative">
                 <button class="copy-button">Copy</button>
-                <pre><code class="language-python">x = 10 # Global variable
+                <textarea class="code-editor" spellcheck="false">x = 10 # Global variable
 def modify_x():
-    x = 5 # Creates a new local variable, x
-    print(f"Inside: x is now {x}")
+    # This creates a new local variable 'x'
+    x = 5 
+    print("Inside: x is now {}".format(x))
 modify_x()
-print(f"Outside: x is still {x}")
+print("Outside: x is still {}".format(x))
 # Output:
 # Inside: x is now 5
 # Outside: x is still 10
@@ -369,14 +494,21 @@ print(f"Outside: x is still {x}")
 def modify_global_x():
     global x # Declares intent to modify the global variable
     x = 5 # Modifies the global x
-    print(f"Inside: x is now {x}")
+    print("Inside: x is now {}".format(x))
 modify_global_x()
-print(f"Outside: x is now {x}")
+print("Outside: x is now {}".format(x))
 # Output:
 # Inside: x is now 5
-# Outside: x is now 5</code></pre>
+# Outside: x is now 5</textarea>
+                <button class="run-button flex items-center justify-center gap-2 px-4 py-2 mt-4 text-sm font-semibold rounded-full hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    Run Code
+                </button>
+                <pre class="output-area w-full min-h-[5rem] max-h-80 p-4 font-mono text-sm border-2 border-gray-700 rounded-lg overflow-auto whitespace-pre-wrap mt-4"></pre>
             </div>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 Using the <code>global</code> keyword is a choice you make on purpose. It overrides Python's default safety, so you should use it with care. Changing a shared variable from different parts of a program can create complex dependencies and make debugging much harder.
             </p>
             <h4 class="text-xl font-bold mt-4 mb-2">Variable Scope Comparison</h4>
@@ -417,46 +549,50 @@ print(f"Outside: x is now {x}")
                 </tbody>
             </table>
         </section>
-        
         <hr class="border-t-2 border-gray-600 my-8">
-
         <!-- Chapter 5 -->
         <section class="section">
             <h2 class="text-3xl font-bold mb-4">Chapter 5: Exploring Advanced Functional Concepts</h2>
             <h3 class="text-2xl font-bold mt-6 mb-2">Lambda Functions: The One-Liner for Simple Tasks</h3>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 A <b>lambda function</b> is a small, anonymous function. You create it with the <code>lambda</code> keyword. It's "anonymous" because it has no name, though you can save it to a variable. The syntax is short: <code>lambda arguments: expression</code>. The function body is a single line of code, and its result is returned automatically, without needing a <code>return</code> statement.
             </p>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 Lambda functions are not a replacement for regular functions. They are a lightweight tool for when you need a simple function that won't be used again. They are often used as inputs for <b>higher-order functions</b>—functions that take other functions as arguments. Examples include:
             </p>
-            <ul class="list-disc pl-5 space-y-2 text-gray-300">
+            <ul class="list-disc pl-5 space-y-2">
                 <li><code>map()</code>: Applies a function to every item in a list or other iterable. It creates a new iterable with the results.</li>
                 <li><code>filter()</code>: Creates a new iterable from items that meet a certain condition.</li>
                 <li><code>sorted()</code>: Sorts a list based on a custom rule.</li>
             </ul>
-            <div class="relative">
+            <div class="code-example relative">
                 <button class="copy-button">Copy</button>
-                <pre><code class="language-python">numbers = [1, 2, 3, 4, 5, 6]
+                <textarea class="code-editor" spellcheck="false">numbers = [1, 2, 3, 4, 5, 6]
 # Use lambda with map() to double each number
 doubled_numbers = list(map(lambda x: x * 2, numbers))
 print(doubled_numbers) # Output: [2, 4, 6, 8, 10, 12]
 
 # Use lambda with filter() to get only even numbers
 evens = list(filter(lambda x: x % 2 == 0, numbers))
-print(evens) # Output: [2, 4, 6]</code></pre>
+print(evens) # Output: [2, 4, 6]</textarea>
+                <button class="run-button flex items-center justify-center gap-2 px-4 py-2 mt-4 text-sm font-semibold rounded-full hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    Run Code
+                </button>
+                <pre class="output-area w-full min-h-[5rem] max-h-80 p-4 font-mono text-sm border-2 border-gray-700 rounded-lg overflow-auto whitespace-pre-wrap mt-4"></pre>
             </div>
-
             <h3 class="text-2xl font-bold mt-6 mb-2">Recursive Functions</h3>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 A <b>recursive function</b> is one that calls itself to solve a problem. This is often used for problems that can be broken down into smaller, similar sub-problems, like calculating a factorial.
             </p>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 Every recursive function needs a <b>base case</b>. The base case is a condition that tells the function when to stop calling itself. This prevents an endless loop. Without a base case, the function will keep calling itself forever, which will lead to a <code>RecursionError</code>.
             </p>
-            <div class="relative">
+            <div class="code-example relative">
                 <button class="copy-button">Copy</button>
-                <pre><code class="language-python">def factorial(n):
+                <textarea class="code-editor" spellcheck="false">def factorial(n):
     # Base case: if n is 1, stop the recursion and return 1
     if n == 1:
         return 1
@@ -464,149 +600,147 @@ print(evens) # Output: [2, 4, 6]</code></pre>
         # Recursive case: call the function with a smaller number
         return n * factorial(n - 1)
 print(factorial(5)) # Output: 120
-# 5 * factorial(4) -> 5 * (4 * factorial(3)) ->...</code></pre>
+# 5 * factorial(4) -> 5 * (4 * factorial(3)) ->...</textarea>
+                <button class="run-button flex items-center justify-center gap-2 px-4 py-2 mt-4 text-sm font-semibold rounded-full hover:bg-green-700 transition duration-300 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                    </svg>
+                    Run Code
+                </button>
+                <pre class="output-area w-full min-h-[5rem] max-h-80 p-4 font-mono text-sm border-2 border-gray-700 rounded-lg overflow-auto whitespace-pre-wrap mt-4"></pre>
             </div>
         </section>
-        
         <hr class="border-t-2 border-gray-600 my-8">
-
         <!-- Chapter 6 -->
         <section class="section">
             <h2 class="text-3xl font-bold mb-4">Chapter 6: Practical Applications and Real-World Examples</h2>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 The real power of functions shows up when you use them to solve real problems. They are the basic parts for building complex apps in many different areas.
             </p>
             <h4 class="text-xl font-bold mt-4 mb-2">Data Processing and Analysis:</h4>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 In data science, functions are used for tasks that repeat. For example, you can write a function to clean raw data, and then reuse it on many different datasets. Python tools like Pandas and NumPy are built on this idea. They let data experts create reusable pipelines that can automatically collect, clean, and analyze data.
             </p>
             <h4 class="text-xl font-bold mt-4 mb-2">Web Development and Automation:</h4>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 Functions are the core logic in web frameworks like Django and Flask. There, each web address can be linked to a specific function. In automation, you can create a function to handle a repeated task, like reading from a spreadsheet and sending an email. This way of building code creates strong, easy-to-manage systems that you can change and add to.
             </p>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 A good example of this is a score-averaging system. By breaking the task into smaller functions like <code>promptAndProcess()</code> and <code>processScores()</code>, the program becomes a series of logical steps instead of one large block of code. This <b>separation of concerns</b> makes debugging easier and makes the program simpler to read and maintain.
             </p>
         </section>
-        
         <hr class="border-t-2 border-gray-600 my-8">
-
         <!-- Chapter 7 -->
         <section class="section">
             <h2 class="text-3xl font-bold mb-4">Chapter 7: Writing Clean, Professional Python</h2>
             <h3 class="text-2xl font-bold mt-6 mb-2">Best Practices for Function Design</h3>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 To write good, professional Python code, you should follow a few key rules.
             </p>
             <h4 class="text-xl font-bold mt-4 mb-2">The Single Responsibility Principle:</h4>
-            <p class="text-gray-300 mb-4">
+            <p class="mb-4">
                 A function should do "one thing and do it well." A function that tries to do too many things is a sign that you should split it up. Breaking it into smaller, focused functions, like <code>calculate_metrics()</code> and <code>write_report()</code>, makes the code easier to understand, test, and manage.
             </p>
-            <h4 class="text-xl font-bold mt-4 mb-2">Documentation and Clarity:</h4>
-            <p class="text-gray-300 mb-4">
-                It's very important to document your functions. <b>Docstrings</b> are multi-line strings at the start of a function that explain what it does, its parameters, and what it returns. This documentation is a huge help to other developers (and your future self). Also, using clear names for functions and parameters is a simple but powerful way to improve code readability.
+            <h4 class="text-xl font-bold mt-4 mb-2">The Don't Repeat Yourself (DRY) Principle:</h4>
+            <p class="mb-4">
+                Whenever you find yourself copying and pasting the same code, it's a good sign that it needs to be put into a function. Functions help you make changes to your code in just one place, which avoids mistakes and saves time.
             </p>
-            <h4 class="text-xl font-bold mt-4 mb-2">Type Hints:</h4>
-            <p class="text-gray-300 mb-4">
-                Python is a dynamically typed language, but adding <b>type hints</b> (e.g., <code>def add(a: int, b: int) -> int:</code>) shows the expected data types. These hints don't change how the code runs, but they serve as great documentation and can help tools catch type-related errors before you even run the code.
+            <h4 class="text-xl font-bold mt-4 mb-2">Use Clear Names:</h4>
+            <p class="mb-4">
+                Give your functions clear, descriptive names. A name like <code>calculate_average_score()</code> is much more helpful than <code>calc_avg()</code>. Clear names make your code easier to read for others and for your future self.
             </p>
-            <h3 class="text-2xl font-bold mt-6 mb-2">Common Pitfalls and How to Avoid Them</h3>
-            <p class="text-gray-300 mb-4">
-                Even experienced developers can make mistakes. Knowing how to spot and prevent common errors is a key part of learning.
+            <h4 class="text-xl font-bold mt-4 mb-2">Write Docstrings and Comments:</h4>
+            <p class="mb-4">
+                Use comments and docstrings to explain what your function does, what its parameters are, and what it returns. Good documentation is crucial for making your code easy to use and maintain.
             </p>
-            <ul class="list-disc pl-5 space-y-2 text-gray-300">
-                <li><b>Forgetting Parentheses:</b> Beginners often forget the parentheses when calling a function. Without the parentheses, Python sees the function as an object, not as a command to run the code. This will not cause an error but will lead to unexpected behavior, as the program will try to use the function object itself.</li>
-                <li><b>Missing Colons and Indentation:</b> Python uses colons to start a new code block and indentation to define its scope. Forgetting a colon at the end of a function definition or using inconsistent indentation will result in a <code>SyntaxError</code> or <code>IndentationError</code>.</li>
-                <li><b>Mixing Positional and Keyword Arguments:</b> When a function uses both positional and keyword arguments, positional arguments must always come first in the function call. If you don't follow this rule, you will get a <code>SyntaxError</code>.</li>
-                <li><b>Scope Misunderstanding:</b> If you try to change a global variable inside a function without using the <code>global</code> keyword, you will get an <code>UnboundLocalError</code>. This happens because Python assumes you want to create a new local variable, but you haven't given it a value yet. To avoid this, either use the <code>global</code> keyword or pass the variable as an argument and return the changed value.</li>
-            </ul>
-            <h4 class="text-xl font-bold mt-4 mb-2">Common Error Table</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Error Type</th>
-                        <th>Cause</th>
-                        <th>Example</th>
-                        <th>Solution</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>SyntaxError</code></td>
-                        <td>Missing a colon or parentheses.</td>
-                        <td><code>def my_func()</code></td>
-                        <td><code>def my_func():</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>TypeError</code></td>
-                        <td>Passing an incorrect data type or the wrong number of arguments.</td>
-                        <td><code>print("Hello" + 5)</code></td>
-                        <td><code>print("Hello" + str(5))</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>NameError</code></td>
-                        <td>Referencing a variable or function that has not been defined.</td>
-                        <td><code>print(my_variable)</code></td>
-                        <td>Define <code>my_variable</code> before using it.</td>
-                    </tr>
-                    <tr>
-                        <td><code>IndentationError</code></td>
-                        <td>Inconsistent or incorrect use of whitespace.</td>
-                        <td><code>def my_func(): print("Hello")</code> (un-indented)</td>
-                        <td><pre><code>def my_func():
-    print("Hello")</code></pre></td>
-                    </tr>
-                    <tr>
-                        <td><code>UnboundLocalError</code></td>
-                        <td>Attempting to modify a global variable without using the <code>global</code> keyword.</td>
-                        <td><code>x = 5<br>def my_func():<br>&nbsp;&nbsp;&nbsp;&nbsp;x += 1</code></td>
-                        <td><code>global x<br>x = 5</code></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-        
-        <hr class="border-t-2 border-gray-600 my-8">
-
-        <!-- Conclusion -->
-        <section class="section">
-            <h2 class="text-3xl font-bold mb-4">Conclusion</h2>
-            <p class="text-gray-300 mb-4">
-                The journey from a beginner to an expert in Python functions is a progression from simple syntax to nuanced design principles. Functions are more than just a way to avoid writing the same code twice. They are a powerful tool for structuring and managing complex programs. By understanding the core mechanics—like the difference between <code>print</code> and <code>return</code>, the types of arguments, and the rules of variable scope—you can turn your simple code into a professional application. Mastering these ideas is key to moving on to more advanced topics. It is the path to becoming a truly skilled programmer.
+            <p class="mb-4">
+                These principles are about creating code that is not just correct, but also easy for other people to read and understand. By following them, you can build programs that are strong, reliable, and simple to change in the future.
             </p>
         </section>
     </div>
 
+    <!-- Skulpt Libraries -->
+    <script src="https://www.pythonsandbox.com/js/skulpt.min.js"></script>
+    <script src="https://www.pythonsandbox.com/js/skulpt-stdlib.js"></script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const codeBlocks = document.querySelectorAll('.relative');
+            const codeExamples = document.querySelectorAll('.code-example');
+            
+            // Mode Toggle Logic
+            const modeToggle = document.getElementById('mode-toggle');
+            const body = document.body;
+            const localStorageKey = 'colorMode';
 
-            codeBlocks.forEach(block => {
-                const copyButton = block.querySelector('.copy-button');
-                const codeElement = block.querySelector('code');
+            // Check for saved preference or system preference
+            const savedMode = localStorage.getItem(localStorageKey);
+            const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+
+            if (savedMode) {
+                body.classList.toggle('light-mode', savedMode === 'light');
+                modeToggle.textContent = savedMode === 'light' ? 'Night Mode' : 'Day Mode';
+            } else if (prefersLight) {
+                body.classList.add('light-mode');
+                modeToggle.textContent = 'Night Mode';
+            }
+
+            modeToggle.addEventListener('click', () => {
+                body.classList.toggle('light-mode');
+                const isLight = body.classList.contains('light-mode');
+                localStorage.setItem(localStorageKey, isLight ? 'light' : 'dark');
+                modeToggle.textContent = isLight ? 'Night Mode' : 'Day Mode';
+            });
+
+            codeExamples.forEach(example => {
+                const codeEditor = example.querySelector('.code-editor');
+                const runButton = example.querySelector('.run-button');
+                const outputArea = example.querySelector('.output-area');
+                const copyButton = example.querySelector('.copy-button');
+                
+                // Set up Skulpt
+                function outf(text) {
+                    outputArea.textContent += text;
+                }
+
+                function builtinRead(x) {
+                    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                        throw "File not found: '" + x + "'";
+                    return Sk.builtinFiles["files"][x];
+                }
+
+                runButton.addEventListener('click', () => {
+                    outputArea.textContent = ''; // Clear previous output
+                    
+                    Sk.configure({
+                        output: outf,
+                        read: builtinRead,
+                        input: (s) => prompt(s)
+                    });
+                    
+                    Sk.misceval.asyncToPromise(() => Sk.importMainWithBody("<stdin>", false, codeEditor.value, true))
+                        .then(() => {
+                            // Success
+                        })
+                        .catch(err => {
+                            outputArea.textContent = err.toString();
+                        });
+                });
 
                 copyButton.addEventListener('click', () => {
-                    const textToCopy = codeElement.innerText;
-
-                    // Use document.execCommand('copy') for better cross-browser support in a sandbox environment
-                    const tempTextArea = document.createElement('textarea');
-                    tempTextArea.value = textToCopy;
-                    document.body.appendChild(tempTextArea);
-                    tempTextArea.select();
-                    tempTextArea.setSelectionRange(0, 99999); // For mobile devices
-
-                    try {
-                        document.execCommand('copy');
-                        copyButton.innerText = 'Copied!';
-                        setTimeout(() => {
-                            copyButton.innerText = 'Copy';
-                        }, 2000);
-                    } catch (err) {
-                        console.error('Failed to copy text: ', err);
-                    } finally {
-                        document.body.removeChild(tempTextArea);
-                    }
+                    const code = codeEditor.value;
+                    document.execCommand('copy');
                 });
+            });
+        });
+
+        // Fallback for document.execCommand('copy') in modern browsers
+        document.addEventListener('copy', function(e) {
+            const codeEditors = document.querySelectorAll('.code-editor');
+            codeEditors.forEach(editor => {
+                if (window.getSelection().toString() === editor.value) {
+                    e.clipboardData.setData('text/plain', editor.value);
+                    e.preventDefault();
+                }
             });
         });
     </script>
