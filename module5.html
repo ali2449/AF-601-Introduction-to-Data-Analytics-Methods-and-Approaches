@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 5: Object-Oriented Data Modeling in Health Informatics</title>
+    <!-- Tailwind CSS for styling the container and layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Skulpt for running Python in the browser -->
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+
+    <!-- CodeMirror Assets for VS Code-like editing and highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <!-- CodeMirror Theme: Monokai (A classic dark IDE theme) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+        
+        /* Theme Variables */
+        :root {
+            /* Dark Theme (Default) */
+            --bg-color: #0f172a; /* Slate 900 */
+            --text-color: #e2e8f0; /* Slate 200 */
+            --section-bg: #1e293b; /* Slate 800 */
+            --code-bg: #020617; /* Slate 950 (Deeper black for code) */
+            --border-color: #334155; /* Slate 700 */
+            --header-color: #38bdf8; /* Sky 400 */
+            --accent-color: #6366f1; /* Indigo 500 */
+            --accent-hover: #4f46e5; /* Indigo 600 */
+            --error-color: #f87171; /* Red 400 */
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f1f5f9; /* Slate 100 */
+            --text-color: #1e293b; /* Slate 800 */
+            --section-bg: #ffffff; /* White */
+            --code-bg: #f8fafc; /* Slate 50 */
+            --border-color: #e2e8f0; /* Slate 200 */
+            --header-color: #1d4ed8; /* Blue 700 */
+            --accent-color: #4f46e5; /* Indigo 600 */
+            --accent-hover: #4338ca; /* Indigo 700 */
+            --error-color: #dc2626; /* Red 600 */
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1, h2 {
+            color: var(--header-color);
+        }
+
+        .section-card {
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+        
+        /* NEW: Secondary button for the theme toggle */
+        .btn-secondary {
+            background-color: var(--section-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+        }
+
+        /* CodeMirror Styling Overrides */
+        .CodeMirror {
+            height: 300px; /* Fixed height for code editor */
+            border-radius: 0.5rem;
+            font-size: 14px;
+            font-family: monospace;
+        }
+        
+        .CodeMirror-vscrollbar, .CodeMirror-hscrollbar {
+            /* Hide default scrollbars for a cleaner look */
+            display: none !important; 
+        }
+
+        /* Custom scrollbar for output area */
+        .output-area {
+            max-height: 150px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            background-color: var(--code-bg);
+            border-top: 1px solid var(--border-color);
+            border-radius: 0 0 0.5rem 0.5rem;
+            color: var(--text-color);
+            padding: 0.75rem;
+        }
+        
+        /* Tailwind-based Error Text Color (used by JS) */
+        .text-red-400 {
+            color: var(--error-color);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen">
+
+    <div class="max-w-4xl mx-auto">
+        <header class="flex justify-between items-center mb-6 pb-4 border-b border-border-color">
+            <h1 class="text-3xl font-extrabold">Module 5: Object-Oriented Data Modeling in Health Informatics</h1>
+            <!-- UPDATED: Added btn-secondary class for theme consistency -->
+            <button id="theme-toggle" class="btn-secondary px-4 py-2 rounded-lg font-semibold shadow-md transition-colors">
+                <!-- Initial text is set by JavaScript -->
+            </button>
+        </header>
+
+        <p class="mb-6 text-lg text-justify">
+            Object-oriented programming (OOP) is fundamental for building reliable, scalable data systems, especially in Health Informatics where data integrity is paramount. In environments like Electronic Health Records (EHRs) and clinical research, OOP allows us to use a <strong>Class</strong> as a formal, self-contained blueprint for real-world entities like a `Patient`, `Procedure`, or `InsuranceClaim`. This approach enforces <strong>encapsulation</strong>, which bundles data (attributes) and the logic (methods) that govern that data, preventing unauthorized or improper changes. By leveraging inheritance and polymorphism, we can build modular systems that easily adapt to new data standards (e.g., ICD-11, HL7 FHIR) and specialized analysis models, making complex data governance and maintenance significantly simpler.
+        </p>
+
+        <!-- Python Editor Section 1: The Class and The Object -->
+        <section class="section-card p-4 rounded-xl mb-8">
+            <h2 class="text-2xl font-bold mb-4">1. The Class and The Object: Modeling Data Entities</h2>
+            <p class="mb-4 text-justify">
+                In Object-Oriented Programming, the fundamental distinction is between the <strong>Class</strong> and the <strong>Object</strong>. A <strong>Class</strong> acts as a standardized template or blueprint for a complex data entity in a healthcare system, such as a `PatientRecord` or `LabResult`. It defines the structure: what data fields (attributes) it must contain and what actions (methods) it can perform. An <strong>Object</strong>, or <strong>Instance</strong>, is a specific, concrete item created from that blueprint—for example, the record for "Jane Doe, ID 4859" is one object, and the record for "John Smith, ID 1234" is another. Both are built from the same class, but hold unique data. The example code introduces a <strong>class attribute</strong>, `DATA_STANDARD`. This attribute is defined directly within the class body and is <strong>shared by every object</strong> created from that class. In health informatics, class attributes are essential for maintaining system-wide consistency, defining things like the version of a coding system (e.g., HL7 v2.5, ICD-10) that all current records must adhere to. When you change a class attribute, the change is immediately reflected across all existing instances, ensuring uniformity.
+            </p>
+            <div class="code-container w-full">
+                <!-- Code Editor Area -->
+                <textarea id="editor1" class="code-editor" name="code-editor">
+# Defining a Simple Patient Class
+class PatientRecord:
+    """Blueprint for a basic patient record."""
+    DATA_STANDARD = "HL7 v2.5" # Class attribute
+
+# Instantiating a Record Object
+record1 = PatientRecord()
+record2 = PatientRecord()
+
+print(f"Record 1 Standard: {record1.DATA_STANDARD}")
+print(f"Record 2 Standard: {record2.DATA_STANDARD}")
+
+# Key Concept: Change the class attribute below and re-run.
+# You will see it changes for BOTH records, proving it is shared data.
+PatientRecord.DATA_STANDARD = "HL7 v3.0" 
+print(f"New Standard for Record 1: {record1.DATA_STANDARD}")
+                </textarea>
+
+                <div class="flex justify-end space-x-2 mt-4">
+                    <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white">
+                        Run Code
+                    </button>
+                    <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors">
+                        Copy Code
+                    </button>
+                </div>
+
+                <div class="output-area text-sm mt-4 rounded-xl">
+                    Click 'Run Code' to see output...
+                </div>
+            </div>
+        </section>
+
+        <!-- Python Editor Section 2: The Constructor (__init__()) -->
+        <section class="section-card p-4 rounded-xl mb-8">
+            <h2 class="text-2xl font-bold mb-4">2. The Constructor (`__init__()`): Initializing Instance Data</h2>
+            <p class="mb-4 text-justify">
+                The `__init__()` function is the <strong>constructor</strong> method in Python, and its primary job is to <strong>initialize</strong> a new object instance immediately after it's created. When you call `PatientRecord("456", "C34.9")`, Python first creates an empty `PatientRecord` object, and then it automatically calls `__init__()` on that object.
+
+                Crucially, the constructor requires the <strong>`self`</strong> parameter as its first argument. This <strong>`self`</strong> is a mandatory reference that points to the specific, brand-new instance being created. Inside `__init__`, we use <strong>`self`</strong> to define <strong>instance attributes</strong> (like `self.patient_id = patient_id`). These attributes hold the unique data for *only* that object, unlike the shared class attributes from Section 1. In Health Informatics, using `__init__` to enforce required parameters (like a unique patient ID and a diagnosis code) is vital for data integrity, ensuring that no patient record is ever created without these essential, identifying details.
+            </p>
+            <div class="code-container w-full">
+                <!-- Code Editor Area -->
+                <textarea id="editor2" class="code-editor" name="code-editor">
+# Initializing Unique Patient Attributes
+class PatientRecord:
+    DATA_STANDARD = "HL7 v2.5"
+
+    def __init__(self, patient_id, diagnosis_code):
+        # Instance attributes (unique to each object)
+        # 'self' receives the object instance and sets its unique data
+        self.patient_id = patient_id
+        self.diagnosis_code = diagnosis_code
+
+# Creating Data Instances
+patient_a = PatientRecord("456", "C34.9")
+patient_b = PatientRecord("789", "J45.9")
+
+print(f"Patient A ID: {patient_a.patient_id}")
+print(f"Patient B Diagnosis: {patient_b.diagnosis_code}")
+
+# Note: patient_a.patient_id and patient_b.diagnosis_code are independent.
+# patient_a.patient_id is NOT the same as patient_b.patient_id.
+                </textarea>
+
+                <div class="flex justify-end space-x-2 mt-4">
+                    <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white">
+                        Run Code
+                    </button>
+                    <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors">
+                        Copy Code
+                    </button>
+                </div>
+
+                <div class="output-area text-sm mt-4 rounded-xl">
+                    Click 'Run Code' to see output...
+                </div>
+            </div>
+        </section>
+
+        <!-- Python Editor Section 3: Instance Methods and The self Parameter -->
+        <section class="section-card p-4 rounded-xl mb-8">
+            <h2 class="text-2xl font-bold mb-4">3. Instance Methods and The `self` Parameter</h2>
+            <p class="mb-4 text-justify">
+                The `calculate_cost_per_day` function shown here is an example of an <strong>Instance Method</strong>—a function defined inside a class that operates exclusively on the data contained within a specific object. The crucial, mandatory first parameter in every instance method is <strong>`self`</strong>. This keyword acts as an automatic, internal reference to the object itself (the specific patient record) that is currently calling the method.
+
+                When you execute `record.calculate_cost_per_day(2500.00)`, Python doesn't just pass the total bill; it internally executes it as `PatientRecord.calculate_cost_per_day(record, 2500.00)`. The `record` object is automatically bound to the <strong>`self`</strong> parameter. This binding is what allows the method's logic to access and use the unique <strong>instance attributes</strong> (like `self.patient_id` and `self.length_of_stay`) defined in the constructor. In clinical data management, instance methods are essential for performing calculations specific to a single patient's data—such as calculating a unique risk score, length of stay, or, as shown here, the average daily cost—ensuring that the computation is entirely encapsulated and correct for that record alone.
+            </p>
+            <div class="code-container w-full">
+                <!-- Code Editor Area -->
+                <textarea id="editor3" class="code-editor" name="code-editor">
+class PatientRecord:
+    def __init__(self, patient_id, length_of_stay):
+        self.patient_id = patient_id
+        self.length_of_stay = length_of_stay
+
+    def calculate_cost_per_day(self, total_bill):
+        """Calculates cost per day for this specific record."""
+        # 'self.length_of_stay' uses the unique value of the calling object (record)
+        if self.length_of_stay > 0:
+            return total_bill / self.length_of_stay
+        return 0
+
+# Create an object (record) and call the method on it.
+record = PatientRecord("101", 5)
+cost = record.calculate_cost_per_day(2500.00)
+
+print(f"Record {record.patient_id}: Length of Stay={record.length_of_stay} days")
+print(f"Cost per day is ${cost:.2f}")
+
+# Note: The method automatically gets the 'record' object as its 'self' argument.
+                </textarea>
+
+                <div class="flex justify-end space-x-2 mt-4">
+                    <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white">
+                        Run Code
+                    </button>
+                    <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors">
+                        Copy Code
+                    </button>
+                </div>
+
+                <div class="output-area text-sm mt-4 rounded-xl">
+                    Click 'Run Code' to see output...
+                </div>
+            </div>
+        </section>
+
+        <!-- Python Editor Section 4: The __str__() Method -->
+        <section class="section-card p-4 rounded-xl mb-8">
+            <h2 class="text-2xl font-bold mb-4">4. The `__str__()` Method for Structured Output</h2>
+            <p class="mb-4 text-justify">
+                The <strong>`__str__`</strong> method (often called a "dunder" or magic method) defines the <strong>official, human-readable string representation</strong> of an object. Its primary purpose is to provide a clean, user-friendly summary when the object needs to be displayed as text. This happens automatically when you use the built-in Python functions `print()` or `str()` on an object instance.
+
+                Without `__str__`, Python defaults to showing a generic, often cryptic description that includes the object's class and its memory address (e.g., `&lt;__main__.PatientRecord object at 0x...&gt;`)—which is useless for debugging or auditing.
+
+                In data-intensive fields like Health Informatics, defining a precise `__str__` is vital. It guarantees a standardized format for key data points (like "Patient ID: [ID], Status: [Status]"), which is essential for:
+                1. <strong>Logging:</strong> Creating clear, concise entries in system logs for monitoring object state changes.
+                2. <strong>Debugging:</strong> Quickly inspecting an object's contents without having to access individual attributes.
+                3. <strong>Reporting:</strong> Generating immediate, standardized summaries for user interfaces or data checks.
+            </p>
+            <div class="code-container w-full">
+                <!-- Code Editor Area -->
+                <textarea id="editor4" class="code-editor" name="code-editor">
+class PatientRecord:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __str__(self):
+        # This custom output is much more readable than the default object description.
+        # It uses f-string formatting for a clean summary.
+        return f"Patient Summary: Name={self.name}, Age={self.age} years."
+
+record = PatientRecord("Jane Doe", 67)
+
+# Calling print() or str() on the object uses the __str__ method
+print("--- Custom Output ---")
+print(record)
+# The default output would be: <__main__.PatientRecord object at 0x...>
+                </textarea>
+
+                <div class="flex justify-end space-x-2 mt-4">
+                    <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white">
+                        Run Code
+                    </button>
+                    <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors">
+                        Copy Code
+                    </button>
+                </div>
+
+                <div class="output-area text-sm mt-4 rounded-xl">
+                    Click 'Run Code' to see output...
+                </div>
+            </div>
+        </section>
+
+        <!-- Python Editor Section 5: Class vs. Instance Variables -->
+        <section class="section-card p-4 rounded-xl mb-8">
+            <h2 class="text-2xl font-bold mb-4">5. Class Variables vs. Instance Variables: Consistency vs. Uniqueness</h2>
+            <p class="mb-4 text-justify">
+                Understanding the correct use of <strong>Class Variables</strong> and <strong>Instance Variables</strong> is fundamental to creating reliable data models. They serve two completely different, but equally critical, purposes:
+
+                <br><br>
+                1.  <strong>Class Variables (Shared Standards):</strong>
+                    These variables are defined directly inside the class body (outside of any method, like `CODING_VERSION`). They are <strong>shared by every single object</strong> of that class. They should be used for information that must be <strong>consistent</strong> across the entire system or study, such as global constants, default values, or, as shown, <strong>standardized medical terminology versions.</strong> If the system's standard version needs to change, you update this variable *once* on the class itself, and all records instantly adhere to the new standard (e.g., migrating from ICD-10 to ICD-11).
+
+                <br><br>
+                2.  <strong>Instance Variables (Unique Data):</strong>
+                    These are created inside the `__init__` method using the <strong>`self`</strong> keyword (e.g., `self.patient_name`). They hold data that is <strong>unique</strong> to a specific object. These are the actual patient details like name, height, weight, or lab results. Changing the height attribute of one patient object *will not* affect any other patient object, which is vital for patient data accuracy and isolation.
+            </p>
+            <div class="code-container w-full">
+                <!-- Code Editor Area -->
+                <textarea id="editor5" class="code-editor" name="code-editor">
+# Demonstrating shared coding standards vs. unique data points.
+class ClinicalRecord:
+    # Class Variable: Shared across all instances for consistency
+    CODING_VERSION = "ICD-10-CM 2024" 
+    
+    def __init__(self, patient_name, height_cm):
+        # Instance Variables: Unique to each record
+        self.patient_name = patient_name
+        self.height_cm = height_cm
+
+r1 = ClinicalRecord("Alice", 175)
+r2 = ClinicalRecord("Bob", 188)
+
+print(f"Record 1 Name: {r1.patient_name}, Height: {r1.height_cm} cm")
+print(f"Record 2 Name: {r2.patient_name}, Height: {r2.height_cm} cm")
+print(f"Shared Coding Version: {ClinicalRecord.CODING_VERSION}")
+
+# IMPORTANT: Change the shared standard using the CLASS name
+ClinicalRecord.CODING_VERSION = "ICD-11 2025"
+
+# Now, all existing records instantly reflect the new standard, even though they hold unique patient data.
+print(f"--- After System Update ---")
+print(f"Record 1 Version: {r1.CODING_VERSION}")
+print(f"Record 2 Version: {r2.CODING_VERSION}")
+                </textarea>
+
+                <div class="flex justify-end space-x-2 mt-4">
+                    <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white">
+                        Run Code
+                    </button>
+                    <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors">
+                        Copy Code
+                    </button>
+                </div>
+
+                <div class="output-area text-sm mt-4 rounded-xl">
+                    Click 'Run Code' to see output...
+                </div>
+            </div>
+        </section>
+
+        <!-- Python Editor Section 6: Getter and Setter Methods (@property) -->
+        <section class="section-card p-4 rounded-xl mb-8">
+            <h2 class="text-2xl font-bold mb-4">6. Getter and Setter Methods (`@property`) for Data Validation</h2>
+            <p class="mb-4 text-justify">
+                The most fundamental principle of reliable data modeling is <strong>Encapsulation</strong>: bundling data and the methods that operate on that data. In Python, the <strong>`@property`</strong> decorator is the standard, elegant way to implement this by turning simple attribute access (like `p.age`) into a controlled function call.
+
+                <br><br>
+                1.  <strong>Direct Access vs. Controlled Access:</strong>
+                    If you allow direct setting of an attribute (e.g., `p.age = 150`), there's nothing to stop users or other parts of the program from entering invalid data, which is catastrophic in health records. The <strong>`@property`</strong> mechanism forces data to pass through a <strong>Setter method</strong> before being stored.
+
+                <br><br>
+                2.  <strong>The Getter (`@property`):</strong>
+                    The first function, decorated with just <strong>`@property`</strong>, is the <strong>Getter</strong>. It's responsible for retrieving the stored value. Crucially, it allows you to read the value using simple dot notation (`p.age`), making it look like a direct attribute access, even though it's executing a function behind the scenes.
+
+                <br><br>
+                3.  <strong>The Setter (`@attribute.setter`):</strong>
+                    The second function, decorated with <strong>`@attribute.setter`</strong> (in our case, `@age.setter`), is the <strong>Setter</strong>. This is where the <strong>validation logic</strong> lives. When a value is assigned (e.g., `p.age = 150`), the setter function intercepts the assignment, checks the value against predefined rules (like an age range of 0-120), and only updates the actual, hidden <strong>private attribute</strong> (`self._age`) if the rules are met. This ensures that only clean, valid data ever enters the object.
+            </p>
+            <div class="code-container w-full">
+                <!-- Code Editor Area -->
+                <textarea id="editor6" class="code-editor" name="code-editor">
+# Enforcing data constraints on a patient's age.
+class PatientData:
+    def __init__(self, age):
+        # We store the *real* value in a private attribute (_age)
+        self._age = 0 
+        # We call the public setter method 'age' for initial validation
+        self.age = age 
+
+    # 1. The Getter: Defines how 'age' is READ (p.age)
+    @property
+    def age(self):
+        # Returns the stored private value
+        return self._age
+
+    # 2. The Setter: Defines how 'age' is SET (p.age = value)
+    @age.setter
+    def age(self, value):
+        # Validation Logic: Only allow ages between 0 and 120
+        if 0 <= value <= 120:
+            print(f"SUCCESS: Age updated to {value}.")
+            self._age = value # Update the private attribute
+        else:
+            print(f"ERROR: Age {value} is out of valid range (0-120). Assignment blocked.")
+
+# Create object
+p = PatientData(50) 
+print(f"Current Age: {p.age}")
+
+# Valid change: The setter executes, validates, and updates _age.
+p.age = 55
+print(f"Current Age: {p.age}")
+
+# Invalid change: The setter executes, finds an error, prints a message, and blocks the update.
+p.age = 150
+print(f"Age after failed attempt: {p.age}")
+                </textarea>
+
+                <div class="flex justify-end space-x-2 mt-4">
+                    <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white">
+                        Run Code
+                    </button>
+                    <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors">
+                        Copy Code
+                    </button>
+                </div>
+
+                <div class="output-area text-sm mt-4 rounded-xl">
+                    Click 'Run Code' to see output...
+                </div>
+            </div>
+        </section>
+
+        <!-- Python Editor Section 7: Method Overriding -->
+        <section class="section-card p-4 rounded-xl mb-8">
+            <h2 class="text-2xl font-bold mb-4">7. Method Overriding for Specialized Data Processing</h2>
+            <p class="mb-4 text-justify">
+                <strong>Inheritance</strong> and <strong>Method Overriding</strong> create a common way to process data. Subclasses can run their own unique logic by providing a specialized version of a base class method.
+            </p>
+            <div class="code-container w-full">
+                <!-- Code Editor Area -->
+                <textarea id="editor7" class="code-editor" name="code-editor">
+# Demonstrating Method Overriding with a Base DataProcessor.
+class DataProcessor:
+    """Base class for record processing."""
+    def process(self, record_id):
+        """Default processing logic."""
+        return f"Standard Processing: Record {record_id} validated."
+
+class ClinicalRecord(DataProcessor):
+    """Subclass for clinical records, overrides process."""
+    def process(self, record_id):
+        # Specialized logic for clinical data
+        return f"Clinical Processing: Subject {record_id} assessed for risks."
+
+class BillingRecord(DataProcessor):
+    """Subclass for billing records, overrides process."""
+    def process(self, record_id):
+        # Specialized logic for billing data
+        return f"Billing Processing: Claim ID {record_id} prepared for submission."
+
+print(ClinicalRecord().process(101))
+print(BillingRecord().process(202))
+print(DataProcessor().process(303)) # The base class behavior
+                </textarea>
+
+                <div class="flex justify-end space-x-2 mt-4">
+                    <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white">
+                        Run Code
+                    </button>
+                    <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors">
+                        Copy Code
+                    </button>
+                </div>
+
+                <div class="output-area text-sm mt-4 rounded-xl">
+                    Click 'Run Code' to see output...
+                </div>
+            </div>
+        </section>
+
+        <!-- Python Editor Section 8: Static and Class Methods -->
+        <section class="section-card p-4 rounded-xl mb-8">
+            <h2 class="text-2xl font-bold mb-4">8. Static and Class Methods for Utility and Configuration</h2>
+            <p class="mb-4 text-justify">
+                <strong>Static methods</strong> are simple utility functions (no access to `self` or `cls`). <strong>Class methods</strong> (using `cls`) act as alternative ways to build an object, often from an external source.
+            </p>
+            <div class="code-container w-full">
+                <!-- Code Editor Area -->
+                <textarea id="editor8" class="code-editor" name="code-editor">
+class IDManager:
+    PREFIX = "PAT"
+    
+    # Static Method: Utility function, no access to 'self' or 'cls'
+    @staticmethod
+    def is_valid_id(id_string):
+        """Checks if ID format is correct (must be 6 digits)."""
+        return len(id_string) == 6 and id_string.isdigit()
+
+    # Class Method: Acts as an alternative constructor
+    @classmethod
+    def create_prefixed_id(cls, number):
+        """Creates a new ID with the class's standard prefix."""
+        # Uses the class variable 'PREFIX' via 'cls'
+        return f"{cls.PREFIX}-{number:04d}"
+
+# Use Static Method
+print(f"ID '123456' is valid: {IDManager.is_valid_id('123456')}")
+
+# Use Class Method to construct an ID
+new_id = IDManager.create_prefixed_id(42)
+print(f"New Standard ID: {new_id}")
+                </textarea>
+
+                <div class="flex justify-end space-x-2 mt-4">
+                    <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white">
+                        Run Code
+                    </button>
+                    <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors">
+                        Copy Code
+                    </button>
+                </div>
+
+                <div class="output-area text-sm mt-4 rounded-xl">
+                    Click 'Run Code' to see output...
+                </div>
+            </div>
+        </section>
+
+        <!-- Python Editor Section 9: Abstract Classes and the Analytics Interface -->
+        <section class="section-card p-4 rounded-xl mb-8">
+            <h2 class="text-2xl font-bold mb-4">9. Abstract Classes and the Analytics Interface</h2>
+            <p class="mb-4 text-justify">
+                <strong>Abstract Classes (ABC)</strong> force a specific design rule (an <strong>interface</strong>) for all classes built from them. This ensures every analytics model, for example, must implement core methods like `fit()` and `predict()`.
+            </p>
+            <div class="code-container w-full">
+                <!-- Code Editor Area -->
+                <textarea id="editor9" class="code-editor" name="code-editor">
+from abc import ABC, abstractmethod
+
+class AnalyticsInterface(ABC):
+    """Abstract Base Class defining the required methods for any analytics model."""
+    @abstractmethod
+    def fit(self, data):
+        """Required method to train the model."""
+        pass
+
+    @abstractmethod
+    def predict(self, input_data):
+        """Required method to generate output."""
+        pass
+
+class RiskScoringModel(AnalyticsInterface):
+    """Concrete model that implements (fills in) the AnalyticsInterface methods."""
+    def fit(self, data):
+        return "RiskScoringModel fitted successfully."
+
+    def predict(self, input_data):
+        return f"Risk score predicted for input: {input_data}"
+
+# Attempting to instantiate the concrete class
+model = RiskScoringModel()
+print(model.fit("Clinical Data"))
+print(model.predict("Patient A's Vitals"))
+
+# Note: Comment out the RiskScoringModel's 'predict' method and run to see the ABC error!
+                </textarea>
+
+                <div class="flex justify-end space-x-2 mt-4">
+                    <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white">
+                        Run Code
+                    </button>
+                    <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors">
+                        Copy Code
+                    </button>
+                </div>
+
+                <div class="output-area text-sm mt-4 rounded-xl">
+                    Click 'Run Code' to see output...
+                </div>
+            </div>
+        </section>
+
+        <!-- Python Editor Section 10: Sample Project -->
+        <section class="section-card p-4 rounded-xl mb-8">
+            <h2 class="text-2xl font-bold mb-4">10. Sample Project: Clinical Trial Data Processor</h2>
+            <p class="mb-4 text-justify">
+                This final example shows how to combine all OOP principles: ABCs, class methods, static methods, and property decorators for a strong, self-checking data model.
+            </p>
+            <div class="code-container w-full">
+                <!-- Code Editor Area -->
+                <textarea id="editor10" class="code-editor" name="code-editor">
+from abc import ABC, abstractmethod
+
+# 1. ABC for the Interface
+class SubjectInterface(ABC):
+    @abstractmethod
+    def calculate_risk(self):
+        pass
+
+# 2. Main Class with Properties, Class/Static Methods
+class ClinicalTrialSubject(SubjectInterface):
+    STUDY_PHASE = "Phase III" # Class Variable
+
+    def __init__(self, subject_id, age, bmi):
+        self._id = subject_id
+        self._age = age 
+        self.bmi = bmi
+    
+    # Getter/Setter with Validation
+    @property
+    def age(self):
+        return self._age
+
+    @age.setter
+    def age(self, value):
+        if value < 18 or value > 80:
+            print(f"Warning: Age {value} is outside trial range (18-80).")
+        self._age = value
+
+    # Static Method for Utility
+    @staticmethod
+    def is_eligible(age, bmi):
+        return age >= 18 and bmi < 40
+
+    # Instance Method required by ABC
+    def calculate_risk(self):
+        """Calculates a simple risk score based on BMI."""
+        if self.bmi > 30:
+            return "High Risk (BMI > 30)"
+        return "Standard Risk"
+
+    # Class Method for alternative construction
+    @classmethod
+    def from_csv_row(cls, row):
+        data = row.split(',')
+        return cls(subject_id=data[0], age=int(data[1]), bmi=float(data[2]))
+
+# Test Case
+csv_data = "S001,45,28.5"
+subject1 = ClinicalTrialSubject.from_csv_row(csv_data)
+
+print(f"Subject ID: {subject1._id}, Age: {subject1.age}, BMI: {subject1.bmi}")
+print(f"Study Phase: {ClinicalTrialSubject.STUDY_PHASE}")
+print(f"Risk Status: {subject1.calculate_risk()}")
+print(f"Eligibility Check: {ClinicalTrialSubject.is_eligible(subject1.age, subject1.bmi)}")
+                </textarea>
+
+                <div class="flex justify-end space-x-2 mt-4">
+                    <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white">
+                        Run Code
+                    </button>
+                    <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors">
+                        Copy Code
+                    </button>
+                </div>
+
+                <div class="output-area text-sm mt-4 rounded-xl">
+                    Click 'Run Code' to see output...
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const codeContainers = document.querySelectorAll('.code-container');
+            const themeToggle = document.getElementById('theme-toggle');
+
+            // --- Theme Toggle Logic (Improved UX) ---
+            
+            function updateThemeAndButtonText(newTheme) {
+                const html = document.documentElement;
+                html.setAttribute('data-theme', newTheme);
+                if (newTheme === 'dark') {
+                    // Current state is dark, button prepares to switch to light
+                    themeToggle.textContent = 'Switch to Light Mode';
+                } else {
+                    // Current state is light, button prepares to switch to dark
+                    themeToggle.textContent = 'Switch to Dark Mode';
+                }
+            }
+
+            // 1. Initialize the button text based on the default or current theme
+            const initialTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            updateThemeAndButtonText(initialTheme); 
+
+            // 2. Set up the click listener
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                updateThemeAndButtonText(nextTheme);
+            });
+            // ----------------------------------------
+
+            // Helper function for Skulpt output
+            function outf(text) {
+                const activeOutput = document.querySelector('.code-container[data-active="true"] .output-area');
+                if (activeOutput) {
+                    activeOutput.textContent += text;
+                }
+            }
+
+            // Helper function for Skulpt input (prompt)
+            function builtinRead(x) {
+                if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                    throw "File not found: '" + x + "'";
+                return Sk.builtinFiles["files"][x];
+            }
+            
+            // Initialize CodeMirror and set up event listeners for each code block
+            codeContainers.forEach(container => {
+                const codeTextArea = container.querySelector('.code-editor');
+                const runButton = container.querySelector('.run-button');
+                const copyButton = container.querySelector('.copy-button');
+                const outputArea = container.querySelector('.output-area');
+
+                // 1. Initialize CodeMirror
+                const codeEditor = CodeMirror.fromTextArea(codeTextArea, {
+                    lineNumbers: true,
+                    mode: 'python',
+                    theme: 'monokai', 
+                    indentUnit: 4,
+                    tabSize: 4,
+                    matchBrackets: true,
+                    autoCloseBrackets: true
+                });
+                
+                // Set the CodeMirror instance's wrapper to be full width
+                codeEditor.getWrapperElement().classList.add('w-full');
+
+                // Set focus listener to track which editor is active
+                codeEditor.on('focus', () => {
+                    codeContainers.forEach(c => c.removeAttribute('data-active'));
+                    container.setAttribute('data-active', 'true');
+                });
+                
+                // Run Code Handler
+                runButton.addEventListener('click', () => {
+                    // Set active container before running
+                    codeContainers.forEach(c => c.removeAttribute('data-active'));
+                    container.setAttribute('data-active', 'true');
+
+                    outputArea.textContent = 'Running...';
+                    outputArea.classList.remove('text-red-400'); // Clear error styling
+
+                    const code = codeEditor.getValue(); // Use CodeMirror getValue()
+
+                    Sk.configure({
+                        output: outf,
+                        read: builtinRead,
+                        input: (s) => prompt(s)
+                    });
+
+                    Sk.misceval.asyncToPromise(() => Sk.importMainWithBody("<stdin>", false, code, true))
+                        .then(() => {
+                            // Success - output is already in outputArea via outf
+                            if(outputArea.textContent === 'Running...') {
+                                outputArea.textContent = 'Code finished with no output.';
+                            }
+                        })
+                        .catch(err => {
+                            // Display error output
+                            outputArea.textContent = err.toString();
+                            outputArea.classList.add('text-red-400'); // Use Tailwind error color
+                        });
+                });
+
+                // Copy Code Handler
+                copyButton.addEventListener('click', () => {
+                    const code = codeEditor.getValue(); // Use CodeMirror getValue()
+                    
+                    // Simple text copy function using execCommand
+                    const tempTextarea = document.createElement('textarea');
+                    tempTextarea.value = code;
+                    document.body.appendChild(tempTextarea);
+                    tempTextarea.select();
+                    try {
+                        document.execCommand('copy');
+                        copyButton.textContent = 'Copied!';
+                        setTimeout(() => {
+                            copyButton.textContent = 'Copy Code';
+                        }, 1500);
+                    } catch (err) {
+                        console.error('Copy failed:', err);
+                        copyButton.textContent = 'Failed';
+                        setTimeout(() => {
+                            copyButton.textContent = 'Copy Code';
+                        }, 1500);
+                    }
+                    document.body.removeChild(tempTextarea);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
