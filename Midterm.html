@@ -1,1 +1,1683 @@
-Locked
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Midterm Exam - Modules 1-4</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Skulpt for running Python in the browser -->
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+    
+    <!-- CodeMirror for enhanced code editing -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+
+        /* Theme Variables */
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #e2e8f0;
+            --section-bg: #1e293b;
+            --code-bg: #020617;
+            --border-color: #334155;
+            --header-color: #38bdf8;
+            --accent-color: #6366f1;
+            --accent-hover: #4f46e5;
+            --error-color: #f87171;
+            --success-color: #34d399;
+            --sample-color: #fbbf24;
+            --module1-color: #10b981;
+            --module2-color: #3b82f6;
+            --module3-color: #8b5cf6;
+            --module4-color: #f59e0b;
+            --mcq-color: #ec4899;
+            --timer-color: #ef4444;
+            --warning-color: #f59e0b;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f1f5f9;
+            --text-color: #1e293b;
+            --section-bg: #ffffff;
+            --code-bg: #f8fafc;
+            --border-color: #e2e8f0;
+            --header-color: #1d4ed8;
+            --accent-color: #4f46e5;
+            --accent-hover: #4338ca;
+            --error-color: #dc2626;
+            --success-color: #10b981;
+            --sample-color: #d97706;
+            --module1-color: #059669;
+            --module2-color: #2563eb;
+            --module3-color: #7c3aed;
+            --module4-color: #d97706;
+            --mcq-color: #db2777;
+            --timer-color: #dc2626;
+            --warning-color: #d97706;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1, h2 {
+            color: var(--header-color);
+        }
+
+        .section-card {
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: var(--section-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+        }
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+        }
+
+        /* Code Editor Styling */
+        .code-editor {
+            width: 100%;
+            height: 200px;
+            background-color: var(--code-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+            margin-top: 12px;
+        }
+
+        /* Output area */
+        .output-area {
+            max-height: 150px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            background-color: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            color: var(--text-color);
+            padding: 0.75rem;
+            margin-top: 12px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+        }
+
+        .text-red-400 {
+            color: var(--error-color);
+        }
+        
+        .text-green-400 {
+            color: var(--success-color);
+        }
+        
+        .text-yellow-400 {
+            color: var(--sample-color);
+        }
+        
+        .text-orange-400 {
+            color: var(--warning-color);
+        }
+        
+        .question-number {
+            background-color: var(--accent-color);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+        
+        .question-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .copy-success {
+            color: var(--success-color);
+            font-weight: bold;
+            display: none;
+        }
+        
+        .code-container {
+            margin-top: 16px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .sample-solution {
+            background-color: var(--code-bg);
+            border: 1px solid var(--sample-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 12px;
+            position: relative;
+        }
+
+        .sample-header {
+            color: var(--sample-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toggle-solution {
+            background: none;
+            border: none;
+            color: var(--sample-color);
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: auto;
+        }
+
+        .solution-content {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .module-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 12px;
+        }
+
+        .module-1 { background-color: var(--module1-color); color: white; }
+        .module-2 { background-color: var(--module2-color); color: white; }
+        .module-3 { background-color: var(--module3-color); color: white; }
+        .module-4 { background-color: var(--module4-color); color: white; }
+        .mcq-tag { background-color: var(--mcq-color); color: white; }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--module1-color), var(--module2-color), var(--module3-color), var(--module4-color));
+            transition: width 0.3s ease;
+        }
+
+        .module-section {
+            border-left: 4px solid;
+            padding-left: 16px;
+            margin-bottom: 2rem;
+        }
+
+        .module-1-section { border-color: var(--module1-color); }
+        .module-2-section { border-color: var(--module2-color); }
+        .module-3-section { border-color: var(--module3-color); }
+        .module-4-section { border-color: var(--module4-color); }
+
+        /* Multiple Choice Questions Styling */
+        .mcq-container {
+            background-color: var(--section-bg);
+            border: 1px solid var(--mcq-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .mcq-question {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .mcq-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .mcq-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mcq-option:hover {
+            background-color: var(--code-bg);
+            border-color: var(--mcq-color);
+        }
+
+        .mcq-option.selected {
+            background-color: var(--mcq-color);
+            border-color: var(--mcq-color);
+            color: white;
+        }
+
+        .mcq-option input[type="radio"] {
+            margin-top: 0.125rem;
+        }
+
+        .mcq-option label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .mcq-submitted {
+            opacity: 0.7;
+        }
+
+        .mcq-submitted .mcq-option {
+            cursor: not-allowed;
+        }
+
+        .mcq-submitted .mcq-option:not(.selected) {
+            opacity: 0.6;
+        }
+
+        /* Timer Styling */
+        .timer-container {
+            background-color: var(--section-bg);
+            border: 1px solid var(--timer-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .timer-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--timer-color);
+        }
+
+        .timer-warning {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        /* Navigation Styling */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            background-color: var(--section-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem;
+            z-index: 100;
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .nav-item {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid var(--border-color);
+        }
+
+        .nav-item:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-item.coding {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .nav-item.mcq {
+            background-color: var(--mcq-color);
+            color: white;
+        }
+
+        .nav-item.completed {
+            border-color: var(--success-color);
+        }
+
+        .nav-item.current {
+            border-width: 3px;
+            border-color: var(--header-color);
+        }
+
+        /* Status indicators */
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 12px;
+        }
+
+        .status-complete {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .status-incomplete {
+            background-color: var(--border-color);
+            color: var(--text-color);
+        }
+
+        /* CodeMirror overrides */
+        .CodeMirror {
+            height: 200px;
+            border-radius: 0.5rem;
+            margin-top: 12px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+        }
+
+        /* Auto-save indicator */
+        .auto-save-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            font-size: 0.875rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .auto-save-indicator.show {
+            opacity: 1;
+        }
+
+        /* Validation results */
+        .validation-results {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 0.5rem;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+        }
+
+        .validation-success {
+            background-color: rgba(52, 211, 153, 0.1);
+            border: 1px solid var(--success-color);
+            color: var(--success-color);
+        }
+
+        .validation-warning {
+            background-color: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--warning-color);
+            color: var(--warning-color);
+        }
+
+        .validation-error {
+            background-color: rgba(248, 113, 113, 0.1);
+            border: 1px solid var(--error-color);
+            color: var(--error-color);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen">
+    <div class="max-w-6xl mx-auto">
+        
+        <!-- HEADER -->
+        <header class="flex justify-between items-center mb-6 pb-4 border-b border-border-color">
+            <div>
+                <h1 class="text-3xl font-extrabold">Python Midterm Exam</h1>
+                <p class="text-lg text-gray-400">Modules 1-4: Python Fundamentals to Functions</p>
+            </div>
+            <button id="theme-toggle" class="btn-secondary px-4 py-2 rounded-lg font-semibold shadow-md transition-colors">
+                <!-- Text set by JavaScript -->
+            </button>
+        </header>
+
+        <!-- Timer -->
+        <div class="timer-container">
+            <div>
+                <h2 class="text-xl font-bold">Exam Timer</h2>
+                <p class="text-sm">Time remaining to complete your exam</p>
+            </div>
+            <div id="timer-display" class="timer-display">02:00:00</div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-container">
+            <h3 class="text-lg font-bold mb-2">Question Navigation</h3>
+            <div class="nav-grid">
+                <!-- Coding questions -->
+                <div class="nav-item coding" data-question="1">1</div>
+                <div class="nav-item coding" data-question="2">2</div>
+                <div class="nav-item coding" data-question="3">3</div>
+                <div class="nav-item coding" data-question="4">4</div>
+                <div class="nav-item coding" data-question="5">5</div>
+                <div class="nav-item coding" data-question="6">6</div>
+                <div class="nav-item coding" data-question="7">7</div>
+                <div class="nav-item coding" data-question="8">8</div>
+                <div class="nav-item coding" data-question="9">9</div>
+                <div class="nav-item coding" data-question="10">10</div>
+                
+                <!-- Multiple choice questions -->
+                <div class="nav-item mcq" data-question="M1">M1</div>
+                <div class="nav-item mcq" data-question="M2">M2</div>
+                <div class="nav-item mcq" data-question="M3">M3</div>
+                <div class="nav-item mcq" data-question="M4">M4</div>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+        </div>
+
+        <!-- Auto-save indicator -->
+        <div id="auto-save-indicator" class="auto-save-indicator">
+            Changes saved automatically
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div id="main-content">
+            <div class="instructions mb-8 p-4 section-card rounded-xl">
+                <h2 class="text-xl font-bold mb-2">Exam Instructions</h2>
+                <p class="mb-2">Complete all coding questions and multiple choice questions covering Modules 1-4.</p>
+                <p class="mb-2">Each section includes both coding exercises and conceptual multiple choice questions.</p>
+                <p class="mb-2"><span class="text-yellow-400 font-bold">Sample solution</span> is available for the first coding question.</p>
+                <p class="mb-2">Select your answers for multiple choice questions - they will be included when you copy all answers.</p>
+                <p class="mb-2"><span class="text-green-400 font-bold">Auto-save</span> is enabled - your progress is saved automatically.</p>
+                <p class="mb-2"><span class="text-orange-400 font-bold">Syntax validation</span> helps check your code for errors before running.</p>
+                <p>When finished, click <strong>Copy All Answers</strong> to submit your code and MCQ answers to Canvas.</p>
+                
+                <div class="mt-4 grid grid-cols-2 md:grid-cols-5 gap-2 text-sm">
+                    <div class="flex items-center">
+                        <div class="w-3 h-3 rounded-full bg-module1-color mr-2"></div>
+                        <span>Module 1: Fundamentals</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-3 h-3 rounded-full bg-module2-color mr-2"></div>
+                        <span>Module 2: Control Flow</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-3 h-3 rounded-full bg-module3-color mr-2"></div>
+                        <span>Module 3: Data Structures</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-3 h-3 rounded-full bg-module4-color mr-2"></div>
+                        <span>Module 4: Functions</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-3 h-3 rounded-full bg-mcq-color mr-2"></div>
+                        <span>Multiple Choice</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE 1: Python Fundamentals -->
+            <div class="module-section module-1-section">
+                <h2 class="text-2xl font-bold mb-4" style="color: var(--module1-color)">Module 1: Python Fundamentals</h2>
+                
+                <!-- Multiple Choice Question 1 -->
+                <div class="mcq-container" id="mcq-container-1">
+                    <div class="question-header">
+                        <div class="question-number">M1</div>
+                        <h2 class="text-xl font-bold">Multiple Choice Question</h2>
+                        <span class="module-tag mcq-tag">Module 1</span>
+                        <span id="status-mcq1" class="status-indicator status-incomplete">Not Answered</span>
+                    </div>
+                    <div class="mcq-question">
+                        What is the output of the following code?<br>
+                        <code class="text-sm">x = 5<br>y = "2"<br>print(x + int(y))</code>
+                    </div>
+                    <div class="mcq-options">
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq1" id="mcq1-a" value="a">
+                            <label for="mcq1-a">52</label>
+                        </div>
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq1" id="mcq1-b" value="b">
+                            <label for="mcq1-b">7</label>
+                        </div>
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq1" id="mcq1-c" value="c">
+                            <label for="mcq1-c">Error</label>
+                        </div>
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq1" id="mcq1-d" value="d">
+                            <label for="mcq1-d">"52"</label>
+                        </div>
+                    </div>
+                    <button class="mt-3 px-4 py-2 bg-gray-600 text-white rounded-lg submit-mcq" data-mcq="1">
+                        Submit Answer
+                    </button>
+                </div>
+
+                <!-- Question 1 -->
+                <section class="section-card p-4 rounded-xl mb-8" id="question-1">
+                    <div class="question-header">
+                        <div class="question-number">1</div>
+                        <h2 class="text-xl font-bold">Variable Operations and Data Types</h2>
+                        <span class="module-tag module-1">Module 1</span>
+                        <span id="status-1" class="status-indicator status-incomplete">Not Started</span>
+                    </div>
+                    <p class="mb-4">Create variables for a product: name (string), price (float), and quantity (integer). Calculate the total cost and print a formatted message: "Total cost for [quantity] [product_name] is $[total_cost]".</p>
+                    
+                    <div class="code-container">
+                        <textarea id="editor1" class="hidden"></textarea>
+                        
+                        <div class="action-buttons">
+                            <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white" data-section="1">
+                                Run Code
+                            </button>
+                            <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors" data-section="1">
+                                Copy Code
+                            </button>
+                            <button class="validate-button px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-white rounded-lg font-semibold transition-colors" data-section="1">
+                                Validate Syntax
+                            </button>
+                        </div>
+
+                        <div id="validation-result-1" class="validation-results hidden">
+                            <!-- Validation results will appear here -->
+                        </div>
+
+                        <div id="output1" class="output-area">
+                            Click 'Run Code' to see output...
+                        </div>
+
+                        <!-- Sample Solution -->
+                        <div class="sample-solution">
+                            <div class="sample-header">
+                                <span>Sample Solution</span>
+                                <button class="toggle-solution" data-section="1">Show Solution</button>
+                            </div>
+                            <div id="solution1" class="solution-content hidden">
+# Module 1: Python Fundamentals - Sample Solution
+product_name = "Laptop"
+price = 899.99
+quantity = 3
+
+total_cost = price * quantity
+print(f"Total cost for {quantity} {product_name} is ${total_cost:.2f}")
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Question 2 -->
+                <section class="section-card p-4 rounded-xl mb-8" id="question-2">
+                    <div class="question-header">
+                        <div class="question-number">2</div>
+                        <h2 class="text-xl font-bold">List Operations</h2>
+                        <span class="module-tag module-1">Module 1</span>
+                        <span id="status-2" class="status-indicator status-incomplete">Not Started</span>
+                    </div>
+                    <p class="mb-4">Create a list of 5 sales amounts. Calculate and print: total sales, average sale, highest sale, and lowest sale.</p>
+                    
+                    <div class="code-container">
+                        <textarea id="editor2" class="hidden"></textarea>
+                        
+                        <div class="action-buttons">
+                            <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white" data-section="2">
+                                Run Code
+                            </button>
+                            <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors" data-section="2">
+                                Copy Code
+                            </button>
+                            <button class="validate-button px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-white rounded-lg font-semibold transition-colors" data-section="2">
+                                Validate Syntax
+                            </button>
+                        </div>
+
+                        <div id="validation-result-2" class="validation-results hidden">
+                            <!-- Validation results will appear here -->
+                        </div>
+
+                        <div id="output2" class="output-area">
+                            Click 'Run Code' to see output...
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- MODULE 2: Control Flow -->
+            <div class="module-section module-2-section">
+                <h2 class="text-2xl font-bold mb-4" style="color: var(--module2-color)">Module 2: Control Flow & Decision Making</h2>
+                
+                <!-- Multiple Choice Question 2 -->
+                <div class="mcq-container" id="mcq-container-2">
+                    <div class="question-header">
+                        <div class="question-number">M2</div>
+                        <h2 class="text-xl font-bold">Multiple Choice Question</h2>
+                        <span class="module-tag mcq-tag">Module 2</span>
+                        <span id="status-mcq2" class="status-indicator status-incomplete">Not Answered</span>
+                    </div>
+                    <div class="mcq-question">
+                        Which loop is guaranteed to execute at least once?
+                    </div>
+                    <div class="mcq-options">
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq2" id="mcq2-a" value="a">
+                            <label for="mcq2-a">for loop</label>
+                        </div>
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq2" id="mcq2-b" value="b">
+                            <label for="mcq2-b">while loop with condition True</label>
+                        </div>
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq2" id="mcq2-c" value="c">
+                            <label for="mcq2-c">while loop with condition False</label>
+                        </div>
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq2" id="mcq2-d" value="d">
+                            <label for="mcq2-d">None of the above</label>
+                        </div>
+                    </div>
+                    <button class="mt-3 px-4 py-2 bg-gray-600 text-white rounded-lg submit-mcq" data-mcq="2">
+                        Submit Answer
+                    </button>
+                </div>
+
+                <!-- Question 3 -->
+                <section class="section-card p-4 rounded-xl mb-8" id="question-3">
+                    <div class="question-header">
+                        <div class="question-number">3</div>
+                        <h2 class="text-xl font-bold">Customer Discount Calculator</h2>
+                        <span class="module-tag module-2">Module 2</span>
+                        <span id="status-3" class="status-indicator status-incomplete">Not Started</span>
+                    </div>
+                    <p class="mb-4">Write a program that calculates discount based on purchase amount: 0% for under $100, 10% for $100-$500, 15% for over $500. Print original amount, discount percentage, and final amount.</p>
+                    
+                    <div class="code-container">
+                        <textarea id="editor3" class="hidden"></textarea>
+                        
+                        <div class="action-buttons">
+                            <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white" data-section="3">
+                                Run Code
+                            </button>
+                            <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors" data-section="3">
+                                Copy Code
+                            </button>
+                            <button class="validate-button px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-white rounded-lg font-semibold transition-colors" data-section="3">
+                                Validate Syntax
+                            </button>
+                        </div>
+
+                        <div id="validation-result-3" class="validation-results hidden">
+                            <!-- Validation results will appear here -->
+                        </div>
+
+                        <div id="output3" class="output-area">
+                            Click 'Run Code' to see output...
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Question 4 -->
+                <section class="section-card p-4 rounded-xl mb-8" id="question-4">
+                    <div class="question-header">
+                        <div class="question-number">4</div>
+                        <h2 class="text-xl font-bold">Inventory Management Loop</h2>
+                        <span class="module-tag module-2">Module 2</span>
+                        <span id="status-4" class="status-indicator status-incomplete">Not Started</span>
+                    </div>
+                    <p class="mb-4">Create a while loop that tracks inventory. Start with 50 items. Each iteration sells 5 items until inventory reaches 0 or below. Print remaining inventory after each sale.</p>
+                    
+                    <div class="code-container">
+                        <textarea id="editor4" class="hidden"></textarea>
+                        
+                        <div class="action-buttons">
+                            <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white" data-section="4">
+                                Run Code
+                            </button>
+                            <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors" data-section="4">
+                                Copy Code
+                            </button>
+                            <button class="validate-button px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-white rounded-lg font-semibold transition-colors" data-section="4">
+                                Validate Syntax
+                            </button>
+                        </div>
+
+                        <div id="validation-result-4" class="validation-results hidden">
+                            <!-- Validation results will appear here -->
+                        </div>
+
+                        <div id="output4" class="output-area">
+                            Click 'Run Code' to see output...
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- MODULE 3: Data Structures -->
+            <div class="module-section module-3-section">
+                <h2 class="text-2xl font-bold mb-4" style="color: var(--module3-color)">Module 3: Data Structures in Python</h2>
+                
+                <!-- Multiple Choice Question 3 -->
+                <div class="mcq-container" id="mcq-container-3">
+                    <div class="question-header">
+                        <div class="question-number">M3</div>
+                        <h2 class="text-xl font-bold">Multiple Choice Question</h2>
+                        <span class="module-tag mcq-tag">Module 3</span>
+                        <span id="status-mcq3" class="status-indicator status-incomplete">Not Answered</span>
+                    </div>
+                    <div class="mcq-question">
+                        Which data structure maintains insertion order and allows duplicate elements?
+                    </div>
+                    <div class="mcq-options">
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq3" id="mcq3-a" value="a">
+                            <label for="mcq3-a">List</label>
+                        </div>
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq3" id="mcq3-b" value="b">
+                            <label for="mcq3-b">Set</label>
+                        </div>
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq3" id="mcq3-c" value="c">
+                            <label for="mcq3-c">Dictionary</label>
+                        </div>
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq3" id="mcq3-d" value="d">
+                            <label for="mcq3-d">Tuple</label>
+                        </div>
+                    </div>
+                    <button class="mt-3 px-4 py-2 bg-gray-600 text-white rounded-lg submit-mcq" data-mcq="3">
+                        Submit Answer
+                    </button>
+                </div>
+
+                <!-- Question 5 -->
+                <section class="section-card p-4 rounded-xl mb-8" id="question-5">
+                    <div class="question-header">
+                        <div class="question-number">5</div>
+                        <h2 class="text-xl font-bold">Employee Database Dictionary</h2>
+                        <span class="module-tag module-3">Module 3</span>
+                        <span id="status-5" class="status-indicator status-incomplete">Not Started</span>
+                    </div>
+                    <p class="mb-4">Create a dictionary with 3 employees where keys are employee IDs and values are tuples containing (name, department, salary). Print all employees in Marketing department.</p>
+                    
+                    <div class="code-container">
+                        <textarea id="editor5" class="hidden"></textarea>
+                        
+                        <div class="action-buttons">
+                            <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white" data-section="5">
+                                Run Code
+                            </button>
+                            <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors" data-section="5">
+                                Copy Code
+                            </button>
+                            <button class="validate-button px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-white rounded-lg font-semibold transition-colors" data-section="5">
+                                Validate Syntax
+                            </button>
+                        </div>
+
+                        <div id="validation-result-5" class="validation-results hidden">
+                            <!-- Validation results will appear here -->
+                        </div>
+
+                        <div id="output5" class="output-area">
+                            Click 'Run Code' to see output...
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Question 6 -->
+                <section class="section-card p-4 rounded-xl mb-8" id="question-6">
+                    <div class="question-header">
+                        <div class="question-number">6</div>
+                        <h2 class="text-xl font-bold">Data Analysis with Lists and Sets</h2>
+                        <span class="module-tag module-3">Module 3</span>
+                        <span id="status-6" class="status-indicator status-incomplete">Not Started</span>
+                    </div>
+                    <p class="mb-4">Given two lists of customer IDs who purchased in January and February, find: customers who purchased in both months, customers who purchased only in January, and all unique customers.</p>
+                    
+                    <div class="code-container">
+                        <textarea id="editor6" class="hidden"></textarea>
+                        
+                        <div class="action-buttons">
+                            <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white" data-section="6">
+                                Run Code
+                            </button>
+                            <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors" data-section="6">
+                                Copy Code
+                            </button>
+                            <button class="validate-button px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-white rounded-lg font-semibold transition-colors" data-section="6">
+                                Validate Syntax
+                            </button>
+                        </div>
+
+                        <div id="validation-result-6" class="validation-results hidden">
+                            <!-- Validation results will appear here -->
+                        </div>
+
+                        <div id="output6" class="output-area">
+                            Click 'Run Code' to see output...
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Question 7 -->
+                <section class="section-card p-4 rounded-xl mb-8" id="question-7">
+                    <div class="question-header">
+                        <div class="question-number">7</div>
+                        <h2 class="text-xl font-bold">String Processing</h2>
+                        <span class="module-tag module-3">Module 3</span>
+                        <span id="status-7" class="status-indicator status-incomplete">Not Started</span>
+                    </div>
+                    <p class="mb-4">Given a product description string, count how many times each word appears. Ignore case and punctuation. Print words sorted alphabetically with their counts.</p>
+                    
+                    <div class="code-container">
+                        <textarea id="editor7" class="hidden"># Sample input string
+product_description = "The new smartphone features amazing features: great camera, long battery, and amazing performance. The camera is truly great!"</textarea>
+                        
+                        <div class="action-buttons">
+                            <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white" data-section="7">
+                                Run Code
+                            </button>
+                            <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors" data-section="7">
+                                Copy Code
+                            </button>
+                            <button class="validate-button px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-white rounded-lg font-semibold transition-colors" data-section="7">
+                                Validate Syntax
+                            </button>
+                        </div>
+
+                        <div id="validation-result-7" class="validation-results hidden">
+                            <!-- Validation results will appear here -->
+                        </div>
+
+                        <div id="output7" class="output-area">
+                            Click 'Run Code' to see output...
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- MODULE 4: Functions -->
+            <div class="module-section module-4-section">
+                <h2 class="text-2xl font-bold mb-4" style="color: var(--module4-color)">Module 4: Python Functions</h2>
+                
+                <!-- Multiple Choice Question 4 -->
+                <div class="mcq-container" id="mcq-container-4">
+                    <div class="question-header">
+                        <div class="question-number">M4</div>
+                        <h2 class="text-xl font-bold">Multiple Choice Question</h2>
+                        <span class="module-tag mcq-tag">Module 4</span>
+                        <span id="status-mcq4" class="status-indicator status-incomplete">Not Answered</span>
+                    </div>
+                    <div class="mcq-question">
+                        What is the key difference between a function defined with <code>def</code> and a lambda function?
+                    </div>
+                    <div class="mcq-options">
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq4" id="mcq4-a" value="a">
+                            <label for="mcq4-a">Lambda functions can have multiple lines</label>
+                        </div>
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq4" id="mcq4-b" value="b">
+                            <label for="mcq4-b">Def functions are faster</label>
+                        </div>
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq4" id="mcq4-c" value="c">
+                            <label for="mcq4-c">Lambda functions are anonymous and single-expression</label>
+                        </div>
+                        <div class="mcq-option">
+                            <input type="radio" name="mcq4" id="mcq4-d" value="d">
+                            <label for="mcq4-d">Def functions cannot return values</label>
+                        </div>
+                    </div>
+                    <button class="mt-3 px-4 py-2 bg-gray-600 text-white rounded-lg submit-mcq" data-mcq="4">
+                        Submit Answer
+                    </button>
+                </div>
+
+                <!-- Question 8 -->
+                <section class="section-card p-4 rounded-xl mb-8" id="question-8">
+                    <div class="question-header">
+                        <div class="question-number">8</div>
+                        <h2 class="text-xl font-bold">Sales Tax Calculator Function</h2>
+                        <span class="module-tag module-4">Module 4</span>
+                        <span id="status-8" class="status-indicator status-incomplete">Not Started</span>
+                    </div>
+                    <p class="mb-4">Create a function that takes subtotal and tax rate (with default of 0.08) and returns total. Add error handling for negative values. Test with different inputs.</p>
+                    
+                    <div class="code-container">
+                        <textarea id="editor8" class="hidden"></textarea>
+                        
+                        <div class="action-buttons">
+                            <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white" data-section="8">
+                                Run Code
+                            </button>
+                            <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors" data-section="8">
+                                Copy Code
+                            </button>
+                            <button class="validate-button px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-white rounded-lg font-semibold transition-colors" data-section="8">
+                                Validate Syntax
+                            </button>
+                        </div>
+
+                        <div id="validation-result-8" class="validation-results hidden">
+                            <!-- Validation results will appear here -->
+                        </div>
+
+                        <div id="output8" class="output-area">
+                            Click 'Run Code' to see output...
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Question 9 -->
+                <section class="section-card p-4 rounded-xl mb-8" id="question-9">
+                    <div class="question-header">
+                        <div class="question-number">9</div>
+                        <h2 class="text-xl font-bold">Lambda for Data Filtering</h2>
+                        <span class="module-tag module-4">Module 4</span>
+                        <span id="status-9" class="status-indicator status-incomplete">Not Started</span>
+                    </div>
+                    <p class="mb-4">Use lambda with filter() to get products with price > $50 from a list of tuples: [("laptop", 899), ("mouse", 25), ("keyboard", 75), ("monitor", 300)].</p>
+                    
+                    <div class="code-container">
+                        <textarea id="editor9" class="hidden"></textarea>
+                        
+                        <div class="action-buttons">
+                            <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white" data-section="9">
+                                Run Code
+                            </button>
+                            <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors" data-section="9">
+                                Copy Code
+                            </button>
+                            <button class="validate-button px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-white rounded-lg font-semibold transition-colors" data-section="9">
+                                Validate Syntax
+                            </button>
+                        </div>
+
+                        <div id="validation-result-9" class="validation-results hidden">
+                            <!-- Validation results will appear here -->
+                        </div>
+
+                        <div id="output9" class="output-area">
+                            Click 'Run Code' to see output...
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Question 10 -->
+                <section class="section-card p-4 rounded-xl mb-8" id="question-10">
+                    <div class="question-header">
+                        <div class="question-number">10</div>
+                        <h2 class="text-xl font-bold">Comprehensive Business Function</h2>
+                        <span class="module-tag module-4">Module 4</span>
+                        <span id="status-10" class="status-indicator status-incomplete">Not Started</span>
+                    </div>
+                    <p class="mb-4">Create a function that takes a list of sales, calculates total, applies discount based on total amount, adds tax, and returns final amount. Use previous discount rules from Question 3.</p>
+                    
+                    <div class="code-container">
+                        <textarea id="editor10" class="hidden"></textarea>
+                        
+                        <div class="action-buttons">
+                            <button class="run-button btn-primary px-4 py-2 rounded-lg font-semibold text-white" data-section="10">
+                                Run Code
+                            </button>
+                            <button class="copy-button px-4 py-2 bg-slate-500 hover:bg-slate-400 text-white rounded-lg font-semibold transition-colors" data-section="10">
+                                Copy Code
+                            </button>
+                            <button class="validate-button px-4 py-2 bg-yellow-500 hover:bg-yellow-400 text-white rounded-lg font-semibold transition-colors" data-section="10">
+                                Validate Syntax
+                            </button>
+                        </div>
+
+                        <div id="validation-result-10" class="validation-results hidden">
+                            <!-- Validation results will appear here -->
+                        </div>
+
+                        <div id="output10" class="output-area">
+                            Click 'Run Code' to see output...
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- Submission Section -->
+            <section class="section-card p-4 rounded-xl mb-8">
+                <h2 class="text-xl font-bold mb-4">Submit Your Exam</h2>
+                <p class="mb-4">Click the button below to copy all your code and multiple choice answers. Then paste it into Canvas to submit your exam.</p>
+                
+                <div class="flex justify-between items-center">
+                    <button id="copy-all-btn" class="btn-primary px-6 py-3 rounded-lg font-semibold text-white text-lg">
+                        Copy All Answers
+                    </button>
+                    <span id="copy-success" class="copy-success">All answers copied to clipboard!</span>
+                </div>
+                
+                <div class="mt-4">
+                    <textarea id="submission-area" class="w-full h-64 p-4 bg-gray-800 text-white rounded-lg font-mono text-sm" placeholder="Your code and MCQ answers will appear here after clicking the copy button..."></textarea>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // --- Global Variables ---
+        const TOTAL_QUESTIONS = 10;
+        const TOTAL_MCQS = 4;
+        const EXAM_DURATION = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+        
+        let completedQuestions = new Set();
+        let mcqAnswers = {};
+        let codeEditors = {};
+        let autoSaveTimeout;
+        let examStartTime;
+        let timerInterval;
+
+        // --- Utility Functions ---
+
+        // Output function for Skulpt (to capture print() output)
+        function outf(text) {
+            if (window.currentOutputElement) {
+                window.currentOutputElement.textContent = window.currentOutputElement.textContent + text;
+            }
+        }
+
+        // Standard error function for Skulpt
+        function builtinRead(x) {
+            if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                throw "File not found: '" + x + "'";
+            return Sk.builtinFiles["files"][x];
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const codingProgress = (completedQuestions.size / TOTAL_QUESTIONS) * 70;
+            const mcqProgress = (Object.keys(mcqAnswers).length / TOTAL_MCQS) * 30;
+            const totalProgress = codingProgress + mcqProgress;
+            document.getElementById('progress-fill').style.width = `${totalProgress}%`;
+        }
+
+        // Show auto-save indicator
+        function showAutoSaveIndicator() {
+            const indicator = document.getElementById('auto-save-indicator');
+            indicator.classList.add('show');
+            
+            setTimeout(() => {
+                indicator.classList.remove('show');
+            }, 2000);
+        }
+
+        // Auto-save function
+        function autoSave() {
+            // Save code editor content
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                if (codeEditors[i]) {
+                    const content = codeEditors[i].getValue();
+                    localStorage.setItem(`exam-code-${i}`, content);
+                    
+                    // Update status if there's content
+                    const statusElement = document.getElementById(`status-${i}`);
+                    if (content.trim() !== '') {
+                        statusElement.textContent = 'In Progress';
+                        statusElement.className = 'status-indicator status-incomplete';
+                    }
+                }
+            }
+            
+            // Save MCQ answers
+            localStorage.setItem('exam-mcq-answers', JSON.stringify(mcqAnswers));
+            
+            // Save completion status
+            localStorage.setItem('exam-completed-questions', JSON.stringify([...completedQuestions]));
+            
+            showAutoSaveIndicator();
+        }
+
+        // Load saved data
+        function loadSavedData() {
+            // Load code editor content
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                const savedCode = localStorage.getItem(`exam-code-${i}`);
+                if (savedCode && codeEditors[i]) {
+                    codeEditors[i].setValue(savedCode);
+                    
+                    // Update status
+                    const statusElement = document.getElementById(`status-${i}`);
+                    if (savedCode.trim() !== '') {
+                        statusElement.textContent = 'In Progress';
+                        statusElement.className = 'status-indicator status-incomplete';
+                    }
+                }
+            }
+            
+            // Load MCQ answers
+            const savedMCQ = localStorage.getItem('exam-mcq-answers');
+            if (savedMCQ) {
+                mcqAnswers = JSON.parse(savedMCQ);
+                
+                // Restore MCQ UI state
+                for (let i = 1; i <= TOTAL_MCQS; i++) {
+                    if (mcqAnswers[i]) {
+                        const container = document.getElementById(`mcq-container-${i}`);
+                        const submitButton = document.querySelector(`.submit-mcq[data-mcq="${i}"]`);
+                        const statusElement = document.getElementById(`status-mcq${i}`);
+                        
+                        container.classList.add('mcq-submitted');
+                        submitButton.textContent = "Answer Submitted";
+                        submitButton.disabled = true;
+                        statusElement.textContent = 'Answered';
+                        statusElement.className = 'status-indicator status-complete';
+                        
+                        // Disable options
+                        const options = document.querySelectorAll(`input[name="mcq${i}"]`);
+                        options.forEach(opt => {
+                            opt.disabled = true;
+                        });
+                    }
+                }
+            }
+            
+            // Load completion status
+            const savedCompleted = localStorage.getItem('exam-completed-questions');
+            if (savedCompleted) {
+                completedQuestions = new Set(JSON.parse(savedCompleted));
+                
+                // Update status for completed questions
+                completedQuestions.forEach(questionId => {
+                    const statusElement = document.getElementById(`status-${questionId}`);
+                    if (statusElement) {
+                        statusElement.textContent = 'Completed';
+                        statusElement.className = 'status-indicator status-complete';
+                    }
+                });
+            }
+            
+            updateProgress();
+        }
+
+        // Initialize CodeMirror editors
+        function initializeCodeEditors() {
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                const textarea = document.getElementById(`editor${i}`);
+                codeEditors[i] = CodeMirror.fromTextArea(textarea, {
+                    mode: 'python',
+                    theme: 'material-darker',
+                    lineNumbers: true,
+                    matchBrackets: true,
+                    autoCloseBrackets: true,
+                    indentUnit: 4,
+                    indentWithTabs: false,
+                    extraKeys: {
+                        "Tab": function(cm) {
+                            cm.replaceSelection("    ", "end");
+                        }
+                    }
+                });
+                
+                // Add change event for auto-save
+                codeEditors[i].on('change', function() {
+                    clearTimeout(autoSaveTimeout);
+                    autoSaveTimeout = setTimeout(autoSave, 1000);
+                });
+            }
+        }
+
+        // Setup exam timer
+        function setupExamTimer() {
+            examStartTime = localStorage.getItem('exam-start-time');
+            
+            if (!examStartTime) {
+                examStartTime = Date.now();
+                localStorage.setItem('exam-start-time', examStartTime);
+            } else {
+                examStartTime = parseInt(examStartTime);
+            }
+            
+            const endTime = examStartTime + EXAM_DURATION;
+            
+            function updateTimer() {
+                const now = Date.now();
+                const timeLeft = endTime - now;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('timer-display').textContent = '00:00:00';
+                    document.getElementById('timer-display').classList.add('timer-warning');
+                    alert('Exam time has ended! Please submit your answers.');
+                    return;
+                }
+                
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                
+                const display = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                document.getElementById('timer-display').textContent = display;
+                
+                // Add warning class when less than 10 minutes remain
+                if (timeLeft < 10 * 60 * 1000) {
+                    document.getElementById('timer-display').classList.add('timer-warning');
+                }
+            }
+            
+            updateTimer();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        // Setup navigation
+        function setupNavigation() {
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const questionId = this.getAttribute('data-question');
+                    
+                    if (questionId.startsWith('M')) {
+                        // MCQ question
+                        const mcqId = questionId.substring(1);
+                        document.getElementById(`mcq-container-${mcqId}`).scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    } else {
+                        // Coding question
+                        document.getElementById(`question-${questionId}`).scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }
+                    
+                    // Update current indicator
+                    navItems.forEach(nav => nav.classList.remove('current'));
+                    this.classList.add('current');
+                });
+            });
+        }
+
+        // Update navigation status
+        function updateNavigationStatus() {
+            // Update coding questions
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                const navItem = document.querySelector(`.nav-item[data-question="${i}"]`);
+                if (completedQuestions.has(i.toString())) {
+                    navItem.classList.add('completed');
+                }
+            }
+            
+            // Update MCQ questions
+            for (let i = 1; i <= TOTAL_MCQS; i++) {
+                const navItem = document.querySelector(`.nav-item[data-question="M${i}"]`);
+                if (mcqAnswers[i]) {
+                    navItem.classList.add('completed');
+                }
+            }
+        }
+
+        // --- Core Application Logic ---
+
+        // Function to run the Python code for a specific section
+        function runCode(sectionId) {
+            // Get code from the editor
+            const prog = codeEditors[sectionId].getValue();
+            const outputElement = document.getElementById(`output${sectionId}`);
+            outputElement.textContent = 'Output:\n'; // Clear previous output
+            outputElement.classList.remove('text-red-400'); // Reset color
+            
+            // Set the global output element for the outf function
+            window.currentOutputElement = outputElement;
+
+            if (typeof Sk === 'undefined') {
+                outputElement.textContent = 'Error: Python interpreter (Skulpt) is not loaded.';
+                outputElement.classList.add('text-red-400');
+                return;
+            }
+
+            Sk.pre = "output" + sectionId; 
+            Sk.configure({
+                output: outf,
+                read: builtinRead,
+            });
+
+            try {
+                Sk.misceval.asyncToPromise(() => {
+                    return Sk.importMainWithBody("<stdin>", false, prog, true);
+                }).then(() => {
+                    console.log(`Execution successful for section ${sectionId}.`);
+                    completedQuestions.add(sectionId.toString());
+                    
+                    // Update status
+                    const statusElement = document.getElementById(`status-${sectionId}`);
+                    statusElement.textContent = 'Completed';
+                    statusElement.className = 'status-indicator status-complete';
+                    
+                    updateProgress();
+                    updateNavigationStatus();
+                    autoSave();
+                }, (err) => {
+                    // Error
+                    outputElement.textContent += err.toString();
+                    outputElement.classList.add('text-red-400');
+                    console.error(`Execution error for section ${sectionId}:`, err);
+                });
+            } catch (e) {
+                outputElement.textContent += e.toString();
+                outputElement.classList.add('text-red-400');
+            }
+        }
+
+        // Function to validate Python syntax using Skulpt's parser
+        function validateSyntax(sectionId) {
+            const prog = codeEditors[sectionId].getValue();
+            const validationElement = document.getElementById(`validation-result-${sectionId}`);
+            
+            // Clear previous validation results
+            validationElement.innerHTML = '';
+            validationElement.className = 'validation-results hidden';
+            
+            if (prog.trim() === '') {
+                validationElement.textContent = 'No code to validate.';
+                validationElement.className = 'validation-results validation-warning';
+                validationElement.classList.remove('hidden');
+                return;
+            }
+            
+            validationElement.textContent = 'Validating syntax...';
+            validationElement.className = 'validation-results validation-warning';
+            validationElement.classList.remove('hidden');
+            
+            try {
+                // Use Skulpt's parser to check syntax
+                Sk.importMainWithBody("<stdin>", false, prog, false);
+                
+                // If we get here, syntax is valid
+                validationElement.textContent = '✓ Syntax is valid! You can run your code now.';
+                validationElement.className = 'validation-results validation-success';
+                
+            } catch (err) {
+                // Extract meaningful error message
+                let errorMessage = err.toString();
+                
+                // Clean up the error message for better readability
+                if (errorMessage.includes('SyntaxError')) {
+                    errorMessage = errorMessage.replace(/File "<stdin>", line \d+/g, 'Line');
+                    errorMessage = errorMessage.replace(/ParseError/g, 'SyntaxError');
+                }
+                
+                validationElement.textContent = `✗ Syntax Error:\n${errorMessage}`;
+                validationElement.className = 'validation-results validation-error';
+            }
+        }
+
+        // Helper function for copying text to clipboard
+        function copyToClipboard(text) {
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = text;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            
+            try {
+                document.execCommand('copy');
+                return true;
+            } catch (err) {
+                console.error('Copy command failed:', err);
+                return false;
+            } finally {
+                document.body.removeChild(tempTextArea);
+            }
+        }
+        
+        // Function to copy the code for a specific section
+        function copyCode(sectionId) {
+            const code = codeEditors[sectionId].getValue();
+            if (copyToClipboard(code)) {
+                // Show temporary success message
+                const button = document.querySelector(`.copy-button[data-section="${sectionId}"]`);
+                const originalText = button.textContent;
+                button.textContent = "Copied!";
+                setTimeout(() => {
+                    button.textContent = originalText;
+                }, 1500);
+            }
+        }
+        
+        // Function to copy all answers
+        function copyAllAnswers() {
+            let allCode = "=== CODING ANSWERS ===\n\n";
+            
+            // Coding questions
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                const code = codeEditors[i].getValue();
+                allCode += `Question ${i}:\n${code}\n\n`;
+            }
+            
+            // Multiple choice answers
+            allCode += "=== MULTIPLE CHOICE ANSWERS ===\n\n";
+            for (let i = 1; i <= TOTAL_MCQS; i++) {
+                const answer = mcqAnswers[i] || "Not answered";
+                allCode += `MCQ M${i}: ${answer}\n`;
+            }
+            
+            const submissionArea = document.getElementById('submission-area');
+            submissionArea.value = allCode;
+            
+            // Copy to clipboard
+            if (copyToClipboard(allCode)) {
+                // Show success message
+                const successMessage = document.getElementById('copy-success');
+                successMessage.style.display = 'block';
+                
+                // Hide message after 3 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        // Function to handle multiple choice questions
+        function handleMCQ(mcqId) {
+            const selectedOption = document.querySelector(`input[name="mcq${mcqId}"]:checked`);
+            const container = document.getElementById(`mcq-container-${mcqId}`);
+            
+            if (!selectedOption) {
+                alert("Please select an answer before submitting!");
+                return;
+            }
+
+            const answerText = selectedOption.nextElementSibling.textContent;
+            
+            // Store the answer
+            mcqAnswers[mcqId] = answerText;
+            
+            // Mark as submitted (visual feedback only)
+            container.classList.add('mcq-submitted');
+            
+            // Disable further selection for this question
+            const options = document.querySelectorAll(`input[name="mcq${mcqId}"]`);
+            options.forEach(opt => {
+                opt.disabled = true;
+            });
+            
+            // Change submit button text
+            const submitButton = document.querySelector(`.submit-mcq[data-mcq="${mcqId}"]`);
+            submitButton.textContent = "Answer Submitted";
+            submitButton.disabled = true;
+            
+            // Update status
+            const statusElement = document.getElementById(`status-mcq${mcqId}`);
+            statusElement.textContent = 'Answered';
+            statusElement.className = 'status-indicator status-complete';
+            
+            // Update progress
+            updateProgress();
+            updateNavigationStatus();
+            autoSave();
+        }
+
+        // Function to toggle sample solution for first question only
+        function toggleSolution(sectionId) {
+            const solutionElement = document.getElementById(`solution${sectionId}`);
+            const button = document.querySelector(`.toggle-solution[data-section="${sectionId}"]`);
+            
+            if (solutionElement.classList.contains('hidden')) {
+                solutionElement.classList.remove('hidden');
+                button.textContent = 'Hide Solution';
+            } else {
+                solutionElement.classList.add('hidden');
+                button.textContent = 'Show Solution';
+            }
+        }
+
+        // Function to set up the Light/Dark Mode toggle
+        function setupThemeToggle() {
+            const toggleButton = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+
+            function updateTheme(theme) {
+                html.setAttribute('data-theme', theme);
+                toggleButton.textContent = theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode';
+                localStorage.setItem('theme', theme);
+                
+                // Update CodeMirror theme
+                for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                    if (codeEditors[i]) {
+                        codeEditors[i].setOption('theme', theme === 'dark' ? 'material-darker' : 'default');
+                    }
+                }
+            }
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            updateTheme(savedTheme);
+
+            toggleButton.addEventListener('click', () => {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                updateTheme(newTheme);
+            });
+        }
+
+        // Initialize the application
+        function initializeApp() {
+            // Initialize CodeMirror editors
+            initializeCodeEditors();
+            
+            // Load saved data
+            loadSavedData();
+            
+            // Set up exam timer
+            setupExamTimer();
+            
+            // Set up navigation
+            setupNavigation();
+            updateNavigationStatus();
+            
+            // Set up event listeners for all coding question buttons
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                document.querySelector(`.run-button[data-section="${i}"]`).addEventListener('click', () => runCode(i));
+                document.querySelector(`.copy-button[data-section="${i}"]`).addEventListener('click', () => copyCode(i));
+                document.querySelector(`.validate-button[data-section="${i}"]`).addEventListener('click', () => validateSyntax(i));
+            }
+            
+            // Set up multiple choice question handlers
+            for (let i = 1; i <= TOTAL_MCQS; i++) {
+                document.querySelector(`.submit-mcq[data-mcq="${i}"]`).addEventListener('click', () => handleMCQ(i));
+                
+                // Add click handlers for MCQ options
+                const options = document.querySelectorAll(`input[name="mcq${i}"]`);
+                options.forEach(option => {
+                    option.addEventListener('change', function() {
+                        const allOptions = document.querySelectorAll(`.mcq-option input[name="mcq${i}"]`);
+                        allOptions.forEach(opt => {
+                            opt.closest('.mcq-option').classList.remove('selected');
+                        });
+                        this.closest('.mcq-option').classList.add('selected');
+                    });
+                });
+            }
+            
+            // Set up solution toggle for first question only
+            document.querySelector('.toggle-solution').addEventListener('click', () => toggleSolution(1));
+            
+            // Set up the copy all button
+            document.getElementById('copy-all-btn').addEventListener('click', copyAllAnswers);
+            
+            // Set up theme toggle
+            setupThemeToggle();
+            
+            // Initialize progress bar
+            updateProgress();
+            
+            // Set up auto-save on page unload
+            window.addEventListener('beforeunload', autoSave);
+        }
+
+        // Initialize when the page loads
+        window.addEventListener('load', initializeApp);
+    </script>
+</body>
+</html>
