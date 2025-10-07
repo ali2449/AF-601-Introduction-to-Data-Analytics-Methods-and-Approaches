@@ -1,458 +1,1492 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module 2: Control Flow & Decision Making</title>
-    <link rel="stylesheet" href="./css/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="./js/mathjax.js"></script>
+    <title>Control Flow & Decision Making</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/eclipse.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+        
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #e2e8f0;
+            --section-bg: #1e293b;
+            --code-bg: #020617;
+            --border-color: #334155;
+            --header-color: #38bdf8;
+            --accent-color: #6366f1;
+            --accent-hover: #4f46e5;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --warning-color: #f59e0b;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f1f5f9;
+            --text-color: #1e293b;
+            --section-bg: #ffffff;
+            --code-bg: #f8fafc;
+            --border-color: #e2e8f0;
+            --header-color: #1d4ed8;
+            --accent-color: #4f46e5;
+            --accent-hover: #4338ca;
+            --success-color: #059669;
+            --error-color: #dc2626;
+            --warning-color: #d97706;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
+        }
+
+        .section-card {
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            color: white;
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .CodeMirror {
+            height: auto;
+            min-height: 150px;
+            border-radius: 0.5rem;
+            font-size: 14px;
+            margin: 0.5rem 0;
+            transition: background-color 0.3s;
+        }
+        
+        .output-area {
+            background-color: var(--code-bg);
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            font-family: monospace;
+            font-size: 14px;
+            min-height: 60px;
+            white-space: pre-wrap;
+            transition: background-color 0.3s;
+        }
+
+        .chapter-title {
+            color: var(--header-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--header-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .function-title {
+            color: var(--header-color);
+            font-weight: bold;
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .concept-box {
+            background-color: var(--section-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+            transition: background-color 0.3s;
+        }
+
+        .explanation-box {
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .status-indicator {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .status-loading {
+            background-color: #fef3c7;
+            color: #92400e;
+            border: 1px solid #f59e0b;
+        }
+        
+        .status-ready {
+            background-color: #d1fae5;
+            color: #065f46;
+            border: 1px solid var(--success-color);
+        }
+
+        .status-error {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border: 1px solid var(--error-color);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--border-color);
+        }
+
+        .table-of-contents {
+            position: sticky;
+            top: 1rem;
+            max-height: calc(100vh - 2rem);
+            overflow-y: auto;
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+
+        .toc-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .toc-item:hover {
+            color: var(--header-color);
+        }
+
+        .toc-item:last-child {
+            border-bottom: none;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background-color: var(--border-color);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--accent-color);
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .code-container {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: var(--section-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-color);
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s, background-color 0.2s;
+            z-index: 10;
+        }
+
+        .copy-button:hover {
+            opacity: 1;
+            background-color: var(--border-color);
+        }
+
+        .success-message {
+            color: var(--success-color);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .info-box {
+            background-color: var(--code-bg);
+            border-left: 4px solid var(--header-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        .warning-box {
+            background-color: #fef3c7;
+            border-left: 4px solid var(--warning-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+            color: #92400e;
+        }
+
+        .key-point {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            font-weight: bold;
+            margin: 0 0.25rem;
+        }
+
+        .real-world-example {
+            background-color: var(--section-bg);
+            border: 2px dashed var(--success-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .learning-objectives {
+            background: linear-gradient(135deg, var(--accent-color), var(--header-color));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .prerequisites {
+            background-color: var(--code-bg);
+            border-left: 4px solid var(--warning-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        .exercise-box {
+            background-color: var(--section-bg);
+            border: 2px solid var(--success-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .quiz-container {
+            background-color: var(--section-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .table-of-contents {
+                position: static;
+                max-height: none;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <h1>Module 2: Control Flow & Decision Making</h1>
+<body class="p-4 md:p-8 min-h-screen">
+
+<div class="theme-toggle" id="theme-toggle">
+    <span id="theme-icon">🌙</span>
+</div>
+
+<div class="max-w-6xl mx-auto">
+    <header class="text-center mb-8">
+        <h1 class="text-4xl font-extrabold mb-4" id="module-title">Module 2: Control Flow & Decision Making</h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300 mb-4" id="module-description">Master conditional statements, loops, and program flow control in Python</p>
+        <div id="status-indicator" class="status-indicator status-loading">
+            ⏳ Loading Pyodide... This may take a few seconds.
+        </div>
+        <div id="progress-bar" class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+        </div>
     </header>
 
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./module1.html">Module 1</a></li>
-            <li><a href="./module2.html">Module 2</a></li>
-            <li><a href="./module3.html">Module 3</a></li>
-            <li><a href="./module4.html">Module 4</a></li>
-            <li><a href="./module5.html">Module 5</a></li>
-            <li><a href="./module6.html">Module 6</a></li>
-            <li><a href="./module7.html">Module 7</a></li>
-            <li><a href="./module8.html">Module 8</a></li>
-            <li><a href="./module9.html">Module 9</a></li>
-            <li><a href="./module10.html">Module 10</a></li>
-            <li><a href="./module11.html">Module 11</a></li>
-            <li><a href="./module12.html">Module 12</a></li>
-            <li><a href="./module13.html">Module 13</a></li>
-            <li><a href="./module14.html">Module 14</a></li>
-            <li><a href="./module15.html">Module 15</a></li>
-            <li><a href="./module16.html">Module 16</a></li>
-        </ul>
-    </nav>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Recap Box -->
-        <div class="recapbox">
-            From Module 1, you have learned that variables store data, with types including int, float, str, and bool. You can perform basic operations and use print for output. You also understand type conversion and user input. These concepts provide the foundation for implementing decision-making and repetition in code.
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <!-- Table of Contents -->
+        <div class="lg:col-span-1">
+            <div class="table-of-contents">
+                <h2 class="font-bold text-lg mb-4">Table of Contents</h2>
+                <div id="toc-list">
+                    <!-- TOC items will be generated by JavaScript -->
+                </div>
+            </div>
         </div>
 
-        <!-- Chapter 1: Comprehensive Tutorial -->
-        <section>
-            <h2>Chapter 1: Comprehensive Tutorial</h2>
+        <!-- Main Content -->
+        <div class="lg:col-span-3">
+            <!-- Module Overview Section -->
+            <section class="section-card" id="module-overview">
+                <div class="chapter-title">Module Overview</div>
+                
+                <div class="learning-objectives">
+                    <h3 class="font-bold text-lg mb-3">🎯 Learning Objectives</h3>
+                    <ul class="list-disc pl-6" id="learning-objectives-list">
+                        <li>Understand and implement conditional statements (if/elif/else)</li>
+                        <li>Master for loops for iterating over sequences</li>
+                        <li>Use while loops for condition-based repetition</li>
+                        <li>Apply control statements (break, continue, pass)</li>
+                        <li>Create nested control structures for complex logic</li>
+                        <li>Build practical applications using control flow</li>
+                    </ul>
+                </div>
 
-            <!-- Business Context -->
-            <h3>Business Context</h3>
-            <div class="businesscontext">
-                Control flow structures enable code to make decisions and repeat tasks. In business, they are used to evaluate conditions, such as awarding bonuses for high sales. In healthcare, loops can process multiple patient records. Their importance lies in automating complex logic and saving time. In informatics, control flow facilitates processing of numerous gene sequences.
-            </div>
+                <div class="prerequisites">
+                    <h3 class="font-bold mb-2">📋 Prerequisites</h3>
+                    <ul class="list-disc pl-6" id="prerequisites-list">
+                        <li>Basic Python syntax and variables</li>
+                        <li>Understanding of data types (int, float, str, bool)</li>
+                        <li>Basic operations and print statements</li>
+                        <li>Type conversion and user input handling</li>
+                    </ul>
+                </div>
 
-            <!-- Section 1: Advanced User Input -->
-            <h3>Section 1: Advanced User Input</h3>
-            <p>The input function captures data from users, allowing for interactive programs.</p>
+                <div class="concept-box">
+                    <h3 class="font-bold mb-2 text-lg">Business Context & Importance</h3>
+                    <p class="mb-3">
+                        Control flow structures enable code to make decisions and repeat tasks automatically. In business applications, they are essential for evaluating conditions, processing data, and automating complex logic.
+                    </p>
+                    <p>
+                        <span class="key-point">Real-world applications</span> include: awarding bonuses based on sales performance, processing multiple patient records in healthcare, analyzing gene sequences in bioinformatics, and creating interactive applications that respond to user input.
+                    </p>
+                </div>
 
-            <div class="explainbox">
-                Input reads a string from the keyboard, enhancing program flexibility by accommodating user-provided data. For example, <code>name = input("Enter name: ")</code>. A common mistake is failing to convert the input type; use <code>int()</code> or <code>float()</code> as needed. In sales applications, input can capture revenue figures. An analogy is posing a question to gather information. In summary, input enables dynamic program behavior.
-            </div>
+                <div class="info-box">
+                    <h4 class="font-bold mb-2">💡 Key Concept: Indentation Matters!</h4>
+                    <p>Python uses indentation (typically 4 spaces) to define code blocks. Proper indentation is crucial for control flow structures to work correctly.</p>
+                </div>
+            </section>
 
-            <div class="jupyinput">
-                <pre><code># Advanced input with validation
-user_age = input("Enter age: ")
-age = int(user_age)  # Convert to int</code></pre>
-            </div>
+            <!-- Chapter 1: Conditional Statements -->
+            <section class="section-card" id="chapter-1">
+                <div class="chapter-title">Chapter 1: Conditional Statements - If/Else</div>
+                
+                <div class="concept-box">
+                    <h3 class="font-bold mb-2 text-lg">Making Decisions in Code</h3>
+                    <p class="mb-3">
+                        The <code>if</code> statement evaluates conditions to execute code blocks selectively, enabling decision-making logic. Use <code>if/elif/else</code> for multiple alternative paths in your programs.
+                    </p>
+                </div>
 
-            <div class="jupyoutput">
-                (Assuming input 25) No output, age holds 25.
-            </div>
+                <div class="function-title">1.1 Basic If/Else Statements</div>
+                
+                <div class="explanation-box">
+                    <h4 class="font-bold mb-2">Simple Decision Making</h4>
+                    <p class="mb-3">
+                        The most basic form of conditional execution. The code block under <code>if</code> runs only when the condition is True, otherwise the <code>else</code> block executes.
+                    </p>
+                </div>
 
-            <p>In cultural analytics, input can accept text for analysis.</p>
-
-            <div class="businessinsight">
-                In geospatial applications, input can capture coordinates for mapping.
-            </div>
-
-            <!-- Section 2: Conditional Statements - If/Else -->
-            <h3>Section 2: Conditional Statements - If/Else</h3>
-            <p>The if statement evaluates conditions to execute code blocks selectively.</p>
-
-            <div class="explainbox">
-                Conditional statements test for true conditions to branch code execution. They enable decision-making logic. Use <code>if age > 18: print("Adult")</code>, with <code>else</code> for alternative paths. A common error is incorrect indentation; use consistent 4-space indents. In patient analysis, an if statement can alert for high fever. An analogy is taking an umbrella if it is raining. In summary, if/else structures facilitate conditional execution.
-            </div>
-
-            <div class="jupyinput">
-                <pre><code># If/else example
+                <div class="code-container">
+                    <textarea id="editor1_1" class="code-editor">
+# Basic if/else example
 sales = 1000
 if sales > 800:
     print("Good sales")
 else:
-    print("Low sales")</code></pre>
-            </div>
+    print("Low sales")
 
-            <div class="jupyoutput">
-                Good sales
-            </div>
+# Multiple conditions with elif
+temperature = 75
+if temperature > 90:
+    print("Hot day")
+elif temperature > 70:
+    print("Warm day")
+else:
+    print("Cool day")
 
-            <p>In bioinformatics, conditions can flag gene mutations.</p>
+# Boolean conditions
+is_weekend = True
+has_money = False
 
-            <!-- Section 3: Loops - For Loops -->
-            <h3>Section 3: Loops - For Loops</h3>
-            <p>For loops iterate over sequences, executing code for each item.</p>
+if is_weekend and has_money:
+    print("Time to go out!")
+elif is_weekend and not has_money:
+    print("Stay home and relax")
+else:
+    print("Regular work day")</textarea>
+                    <button class="copy-button">Copy</button>
+                    <button class="run-button btn-primary mt-2">Run Code</button>
+                    <div id="output1_1" class="output-area">Click 'Run Code' to see output...</div>
+                </div>
 
-            <div class="explainbox">
-                For loops repeat actions for each element in a collection, suitable for processing known numbers of items. Use <code>for i in range(5): print(i)</code>. A common mistake is off-by-one errors; verify range boundaries. In geospatial applications, loops can process map points. An analogy is inspecting each item in a basket. In summary, for loops are ideal for iteration over sequences.
-            </div>
+                <div class="function-title">1.2 Comparison and Logical Operators</div>
+                
+                <div class="explanation-box">
+                    <h4 class="font-bold mb-2">Building Complex Conditions</h4>
+                    <p class="mb-3">
+                        Python provides various operators to create complex conditions: comparison operators (<code>></code>, <code><</code>, <code>==</code>, etc.) and logical operators (<code>and</code>, <code>or</code>, <code>not</code>).
+                    </p>
+                </div>
 
-            <div class="jupyinput">
-                <pre><code># For loop example
+                <div class="code-container">
+                    <textarea id="editor1_2" class="code-editor">
+# Comparison operators
+age = 25
+grade = 85
+
+print("Age comparisons:")
+print(f"age == 25: {age == 25}")
+print(f"age != 25: {age != 25}")
+print(f"age > 18: {age > 18}")
+print(f"age <= 30: {age <= 30}")
+
+# Logical operators in action
+is_student = True
+has_id = True
+has_permission = False
+
+print("\nLogical operations:")
+print(f"is_student and has_id: {is_student and has_id}")
+print(f"is_student or has_permission: {is_student or has_permission}")
+print(f"not has_permission: {not has_permission}")
+
+# Complex condition example
+if (age >= 18 and has_id) or has_permission:
+    print("Access granted")
+else:
+    print("Access denied")
+
+# Membership testing with 'in'
+fruits = ["apple", "banana", "orange"]
+if "banana" in fruits:
+    print("We have bananas!")
+if "grape" not in fruits:
+    print("No grapes available")</textarea>
+                    <button class="copy-button">Copy</button>
+                    <button class="run-button btn-primary mt-2">Run Code</button>
+                    <div id="output1_2" class="output-area">Click 'Run Code' to see output...</div>
+                </div>
+
+            </section>
+
+            <!-- Chapter 2: For Loops -->
+            <section class="section-card" id="chapter-2">
+                <div class="chapter-title">Chapter 2: For Loops</div>
+                
+                <div class="concept-box">
+                    <h3 class="font-bold mb-2 text-lg">Iterating Over Sequences</h3>
+                    <p class="mb-3">
+                        <code>for</code> loops iterate over sequences (like lists, strings, or ranges), executing code for each item. They are ideal for processing a known number of items or when you need to perform the same operation on multiple elements.
+                    </p>
+                </div>
+
+                <div class="function-title">2.1 Basic For Loops</div>
+                
+                <div class="explanation-box">
+                    <h4 class="font-bold mb-2">Looping Through Collections</h4>
+                    <p class="mb-3">
+                        For loops work with any iterable object. The loop variable takes each value from the sequence one by one, and the indented code block executes for each iteration.
+                    </p>
+                </div>
+
+                <div class="code-container">
+                    <textarea id="editor2_1" class="code-editor">
+# Looping through a list
 patients = [1, 2, 3]
 for patient in patients:
-    print(f"Process patient {patient}")</code></pre>
-            </div>
+    print(f"Process patient {patient}")
 
-            <div class="jupyoutput">
-                Process patient 1<br>
-                Process patient 2<br>
-                Process patient 3
-            </div>
+# Looping through a string
+word = "Python"
+for letter in word:
+    print(f"Current letter: {letter}")
 
-            <p>In computational analytics, loops perform repeated calculations.</p>
+# Using range() for numerical loops
+print("Counting from 0 to 4:")
+for i in range(5):
+    print(i)
 
-            <!-- Section 4: Loops - While Loops -->
-            <h3>Section 4: Loops - While Loops</h3>
-            <p>While loops execute as long as a condition remains true.</p>
+print("Counting from 2 to 8:")
+for i in range(2, 9):
+    print(i)
 
-            <div class="explainbox">
-                While loops continue execution based on a condition, suitable for unknown iteration counts. Use <code>count = 0; while count < 5: print(count); count += 1</code>. A common error is creating infinite loops; ensure the condition eventually becomes false. In data processing, while loops can handle incoming data streams. An analogy is eating while hungry. In summary, while loops are useful for condition-based repetition.
-            </div>
+print("Counting by 2s:")
+for i in range(0, 10, 2):
+    print(i)
 
-            <div class="jupyinput">
-                <pre><code># While loop example
+# Practical example: processing data
+sales_data = [1500, 800, 1200, 2000, 950]
+total_sales = 0
+
+for sale in sales_data:
+    total_sales += sale
+    print(f"Processing sale: ${sale}")
+
+print(f"Total sales: ${total_sales}")</textarea>
+                    <button class="copy-button">Copy</button>
+                    <button class="run-button btn-primary mt-2">Run Code</button>
+                    <div id="output2_1" class="output-area">Click 'Run Code' to see output...</div>
+                </div>
+
+                <div class="function-title">2.2 Advanced For Loop Techniques</div>
+                
+                <div class="explanation-box">
+                    <h4 class="font-bold mb-2">Enumerate and Zip</h4>
+                    <p class="mb-3">
+                        Python provides useful functions like <code>enumerate()</code> to get both index and value, and <code>zip()</code> to iterate over multiple sequences simultaneously.
+                    </p>
+                </div>
+
+                <div class="code-container">
+                    <textarea id="editor2_2" class="code-editor">
+# Using enumerate to get index and value
+fruits = ["apple", "banana", "cherry"]
+print("Fruits with indices:")
+for index, fruit in enumerate(fruits):
+    print(f"{index}: {fruit}")
+
+# Starting index from 1
+print("\nFruits with custom indexing:")
+for index, fruit in enumerate(fruits, start=1):
+    print(f"{index}: {fruit}")
+
+# Using zip to iterate over multiple lists
+names = ["Alice", "Bob", "Charlie"]
+ages = [25, 30, 35]
+cities = ["New York", "London", "Tokyo"]
+
+print("\nPeople information:")
+for name, age, city in zip(names, ages, cities):
+    print(f"{name} is {age} years old and lives in {city}")
+
+# Looping through dictionary items
+student_grades = {"Alice": 85, "Bob": 92, "Charlie": 78}
+
+print("\nStudent grades:")
+for name, grade in student_grades.items():
+    print(f"{name}: {grade}")
+
+print("\nJust the names:")
+for name in student_grades.keys():
+    print(name)
+
+print("\nJust the grades:")
+for grade in student_grades.values():
+    print(grade)</textarea>
+                    <button class="copy-button">Copy</button>
+                    <button class="run-button btn-primary mt-2">Run Code</button>
+                    <div id="output2_2" class="output-area">Click 'Run Code' to see output...</div>
+                </div>
+
+            </section>
+
+            <!-- Chapter 3: While Loops -->
+            <section class="section-card" id="chapter-3">
+                <div class="chapter-title">Chapter 3: While Loops</div>
+                
+                <div class="concept-box">
+                    <h3 class="font-bold mb-2 text-lg">Condition-Based Repetition</h3>
+                    <p class="mb-3">
+                        <code>while</code> loops execute as long as a condition remains True. They are suitable when the number of iterations is unknown beforehand or when you need to continue until a specific condition is met.
+                    </p>
+                </div>
+
+                <div class="function-title">3.1 Basic While Loops</div>
+                
+                <div class="explanation-box">
+                    <h4 class="font-bold mb-2">Repeating Until Condition Changes</h4>
+                    <p class="mb-3">
+                        While loops continue executing their code block as long as the condition evaluates to True. It's crucial to ensure the condition eventually becomes False to avoid infinite loops.
+                    </p>
+                </div>
+
+                <div class="code-container">
+                    <textarea id="editor3_1" class="code-editor">
+# Basic while loop
 balance = 100
 while balance > 0:
     balance -= 20
-    print(balance)</code></pre>
-            </div>
+    print(f"Current balance: ${balance}")
 
-            <div class="jupyoutput">
-                80<br>
-                60<br>
-                40<br>
-                20<br>
-                0
-            </div>
+# Counter-based while loop
+counter = 1
+while counter <= 5:
+    print(f"Count: {counter}")
+    counter += 1  # Important: don't forget to update the counter!
 
-            <p>In healthcare, while loops can manage patient queues.</p>
+# User input with while loop
+print("\nNumber guessing game:")
+secret_number = 7
+guess = 0
 
-            <!-- Section 5: Nesting and Control Statements -->
-            <h3>Section 5: Nesting and Control Statements</h3>
-            <p>Nesting combines loops and conditionals, with break and continue controlling flow.</p>
+while guess != secret_number:
+    guess = int(input("Guess a number between 1-10: "))
+    if guess < secret_number:
+        print("Too low!")
+    elif guess > secret_number:
+        print("Too high!")
+    else:
+        print("Congratulations! You guessed it!")
 
-            <div class="explainbox">
-                Nesting places control structures within others for complex logic. Break terminates loops, while continue skips iterations. Use <code>for i in range(10): if i == 5: break</code>. A common error is improper indentation; ensure correct nesting levels. In gene sequencing, nesting can detect errors and terminate processing. An analogy is nested containers. In summary, nesting enables sophisticated control flow.
-            </div>
+# While loop with break
+print("\nCounting with break:")
+count = 0
+while True:  # This would be infinite without break
+    count += 1
+    print(count)
+    if count >= 5:
+        print("Reached 5, stopping!")
+        break</textarea>
+                    <button class="copy-button">Copy</button>
+                    <button class="run-button btn-primary mt-2">Run Code</button>
+                    <div id="output3_1" class="output-area">Click 'Run Code' to see output...</div>
+                </div>
 
-            <div class="jupyinput">
-                <pre><code># Nested example
-for i in range(3):
-    if i == 1:
-        continue
-    print(i)</code></pre>
-            </div>
+                <div class="warning-box">
+                    <h4 class="font-bold mb-2">⚠️ Avoiding Infinite Loops</h4>
+                    <p>Always ensure your while loop condition will eventually become False. Common mistakes include forgetting to update variables used in the condition.</p>
+                </div>
 
-            <div class="jupyoutput">
-                0<br>
-                2
-            </div>
+            </section>
 
-            <p>In geography, nesting can process grid-based maps.</p>
+            <!-- Chapter 4: Nesting and Control Statements -->
+            <section class="section-card" id="chapter-4">
+                <div class="chapter-title">Chapter 4: Nesting and Control Statements</div>
+                
+                <div class="concept-box">
+                    <h3 class="font-bold mb-2 text-lg">Advanced Flow Control</h3>
+                    <p class="mb-3">
+                        Nesting combines loops and conditionals for complex logic. Control statements like <code>break</code>, <code>continue</code>, and <code>pass</code> provide fine-grained control over loop execution.
+                    </p>
+                </div>
 
-            <div class="keypoints">
-                - Input captures user data.<br>
-                - If/else structures enable decisions.<br>
-                - For loops iterate over sequences.<br>
-                - While loops repeat based on conditions.<br>
-                - Nesting supports complex logic.<br>
-                Control flow directs program execution effectively.
-            </div>
-        </section>
+                <div class="function-title">4.1 Nested Structures</div>
+                
+                <div class="explanation-box">
+                    <h4 class="font-bold mb-2">Combining Loops and Conditionals</h4>
+                    <p class="mb-3">
+                        You can place loops inside other loops, or conditionals inside loops, to create sophisticated program logic. Proper indentation is crucial for nested structures.
+                    </p>
+                </div>
 
-        <!-- Chapter 2: Practice Exercises -->
-        <section>
-            <h2>Chapter 2: Practice Exercises</h2>
+                <div class="code-container">
+                    <textarea id="editor4_1" class="code-editor">
+# Nested loops example
+print("Multiplication table:")
+for i in range(1, 4):  # Outer loop
+    for j in range(1, 4):  # Inner loop
+        print(f"{i} x {j} = {i * j}")
+    print()  # Empty line after each row
 
-            <!-- Foundation Exercise -->
-            <h3>Foundation Exercise: Simple Input and Output</h3>
-            <p>Description: Obtain user name and age, then print a welcome message if age exceeds 18.</p>
+# Conditionals inside loops
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print("Even numbers only:")
+for num in numbers:
+    if num % 2 == 0:  # Check if number is even
+        print(num)
 
-            <div class="tipbox">
-                Convert age to an integer after input.
-            </div>
+# Complex nested example
+students = [
+    {"name": "Alice", "grades": [85, 92, 78]},
+    {"name": "Bob", "grades": [88, 79, 91]},
+    {"name": "Charlie", "grades": [92, 95, 89]}
+]
 
-            <p>Hint: <code>age = int(input("Age: "))</code>.</p>
+print("\nStudent grade analysis:")
+for student in students:
+    print(f"\n{student['name']}:")
+    total = 0
+    for grade in student["grades"]:
+        total += grade
+        if grade >= 90:
+            print(f"  {grade} - Excellent!")
+        elif grade >= 80:
+            print(f"  {grade} - Good")
+        else:
+            print(f"  {grade} - Needs improvement")
+    average = total / len(student["grades"])
+    print(f"  Average: {average:.1f}")</textarea>
+                    <button class="copy-button">Copy</button>
+                    <button class="run-button btn-primary mt-2">Run Code</button>
+                    <div id="output4_1" class="output-area">Click 'Run Code' to see output...</div>
+                </div>
 
-            <!-- Building Exercise -->
-            <h3>Building Exercise: If/Else Conditions</h3>
-            <p>Description: Accept sales input; print "Bonus" if over 1000, otherwise "No bonus". From a business project.</p>
+                <div class="function-title">4.2 Control Statements: Break, Continue, Pass</div>
+                
+                <div class="explanation-box">
+                    <h4 class="font-bold mb-2">Fine-Tuning Loop Behavior</h4>
+                    <p class="mb-3">
+                        <code>break</code> terminates a loop entirely, <code>continue</code> skips to the next iteration, and <code>pass</code> is a placeholder that does nothing (useful for incomplete code).
+                    </p>
+                </div>
 
-            <div class="tipbox">
-                Use float for sales values.
-            </div>
+                <div class="code-container">
+                    <textarea id="editor4_2" class="code-editor">
+# Using continue to skip iterations
+print("Numbers 1-10, skipping 5:")
+for i in range(1, 11):
+    if i == 5:
+        continue  # Skip the rest of this iteration
+    print(i)
 
-            <p>Hint: <code>if sales > 1000:</code>.</p>
+# Using break to exit early
+print("\nSearching for number 7:")
+for i in range(1, 11):
+    print(f"Checking {i}...")
+    if i == 7:
+        print("Found it!")
+        break  # Exit the loop completely
+print("Loop finished")
 
-            <!-- Intermediate Exercise -->
-            <h3>Intermediate Exercise: For Loop Iteration</h3>
-            <p>Description: Iterate through five gene counts and print each. From bioinformatics.</p>
+# Using pass as placeholder
+print("\nUsing pass:")
+for i in range(5):
+    if i == 2:
+        pass  # Does nothing, just a placeholder
+    else:
+        print(i)
 
-            <div class="tipbox">
-                Utilize <code>range(5)</code> for iteration.
-            </div>
+# Practical example: data validation
+numbers = [10, 25, -5, 42, 100, -10, 0]
+print("\nProcessing positive numbers only:")
+for num in numbers:
+    if num <= 0:
+        continue  # Skip negative numbers and zero
+    print(f"Processing positive number: {num}")
 
-            <p>Hint: <code>for i in range(5): print(i)</code>.</p>
+# Break in while loop
+print("\nCountdown with emergency break:")
+count = 10
+while count > 0:
+    print(count)
+    count -= 1
+    if count == 5:
+        print("Emergency break!")
+        break</textarea>
+                    <button class="copy-button">Copy</button>
+                    <button class="run-button btn-primary mt-2">Run Code</button>
+                    <div id="output4_2" class="output-area">Click 'Run Code' to see output...</div>
+                </div>
 
-            <!-- Advanced Exercise -->
-            <h3>Advanced Exercise: While Loop Countdown</h3>
-            <p>Description: Use a while loop to print and decrement a counter from 10 to 1. From patient queue management.</p>
+            </section>
 
-            <div class="tipbox">
-                Ensure the condition changes to avoid infinite loops.
-            </div>
+            <!-- Practice Exercises Section -->
+            <section class="section-card" id="practice-exercises">
+                <div class="chapter-title">Practice Exercises</div>
+                
+                <div class="concept-box">
+                    <h3 class="font-bold mb-2 text-lg">Hands-On Learning</h3>
+                    <p class="mb-3">
+                        Apply what you've learned with these progressively challenging exercises. Start with the foundation exercise and work your way up to mastery level.
+                    </p>
+                </div>
 
-            <p>Hint: <code>count = 10; while count > 0: count -= 1</code>.</p>
+                <div class="exercise-box">
+                    <h4 class="font-bold mb-3 text-lg">🏁 Foundation Exercise</h4>
+                    <p class="mb-3">Obtain user name and age, then print a welcome message if age exceeds 18.</p>
+                    <div class="code-container">
+                        <textarea id="editor_ex1" class="code-editor">
+# Foundation Exercise Solution
+name = input("Enter your name: ")
+age = int(input("Enter your age: "))
 
-            <!-- Mastery Exercise -->
-            <h3>Mastery Exercise: Nested Loops and If</h3>
-            <p>Description: Use nested for and if statements to print even numbers in a range. From a computational project.</p>
-
-            <div class="tipbox">
-                Check with <code>i % 2 == 0</code>.
-            </div>
-
-            <p>Hint: <code>for i in range(10): if i % 2 == 0: print(i)</code>.</p>
-        </section>
-
-        <!-- Chapter 3: Business Applications -->
-        <section>
-            <h2>Chapter 3: Business Applications</h2>
-
-            <!-- Application 1 -->
-            <h3>Application 1: Scenario - Health Check</h3>
-            <p>Scenario: Input patient temperature; print "Fever detected" if above 98.6.</p>
-            <p>Steps: 1. <code>temp = float(input("Temp: "))</code>. 2. <code>if temp > 98.6: print("Fever detected")</code>.</p>
-
-            <div class="jupyinput">
-                <pre><code>temp = float(input("Enter temperature: "))
-if temp > 98.6:
-    print("Fever detected")
-else:
-    print("Normal")</code></pre>
-            </div>
-
-            <div class="jupyoutput">
-                (Assuming 99.0) Fever detected
-            </div>
-
-            <p>Why: Enables rapid health assessments. Real-world: Health analytics.</p>
-
-            <!-- Application 2 -->
-            <h3>Application 2: Challenge - Sales Loop</h3>
-            <p>Challenge: Loop three times to input sales values and compute their sum.</p>
-            <p>Steps: 1. <code>total = 0</code>. 2. <code>for i in range(3): total += float(input("Sales: "))</code>. 3. Print total.</p>
-            <p>Output: (Assuming 100, 200, 300) 600.0</p>
-            <p>Interdisciplinary: Business informatics.</p>
-
-            <!-- Application 3 -->
-            <h3>Application 3: Strategic - Map Point Processing</h3>
-            <p>Strategic: Process points in a loop until none remain.</p>
-            <p>Steps: 1. <code>points = 5</code>. 2. <code>while points > 0: print("Process"); points -=1</code>.</p>
-            <p>Output: Process (5 times)</p>
-            <p>For geospatial analytics.</p>
-        </section>
-
-        <!-- Chapter 4: Capstone Challenge Project -->
-        <section>
-            <h2>Chapter 4: Capstone Challenge Project</h2>
-            <p>Integrate input, conditions, and loops. Time: 60 minutes. Deliverable: Jupyter notebook with code and outputs.</p>
-            <p>Project: Develop a simple quiz that prompts for answers, checks them using if statements, and loops through questions, displaying the score at the end.</p>
-            <p>Rubric: Input (20%), Conditions (30%), Loops (30%), Formatting (10%), Comments (10%).</p>
-
-            <div class="tipbox">
-                Use a for loop to iterate over questions.
-            </div>
-
-            <p>Hints: Initialize <code>score = 0</code>, increment with <code>if answer == correct: score +=1</code>.</p>
-        </section>
-
-        <!-- Chapter 5: Solutions to Exercises and Applications -->
-        <section>
-            <h2>Chapter 5: Solutions to Exercises and Applications</h2>
-
-            <!-- Solution to Foundation Exercise -->
-            <h3>Solution to Foundation Exercise</h3>
-            <div class="jupyinput">
-                <pre><code>name = input("Name: ")
-age = int(input("Age: "))
 if age > 18:
-    print("Welcome")</code></pre>
-            </div>
+    print(f"Welcome, {name}! You are an adult.")
+else:
+    print(f"Hello, {name}! You are a minor.")</textarea>
+                        <button class="copy-button">Copy</button>
+                        <button class="run-button btn-primary mt-2">Run Code</button>
+                        <div id="output_ex1" class="output-area">Click 'Run Code' to see output...</div>
+                    </div>
+                </div>
 
-            <div class="jupyoutput">
-                (Assuming Bob, 25) Welcome
-            </div>
+                <div class="exercise-box">
+                    <h4 class="font-bold mb-3 text-lg">🏗️ Building Exercise</h4>
+                    <p class="mb-3">Accept sales input; print "Bonus" if over 1000, otherwise "No bonus".</p>
+                    <div class="code-container">
+                        <textarea id="editor_ex2" class="code-editor">
+# Building Exercise Solution
+sales = float(input("Enter sales amount: "))
 
-            <p>Explanation: Captures input and applies a condition for basic decision-making.</p>
-
-            <!-- Solution to Building Exercise -->
-            <h3>Solution to Building Exercise</h3>
-            <div class="jupyinput">
-                <pre><code>sales = float(input("Sales: "))
 if sales > 1000:
     print("Bonus")
 else:
-    print("No bonus")</code></pre>
-            </div>
+    print("No bonus")</textarea>
+                        <button class="copy-button">Copy</button>
+                        <button class="run-button btn-primary mt-2">Run Code</button>
+                        <div id="output_ex2" class="output-area">Click 'Run Code' to see output...</div>
+                    </div>
+                </div>
 
-            <div class="jupyoutput">
-                (Assuming 1200) Bonus
-            </div>
+                <div class="exercise-box">
+                    <h4 class="font-bold mb-3 text-lg">⚡ Intermediate Exercise</h4>
+                    <p class="mb-3">Iterate through five gene counts using range(5) and print each.</p>
+                    <div class="code-container">
+                        <textarea id="editor_ex3" class="code-editor">
+# Intermediate Exercise Solution
+print("Processing gene counts:")
+for gene_count in range(5):
+    print(f"Gene count {gene_count + 1}: Processing...")
 
-            <p>Explanation: Implements business logic through conditional checking on input.</p>
+# Alternative with more realistic data
+gene_data = [1250, 890, 2100, 1500, 1800]
+print("\nActual gene data:")
+for i, count in enumerate(gene_data, 1):
+    print(f"Gene {i}: {count} sequences")</textarea>
+                        <button class="copy-button">Copy</button>
+                        <button class="run-button btn-primary mt-2">Run Code</button>
+                        <div id="output_ex3" class="output-area">Click 'Run Code' to see output...</div>
+                    </div>
+                </div>
 
-            <!-- Solution to Intermediate Exercise -->
-            <h3>Solution to Intermediate Exercise</h3>
-            <div class="jupyinput">
-                <pre><code>for i in range(5):
-    print(f"Gene count {i}")</code></pre>
-            </div>
+                <div class="exercise-box">
+                    <h4 class="font-bold mb-3 text-lg">🚀 Advanced Exercise</h4>
+                    <p class="mb-3">Use a while loop to print and decrement a counter from 10 to 1.</p>
+                    <div class="code-container">
+                        <textarea id="editor_ex4" class="code-editor">
+# Advanced Exercise Solution
+counter = 10
+while counter >= 1:
+    print(counter)
+    counter -= 1
+print("Countdown complete!")
 
-            <div class="jupyoutput">
-                Gene count 0<br>
-                Gene count 1<br>
-                Gene count 2<br>
-                Gene count 3<br>
-                Gene count 4
-            </div>
+# Enhanced version with user input
+start_number = int(input("Enter starting number for countdown: "))
+counter = start_number
 
-            <p>Explanation: Iterates to simulate gene processing.</p>
+while counter > 0:
+    print(counter)
+    counter -= 1
+print("Blast off! 🚀")</textarea>
+                        <button class="copy-button">Copy</button>
+                        <button class="run-button btn-primary mt-2">Run Code</button>
+                        <div id="output_ex4" class="output-area">Click 'Run Code' to see output...</div>
+                    </div>
+                </div>
 
-            <!-- Solution to Advanced Exercise -->
-            <h3>Solution to Advanced Exercise</h3>
-            <div class="jupyinput">
-                <pre><code>count = 10
-while count > 0:
-    print(count)
-    count -= 1</code></pre>
-            </div>
+                <div class="exercise-box">
+                    <h4 class="font-bold mb-3 text-lg">🎯 Mastery Exercise</h4>
+                    <p class="mb-3">Use nested for and if statements to print even numbers in a range using the modulo operator (%).</p>
+                    <div class="code-container">
+                        <textarea id="editor_ex5" class="code-editor">
+# Mastery Exercise Solution
+# Method 1: Using nested loops for demonstration
+ranges = [(1, 10), (15, 25), (30, 40)]
 
-            <div class="jupyoutput">
-                10<br>
-                9<br>
-                8<br>
-                7<br>
-                6<br>
-                5<br>
-                4<br>
-                3<br>
-                2<br>
-                1
-            </div>
+for start, end in ranges:
+    print(f"\nEven numbers between {start} and {end}:")
+    for number in range(start, end + 1):
+        if number % 2 == 0:  # Check if number is even
+            print(number, end=" ")
+    print()  # New line after each range
 
-            <p>Explanation: Demonstrates countdown using a while loop.</p>
+# Method 2: More efficient single loop
+print("\nAll even numbers from 1 to 20:")
+for num in range(2, 21, 2):  # Start at 2, step by 2
+    print(num, end=" ")</textarea>
+                        <button class="copy-button">Copy</button>
+                        <button class="run-button btn-primary mt-2">Run Code</button>
+                        <div id="output_ex5" class="output-area">Click 'Run Code' to see output...</div>
+                    </div>
+                </div>
 
-            <!-- Solution to Mastery Exercise -->
-            <h3>Solution to Mastery Exercise</h3>
-            <div class="jupyinput">
-                <pre><code>for i in range(10):
-    if i % 2 == 0:
-        print(i)</code></pre>
-            </div>
+            </section>
 
-            <div class="jupyoutput">
-                0<br>
-                2<br>
-                4<br>
-                6<br>
-                8
-            </div>
+            <!-- Business Applications Section -->
+            <section class="section-card" id="business-applications">
+                <div class="chapter-title">Business Applications</div>
+                
+                <div class="concept-box">
+                    <h3 class="font-bold mb-2 text-lg">Real-World Scenarios</h3>
+                    <p class="mb-3">
+                        Control flow structures are essential in business applications for decision-making, data processing, and automation. Here are practical examples from different domains.
+                    </p>
+                </div>
 
-            <p>Explanation: Employs nesting to filter even numbers.</p>
+                <div class="real-world-example">
+                    <h4 class="font-bold mb-3 text-lg">🏥 Health Check Application</h4>
+                    <p class="mb-3">Input patient temperature; print "Fever detected" if above 98.6°F.</p>
+                    <div class="code-container">
+                        <textarea id="editor_app1" class="code-editor">
+# Health Check Application
+def check_temperature():
+    temp = float(input("Enter patient temperature (°F): "))
+    
+    if temp > 98.6:
+        print("Fever detected")
+        if temp > 103:
+            print("⚠️  High fever! Seek immediate medical attention.")
+        elif temp > 101:
+            print("Moderate fever - monitor closely.")
+        else:
+            print("Mild fever - rest and hydrate.")
+    else:
+        print("Normal temperature")
+    
+    # Additional health assessment
+    print("\nAdditional symptoms check:")
+    symptoms = input("Does patient have cough? (yes/no): ").lower()
+    if symptoms == "yes":
+        print("Recommend consultation with doctor")
 
-            <!-- Solutions to Applications -->
-            <h3>Solutions to Applications</h3>
-            <p>Application 1: As shown.</p>
+# Run the application
+check_temperature()</textarea>
+                        <button class="copy-button">Copy</button>
+                        <button class="run-button btn-primary mt-2">Run Code</button>
+                        <div id="output_app1" class="output-area">Click 'Run Code' to see output...</div>
+                    </div>
+                </div>
 
-            <div class="jupyinput">
-                <pre><code>total = 0
-for i in range(3):
-    total += float(input("Sales: "))
-print(total)</code></pre>
-            </div>
+                <div class="real-world-example">
+                    <h4 class="font-bold mb-3 text-lg">💰 Sales Commission Calculator</h4>
+                    <p class="mb-3">Calculate commission based on sales tiers with different rates.</p>
+                    <div class="code-container">
+                        <textarea id="editor_app2" class="code-editor">
+# Sales Commission Calculator
+def calculate_commission():
+    sales = float(input("Enter total sales: $"))
+    
+    if sales > 10000:
+        commission_rate = 0.15
+        tier = "Platinum"
+    elif sales > 5000:
+        commission_rate = 0.10
+        tier = "Gold"
+    elif sales > 2000:
+        commission_rate = 0.07
+        tier = "Silver"
+    else:
+        commission_rate = 0.05
+        tier = "Bronze"
+    
+    commission = sales * commission_rate
+    total_pay = 2000 + commission  # Base salary + commission
+    
+    print(f"\nSales Tier: {tier}")
+    print(f"Commission Rate: {commission_rate:.1%}")
+    print(f"Commission Amount: ${commission:.2f}")
+    print(f"Total Pay: ${total_pay:.2f}")
+    
+    # Bonus eligibility
+    if sales > 8000:
+        print("🎉 Eligible for quarterly bonus!")
 
-            <div class="jupyoutput">
-                600.0
-            </div>
+# Run the calculator
+calculate_commission()</textarea>
+                        <button class="copy-button">Copy</button>
+                        <button class="run-button btn-primary mt-2">Run Code</button>
+                        <div id="output_app2" class="output-area">Click 'Run Code' to see output...</div>
+                    </div>
+                </div>
 
-            <div class="jupyinput">
-                <pre><code>points = 5
-while points > 0:
-    print("Process point")
-    points -= 1</code></pre>
-            </div>
+                <div class="real-world-example">
+                    <h4 class="font-bold mb-3 text-lg">🧬 Bioinformatics Data Processor</h4>
+                    <p class="mb-3">Process multiple gene sequences and filter based on quality scores.</p>
+                    <div class="code-container">
+                        <textarea id="editor_app3" class="code-editor">
+# Bioinformatics Data Processor
+def process_gene_sequences():
+    # Simulated gene sequence data (sequence, quality_score)
+    sequences = [
+        ("ATCGATCG", 95),
+        ("GCTAGCTA", 82),
+        ("TTAGGCCT", 91),
+        ("AACCGGTT", 75),
+        ("CGATCGAT", 88)
+    ]
+    
+    print("Processing gene sequences...")
+    high_quality_count = 0
+    total_sequences = len(sequences)
+    
+    for i, (sequence, quality) in enumerate(sequences, 1):
+        print(f"\nSequence {i}: {sequence}")
+        print(f"Quality Score: {quality}")
+        
+        if quality >= 90:
+            print("✅ High quality - suitable for analysis")
+            high_quality_count += 1
+        elif quality >= 80:
+            print("⚠️  Medium quality - use with caution")
+        else:
+            print("❌ Low quality - consider re-sequencing")
+    
+    # Summary statistics
+    high_quality_percent = (high_quality_count / total_sequences) * 100
+    print(f"\n=== PROCESSING SUMMARY ===")
+    print(f"Total sequences: {total_sequences}")
+    print(f"High quality sequences: {high_quality_count}")
+    print(f"High quality percentage: {high_quality_percent:.1f}%")
 
-            <div class="jupyoutput">
-                Process point<br>
-                Process point<br>
-                Process point<br>
-                Process point<br>
-                Process point
-            </div>
+# Run the processor
+process_gene_sequences()</textarea>
+                        <button class="copy-button">Copy</button>
+                        <button class="run-button btn-primary mt-2">Run Code</button>
+                        <div id="output_app3" class="output-area">Click 'Run Code' to see output...</div>
+                    </div>
+                </div>
 
-            <!-- Glossary Box -->
-            <div class="glossarybox">
-                - Input: Function to capture user data.<br>
-                - If: Statement to check a condition.<br>
-                - Else: Alternative execution path.<br>
-                - For loop: Iteration over a sequence.<br>
-                - While loop: Repetition while a condition is true.<br>
-                - Break: Terminates a loop prematurely.<br>
-                - Continue: Skips the current iteration.<br>
-                - Nesting: Placing control structures within others.<br>
-                - Condition: Boolean expression for testing.<br>
-                - Iteration: Single cycle of a loop.<br>
-                - Infinite loop: Loop that never terminates.<br>
-                - Indentation: Spacing to define code blocks.<br>
-                - Range: Function to generate number sequences.<br>
-                - Modulo: % operator for remainder.<br>
-                - Increment: += operator to add a value.<br>
-                - Decrement: -= operator to subtract a value.<br>
-                - Score: Variable to track points.<br>
-                - Quiz: Set of questions.<br>
-                - Temperature: Measure used in health assessments.<br>
-                - Sales sum: Total revenue calculation.
-            </div>
+            </section>
 
-            <!-- FAQ Box -->
-            <div class="faqbox">
-                Q1: What is control flow? A: Mechanisms to direct code execution.<br>
-                Q2: What is the difference between for and while loops? A: For is used for known iteration counts, while for condition-based repetition.<br>
-                Q3: How to fix an infinite loop? A: Ensure the loop condition changes appropriately.<br>
-                Q4: Why use nesting? A: To implement complex logical structures.<br>
-                Q5: Is input always a string? A: Yes; convert to other types as required.
-            </div>
-        </section>
-    </main>
+            <!-- Capstone Project Section -->
+            <section class="section-card" id="capstone-project">
+                <div class="chapter-title">Capstone Challenge Project</div>
+                
+                <div class="concept-box">
+                    <h3 class="font-bold mb-2 text-lg">Interactive Quiz System</h3>
+                    <p class="mb-3">
+                        Develop a simple quiz that prompts for answers, checks them using if statements, and loops through questions, displaying the score at the end. This project combines all control flow concepts you've learned.
+                    </p>
+                </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>Author: Ali Noori | A_noori@uncg.edu | Lecturer, Informatics & Analytics, UNCG</p>
-        <p>&copy; 2025</p>
-    </footer>
+                <div class="function-title">Quiz Implementation</div>
+                
+                <div class="explanation-box">
+                    <h4 class="font-bold mb-2">Complete Quiz Application</h4>
+                    <p class="mb-3">
+                        This capstone project demonstrates real-world application of control flow structures. The quiz handles multiple questions, validates answers, tracks scores, and provides feedback.
+                    </p>
+                </div>
+
+                <div class="code-container">
+                    <textarea id="editor_project" class="code-editor">
+def run_quiz():
+    print("🎓 Welcome to the Python Control Flow Quiz!")
+    print("=" * 50)
+    
+    # Quiz questions and answers
+    questions = [
+        {
+            "question": "What keyword is used to start a conditional statement?",
+            "options": ["A) when", "B) if", "C) check", "D) condition"],
+            "answer": "B"
+        },
+        {
+            "question": "Which loop is best when you know how many iterations you need?",
+            "options": ["A) while loop", "B) for loop", "C) do-while loop", "D) until loop"],
+            "answer": "B"
+        },
+        {
+            "question": "What does the 'break' statement do?",
+            "options": ["A) Skips to next iteration", "B) Exits the loop entirely", "C) Pauses the loop", "D) Restarts the loop"],
+            "answer": "B"
+        },
+        {
+            "question": "Which operator checks if a value is in a sequence?",
+            "options": ["A) contains", "B) in", "C) has", "D) within"],
+            "answer": "B"
+        },
+        {
+            "question": "What is the result of: 7 % 2?",
+            "options": ["A) 3.5", "B) 1", "C) 0", "D) 14"],
+            "answer": "B"
+        }
+    ]
+    
+    score = 0
+    total_questions = len(questions)
+    
+    # Loop through all questions
+    for i, q in enumerate(questions, 1):
+        print(f"\nQuestion {i}/{total_questions}")
+        print(q["question"])
+        for option in q["options"]:
+            print(f"  {option}")
+        
+        # Get and validate user input
+        while True:
+            user_answer = input("\nYour answer (A/B/C/D): ").upper()
+            if user_answer in ["A", "B", "C", "D"]:
+                break
+            else:
+                print("❌ Please enter A, B, C, or D")
+        
+        # Check if answer is correct
+        if user_answer == q["answer"]:
+            print("✅ Correct!")
+            score += 1
+        else:
+            print(f"❌ Incorrect. The correct answer is {q['answer']}")
+        
+        # Progress indicator
+        print(f"Current score: {score}/{i}")
+        print("-" * 40)
+    
+    # Calculate final score and provide feedback
+    percentage = (score / total_questions) * 100
+    
+    print("\n" + "=" * 50)
+    print("📊 QUIZ RESULTS")
+    print("=" * 50)
+    print(f"Final Score: {score}/{total_questions} ({percentage:.1f}%)")
+    
+    # Performance feedback
+    if percentage >= 90:
+        print("🎉 Excellent! You're a control flow master!")
+    elif percentage >= 70:
+        print("👍 Good job! You understand the concepts well.")
+    elif percentage >= 50:
+        print("📚 Not bad! Review the material and try again.")
+    else:
+        print("💪 Keep practicing! You'll get there.")
+    
+    # Offer retry option
+    retry = input("\nWould you like to try again? (yes/no): ").lower()
+    if retry == "yes":
+        print("\n" + "=" * 50)
+        run_quiz()
+    else:
+        print("Thanks for playing! 👋")
+
+# Start the quiz
+run_quiz()</textarea>
+                    <button class="copy-button">Copy</button>
+                    <button class="run-button btn-primary mt-2">Run Code</button>
+                    <div id="output_project" class="output-area">Click 'Run Code' to see output...</div>
+                </div>
+
+            </section>
+
+            <!-- Summary Section -->
+            <section class="section-card" id="summary">
+                <div class="chapter-title">Summary & Next Steps</div>
+                
+                <div class="concept-box">
+                    <h3 class="font-bold mb-2 text-lg">What You've Learned</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-semibold mb-2">✅ Key Takeaways:</h4>
+                            <ul class="list-disc pl-6" id="key-takeaways">
+                                <li>Conditional statements (if/elif/else) for decision making</li>
+                                <li>For loops for iterating over sequences and ranges</li>
+                                <li>While loops for condition-based repetition</li>
+                                <li>Control statements: break, continue, pass</li>
+                                <li>Nested structures for complex logic</li>
+                                <li>Practical applications in business and science</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2">🚀 Next Steps:</h4>
+                            <ul class="list-disc pl-6" id="next-steps">
+                                <li>Practice with more complex conditional logic</li>
+                                <li>Explore list comprehensions for concise loops</li>
+                                <li>Learn about error handling with try/except</li>
+                                <li>Study functions to organize your code better</li>
+                                <li>Work on projects that combine multiple control flow concepts</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box mt-6">
+                    <h4 class="font-bold mb-2">📚 Glossary & FAQ</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h5 class="font-semibold mb-2">Glossary:</h5>
+                            <ul class="list-disc pl-6 text-sm">
+                                <li><strong>Control Flow:</strong> Mechanisms to direct code execution</li>
+                                <li><strong>Condition:</strong> A Boolean expression used for testing</li>
+                                <li><strong>For Loop:</strong> Iteration over a known sequence</li>
+                                <li><strong>While Loop:</strong> Repetition while a condition is true</li>
+                                <li><strong>Nesting:</strong> Placing control structures within others</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold mb-2">FAQ:</h5>
+                            <ul class="list-disc pl-6 text-sm">
+                                <li><strong>Q:</strong> Difference between for and while loops?<br>
+                                    <strong>A:</strong> For is for known iteration counts, while is for condition-based repetition</li>
+                                <li><strong>Q:</strong> How to fix infinite loops?<br>
+                                    <strong>A:</strong> Ensure the loop's condition eventually becomes false</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+
+<script>
+// Configuration
+const MODULE_CONFIG = {
+    title: "Module 2: Control Flow & Decision Making",
+    description: "Master conditional statements, loops, and program flow control in Python",
+    learningObjectives: [
+        "Understand and implement conditional statements (if/elif/else)",
+        "Master for loops for iterating over sequences",
+        "Use while loops for condition-based repetition",
+        "Apply control statements (break, continue, pass)",
+        "Create nested control structures for complex logic",
+        "Build practical applications using control flow"
+    ],
+    prerequisites: [
+        "Basic Python syntax and variables",
+        "Understanding of data types (int, float, str, bool)",
+        "Basic operations and print statements",
+        "Type conversion and user input handling"
+    ],
+    chapters: [
+        { id: "module-overview", title: "Module Overview" },
+        { id: "chapter-1", title: "Chapter 1: Conditional Statements" },
+        { id: "chapter-2", title: "Chapter 2: For Loops" },
+        { id: "chapter-3", title: "Chapter 3: While Loops" },
+        { id: "chapter-4", title: "Chapter 4: Nesting & Control" },
+        { id: "practice-exercises", title: "Practice Exercises" },
+        { id: "business-applications", title: "Business Applications" },
+        { id: "capstone-project", title: "Capstone Project" },
+        { id: "summary", title: "Summary & Next Steps" }
+    ]
+};
+
+let pyodide;
+let isPyodideReady = false;
+let currentTheme = 'dark';
+
+// Initialize module content
+function initializeModuleContent() {
+    // Set module title and description
+    document.getElementById('module-title').textContent = MODULE_CONFIG.title;
+    document.getElementById('module-description').textContent = MODULE_CONFIG.description;
+    
+    // Set learning objectives
+    const objectivesList = document.getElementById('learning-objectives-list');
+    objectivesList.innerHTML = '';
+    MODULE_CONFIG.learningObjectives.forEach(obj => {
+        const li = document.createElement('li');
+        li.textContent = obj;
+        objectivesList.appendChild(li);
+    });
+    
+    // Set prerequisites
+    const prereqList = document.getElementById('prerequisites-list');
+    prereqList.innerHTML = '';
+    MODULE_CONFIG.prerequisites.forEach(prereq => {
+        const li = document.createElement('li');
+        li.textContent = prereq;
+        prereqList.appendChild(li);
+    });
+}
+
+function addToOutput(outputId, text) {
+    const outputElement = document.getElementById(outputId);
+    if (outputElement) {
+        outputElement.textContent += text;
+    }
+}
+
+function updateProgress(percentage) {
+    const progressFill = document.getElementById('progress-fill');
+    if (progressFill) {
+        progressFill.style.width = `${percentage}%`;
+    }
+}
+
+function toggleTheme() {
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    currentTheme = newTheme;
+    
+    const themeIcon = document.getElementById('theme-icon');
+    themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+    
+    // Update CodeMirror theme
+    document.querySelectorAll('.CodeMirror').forEach(cm => {
+        cm.CodeMirror.setOption('theme', newTheme === 'dark' ? 'monokai' : 'eclipse');
+    });
+    
+    // Save preference
+    localStorage.setItem('theme', newTheme);
+}
+
+function generateTableOfContents() {
+    const tocList = document.getElementById('toc-list');
+    tocList.innerHTML = '';
+    
+    MODULE_CONFIG.chapters.forEach(chapter => {
+        const tocItem = document.createElement('div');
+        tocItem.className = 'toc-item';
+        tocItem.textContent = chapter.title;
+        tocItem.addEventListener('click', () => {
+            document.getElementById(chapter.id).scrollIntoView({ behavior: 'smooth' });
+        });
+        tocList.appendChild(tocItem);
+    });
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        // Show success message
+        const successMessage = document.createElement('div');
+        successMessage.className = 'success-message';
+        successMessage.textContent = 'Code copied to clipboard!';
+        
+        // Remove any existing success message
+        const existingMessage = document.querySelector('.success-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+        
+        // Add the new message
+        document.querySelector('.code-container').appendChild(successMessage);
+        
+        // Remove after 2 seconds
+        setTimeout(() => {
+            successMessage.remove();
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy: ', err);
+    });
+}
+
+async function initializePyodide() {
+    try {
+        const statusElement = document.getElementById('status-indicator');
+        statusElement.textContent = "🔄 Loading Pyodide runtime...";
+        updateProgress(20);
+        
+        pyodide = await loadPyodide({
+            indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
+        });
+        
+        statusElement.textContent = "📦 Setting up environment...";
+        updateProgress(60);
+        
+        await pyodide.runPythonAsync(`
+import sys
+import js
+
+class OutputCapture:
+    def __init__(self, output_id):
+        self.output_id = output_id
+    def write(self, text):
+        js.addToOutput(self.output_id, text)
+    def flush(self):
+        pass
+original_stdout = sys.stdout
+`);
+
+        statusElement.className = "status-indicator status-ready";
+        statusElement.textContent = "✅ Environment loaded successfully! You can now run the examples.";
+        updateProgress(100);
+        isPyodideReady = true;
+        
+    } catch (error) {
+        console.error("Error:", error);
+        const statusElement = document.getElementById('status-indicator');
+        statusElement.className = "status-indicator status-error";
+        statusElement.textContent = "❌ Error loading environment: " + error.message;
+    }
+}
+
+async function runPythonCode(code, outputElement) {
+    if (!isPyodideReady) {
+        outputElement.textContent = "Environment not loaded yet. Please wait...";
+        return;
+    }
+
+    try {
+        outputElement.textContent = "Running...";
+        const outputId = outputElement.id;
+        
+        await pyodide.runPythonAsync(`
+import sys
+output_capture = OutputCapture("${outputId}")
+sys.stdout = output_capture
+`);
+
+        await pyodide.runPythonAsync(code);
+        
+        await pyodide.runPythonAsync(`sys.stdout = original_stdout`);
+        
+    } catch (error) {
+        outputElement.textContent = "Error: " + error.message;
+    }
+}
+
+window.addToOutput = addToOutput;
+
+document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize module content
+    initializeModuleContent();
+    
+    // Set initial theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    currentTheme = savedTheme;
+    
+    const themeIcon = document.getElementById('theme-icon');
+    themeIcon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+    
+    // Generate table of contents
+    generateTableOfContents();
+    
+    // Initialize Pyodide
+    await initializePyodide();
+
+    // Set up code editors and event listeners
+    document.querySelectorAll('.code-container').forEach(container => {
+        const codeTextArea = container.querySelector('.code-editor');
+        const runButton = container.querySelector('.run-button');
+        const copyButton = container.querySelector('.copy-button');
+        const outputArea = container.querySelector('.output-area');
+
+        const codeEditor = CodeMirror.fromTextArea(codeTextArea, {
+            lineNumbers: true,
+            mode: 'python',
+            theme: currentTheme === 'dark' ? 'monokai' : 'eclipse',
+            value: codeTextArea.value
+        });
+
+        runButton.addEventListener('click', async () => {
+            const code = codeEditor.getValue();
+            await runPythonCode(code, outputArea);
+        });
+        
+        copyButton.addEventListener('click', () => {
+            const code = codeEditor.getValue();
+            copyToClipboard(code);
+        });
+    });
+    
+    // Set up theme toggle
+    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+});
+</script>
 </body>
 </html>
